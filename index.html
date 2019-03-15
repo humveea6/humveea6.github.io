@@ -693,9 +693,2719 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Linux/乱搞/e8-92-9f-e8-92-bb-e7-9a-84linux-e9-9a-8f-e7-ac-94/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Linux/乱搞/e8-92-9f-e8-92-bb-e7-9a-84linux-e9-9a-8f-e7-ac-94/" itemprop="url">蒟蒻的Linux随笔</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-16T22:53:53+08:00">
+                2018-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/乱搞/" itemprop="url" rel="index">
+                    <span itemprop="name">乱搞</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Linux/乱搞/e8-92-9f-e8-92-bb-e7-9a-84linux-e9-9a-8f-e7-ac-94/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Linux/乱搞/e8-92-9f-e8-92-bb-e7-9a-84linux-e9-9a-8f-e7-ac-94/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近突然开始研究了一下Linux，随手记录一下一些用过的看起来比较有意思的命令吧QAQ</p>
+<h3 id="文件浏览-amp-常用乱七八糟"><a href="#文件浏览-amp-常用乱七八糟" class="headerlink" title="文件浏览&amp;常用乱七八糟"></a>文件浏览&amp;常用乱七八糟</h3><p>编译命令：</p>
+<blockquote>
+<p>g++ a+b.cpp -o a+b+c -std=c++11</p>
+</blockquote>
+<p>a+b.cpp是cpp文件名，a+b+c则是可执行文件名，后面则可以选择编译标准。</p>
+<blockquote>
+<p>ls</p>
+</blockquote>
+<p>浏览当前文件夹下的所有文件（不包含隐藏文件</p>
+<blockquote>
+<p>ls -a</p>
+</blockquote>
+<p>显示所有文件（包括隐藏文件）</p>
+<blockquote>
+<p>man ls</p>
+</blockquote>
+<p>man后面加东西，显示该命令的帮助，上下/空格浏览，q退出</p>
+<blockquote>
+<p>cal</p>
+</blockquote>
+<p>显示日历。cal 5 2018可显示指定月份。</p>
+<h3 id="文件打开-amp-新建-amp-删除"><a href="#文件打开-amp-新建-amp-删除" class="headerlink" title="文件打开&amp;新建&amp;删除"></a>文件打开&amp;新建&amp;删除</h3><blockquote>
+<p>cd name</p>
+</blockquote>
+<p>打开文件</p>
+<blockquote>
+<p>cd/cd ~</p>
+</blockquote>
+<p>回到根目录</p>
+<blockquote>
+<p>cd ..</p>
+</blockquote>
+<p>回到上一级目录</p>
+<blockquote>
+<p>pwd</p>
+</blockquote>
+<p>显示当前路径</p>
+<blockquote>
+<p>mkdir name</p>
+</blockquote>
+<p>新建文件夹</p>
+<blockquote>
+<p>mkdir -p name/name/name</p>
+</blockquote>
+<p>按路径建立多个新文件夹</p>
+<blockquote>
+<p>rmdir name</p>
+</blockquote>
+<p>删除此文件夹（被删除文件夹必须为空）</p>
+<blockquote>
+<p>rm -r name</p>
+</blockquote>
+<p>干翻name目录下所有文件（删库跑路？）</p>
+<h3 id="文件复制，移动，删除"><a href="#文件复制，移动，删除" class="headerlink" title="文件复制，移动，删除"></a>文件复制，移动，删除</h3><h4 id="文件复制"><a href="#文件复制" class="headerlink" title="文件复制"></a>文件复制</h4><blockquote>
+<p>cp ~/testpdf.pdf ~/test</p>
+</blockquote>
+<p>将根目录下的文件copy到空格后的目录中，~/不填则默认为当前目录下的文件 可以在复制的同时对复制后的文件进行重命名：</p>
+<blockquote>
+<p>cp ~/testpdf.pdf ~/test/notest.pdf</p>
+</blockquote>
+<p>复制过去的pdf名字就变了 可以加上-i选项，这样有同名文件覆盖前会询问是否覆盖：</p>
+<blockquote>
+<p>cp -i ~/testpdf.pdf ~/test</p>
+</blockquote>
+<p>如果要复制一个目录，或者说是文件夹，那么需要加上指令 -r</p>
+<blockquote>
+<p>cp -r test1 test2</p>
+</blockquote>
+<p>如果要强制执行，还可以使用-f指令；同时，多个指令可以叠加使用，例如：</p>
+<blockquote>
+<p>cp -rf test1 test2</p>
+</blockquote>
+<p>强制复制目录</p>
+<h4 id="文件删除"><a href="#文件删除" class="headerlink" title="文件删除"></a>文件删除</h4><p>使用指令rm以达到目的，同样，删除目录需要使用-r，这是递归删除命令；</p>
+<blockquote>
+<p>rm -r test1</p>
+</blockquote>
+<p>-i则会在删除前确认，-f表示强制执行。同时，还可以使用指令</p>
+<blockquote>
+<p>rm test*</p>
+</blockquote>
+<p>通过加上 “* ” 来删除此目录下所有文件名以test为前缀的文件；</p>
+<h4 id="文件移动"><a href="#文件移动" class="headerlink" title="文件移动"></a>文件移动</h4><p>使用mv指令来达成目的。mv指令可以移动普通文件和目录，因此不存在-r<br>-f 强制，-i：如果存在同名文件，询问是否覆盖； -u：如果目标文件已存在，且当前来源较新才会更新</p>
+<blockquote>
+<p>mv a+b ~/test/test2/</p>
+</blockquote>
+<p>将当前目录中的可执行文件a+b移动到指定文件夹中；</p>
+<blockquote>
+<p>mv a+b ~/test/test2/a+c</p>
+</blockquote>
+<p>移动文件的同时进行名称变更；</p>
+<blockquote>
+<p>mv a+b a+c ~/test/</p>
+</blockquote>
+<p>同时移动多个文件；注意此时最后一个一定是目录！！！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Codeforces/比赛杂集/manthan-codefest-18-rated-div-1-div-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Codeforces/比赛杂集/manthan-codefest-18-rated-div-1-div-2/" itemprop="url">Manthan, Codefest 18 (rated, Div. 1 + Div. 2)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-16T21:35:12+08:00">
+                2018-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Codeforces/" itemprop="url" rel="index">
+                    <span itemprop="name">Codeforces</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Codeforces/比赛杂集/" itemprop="url" rel="index">
+                    <span itemprop="name">比赛杂集</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Codeforces/比赛杂集/manthan-codefest-18-rated-div-1-div-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Codeforces/比赛杂集/manthan-codefest-18-rated-div-1-div-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1w年没更新了QAQ A. 傻逼题二进制分解一下即可</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main()
+{
+    int n,i,j,k;
+    cin&gt;&gt;n;
+    for(i=0;;i++){
+        if(n&lt;=(1&lt;&lt;i))break;
+        n-=(1&lt;&lt;i);
+    }
+    cout&lt;&lt;i+1&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p>B. 排个序贪心搞搞就行，自己zz了还wa了3发…</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+int main()
+{
+    int num[200005],n,s,i,j,k;
+    ll ans=0;
+    cin&gt;&gt;n&gt;&gt;s;
+    for(i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;num[i]);
+    sort(num+1,num+1+n);
+    int mid=(n+1)&gt;&gt;1;
+    if(num[mid]==s){
+        cout&lt;&lt;0&lt;&lt;endl;return 0;
+    }
+    else if(num[mid]&gt;s){
+        for(i=mid;i;i--){
+            if(num[i]&lt;=s)break;
+            ans+=num[i]-s;
+        }
+    }
+    else{
+        for(i=mid;i&lt;=n;i++){
+
+            if(num[i]&gt;=s)break;
+            ans+=s-num[i];
+            //cout&lt;&lt;ans&lt;&lt;endl;
+        }
+    }
+    //cout&lt;&lt;mid&lt;&lt;endl;
+    cout&lt;&lt;ans&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p>C. 除非相邻位置刚好要交换，否则都没有交换意义，随便搞搞即可</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main()
+{
+    int n,i,j,k;string str1,str2;
+    int ans=0;
+    cin&gt;&gt;n;
+    cin&gt;&gt;str1&gt;&gt;str2;
+    for(i=0;i&lt;str1.size();i++){
+        if(str1[i]!=str2[i]){
+            if(i&lt;str1.size()-1&amp;&amp;str1[i+1]!=str2[i+1]&amp;&amp;str1[i]!=str1[i+1]){
+                ans++;i++;
+            }
+            else{
+                ans++;
+            }
+        }
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p>D. 其实就是一个二叉树的层次遍历，但是还有一点要注意的就是父亲层的遍历顺序决定了下一层的遍历顺序，所以这也要考虑。解决方案是每个点建一个map记录边，然后检测序列的时候弄两个指针，一个指示当前节点，另一个指示当前节点的儿子。如果是非法序列，最后第二个指针肯定没法走完所有的节点。同时还要注意特判根节点是否为1</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+map&lt;int,int&gt;mp1[200005];
+int main()
+{
+    int n,i,j,k,x,y;
+    cin&gt;&gt;n;
+    for(i=1;i&lt;n;i++){
+        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);mp1[x][y]=1;mp1[y][x]=1;
+    }
+    int num[200005];
+    for(i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;num[i]);
+    for(i=1,j=2;i&lt;=n;i++)
+        while(mp1[num[i]][num[j]])
+            j++;
+    if(j==n+1&amp;&amp;num[1]==1){//注意这里是j==n+1!!
+        cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
+    }
+    else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
+//cout&lt;&lt;j&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p>E. 难点在于怎么去检测一个人是否有至少k个朋友，并且这些朋友也都有至少k个可以去旅游的朋友…标算很精妙…</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn=2e5+50;
+set&lt;int&gt;s,G[maxn];
+int k,a[maxn],b[maxn],ans[maxn],n,m;
+void check(int x)
+{
+    if(G[x].size()&lt;k&amp;&amp;s.erase(x)){//如果这个人的朋友小于k,他肯定要滚蛋,同时在s里面也要删去此人
+        for(auto a:G[x]){
+            G[a].erase(x);check(a);//他的朋友也要check一发
+        }
+    }
+}
+int main()
+{
+    int i,j;
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;
+    for(i=1;i&lt;=m;i++){
+        scanf(&quot;%d%d&quot;,&amp;a[i],&amp;b[i]);
+        G[a[i]].insert(b[i]);G[b[i]].insert(a[i]);//建立朋友关系
+    }
+    for(i=1;i&lt;=n;i++)s.insert(i);
+    for(i=1;i&lt;=n;i++)check(i);//检查每一个人的朋友关系
+    for(i=m;i;i--){
+        ans[i]=s.size();//此时集合中的所有人都满足要求
+        G[a[i]].erase(b[i]);G[b[i]].erase(a[i]);//删去这天才成为朋友的人
+        check(a[i]);check(b[i]);
+    }
+    for(i=1;i&lt;=m;i++)
+        printf(&quot;%d\n&quot;,ans[i]);
+
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/旅游/生活/e6-84-8f-e7-91-9e-e6-b3-95-e4-b9-8b-e6-97-85-e5-92-95-e5-92-95-e5-92-95-e7-b3-bb-e5-88-97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/旅游/生活/e6-84-8f-e7-91-9e-e6-b3-95-e4-b9-8b-e6-97-85-e5-92-95-e5-92-95-e5-92-95-e7-b3-bb-e5-88-97/" itemprop="url">意瑞法之旅——咕咕咕系列</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-01T03:44:57+08:00">
+                2018-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/旅游/" itemprop="url" rel="index">
+                    <span itemprop="name">旅游</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/旅游/生活/" itemprop="url" rel="index">
+                    <span itemprop="name">生活</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/旅游/生活/e6-84-8f-e7-91-9e-e6-b3-95-e4-b9-8b-e6-97-85-e5-92-95-e5-92-95-e5-92-95-e7-b3-bb-e5-88-97/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="旅游/生活/e6-84-8f-e7-91-9e-e6-b3-95-e4-b9-8b-e6-97-85-e5-92-95-e5-92-95-e5-92-95-e7-b3-bb-e5-88-97/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="8-26"><a href="#8-26" class="headerlink" title="8.26"></a>8.26</h3><p>一大早5点钟就滚去机场了，飞机倒是没延误，但是南航的这班飞机真心不敢恭维——首先飞机在远机位，坐摆渡车跑了半天，然后大概是飞机比较陈旧的缘故吧，连个人娱乐系统都没有，无聊得不行，要是飞国际线乘客估计能无聊死。餐食就更加无语了，面条非常难吃，还每人发了半个番薯…说起来番薯好像还是最好吃的。幸好航程不长，睡一觉也就到了。不过下降的时候飞越了广州市区倒是好评，第一次如此完整的在空中俯瞰广州——我甚至清晰地拍到了小蛮腰。 <img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2713.jpg" alt> <img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2720-e1536758929847.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2733-e1536758954288.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2735-e1536758966592.jpg" alt> 滚回家就12点了，睡了一觉起来5点了…搞了搞吃了个饭又愉快地去机场了，新航站楼的空调真的好冷QAQ。航班其实是凌晨00：35的…登机的时候前面有俩蛮帅的小哥哥，不过似乎是俩资本主义的国民，一直在哇哩哇啦不知道说啥😂 <img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_8452.jpg" alt> 投奔资本主义~ <img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_3650-e1536759270997.jpg" alt> 然后，南航不得不再吐槽一发…虽然说787一排343也是航空公司常态了…但是您这个前后间距敢不敢再窄一点，感觉我TM一路蹲到了罗马…作为5年的老787，WiFi自然没有，娱乐系统的分辨率…大概只有联想的垃圾泛白tn屏才能与之一战。飞了12个半小时，真的挺漫长的… <img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_1940.jpg" alt> <img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2838.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2845.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2858.png" alt> 罗马机场WiFi界面倒是好评…估计也是为了讨好一下各位爆买的金主大妈吧…</p>
+<h3 id="8-27"><a href="#8-27" class="headerlink" title="8.27"></a>8.27</h3><p>在罗马机场过海关队伍真的超级长…刚好排到了一个特别严肃的海关大姐把守的关卡，我前面的一个穆斯林小姐姐似乎被遣返了…还好后来换了个大叔来审核，这哥们倒是贼松散，上来一看中国游客直接就过了… 前面这个妹子被遣返了，左边那个大妈真的… <img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2866-e1536760470840.jpg" alt> 讲道理，罗马机场给我的感觉其实也挺一般的，跟北京的t2一个水平吧，略旧。 然后第一天就先滚去梵蒂冈了，看了看圣彼得大教堂，里面各种什么名画雕塑，埋了各种名人…不过对于对艺术一窍不通的我来说，感觉都是一堆石膏像，看不出什么大区别…倒是外面的瑞士雇佣兵蛮有意思，感觉像动物园里的动物被人疯狂拍照：-D <img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2925.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2954.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2918.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2941.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2977.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_2988.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_3004.jpg" alt> 接着就滚去了斗兽场跟许愿池转了转，感觉还行，就是人略多（谁说只有中国人多来着，资本主义一样人挤人…)<br>吃了个所谓意大利雪糕，个人感觉并没有麦当劳的新地好吃（呸 不过，罗马老建筑的保护还是普遍比国内好…这个不得不承认 <img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_3019.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_3036.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_3054.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_3058.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_5129.jpg" alt><img src="http://www.humveea6.cn/wp-content/uploads/2018/09/IMG_3145.jpg" alt> 似乎还是跨国大公司麦爸爸的东西最好吃：-D 然后就滚回酒店啦，吃了个麦爸爸，8点就睡着了（于是第二天4点就醒了）</p>
+<h3 id="8-28"><a href="#8-28" class="headerlink" title="8.28"></a>8.28</h3><h3 id="8-31"><a href="#8-31" class="headerlink" title="8.31"></a>8.31</h3><p>今天早上在琉森湖游了一会船，但是雾太大感觉啥都看不见，最有意思的似乎是湖里还能正常行驶的明轮蒸汽船。接着就是在卢塞恩（琉森）的自由活动时间了。考虑到对手表毫无兴趣（其实是买不起），又恰好发现附近有一个The Swiss Museum of Transport,于是就很开心的坐了4站公交过去看。买票的时候发现没有足够的硬币，上车跟司机聊了半天也没有解决问题，于是最后就逃了一波票。不得不说资本主义的公交坐起来还是挺舒服的，而且车上人贼好，还主动问我是不是去博物馆（大概是脸上写着“游客”两字？） 博物馆跟中国的相比其实并不是很大，但是维护得非常好，展品保养得也非常棒，更重要的是，</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/暑假训练/比赛杂集/算法/网络赛/2018-multi-university-training-contest-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/暑假训练/比赛杂集/算法/网络赛/2018-multi-university-training-contest-10/" itemprop="url">2018 Multi-University Training Contest 10</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-22T20:49:44+08:00">
+                2018-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/暑假训练/" itemprop="url" rel="index">
+                    <span itemprop="name">暑假训练</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/暑假训练/比赛杂集/" itemprop="url" rel="index">
+                    <span itemprop="name">比赛杂集</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/暑假训练/比赛杂集/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/暑假训练/比赛杂集/算法/网络赛/" itemprop="url" rel="index">
+                    <span itemprop="name">网络赛</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/暑假训练/比赛杂集/算法/网络赛/2018-multi-university-training-contest-10/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="暑假训练/比赛杂集/算法/网络赛/2018-multi-university-training-contest-10/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>HDU6426~6437</strong></p>
+<h3 id="G"><a href="#G" class="headerlink" title="G"></a>G</h3><p>考虑使用容斥原理进行计数. 包含至少一个形如 $$[i, i + 1] $$或 $$[n, 1] $$这样的子串的环排列个数是 $$\binom{n}{1} (n - 2)! $$个; 可以推广为包含至少$$ k (0 \leq k &lt; n)$$个的环排列个数是 $$\binom{n}{k} (n - k - 1)!$$, 同时注意到包含 $$n$$ 个的环排列个数一定是 1个. 所以最终答案就是$$ (-1)^n + \sum_{k = 0}^{n - 1} (-1)^k \binom{n}{k} (n - k - 1)!$$ 或者，直接暴力打表找出前几项，推公式或者面向OEIS编程，得出公式： $$a_n=(n-2)\times a_{n-1}+(n-1)\times a_{n-2}-(-1)^n$$</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int mod=998244353;
+ll f[100005];
+int main()
+{
+    f[1]=1;f[2]=0;f[3]=1;f[4]=1;
+    int i,j;
+    for(i=5;i&lt;=100000;i++){
+        f[i]=((i-2)*f[i-1]%mod+(i-1)*f[i-2]%mod-(i&amp;1?-1:1))%mod;
+    }
+    int t;
+    cin&gt;&gt;t;
+    while(t--){
+        int n;
+        cin&gt;&gt;n;
+        cout&lt;&lt;f[n]&lt;&lt;endl;
+    }
+
+    return 0;
+}
+</code></pre><h3 id="H"><a href="#H" class="headerlink" title="H"></a>H</h3><p><strong>printf(“%.0f\n”, pow(2, n));</strong></p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdio&gt;
+using namespace std;
+
+const int maxn = 10000;
+
+struct bign{
+    int d[maxn], len;
+
+    void clean() { while(len &gt; 1 &amp;&amp; !d[len-1]) len--; }
+
+    bign()          { memset(d, 0, sizeof(d)); len = 1; }
+    bign(int num)   { *this = num; }
+    bign(char* num) { *this = num; }
+    bign operator = (const char* num){
+        memset(d, 0, sizeof(d)); len = strlen(num);
+        for(int i = 0; i &lt; len; i++) d[i] = num[len-1-i] - &apos;0&apos;;
+        clean();
+        return *this;
+    }
+    bign operator = (int num){
+        char s[20]; sprintf(s, &quot;%d&quot;, num);
+        *this = s;
+        return *this;
+    }
+
+    bign operator + (const bign&amp; b){
+        bign c = *this; int i;
+        for (i = 0; i &lt; b.len; i++){
+            c.d[i] += b.d[i];
+            if (c.d[i] &gt; 9) c.d[i]%=10, c.d[i+1]++;
+        }
+        while (c.d[i] &gt; 9) c.d[i++]%=10, c.d[i]++;
+        c.len = max(len, b.len);
+        if (c.d[i] &amp;&amp; c.len &lt;= i) c.len = i+1;
+        return c;
+    }
+    bign operator - (const bign&amp; b){
+        bign c = *this; int i;
+        for (i = 0; i &lt; b.len; i++){
+            c.d[i] -= b.d[i];
+            if (c.d[i] &lt; 0) c.d[i]+=10, c.d[i+1]--;
+        }
+        while (c.d[i] &lt; 0) c.d[i++]+=10, c.d[i]--;
+        c.clean();
+        return c;
+    }
+    bign operator * (const bign&amp; b)const{
+        int i, j; bign c; c.len = len + b.len;
+        for(j = 0; j &lt; b.len; j++) for(i = 0; i &lt; len; i++)
+            c.d[i+j] += d[i] * b.d[j];
+        for(i = 0; i &lt; c.len-1; i++)
+            c.d[i+1] += c.d[i]/10, c.d[i] %= 10;
+        c.clean();
+        return c;
+    }
+    bign operator / (const bign&amp; b){
+        int i, j;
+        bign c = *this, a = 0;
+        for (i = len - 1; i &gt;= 0; i--)
+        {
+            a = a*10 + d[i];
+            for (j = 0; j &lt; 10; j++) if (a &lt; b*(j+1)) break;
+            c.d[i] = j;
+            a = a - b*j;
+        }
+        c.clean();
+        return c;
+    }
+    bign operator % (const bign&amp; b){
+        int i, j;
+        bign a = 0;
+        for (i = len - 1; i &gt;= 0; i--)
+        {
+            a = a*10 + d[i];
+            for (j = 0; j &lt; 10; j++) if (a &lt; b*(j+1)) break;
+            a = a - b*j;
+        }
+        return a;
+    }
+    bign operator += (const bign&amp; b){
+        *this = *this + b;
+        return *this;
+    }
+
+    bool operator &lt;(const bign&amp; b) const{
+        if(len != b.len) return len &lt; b.len;
+        for(int i = len-1; i &gt;= 0; i--)
+            if(d[i] != b.d[i]) return d[i] &lt; b.d[i];
+        return false;
+    }
+    bool operator &gt;(const bign&amp; b) const{return b &lt; *this;}
+    bool operator&lt;=(const bign&amp; b) const{return !(b &lt; *this);}
+    bool operator&gt;=(const bign&amp; b) const{return !(*this &lt; b);}
+    bool operator!=(const bign&amp; b) const{return b &lt; *this || *this &lt; b;}
+    bool operator==(const bign&amp; b) const{return !(b &lt; *this) &amp;&amp; !(b &gt; *this);}
+
+    string str() const{
+        char s[maxn]={};
+        for(int i = 0; i &lt; len; i++) s[len-1-i] = d[i]+&apos;0&apos;;
+        return s;
+    }
+};
+
+istream&amp; operator &gt;&gt; (istream&amp; in, bign&amp; x)
+{
+    string s;
+    in &gt;&gt; s;
+    x = s.c_str();
+    return in;
+}
+
+ostream&amp; operator &lt;&lt; (ostream&amp; out, const bign&amp; x)
+{
+    out &lt;&lt; x.str();
+    return out;
+}
+int main()
+{
+    int t,i,j,k;
+    cin&gt;&gt;t;
+    while(t--){
+        int n;cin&gt;&gt;n;
+        bign ans=1;
+        for(i=1;i&lt;=n;i++){
+            ans=ans*2;
+        }
+        cout&lt;&lt;ans&lt;&lt;endl;
+    }
+
+    return 0;
+}
+</code></pre><h3 id="I"><a href="#I" class="headerlink" title="I."></a>I.</h3><p>令 $$a=i-j$$, 先枚举$$ i$$ 再枚举 $$a$$ $$ \sum_{i=1}^n \sum_{j=1}^{i-1} [\gcd(i+j,i-j)=1] $$ $$= \sum_{i=1}^n \sum_{a=1}^{i-1} [\gcd(2i-a,a)=1] $$ $$= \sum_{i=1}^n \sum_{a=1}^{i-1} [\gcd(2i,a)=1]$$ 即对于每个 $$i$$, 求有多少个小于它的 $$a$$ 满足$$ \gcd(i,a)=1 $$且$$ a $$是奇数. 当 $$i$$ 是奇数时, 答案为$$ \frac{\varphi(i)}{2}.$$ （此时，所求就是$$(n,1),(n,3),(n,5)…(n,n)$$中$$\gcd$$为1的个数，也就是求 $$(n,n-1),(n,n-3),…(n,n-n)$$,即$$(n,2),(n,4),(n,6)…(n,n-1)$$,所以有 $$\sum(1,3,…,n)=\frac{1}{2}\sum(1,2,…n)[gcd(n,i)=1]=\frac{phi(n)}{2}$$ 当 $$i$$ 是偶数时, 答案为$$\varphi(i).$$ (显然a是偶数的时候gcd不会是1，所以直接求欧拉函数即可) 注意 $$i=1$$ 时, 答案为 0. 记个前缀和就好了, 复杂度为 $$O(N+T)$$.</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn=2e7+10;
+vector&lt;int&gt;prime;
+bool isnotprime[maxn+50];
+long long phi[maxn+50];
+void check(void)
+{
+    int i,j,k;
+    for(i=2;i&lt;=maxn;i++){
+        if(!isnotprime[i]){
+            prime.push_back(i);//[ptop++]=i;
+            phi[i]=i-1;
+        }
+        for(j=0;j&lt;prime.size();j++){
+            int pi=prime[j]*i;
+            if(pi&gt;maxn)break;
+            isnotprime[pi]=true;
+            if(i%prime[j]==0){
+                phi[pi]=prime[j]*phi[i];
+                break;
+            }
+            phi[pi]=(prime[j]-1)*phi[i];
+        }
+    }
+    for(i=1;i&lt;=maxn;i++) {
+        if(i&amp;1)phi[i]&gt;&gt;=1;
+        phi[i] += phi[i - 1];
+    }
+}
+int main()
+{
+    int t,i,j;
+    check();
+    cin&gt;&gt;t;
+    while(t--){
+        int n;
+        scanf(&quot;%d&quot;,&amp;n);
+        printf(&quot;%lld\n&quot;,phi[n]);
+    }
+
+    return 0;
+}
+</code></pre><h3 id="J"><a href="#J" class="headerlink" title="J."></a>J.</h3><p>K 不大于 5, 仅是常数级别, 所以可以搞事情 我们发现 $$|x_{MW}[i]-x_{SW}[i]| = max(x_{MW}[i]-x_{SW}[i],x_{SW}[i]-x_{MW}[i])$$ 也就是说对于每一个维度只有两种选择, 同时$$ 2^K \le 32$$ 也不大, 所以可以枚举每一维的大小情况, 分别取主武器与副武器的最大值就好了, 复杂度 $$O(2^Kn).$$ 具体来说，对于每一个武器，枚举他的每一个x前面取+/-号的情况，然后更新$$num[j]$$数组，也就是记录在一种+/-取值状况下的最大值，然后我们枚举主副武器的num数组，当然枚举的时候要确保主武器的取值状况与副武器刚好是取反的状态，这样就可以求出最大值。当然会出现一些正负号不甚正确的情况，可是这些情况显然不会是最优解，所以不必担心。</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const ll INF=-(1ll&lt;&lt;60);
+const int maxn=100005;
+int S[maxn],s[maxn],X[maxn][6],x[maxn][6];
+ll numm[60],numn[60];
+int main()
+{
+    int t,i,j,n,m,k;
+    cin&gt;&gt;t;
+    while(t--){
+        cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;
+        for(i=0;i&lt;(1&lt;&lt;5);i++)
+            numm[i]=numn[i]=INF;
+        for(i=1;i&lt;=n;i++){
+            scanf(&quot;%d&quot;,&amp;S[i]);
+            for(j=1;j&lt;=k;j++)
+                scanf(&quot;%d&quot;,&amp;X[i][j]);
+            for(;j&lt;=5;j++)
+                X[i][j]=0;
+        }
+        for(i=1;i&lt;=m;i++){
+            scanf(&quot;%d&quot;,&amp;s[i]);
+            for(j=1;j&lt;=k;j++)
+                scanf(&quot;%d&quot;,&amp;x[i][j]);
+            for(;j&lt;=5;j++)
+                x[i][j]=0;
+        }
+        for(i=1;i&lt;=n;i++){
+            for(j=0;j&lt;(1&lt;&lt;5);j++){
+                ll temp=S[i];
+                for(int a=0;a&lt;5;a++){
+                    temp+=(1&lt;&lt;a)&amp;j?X[i][a+1]:-X[i][a+1];
+                }
+                numm[j]=max(numm[j],temp);
+            }
+        }
+        for(i=1;i&lt;=m;i++){
+            for(j=0;j&lt;(1&lt;&lt;5);j++){
+                ll temp=s[i];
+                for(int a=0;a&lt;5;a++){
+                    temp+=(1&lt;&lt;a)&amp;j?x[i][a+1]:-x[i][a+1];
+                }
+                numn[j]=max(numn[j],temp);
+            }
+        }
+        ll ans=0;
+        for(i=0;i&lt;(1&lt;&lt;5);i++){
+            int pos=((1&lt;&lt;5)-1)&amp;(~i);
+            ans=max(ans,numm[i]+numn[pos]);
+        }
+        cout&lt;&lt;ans&lt;&lt;endl;
+    }
+
+    return 0;
+}
+</code></pre><h3 id="L"><a href="#L" class="headerlink" title="L."></a>L.</h3><p>咋一看以为是dp，后来发现是网络流…这里需要最大的满意值，而我们的模板是最小费用流，所以我们可以把满意值都弄成负的，这样求出来以后取个相反数就是满意值了… 考虑到每个video只能被一个人看，因此显然要拆点，流量1费用0，然后为了限制总流量也就是人数，起点向虚拟起点连边,限制总流量k。为了保证最大流，（有的人可以没video看），虚拟起点向终点连边,流量k费用0，确保最大流量（因为video费用为负，可流的情况下显然更优）。然后起点向每个点video的第一个点连边，以及每个video的第二个点向终点连边。对于每个video，枚举所有的video，下个video的起始时间晚于当前video的结束时间才可以连边，流量1，费用为下个video的w，并且要考虑类型带来的惩罚值。</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int maxn=550;
+struct edge{
+    int to,cap,cost,rev;//终点,容量,费用,反向边
+};
+vector&lt;edge&gt;G[maxn];
+int dis[maxn],prevv[maxn],preve[maxn],n,m,s,t,flow=0,cost=0;//最短路中前驱节点和对应的边,
+// 小心cost爆int,多组数据时记得清零
+bool inque[maxn];
+void add(int from,int to,int cap,int cost)
+{
+    G[from].push_back(edge{to,cap,cost,(int)G[to].size()});
+    G[to].push_back(edge{from,0,-cost,(int)G[from].size()-1});//注意反向边的加法!!-cost和cap=0!!
+}
+bool spfa(int s,int t)
+{
+    memset(dis,0x3f, sizeof(dis));memset(inque,0,sizeof(inque));
+    queue&lt;int&gt;que;que.push(s);dis[s]=0;
+    while(!que.empty()){
+        int t=que.front();que.pop();inque[t]=false;
+        for(int i=0;i&lt;G[t].size();i++){
+            edge e=G[t][i];
+            if(e.cap&amp;&amp;dis[e.to]&gt;dis[t]+e.cost){
+                dis[e.to]=dis[t]+e.cost;
+                prevv[e.to]=t;preve[e.to]=i;
+                if(!inque[e.to]){
+                    que.push(e.to);inque[e.to]=true;
+                }
+            }
+        }
+    }
+    if(dis[t]==0x3f3f3f3f)//小心爆int的情况
+        return false;
+    int d=0x7f7f7f7f;
+    for(int v=t;v!=s;v=prevv[v])
+        d=min(d,G[prevv[v]][preve[v]].cap);//全最短路中的最小流量限制就是本次总的流量限制
+    flow+=d;cost+=d*dis[t];
+    for(int v=t;v!=s;v=prevv[v]){
+        edge&amp;e=G[prevv[v]][preve[v]];//更新路径信息
+        e.cap-=d;
+        G[e.to][e.rev].cap+=d;
+    }
+    return true;
+}
+void mincostmaxflow(int s,int t)
+{
+    while(spfa(s,t));
+}
+struct movie{
+    int s,t,w,op;
+}M[250];
+int main()
+{
+    int t,i,j,k,n,m,w,W;
+    cin&gt;&gt;t;
+    while(t--){
+        cin&gt;&gt;n&gt;&gt;m&gt;&gt;k&gt;&gt;W;
+        for(i=0;i&lt;=520;i++)G[i].clear();
+        for(i=1;i&lt;=m;i++)scanf(&quot;%d%d%d%d&quot;,&amp;M[i].s,&amp;M[i].t,&amp;M[i].w,&amp;M[i].op);
+        int s1=505,s2=506,t=510;
+        add(s1,s2,k,0);//起点向虚拟起点连边,限制总流量
+        add(s2,t,k,0);//虚拟起点向终点连边,确保最大流量
+        flow=cost=0;
+        for(i=1;i&lt;=m;i++)
+            add(i+200,t,1,0);//每个video向终点连边
+        for(i=1;i&lt;=m;i++){
+            add(s2,i,1,-M[i].w);//起点向每个video连边
+            add(i,i+200,1,0);//每个video拆成两个点
+            for(j=1;j&lt;=m;j++){
+                if(i==j)continue;
+                if(M[i].t&lt;=M[j].s){//下个video的起始时间晚于当前video的结束时间才可以连边
+                    if(M[i].op!=M[j].op){//类型不同直接连
+                        add(i+200,j,1,-M[j].w);
+                    }
+                    else{//减去惩罚值
+                        add(i+200,j,1,-(M[j].w-W));
+                    }
+                }
+            }
+        }
+        mincostmaxflow(s1,t);
+        cout&lt;&lt;-cost&lt;&lt;endl;
+    }
+
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Codeforces/比赛杂集/算法/educational-codeforces-round-34-rated-for-div-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Codeforces/比赛杂集/算法/educational-codeforces-round-34-rated-for-div-2/" itemprop="url">Educational Codeforces Round 34 (Rated for Div. 2)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-22T10:22:56+08:00">
+                2018-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Codeforces/" itemprop="url" rel="index">
+                    <span itemprop="name">Codeforces</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Codeforces/比赛杂集/" itemprop="url" rel="index">
+                    <span itemprop="name">比赛杂集</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Codeforces/比赛杂集/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Codeforces/比赛杂集/算法/educational-codeforces-round-34-rated-for-div-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Codeforces/比赛杂集/算法/educational-codeforces-round-34-rated-for-div-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="A"><a href="#A" class="headerlink" title="A."></a>A.</h3><p>数据范围那么小直接暴力枚举啊</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main()
+{
+    int n,i,j,k,x;
+    cin&gt;&gt;n;
+    while(n--){
+        cin&gt;&gt;x;
+        for(i=0;3*i&lt;=x;i++){
+            if((x-i*3)%7==0){
+                cout&lt;&lt;&quot;YES&quot;&lt;&lt;&apos;\n&apos;;break;
+            }
+        }
+        if(3*i&gt;x)
+            puts(&quot;NO&quot;);
+    }
+
+    return 0;
+}
+</code></pre><h3 id="B"><a href="#B" class="headerlink" title="B."></a>B.</h3><p>弱智* 2</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main()
+{
+    int h1,a1,c1,h2,a2,cnt=0;
+    vector&lt;int&gt;ans;
+    cin&gt;&gt;h1&gt;&gt;a1&gt;&gt;c1&gt;&gt;h2&gt;&gt;a2;
+    while(h2&gt;0){
+        cnt++;
+        if(h2-a1&lt;=0){
+            ans.push_back(1);break;
+        }
+        else{
+            if(h1-a2&lt;=0){
+                ans.push_back(0);h1=h1-a2+c1;
+            }
+            else {
+                ans.push_back(1);h1-=a2;h2-=a1;
+            }
+        }
+    }
+    cout&lt;&lt;cnt&lt;&lt;endl;
+    for(auto a:ans)
+        if(a)
+            puts(&quot;STRIKE&quot;);
+        else puts(&quot;HEAL&quot;);
+
+    return 0;
+}
+</code></pre><h3 id="C"><a href="#C" class="headerlink" title="C."></a>C.</h3><p>从大到小排序，然后维护一个大根堆，每次如果堆顶的箱子能放下当前箱子，就把当前箱子丢进去并更新箱子大小，否则这个箱子就得单独放。</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main()
+{
+    int n,i,j,k,box[5005];
+    priority_queue&lt;int&gt;que;
+    cin&gt;&gt;n;
+    for(i=1;i&lt;=n;i++)
+        cin&gt;&gt;box[i];
+    sort(box+1,box+1+n);
+    for(i=n;i;i--){
+        if(que.empty()||que.top()&lt;=box[i]){
+            que.push(box[i]);
+        }
+        else{
+            que.pop();que.push(box[i]);
+        }
+    }
+    cout&lt;&lt;que.size()&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>其实我的想法很简单：首先搞个map统计每个数的出现次数，再搞个后缀和。然后从前往后扫，对于每个数，先在map里对这个数–，然后看看在这个数-1~这个数+1的范围内还有多少个数（用map查询），然后处理一下后缀和就行了。然而这个万恶的题目卡long long…于是我就抄了个400行的高精度模板…</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+#define MAX_L 100 //最大长度，可以修改
+using namespace std;
+
+class bign {
+public:
+    int len, s[MAX_L];//数的长度，记录数组
+//构造函数
+    bign();
+
+    bign(const char *);
+
+    bign(int);
+
+    bool sign;//符号 1正数 0负数
+    string toStr() const;//转化为字符串，主要是便于输出
+    friend istream &amp;operator&gt;&gt;(istream &amp;, bign &amp;);//重载输入流
+    friend ostream &amp;operator&lt;&lt;(ostream &amp;, bign &amp;);//重载输出流
+//重载复制
+    bign operator=(const char *);
+
+    bign operator=(int);
+
+    bign operator=(ll);
+
+    bign operator=(const string);
+
+//重载各种比较
+    bool operator&gt;(const bign &amp;) const;
+
+    bool operator&gt;=(const bign &amp;) const;
+
+    bool operator&lt;(const bign &amp;) const;
+
+    bool operator&lt;=(const bign &amp;) const;
+
+    bool operator==(const bign &amp;) const;
+
+    bool operator!=(const bign &amp;) const;
+
+//重载四则运算
+    bign operator+(const bign &amp;) const;
+
+    bign operator++();
+
+    bign operator++(int);
+
+    bign operator+=(const bign &amp;);
+
+    bign operator-(const bign &amp;) const;
+
+    bign operator--();
+
+    bign operator--(int);
+
+    bign operator-=(const bign &amp;);
+
+    bign operator*(const bign &amp;) const;
+
+    bign operator*(const int num) const;
+
+    bign operator*=(const bign &amp;);
+
+    bign operator/(const bign &amp;) const;
+
+    bign operator/=(const bign &amp;);
+
+//四则运算的衍生运算
+    bign operator%(const bign &amp;) const;//取模（余数）
+    bign factorial() const;//阶乘
+    bign Sqrt() const;//整数开根（向下取整）
+    bign pow(const bign &amp;) const;//次方
+//一些乱乱的函数
+    void clean();
+
+    //~bign();
+};
+
+bign::bign()
+{
+    memset(s, 0, sizeof(s));
+    len = 1;
+    sign = 1;
+}
+
+bign::bign(const char *num)
+{
+    *this = num;
+}
+
+bign::bign(int num)
+{
+    *this = num;
+}
+
+string bign::toStr() const
+{
+    string res;
+    res = &quot;&quot;;
+    for (int i = 0; i &lt; len; i++)
+        res = (char)(s[i] + &apos;0&apos;) + res;
+    if (res == &quot;&quot;)
+        res = &quot;0&quot;;
+    if (!sign&amp;&amp;res != &quot;0&quot;)
+        res = &quot;-&quot; + res;
+    return res;
+}
+
+istream &amp;operator&gt;&gt;(istream &amp;in, bign &amp;num)
+{
+    string str;
+    in&gt;&gt;str;
+    num=str;
+    return in;
+}
+
+ostream &amp;operator&lt;&lt;(ostream &amp;out, bign &amp;num)
+{
+    out&lt;&lt;num.toStr();
+    return out;
+}
+
+bign bign::operator=(const char *num)
+{
+    memset(s, 0, sizeof(s));
+    char a[MAX_L] = &quot;&quot;;
+    if (num[0] != &apos;-&apos;)
+        strcpy(a, num);
+    else
+        for (int i = 1; i &lt; strlen(num); i++)
+            a[i - 1] = num[i];
+    sign = !(num[0] == &apos;-&apos;);
+    len = strlen(a);
+    for (int i = 0; i &lt; strlen(a); i++)
+        s[i] = a[len - i - 1] - 48;
+    return *this;
+}
+
+bign bign::operator=(int num)
+{
+    char temp[MAX_L];
+    sprintf(temp, &quot;%d&quot;, num);
+    *this = temp;
+    return *this;
+}
+
+bign bign::operator=(ll num)
+{
+    char temp[MAX_L];
+    sprintf(temp, &quot;%lld&quot;, num);
+    *this = temp;
+    return *this;
+}
+
+
+bign bign::operator=(const string num)
+{
+    const char *tmp;
+    tmp = num.c_str();
+    *this = tmp;
+    return *this;
+}
+
+bool bign::operator&lt;(const bign &amp;num) const
+{
+    if (sign^num.sign)
+        return num.sign;
+    if (len != num.len)
+        return len &lt; num.len;
+    for (int i = len - 1; i &gt;= 0; i--)
+        if (s[i] != num.s[i])
+            return sign ? (s[i] &lt; num.s[i]) : (!(s[i] &lt; num.s[i]));
+    return !sign;
+}
+
+bool bign::operator&gt;(const bign&amp;num)const
+{
+    return num &lt; *this;
+}
+
+bool bign::operator&lt;=(const bign&amp;num)const
+{
+    return !(*this&gt;num);
+}
+
+bool bign::operator&gt;=(const bign&amp;num)const
+{
+    return !(*this&lt;num);
+}
+
+bool bign::operator!=(const bign&amp;num)const
+{
+    return *this &gt; num || *this &lt; num;
+}
+
+bool bign::operator==(const bign&amp;num)const
+{
+    return !(num != *this);
+}
+
+bign bign::operator+(const bign &amp;num) const
+{
+    if (sign^num.sign)
+    {
+        bign tmp = sign ? num : *this;
+        tmp.sign = 1;
+        return sign ? *this - tmp : num - tmp;
+    }
+    bign result;
+    result.len = 0;
+    int temp = 0;
+    for (int i = 0; temp || i &lt; (max(len, num.len)); i++)
+    {
+        int t = s[i] + num.s[i] + temp;
+        result.s[result.len++] = t % 10;
+        temp = t / 10;
+    }
+    result.sign = sign;
+    return result;
+}
+
+bign bign::operator++()
+{
+    *this = *this + 1;
+    return *this;
+}
+
+bign bign::operator++(int)
+{
+    bign old = *this;
+    ++(*this);
+    return old;
+}
+
+bign bign::operator--()
+{
+    *this = *this - 1;
+    return *this;
+}
+
+bign bign::operator--(int)
+{
+    bign old = *this;
+    --(*this);
+    return old;
+}
+
+bign bign::operator+=(const bign &amp;num)
+{
+    *this = *this + num;
+    return *this;
+}
+
+bign bign::operator-=(const bign &amp;num)
+{
+    *this = *this - num;
+    return *this;
+}
+
+
+bign bign::operator-(const bign &amp;num) const
+{
+    bign b=num,a=*this;
+    if (!num.sign &amp;&amp; !sign)
+    {
+        b.sign=1;
+        a.sign=1;
+        return b-a;
+    }
+    if (!b.sign)
+    {
+        b.sign=1;
+        return a+b;
+    }
+    if (!a.sign)
+    {
+        a.sign=1;
+        b=bign(0)-(a+b);
+        return b;
+    }
+    if (a&lt;b)
+    {
+        bign c=(b-a);
+        c.sign=false;
+        return c;
+    }
+    bign result;
+    result.len = 0;
+    for (int i = 0, g = 0; i &lt; a.len; i++)
+    {
+        int x = a.s[i] - g;
+        if (i &lt; b.len) x -= b.s[i];
+        if (x &gt;= 0) g = 0;
+        else
+        {
+            g = 1;
+            x += 10;
+        }
+        result.s[result.len++] = x;
+    }
+    result.clean();
+    return result;
+}
+
+bign bign::operator * (const bign &amp;num)const
+{
+    bign result;
+    result.len = len + num.len;
+
+    for (int i = 0; i &lt; len; i++)
+        for (int j = 0; j &lt; num.len; j++)
+            result.s[i + j] += s[i] * num.s[j];
+
+    for (int i = 0; i &lt; result.len; i++)
+    {
+        result.s[i + 1] += result.s[i] / 10;
+        result.s[i] %= 10;
+    }
+    result.clean();
+    result.sign = !(sign^num.sign);
+    return result;
+}
+
+bign bign::operator*(const int num)const
+{
+    bign x = num;
+    bign z = *this;
+    return x*z;
+}
+bign bign::operator*=(const bign&amp;num)
+{
+    *this = *this * num;
+    return *this;
+}
+
+bign bign::operator /(const bign&amp;num)const
+{
+    bign ans;
+    ans.len = len - num.len + 1;
+    if (ans.len &lt; 0)
+    {
+        ans.len = 1;
+        return ans;
+    }
+
+    bign divisor = *this, divid = num;
+    divisor.sign = divid.sign = 1;
+    int k = ans.len - 1;
+    int j = len - 1;
+    while (k &gt;= 0)
+    {
+        while (divisor.s[j] == 0) j--;
+        if (k &gt; j) k = j;
+        char z[MAX_L];
+        memset(z, 0, sizeof(z));
+        for (int i = j; i &gt;= k; i--)
+            z[j - i] = divisor.s[i] + &apos;0&apos;;
+        bign dividend = z;
+        if (dividend &lt; divid) { k--; continue; }
+        int key = 0;
+        while (divid*key &lt;= dividend) key++;
+        key--;
+        ans.s[k] = key;
+        bign temp = divid*key;
+        for (int i = 0; i &lt; k; i++)
+            temp = temp * 10;
+        divisor = divisor - temp;
+        k--;
+    }
+    ans.clean();
+    ans.sign = !(sign^num.sign);
+    return ans;
+}
+
+bign bign::operator/=(const bign&amp;num)
+{
+    *this = *this / num;
+    return *this;
+}
+
+bign bign::operator%(const bign&amp; num)const
+{
+    bign a = *this, b = num;
+    a.sign = b.sign = 1;
+    bign result, temp = a / b*b;
+    result = a - temp;
+    result.sign = sign;
+    return result;
+}
+
+bign bign::pow(const bign&amp; num)const
+{
+    bign result = 1;
+    for (bign i = 0; i &lt; num; i++)
+        result = result*(*this);
+    return result;
+}
+
+bign bign::factorial()const
+{
+    bign result = 1;
+    for (bign i = 1; i &lt;= *this; i++)
+        result *= i;
+    return result;
+}
+
+void bign::clean()
+{
+    if (len == 0) len++;
+    while (len &gt; 1 &amp;&amp; s[len - 1] == &apos;\0&apos;)
+        len--;
+}
+
+bign bign::Sqrt()const
+{
+    if(*this&lt;0)return -1;
+    if(*this&lt;=1)return *this;
+    bign l=0,r=*this,mid;
+    while(r-l&gt;1)
+    {
+        mid=(l+r)/2;
+        if(mid*mid&gt;*this)
+            r=mid;
+        else
+            l=mid;
+    }
+    return l;
+}
+
+bign sum[200005];
+
+int main()
+{
+    int n,i,j,k,num[200005];
+    bign ans=0;
+    cin&gt;&gt;n;
+    map&lt;int,int&gt;mp1;
+    for(i=1;i&lt;=n;i++)
+        scanf(&quot;%d&quot;,&amp;num[i]),mp1[num[i]]++;
+    for(i=n;i;i--){
+        sum[i]=num[i];sum[i]+=sum[i+1];
+    }
+    for(i=1;i&lt;=n;i++){
+        mp1[num[i]]--;
+        int tot=n-i;
+        if(mp1[num[i]]==0)mp1.erase(num[i]);
+        bign temp;temp=num[i];
+        sum[i]-=temp;
+        if(mp1.count(num[i]-1)){
+            temp=(ll)mp1[num[i]-1]*(num[i]-1);
+            sum[i]-=temp;
+            tot-=mp1[num[i]-1];
+        }
+        if(mp1.count(num[i])){
+            temp=(ll)mp1[num[i]]*(num[i]);
+            sum[i]-=temp;
+            tot-=mp1[num[i]];
+        }
+        if(mp1.count(num[i]+1)){
+            temp=(ll)mp1[num[i]+1]*(num[i]+1);
+            sum[i]-=temp;
+            tot-=mp1[num[i]+1];
+        }
+        temp=(ll)tot*num[i];
+        ans-=temp;ans+=sum[i];
+    }
+    //ans*=-1;
+    cout&lt;&lt;ans&lt;&lt;endl;
+
+
+    return 0;
+}
+</code></pre><p>然后我看提交记录的时候发现了一个简单得多的做法…其实也可能是因为拿long double代替了高精度所以显得比较简单。 首先从前往后扫，对于每一位数a[i]，我们拿a[i]* i减去前缀和就是没有相减为0条件下的答案，然后对于那些绝对值相差1 的数，我们先拿一个map cnt统计迄今为止各个数的出现次数，然后加上cnt[a[i]+1]-cnt[a[i]-1]即可。long double居然能搞过去…</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+map&lt;int,int&gt; cnt;
+int main()
+{
+    int n;
+    long double ans=0,sum=0,num;
+    scanf(&quot;%d&quot;,&amp;n);
+    for(int i=0;i&lt;n;i++){
+        scanf(&quot;%Lf&quot;,&amp;num);
+        ans+=num*i-sum+cnt[(int)num+1]-cnt[(int)num-1];
+        sum+=num;
+        cnt[(int)num]++;
+    }
+    printf(&quot;%.0Lf&quot;,ans+0.000000001);
+
+    return 0;
+}
+</code></pre><h3 id="E"><a href="#E" class="headerlink" title="E."></a>E.</h3><blockquote>
+<p>给定一堆字符串，问能不能构造一个字符串使得所有的字符串在交换自己的某两个字符之后都与构造出来的字符一模一样。</p>
+</blockquote>
+<p>首先，如果所有的字符串长得都一样，那随便换两个字母的位置输出即可。 否则，我们找到两个不同的字符串（第一个不妨就是输入的第一个字符串），然后把他们所有不相同的位置的下标都保存在diff数组里。如果diff的size&gt;4，那么显然，无解（每个字符串最多交换2个字符，不可能使得5个以上不同的位置变得相同）。 然后，对于每个不同的下标，我们都尝试拿第一个字符串中不同位置的字符去与之交换，看看换完的字符串能不能是答案。 如何检查一个交换完的字符串是不是答案呢？ 对于所有的字符串（当然自己跟自己除外），我们都统计不同的位置的下标并保存在dif数组中，如果有任意一个字符串的dif数组的size!=0&amp;&amp;size!=2，显然这个换完的字符串是不能成为答案的。如果size=0，那么那个字符串如果所有的字符都是不一样的，也不行（因为每个字符串都要交换两个字符，全部不同的话换完就不可能满足当前答案了）。如果size=2，那么那个字符串交换完这俩位置之后必须与当前答案一样。 扫完所有可能以后，如果还没有找到答案，输出-1即可。</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+bool check(string str)
+{
+    int cnt[30]={0};
+    for(auto a:str)
+        cnt[a-&apos;a&apos;]++;
+    for(int i=0;i&lt;26;i++)
+        if(cnt[i]&gt;=2)
+            return true;
+    return false;
+}
+int main()
+{
+    set&lt;string&gt;s;
+    int k,n,i,j,a,b,len;
+    cin&gt;&gt;n&gt;&gt;len;
+    string str[2505],str1,str2;
+    for(i=1;i&lt;=n;i++){
+        cin&gt;&gt;str[i];s.insert(str[i]);
+    }
+    if(s.size()==1){
+        swap(str[1][0],str[1][1]);
+        cout&lt;&lt;str[1]&lt;&lt;endl;return 0;
+    }
+    str1=str[1];
+    for(i=2;i&lt;=n;i++)
+        if(str[i]!=str[1]) {
+            str2 = str[i];break;
+        }
+    vector&lt;int&gt;diff;
+    for(i=0;i&lt;len;i++)
+        if(str1[i]!=str2[i])
+            diff.push_back(i);
+    if(diff.size()&gt;4){
+        puts(&quot;-1&quot;);return 0;
+    }
+    for(auto a:diff){
+        for(i=0;i&lt;len;i++){
+            if(i==a)continue;
+            bool isok=true;
+            string str3=str1;swap(str3[i],str3[a]);
+            for(j=2;j&lt;=n;j++){
+                vector&lt;int&gt;dif;
+                for(k=0;k&lt;len;k++){
+                    if(str3[k]!=str[j][k])
+                        dif.push_back(k);
+                }
+                if(dif.size()!=0&amp;&amp;dif.size()!=2){
+                    isok=false;
+                    break;
+                }
+                if(dif.empty()){
+                    if(!check(str[j])){
+                        isok=false;break;
+                    }
+                }
+                else{
+                    string str4=str[j];swap(str4[dif[0]],str4[dif[1]]);
+                    if(str4!=str3){
+                        isok=false;break;
+                    }
+                }
+            }
+            if(isok){
+                cout&lt;&lt;str3&lt;&lt;endl;return 0;
+            }
+        }
+    }
+    puts(&quot;-1&quot;);
+
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Codeforces/比赛杂集/算法/educational-codeforces-round-49-rated-for-div-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Codeforces/比赛杂集/算法/educational-codeforces-round-49-rated-for-div-2/" itemprop="url">Educational Codeforces Round 49 (Rated for Div. 2)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-19T21:33:46+08:00">
+                2018-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Codeforces/" itemprop="url" rel="index">
+                    <span itemprop="name">Codeforces</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Codeforces/比赛杂集/" itemprop="url" rel="index">
+                    <span itemprop="name">比赛杂集</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Codeforces/比赛杂集/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Codeforces/比赛杂集/算法/educational-codeforces-round-49-rated-for-div-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Codeforces/比赛杂集/算法/educational-codeforces-round-49-rated-for-div-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="A"><a href="#A" class="headerlink" title="A."></a>A.</h3><p>小心处理z与a的问题，以及注意每个字母都必须发生变化即可</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+int main()
+{
+    string str1,str2;
+    int n,i,j,k;
+    int t;
+    cin&gt;&gt;t;
+    while(t--){
+        bool isok=true;
+        cin&gt;&gt;n&gt;&gt;str1;str2=str1;reverse(str2.begin(),str2.end());
+        for(i=0;i&lt;str1.size();i++){
+            if(abs((int)(str1[i]-str2[i]))==1||abs((int)(str1[i]-str2[i]))&gt;2){
+                isok=false;break;
+            }
+        }
+        if(isok)puts(&quot;YES&quot;);
+        else puts(&quot;NO&quot;);
+    }
+
+    return 0;
+}
+</code></pre><h3 id="B"><a href="#B" class="headerlink" title="B."></a>B.</h3><p>注意n为奇数的时候需要特别讨论,每两行为一组刚好n个数，然后可能多一行得单独讨论一下。</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+
+int main()
+{
+    ll n, q, x, y;
+    cin &gt;&gt; n &gt;&gt; q;
+    int i,j,k;
+    for (i = 1; i &lt;= q; i++) {
+        cin &gt;&gt; x &gt;&gt; y;
+        ll ans = 0;
+        if ((x + y) &amp;1) {
+            ans += (n * n - 1) / 2 + 1;
+
+        }
+        if (n &amp;1) {
+
+            ans += (x - 1) / 2 * n;
+
+            if ((x + y) % 2 == 1)
+
+                ans += (x - 1) % 2 * (n / 2);
+
+            else
+
+                ans += (x - 1) % 2 * (n / 2 + 1);
+
+            ans += (y + 1) / 2;
+
+        } else if (n % 2 == 0) {
+
+            ans += (x - 1) * n / 2;
+
+            ans += (y + 1) / 2;
+
+        }
+
+        cout &lt;&lt; ans &lt;&lt; endl;
+
+    }
+
+
+    return 0;
+}
+</code></pre><h3 id="C"><a href="#C" class="headerlink" title="C."></a>C.</h3><p>注意到取到的最小值的组合肯定是那些比较相邻长度的木棍，因此我们可以将木棍排序，然后暴力枚举相邻长度且根数&gt;=2的木棍。</p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int maxn = 1e6 + 50;
+long double minnum;
+int num[maxn];
+int main()
+{
+    int i,j,k, t, n;
+    int q1, q2, P1, P2;
+    cin&gt;&gt;t;
+    while(t--){
+        minnum = 1ll &lt;&lt; 60;P1 = P2 = 0;
+        cin &gt;&gt; n;
+        for (int i = 1; i &lt;= n; i++) {
+            scanf(&quot;%d&quot;,&amp;num[i]);
+        }
+        sort(num + 1, num + n + 1);
+        for (i = 1; i &lt;= n; i++) {
+            if (P1 == num[i]) {
+                if (P2 != 0) {
+                    long double x(P1), y(P2);
+                    long double temp = (x + x + y + y)*(x + x + y + y) / (x*y);
+                    if (temp &lt; minnum) {
+                        q1 = P2;
+                        q2 = P1;
+                        minnum = temp;
+                    }
+                }
+                P2 = P1;P1 = 0;
+            }
+            else {
+                P1 = num[i];
+            }
+        }
+        printf(&quot;%d %d %d %d\n&quot;,q1,q1,q2,q2);
+        //cout &lt;&lt; q1 &lt;&lt; &apos; &apos; &lt;&lt; q1 &lt;&lt; &apos; &apos; &lt;&lt; q2 &lt;&lt; &apos; &apos; &lt;&lt; q2 &lt;&lt; endl;
+    }
+
+    return 0;
+}
+</code></pre><h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>每个房间都有出度…所以最后每个房间都可以归结于某个连通分量之中，求出这个连通分量中的最小的c就是这个连通分量的答案，但是还要注意那些a[i]=i的点，这种房间一定要在自己那里放一个。跑跑tarjan就完了。</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn=2e5+50;
+int dfn[maxn],low[maxn],scccnt=0,sccindex=0,belong[maxn];
+bool instack[maxn];
+stack&lt;int&gt;sta;
+vector&lt;int&gt;G[maxn];
+void tarjan(int v)
+{
+    dfn[v]=low[v]=++sccindex;
+    sta.push(v);instack[v]=true;int j;
+    for(auto i=G[v].begin();i!=G[v].end();i++){
+        int j=*i;
+        if(!dfn[j]){
+            tarjan(j);
+            low[v]=min(low[v],low[j]);
+        }
+        else if(instack[j]&amp;&amp;dfn[j]&lt;low[v])
+            low[v]=dfn[j];
+    }
+    if(low[v]==dfn[v]){
+        scccnt++;
+        do{
+            j=sta.top();instack[j]=false;
+            sta.pop();belong[j]=scccnt;
+        }while(j!=v);
+    }
+}
+int outdegree[maxn],c[maxn];
+int minn[maxn],size1[maxn];
+int main()
+{
+    int n,i,j,k;
+    cin&gt;&gt;n;
+    for(i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;c[i]);
+    long long ans=0;
+    for(i=1;i&lt;=n;i++){
+        scanf(&quot;%d&quot;,&amp;j);
+        G[i].push_back(j);outdegree[i]++;
+        if(j==i)ans+=c[i];
+    }
+    for(i=1;i&lt;=n;i++)
+        if(!dfn[i])
+            tarjan(i);
+
+    for(i=1;i&lt;=n;i++)
+        size1[belong[i]]++;
+    memset(minn,0x3f,sizeof(minn));
+    for(i=1;i&lt;=n;i++){
+        if(size1[belong[i]]&lt;=1)continue;
+        minn[belong[i]]=min(minn[belong[i]],c[i]);
+    }
+    for(i=1;i&lt;=n;i++){
+        if(minn[i]!=0x3f3f3f3f)
+            ans+=minn[i];
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><h3 id="E"><a href="#E" class="headerlink" title="E."></a>E.</h3><blockquote>
+<p>题意大概是构造一个n* n的矩阵，要求满足相邻行与相邻列之间要么完全相同，要么完全相反。且不存在面积大于等于k的子矩阵颜色完全相同。</p>
+</blockquote>
+<p>首先可以发现一个事实：一旦第一行第一列确定了，那么整个图的染色方案也就确定了。那么我们就可以设法去求第一行的染色方案（第一列跟第一行是一样的） 这可以用dp来求</p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int maxn = 510;
+const int mod = 998244353;
+ll f[maxn][maxn][2];//位置，连续数量，颜色；
+ll num[maxn];
+int main()
+{
+    //ios::sync_with_stdio(0);  cin.tie(0); cout.tie(0);
+    int n, k,i,j,q;
+    cin &gt;&gt; n &gt;&gt; k;
+    for (q = 1; q &lt;= n; q++) {
+        memset(f, 0, sizeof(f));
+        f[1][1][0] = f[1][1][1] = 1;
+        for (i = 2; i &lt;= n; i++) {//位置
+            for (j = 1; j &lt;= min(i,q); j++) {//连续数量
+                f[i][1][1] += f[i - 1][j][0];//连续长度为1,那么前一个位置的颜色一定与这个位置不同
+                f[i][1][0] += f[i - 1][j][1];
+                f[i][j][1] += f[i - 1][j - 1][1];//与前一个位置颜色相同
+                f[i][j][0] += f[i - 1][j - 1][0];
+                f[i][1][0] %= mod; f[i][1][1] %= mod;
+                f[i][j][0] %= mod; f[i][j][1] %= mod;
+            }
+        }
+        for (i = 1; i &lt;= q; i++) {
+            num[q] += f[n][i][0] + f[n][i][1];
+            num[q] %= mod;
+        }
+    }
+    for (i = n; i &gt;= 2; i--) {
+        num[i] = num[i] - num[i - 1] + mod;//减去不是这个长度的 数量
+        num[i] %= mod;
+    }
+    ll ans = 0;
+    for (i = 1; i &lt;= n; i++) {
+        for (j = 1; j &lt;= n; j++) {
+            if (i*j &gt;= k)break;//如果这个矩形的面积大于等于k
+            ans += num[i] * num[j]; ans %= mod;
+        }
+    }
+    if (ans % 2 == 1)ans = (ans + mod) / 2;//答案是要除以2的(重复),
+        // 但是模数是奇数且之前多次取模,因此如果答案是奇数,应该变成偶数再除以2
+    else ans /= 2;
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre><h3 id="F"><a href="#F" class="headerlink" title="F."></a>F.</h3><blockquote>
+<p>有n个考试，每个考试有两个可以通过的日期，每天只能通过一个考试，问如何安排可以尽早完成所有考试。</p>
+</blockquote>
+<p>暴力二分网络流是没错的，但是会t。但是可以从中得到启发，我们可以对每个考试的两天，先选择那个比较小的天，然后从比较小的天向比较大的天连一条边，表示选择的这一天也可以换成比较大的那一天。如果某个考试即使转移了以后也没法完成的话，就是没有可行解了。代码中利用了类似并查集的方式来维护转移；</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn=1e6+50;
+struct e{
+    int x,y;
+}G[maxn];
+bool cmp1(e a,e b)
+{
+    return a.x&lt;b.x;
+}
+bool cmp2(e a,e b)
+{
+    return a.y&lt;b.y;
+}
+int anotherchoice[maxn*2];
+int find(int x)
+{
+    return x==anotherchoice[x]?x:anotherchoice[x]=find(anotherchoice[x]);
+}
+int main()
+{
+    int cnt=0,i,j,k,n;
+    cin&gt;&gt;n;
+    int ys[maxn*2];
+    for(i=1;i&lt;=n;i++){
+        scanf(&quot;%d%d&quot;,&amp;G[i].x,&amp;G[i].y);ys[++cnt]=G[i].x;ys[++cnt]=G[i].y;
+    }
+    sort(ys+1,ys+1+cnt);
+    cnt=unique(ys+1,ys+1+cnt)-ys;int pos;
+    sort(G+1,G+n+1,cmp1);pos=1;
+    for(i=1;i&lt;=cnt;i++)while(pos&lt;=n&amp;&amp;G[pos].x==ys[i])G[pos++].x=i;
+    sort(G+1,G+n+1,cmp2);pos=1;
+    for(i=1;i&lt;=cnt;i++)while(pos&lt;=n&amp;&amp;G[pos].y==ys[i])G[pos++].y=i;//离散化,同时保证原大小关系不会改变
+    for(i=1;i&lt;=cnt;i++)anotherchoice[i]=i;//开始的时候每个日期的选择都只有自己
+    int ans=0;
+    for(i=1;i&lt;=n;i++){
+        int ch1,ch2;
+        ch1=find(G[i].x);ch2=find(G[i].y);
+        if(!ch1&amp;&amp;!ch2){//如果这个考试的两个日期都没有选择了,那么显然无法完成
+            puts(&quot;-1&quot;);return 0;
+        }
+        else if(ch1==ch2||!ch1||!ch2){//如果这个考试只有一个可用的日期,那么显然只能唯一选择
+            ans=max(ans,max(ch1,ch2));anotherchoice[ch1]=anotherchoice[ch2]=0;
+        }
+        else{//考试有两个选择,那么先选那个日期比较小的,同时标记一下日期比较小的那题还有一个日期比较大的选择
+            ans=max(ans,min(ch1,ch2));anotherchoice[min(ch1,ch2)]=max(ch1,ch2);
+        }
+    }
+    cout&lt;&lt;ys[ans]&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/模板/算法/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e5-bf-ab-e9-80-9f-e8-af-bb-e5-85-a5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/模板/算法/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e5-bf-ab-e9-80-9f-e8-af-bb-e5-85-a5/" itemprop="url">（模板）快速读入</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-13T20:16:43+08:00">
+                2018-08-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/模板/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/模板/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/模板/算法/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e5-bf-ab-e9-80-9f-e8-af-bb-e5-85-a5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="模板/算法/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e5-bf-ab-e9-80-9f-e8-af-bb-e5-85-a5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>与scanf，cin冲突（输出没问题），可返回EOF。</p>
+<pre><code>const int BufferSize=1&lt;&lt;16;
+char buffer[BufferSize],*fronthead,*fronttail;
+inline char GET_CHAR(){
+    if(fronthead==fronttail){
+        int l=fread(buffer,1,BufferSize,stdin);
+        fronttail=(fronthead=buffer)+l;
+        if(fronthead==fronttail)return EOF;
+    }
+    return *fronthead++;
+}
+inline int READ(){
+    int x=0,f=1;char c=GET_CHAR();
+    for(;!isdigit(c);c=GET_CHAR()){
+        if(c==EOF)return EOF;
+        if(c==&apos;-&apos;)f=-1;
+    }
+    for(;isdigit(c);c=GET_CHAR())x=(((x&lt;&lt;2)+x)&lt;&lt;1)+c-&apos;0&apos;;
+    return x*f;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/archives/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/7/">7</a><a class="extend next" rel="next" href="/archives/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -739,12 +3449,21 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">70</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
             
 
             
