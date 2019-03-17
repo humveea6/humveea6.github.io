@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="D.组合数学+容斥原理 这个每个人必须要拿一个的限制条件非常讨厌…所以我们先不管他。 由于各种特产相互独立，所以可以先算一种特产的分配方法… 这样的话就相当于把m个相同的小球放入n个不同的盒子里(盒子就是人)，答案是$$C_{m+n-1}^{\ n-1}$$，然后把各个特产的这个值相乘得到答案。 非常科学，非常优雅对不对… 接下来考虑限制条件，每个人至少拿一个，我们把限制去掉后得到的是至少0人没有">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2018  Summer Training 组合数学">
+<meta property="og:url" content="http://www.huweihuang.com/post1/2018-summer-training-e7-bb-84-e5-90-88-e6-95-b0-e5-ad-a6.html">
+<meta property="og:site_name" content="HumveeA6">
+<meta property="og:description" content="D.组合数学+容斥原理 这个每个人必须要拿一个的限制条件非常讨厌…所以我们先不管他。 由于各种特产相互独立，所以可以先算一种特产的分配方法… 这样的话就相当于把m个相同的小球放入n个不同的盒子里(盒子就是人)，答案是$$C_{m+n-1}^{\ n-1}$$，然后把各个特产的这个值相乘得到答案。 非常科学，非常优雅对不对… 接下来考虑限制条件，每个人至少拿一个，我们把限制去掉后得到的是至少0人没有">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-15T14:14:00.132Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018  Summer Training 组合数学">
+<meta name="twitter:description" content="D.组合数学+容斥原理 这个每个人必须要拿一个的限制条件非常讨厌…所以我们先不管他。 由于各种特产相互独立，所以可以先算一种特产的分配方法… 这样的话就相当于把m个相同的小球放入n个不同的盒子里(盒子就是人)，答案是$$C_{m+n-1}^{\ n-1}$$，然后把各个特产的这个值相乘得到答案。 非常科学，非常优雅对不对… 接下来考虑限制条件，每个人至少拿一个，我们把限制去掉后得到的是至少0人没有">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.huweihuang.com/post1/2018-summer-training-e7-bb-84-e5-90-88-e6-95-b0-e5-ad-a6.html">
+
+
+
+
+
+  <title>2018  Summer Training 组合数学 | HumveeA6</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HumveeA6</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">の Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">2018  Summer Training 组合数学</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>组合数学+容斥原理 这个每个人必须要拿一个的限制条件非常讨厌…所以我们先不管他。 由于各种特产相互独立，所以可以先算一种特产的分配方法… 这样的话就相当于把m个相同的小球放入n个不同的盒子里(盒子就是人)，答案是$$C_{m+n-1}^{\ n-1}$$，然后把各个特产的这个值相乘得到答案。 非常科学，非常优雅对不对… 接下来考虑限制条件，每个人至少拿一个，我们把限制去掉后得到的是至少0人没有特产的方案数。 <strong>根据容斥原理</strong> $$ans=C_n^0<em> ans[至少0人没有特产]-C_n^1</em> ans[至少1人没有特产]+C_n^2<em> ans[至少2人没有特产]-……+……+/- C_m^m</em> ans[至少m人没有特产]$$</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+typedef long long ll;
+const int mod=1e9+7;
+ll c[2005][2005];
+int main()
+{
+    int n,m,i,j,k;
+    c[1][1]=c[1][0]=c[0][0]=1;
+    for(i=2;i&lt;=2000;i++) {
+        c[i][0]=1;
+        for (j=1;j&lt;=i;j++){
+            c[i][j]=(c[i-1][j-1]+c[i-1][j])%mod;//预处理组合数
+        }
+    }
+    cin&gt;&gt;n&gt;&gt;m;
+    int tc[1005];
+    for(i=1;i&lt;=m;i++)
+        scanf(&quot;%d&quot;,&amp;tc[i]);//特产数量
+    ll ans=0;int cur=1;
+    for(i=0;i&lt;=n;i++){
+        ll temp=cur;//容斥原理的系数(决定加减)
+        for(j=1;j&lt;=m;j++){
+            temp=(temp*c[tc[j]+n-i-1][n-i-1])%mod;
+        }
+        ans+=temp*c[n][i]%mod;ans%=mod;
+        cur*=-1;
+    }
+    cout&lt;&lt;(ans+mod)%mod&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><h3 id="E"><a href="#E" class="headerlink" title="E."></a>E.</h3><p>我们把左右区间分别处理： $$ r = r / k; \ l = (l - 1) / k + 1$$; 这样问题就转化为求<strong>[l,r]</strong> 区间内，选n个数其最大公约数为1的方案数 因为$$r-l&lt;=10^5$$, 所以这个区间内任意两个不相等的数的最大公约数最大不超过$$10^5$$ 证明很好证：因为两个数<strong>p &gt; q</strong>的最大公约数如果为x,那么$$p / x - q / x \geq 1$$,那么$$p - q \geq x$$ 所以可以暴力枚举所有的最大公约数,<strong>设[l,r]中选n个不完全相同的数其最大公约数为i的方案数为dp[i]</strong> 那么[l,r]中有多少含i因子的数呢？ 显然有$$t = r / i - (l - 1) / i$$个数 那么$$dp[i] = t_n$$ 种方案，但是这里面肯定有n个数都相同的方案一共有t个（这时候他们的GCD就不仅仅是i了），所以$$dp[i] = (tn - t) mod\ p$$种方案 但是这个时候求出的是所有n个数中有i因子的方案数，而不是<strong>gcd=i</strong>的方案数，所以$$\forall j\ dp[i] = dp[i] - dp[j](j &lt;= r - l \ and\ j | i)$$ 然后这样dp[1]就是正解了 但是我们注意到，我们的dp[1]是在[l,r]中选n个不完全相同的数其最大公约数为i的方案数，但是实际上,如果n个数都等于k的话，那么其实也是满足要求的。 所以当$$k∈[l,r]时，dp[1] = dp[1] + 1$$;</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+using namespace std;
+const int  maxn=(100000 + 10);
+typedef long long  ll;
+int dp[maxn];
+int p = 1e9+7;
+ll mod_pow(ll n, ll k, ll mod) {
+    ll re = 1;
+    n = n % mod;
+    while(k) {
+        if(k &amp; 1)   re = re * n % mod;
+        k = k &gt;&gt; 1;
+        n = n * n % mod;
+    }
+    return re;
+}
+int main()
+{
+    int l,r,n,k;
+    bool flag = false;
+    scanf(&quot;%d%d%d%d&quot;,&amp;n,&amp;k,&amp;l,&amp;r);
+    if(k &gt;= l &amp;&amp; k &lt;= r)flag = true;
+    r = r / k;
+    l = (l - 1) / k;
+    for(int i = r - l; i &gt;= 1; i --) {
+        int t = r / i - l / i;
+        dp[i] = (mod_pow(t, n, p) - t + p) % p;
+        for(int j = 2; j * i &lt;= r - l; j ++)
+            dp[i] = (dp[i] - dp[i * j] + p) % p;
+    }
+    if(flag == true) dp[1]++;
+    printf(&quot;%d\n&quot;,dp[1] % p);
+
+    return 0;
+}
+</code></pre><h3 id="F"><a href="#F" class="headerlink" title="F."></a>F.</h3><p>非常套路的题目，其实就是要你快速求<strong>1~x</strong>中有多少个数跟给定的<strong>n</strong>互质，那么把<strong>n</strong>分解一下质因数然后用容斥原理求一下这些质因数的倍数的总和就可以了</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+typedef long long ll;
+ll sum(ll x,ll n)
+{
+    vector&lt;ll&gt;prime;
+    ll i,j,y=x;
+    for(i=2;i*i&lt;=n;i++){//注意分解要从2开始!!
+        if(n%i==0){
+            prime.push_back(i);
+        }
+        while(n%i==0)
+            n/=i;
+    }
+    ll res=0;
+    if(n&gt;1)prime.push_back(n);
+    for(i=1;i&lt;(1LL&lt;&lt;prime.size());i++){//注意一定要从1开始!!!
+        ll val=1,cnt=0;//二进制枚举每个因数是否要选
+        for(j=0;j&lt;prime.size();j++){
+            if(i&amp;(1LL&lt;&lt;j)){
+                val*=prime[j];cnt++;
+            }
+        }
+        if(cnt&amp;1LL){
+            res+=y/val;
+        }
+        else res-=y/val;
+    }
+    //cout&lt;&lt;res&lt;&lt;endl;
+
+    return x-res;
+}
+int main()
+{
+    int t;ll a,b,n;
+    cin&gt;&gt;t;int cnt=0;
+    while(t--){
+        cnt++;
+        scanf(&quot;%lld%lld%lld&quot;,&amp;a,&amp;b,&amp;n);
+        printf(&quot;Case #%d: %lld\n&quot;,cnt,sum(b,n)-sum(a-1,n));
+    }
+
+    return 0;
+}
+</code></pre><h3 id="G"><a href="#G" class="headerlink" title="G."></a>G.</h3><p>题目求的其实就是$$\forall a_i\ a_ix=b(mod\ m )$$中b的和。 那么显然<strong>b</strong>必须满足$$GCD(a_i,m)|b$$,那么所有的这样的b显然都是<strong>m</strong>的某个约数的倍数（ m除外，因为$$b\leq m-1$$)。于是，对于每个ai，我们枚举其与m的gcd与各个约数的关系，如果它的gcd能整除某个约数，那么这个约数的所有倍数都是可行的，并且和可以用等差数列求和公式求出。但是这显然就带来了一个重复的问题，那么我们在求和的过程中还要统计每个数被求和的次数，然后进行处理。</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+typedef long long ll;
+bool vis[10005];
+int cnt[10005];
+int gcd(int x,int y)
+{
+    return y?gcd(y,x%y):x;
+}
+int main()
+{
+    int t,i,j,k;
+    cin&gt;&gt;t;int case1=0;
+    while(t--){
+        case1++;
+        int n,m;vector&lt;int&gt;ys;
+        memset(vis,0,sizeof(vis));memset(cnt,0,sizeof(cnt));
+        cin&gt;&gt;n&gt;&gt;m;
+        for(i=1;i*i&lt;=m;i++){//求m的约数
+            if(m%i==0){
+                ys.push_back(i);
+                if(i*i!=m)ys.push_back(m/i);
+            }
+        }
+        sort(ys.begin(),ys.end());ys.pop_back();//使约数从小到大排列方便后面求重复的问题
+        for(i=1;i&lt;=n;i++){
+            scanf(&quot;%d&quot;,&amp;k);//
+            k=gcd(k,m);
+            for(j=0;j&lt;ys.size();j++){
+                if(ys[j]%k==0)
+                    vis[j]=1;//这个约数及其倍数都是可行的
+            }
+        }
+        ll ans=0;
+        for(i=0;i&lt;ys.size();i++){
+            if(vis[i]&amp;&amp;cnt[i]!=1){
+                int last1=(m-1)/ys[i]*ys[i],num=(m-1)/ys[i]+1;
+                ans+=(ll)(0+last1)*num/2*(1-cnt[i]);
+                for(j=i+1;j&lt;ys.size();j++)
+                    if(ys[j]%ys[i]==0)//所有是这个约数的倍数的约数都被重复计数了,标记一下
+                        cnt[j]+=1-cnt[i];
+            }
+        }
+        printf(&quot;Case #%d: %lld\n&quot;,case1,ans);
+        //cout&lt;&lt;ans&lt;&lt;endl;
+    }
+
+    return 0;
+}
+</code></pre><h3 id="H"><a href="#H" class="headerlink" title="H."></a>H.</h3><p>题目可以比较暴力的求解，因为有个结论：如果a和m互质，那么$$k* m+a$$和$$m$$也互质，于是我们暴力求1~m的范围内与m互质的数的个数n，然后每m个数中就有n个数与m互质。需要注意的就是当$$n|k$$时要特判一下。</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+using namespace std;
+typedef long long ll;
+ll gcd(ll x,ll y)
+{
+    return y?gcd(y,x%y):x;
+}
+int main()
+{
+    ll n,m,i,j,k;
+    while(cin&gt;&gt;m&gt;&gt;k){
+        vector&lt;ll&gt;rp;
+        for(i=1;i&lt;=m;i++){
+            if(gcd(i,m)==1)
+                rp.push_back(i);
+        }
+        ll xs=k/rp.size();
+        ll ans;
+        if(k%rp.size())
+            ans=m*xs+rp[k%rp.size()-1];
+        else
+            ans=m*(xs-1)+rp[rp.size()-1];//注意特判
+        printf(&quot;%lld\n&quot;,ans);
+    }
+
+    return 0;
+}
+</code></pre><h3 id="I"><a href="#I" class="headerlink" title="I."></a>I.</h3><p>非常套路的题，枚举集合内的数然后求一下他们的LCM，然后容斥原理搞一搞他们的倍数的个数就ok了</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+typedef long long ll;
+ll gcd(ll x,ll y)
+{
+    return y?gcd(y,x%y):x;
+}
+ll sum(ll x,vector&lt;int&gt;v)
+{
+    ll res=0,i,j;
+    for(i=1;i&lt;(1&lt;&lt;v.size());i++){
+        ll val=1,cnt=0;
+        for(j=0;j&lt;v.size();j++){
+            if(i&amp;(1LL&lt;&lt;j)){
+                val=val*v[j]/gcd(val,v[j]);//一定要求LCM!集合里的数不见得两两互质
+                cnt++;
+            }
+        }
+        if(cnt&amp;1LL)res+=x/val;
+        else res-=x/val;
+    }
+    return res;
+}
+int main()
+{
+    ll n,m;
+    int i,j,k;
+    while(cin&gt;&gt;n&gt;&gt;m){
+        vector&lt;int&gt;v;//bool haszero=false;
+        for(i=1;i&lt;=m;i++){
+            scanf(&quot;%d&quot;,&amp;j);if(j)v.push_back(j);
+        }
+        printf(&quot;%lld\n&quot;,sum(n-1,v));
+        //else cout&lt;&lt;0&lt;&lt;endl;
+    }
+
+    return 0;
+}
+</code></pre><h3 id="J"><a href="#J" class="headerlink" title="J."></a>J.</h3><p>其实就是求1~b/k跟1~d/k中有多少对互质的数。假设b&gt;d，我可以认为从后一个集合中挑的数一定都是比较小的数（避免重复），那么对于互质对(x,y),x&gt;=y,当x&lt;=d/k时，其实y的取值就是x的欧拉函数值。而当d/k&lt;=x&lt;=b/k时，就用之前题目中求过的那种方式求1~d/k中与x互质的数的个数即可。</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+using namespace std;
+typedef long long ll;
+ll eular(ll x)
+{
+    ll res = x, a = x;
+    for (ll i = 2; i*i &lt;= a; i++) {
+        if (a%i == 0) {
+            res = res / i*(i - 1);
+            while (a%i == 0)
+                a /= i;
+        }
+    }
+    if (a &gt; 1)
+        res = res / a*(a - 1);
+    return res;
+}
+ll sum(ll x,ll n)
+{
+    ll i,j;
+    vector&lt;ll&gt;prime;
+    for(i=2;i*i&lt;=n;i++){
+        if(n%i==0){
+            prime.push_back(i);
+            while(n%i==0)
+                n/=i;
+        }
+    }
+    if(n&gt;1)prime.push_back(n);
+    ll res=0;
+    for(i=1;i&lt;(1LL&lt;&lt;prime.size());i++){
+        ll val=1;ll cnt=0;
+        for(j=0;j&lt;prime.size();j++){
+            if(i&amp;(1LL&lt;&lt;j)){
+                val*=prime[j];cnt++;
+            }
+        }
+        if(cnt&amp;1){
+            res+=x/val;
+        }
+        else res-=x/val;
+    }
+    return x-res;
+}
+ll phi[1000005];
+void phi_table(ll n)///欧拉函数值表
+{
+    phi[1]=1;
+    for(ll i=2; i&lt;=n; i++)
+    {
+        if(!phi[i])
+        {
+            for(ll j=i; j&lt;=n; j+=i)
+            {
+                if(!phi[j])
+                    phi[j]=j;
+                phi[j]=phi[j]/i*(i-1);
+            }
+        }
+    }
+}
+
+int main()
+{
+    int t;ll a,b,c,d,i,j,k;
+    cin&gt;&gt;t;
+    phi_table(100010);
+    for(ll i=2; i&lt;=100000; i++)
+        phi[i]+=phi[i-1];///前缀和
+    int cnt=0;
+    while(t--){
+        ll ans=0;
+        cnt++;
+        scanf(&quot;%lld%lld%lld%lld%lld&quot;,&amp;a,&amp;b,&amp;c,&amp;d,&amp;k);
+        if(k==0 || k &gt; b || k &gt; d) {
+            printf(&quot;Case %d: 0\n&quot;, cnt);
+            continue;
+        }
+        if(b&lt;d)swap(b,d);
+        b/=k;d/=k;
+//        for(i=1;i&lt;=d;i++)
+//            ans+=eular(i);
+        for(i=d+1;i&lt;=b;i++)
+            ans+=sum(d,i);
+        printf(&quot;Case %d: %lld\n&quot;,cnt,ans+phi[d]);
+    }
+
+    return 0;
+}
+</code></pre>
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">HumveeA6</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/humveea6" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="humveea6@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/humveea6/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://poeroz.cn/" title="Poeroz" target="_blank">Poeroz</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wallacenews.tk/" title="笨訇" target="_blank">笨訇</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.oneliey.tk" title="root" target="_blank">root</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://silentselene.com/" title="SilentSelene" target="_blank">SilentSelene</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nihil.top/" title="NIHIL EON" target="_blank">NIHIL EON</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#D"><span class="nav-number">1.</span> <span class="nav-text">D.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E"><span class="nav-number">2.</span> <span class="nav-text">E.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F"><span class="nav-number">3.</span> <span class="nav-text">F.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#G"><span class="nav-number">4.</span> <span class="nav-text">G.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#H"><span class="nav-number">5.</span> <span class="nav-text">H.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I"><span class="nav-number">6.</span> <span class="nav-text">I.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#J"><span class="nav-number">7.</span> <span class="nav-text">J.</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HumveeA6</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.huweihuang.com/post1/2018-summer-training-e7-bb-84-e5-90-88-e6-95-b0-e5-ad-a6.html';
+          this.page.identifier = 'post1/2018-summer-training-e7-bb-84-e5-90-88-e6-95-b0-e5-ad-a6.html';
+          this.page.title = '2018  Summer Training 组合数学';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

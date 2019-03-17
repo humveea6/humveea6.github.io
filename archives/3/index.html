@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Codeforces/比赛杂集/算法/codeforces-round-450-div-2/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/比赛杂集/Codeforces/codeforces-round-450-div-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -316,7 +316,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Codeforces/比赛杂集/算法/codeforces-round-450-div-2/" itemprop="url">Codeforces Round #450 (Div. 2)</a></h1>
+                <a class="post-title-link" href="/算法/比赛杂集/Codeforces/codeforces-round-450-div-2/" itemprop="url">Codeforces Round #450 (Div. 2)</a></h1>
         
 
         <div class="post-meta">
@@ -351,8 +351,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Codeforces/" itemprop="url" rel="index">
-                    <span itemprop="name">Codeforces</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -362,7 +362,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Codeforces/比赛杂集/" itemprop="url" rel="index">
+                  <a href="/categories/算法/比赛杂集/" itemprop="url" rel="index">
                     <span itemprop="name">比赛杂集</span>
                   </a>
                 </span>
@@ -373,8 +373,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Codeforces/比赛杂集/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/算法/比赛杂集/Codeforces/" itemprop="url" rel="index">
+                    <span itemprop="name">Codeforces</span>
                   </a>
                 </span>
 
@@ -391,8 +391,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Codeforces/比赛杂集/算法/codeforces-round-450-div-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Codeforces/比赛杂集/算法/codeforces-round-450-div-2/" itemprop="commentCount"></span>
+                <a href="/算法/比赛杂集/Codeforces/codeforces-round-450-div-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/比赛杂集/Codeforces/codeforces-round-450-div-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -441,7 +441,7 @@ int main()
 
     return 0;
 }
-</code></pre><h3 id="B"><a href="#B" class="headerlink" title="B."></a>B.</h3><p>首先要知道一个结论：对于$$a/b$$,他的小数部分的循环节长度不会超过$$b$$，所以我们只要检查小数点后的最多$$b$$位就可以知道$$c$$是否有出现过了。然后关键就是如何求小数点后的位数了。这个可以用长除法来做，具体思想其实就是不断把被除数乘10然后除以除数获得下一位小数位（相当于不断地将小数点右移一位），写写就明白了。</p>
+</code></pre><h3 id="B"><a href="#B" class="headerlink" title="B."></a>B.</h3><p>首先要知道一个结论：对于$a/b$,他的小数部分的循环节长度不会超过$b$，所以我们只要检查小数点后的最多$b$位就可以知道$c$是否有出现过了。然后关键就是如何求小数点后的位数了。这个可以用长除法来做，具体思想其实就是不断把被除数乘10然后除以除数获得下一位小数位（相当于不断地将小数点右移一位），写写就明白了。</p>
 <pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
 int main()
@@ -490,7 +490,7 @@ int main()
 
     return 0;
 }
-</code></pre><h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>首先，如果x不能整除y，那么就可以直接滚蛋了。 令$$f(t)$$表示若干个数和为$$t$$，$$gcd$$为1。那么答案就是$$f(\frac{y}{x})$$. 令$$g(t)$$表示若干个数和为$$t$$,那么显然有$$g(t)=2^{t-1}$$:想象一下，把t分成t个1，那么相邻的1之间分开与否都是不同的（本题的序列是有序的）。 注意到有$$g(t)=\sum_{i=1}^{t_i}f(\frac{t}{t_i})$$($$t_i$$是$$t$$的约数)， 所以有$$f(t)=g(t)-\sum_{i=2}^{sz}f(\frac{t}{t_i})$$. 于是先把y除以x，然后求出y的所有约数，从小到大排序后，从大到小枚举每个约数，对于每个约数，我们可以先算出他的$$g(i)$$,然后枚举所有比他大的约数，如果某个约数能整除他，那么那个约数对应的$$f(i)$$就应该被减去。最后输出$$f(1)$$即可。以及，注意取模的问题，要用快速幂&amp;小心负数。</p>
+</code></pre><h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>首先，如果x不能整除y，那么就可以直接滚蛋了。 令$f(t)$表示若干个数和为$t$，$gcd$为1。那么答案就是$f(\frac{y}{x})$. 令$g(t)$表示若干个数和为$t$,那么显然有$g(t)=2^{t-1}$:想象一下，把t分成t个1，那么相邻的1之间分开与否都是不同的（本题的序列是有序的）。 注意到有$g(t)=\sum_{i=1}^{t_i}f(\frac{t}{t_i})$($t_i$是$t$的约数)， 所以有$f(t)=g(t)-\sum_{i=2}^{sz}f(\frac{t}{t_i})$. 于是先把y除以x，然后求出y的所有约数，从小到大排序后，从大到小枚举每个约数，对于每个约数，我们可以先算出他的$g(i)$,然后枚举所有比他大的约数，如果某个约数能整除他，那么那个约数对应的$f(i)$就应该被减去。最后输出$f(1)$即可。以及，注意取模的问题，要用快速幂&amp;小心负数。</p>
 <pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
 const int mod=1e9+7;
@@ -581,7 +581,7 @@ int main()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Codeforces/比赛杂集/算法/codeforces-round-502-ef-bc-88div-1-div-2/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/比赛杂集/Codeforces/codeforces-round-502-ef-bc-88div-1-div-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -600,7 +600,7 @@ int main()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Codeforces/比赛杂集/算法/codeforces-round-502-ef-bc-88div-1-div-2/" itemprop="url">Codeforces Round #502（Div. 1 + Div. 2)</a></h1>
+                <a class="post-title-link" href="/算法/比赛杂集/Codeforces/codeforces-round-502-ef-bc-88div-1-div-2/" itemprop="url">Codeforces Round #502（Div. 1 + Div. 2)</a></h1>
         
 
         <div class="post-meta">
@@ -635,8 +635,8 @@ int main()
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Codeforces/" itemprop="url" rel="index">
-                    <span itemprop="name">Codeforces</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -646,7 +646,7 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Codeforces/比赛杂集/" itemprop="url" rel="index">
+                  <a href="/categories/算法/比赛杂集/" itemprop="url" rel="index">
                     <span itemprop="name">比赛杂集</span>
                   </a>
                 </span>
@@ -657,8 +657,8 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Codeforces/比赛杂集/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/算法/比赛杂集/Codeforces/" itemprop="url" rel="index">
+                    <span itemprop="name">Codeforces</span>
                   </a>
                 </span>
 
@@ -675,8 +675,8 @@ int main()
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Codeforces/比赛杂集/算法/codeforces-round-502-ef-bc-88div-1-div-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Codeforces/比赛杂集/算法/codeforces-round-502-ef-bc-88div-1-div-2/" itemprop="commentCount"></span>
+                <a href="/算法/比赛杂集/Codeforces/codeforces-round-502-ef-bc-88div-1-div-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/比赛杂集/Codeforces/codeforces-round-502-ef-bc-88div-1-div-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -835,7 +835,7 @@ int main()
 
     return 0;
 }
-</code></pre><p>正解是利用类似bitset的思想，因为两串相与只可能是0~2^12，所以我们可以预处理所有的情况，把他们转10进制表示，然后查询的时候就是$$O(1)$$的了. 有一点要注意的就是因为两个串都是0或者都是1 的时候权值都是有效的，为了方便统计，我们可以把set里面的串全部取反，然后查询的时候两个串异或一下，是1的位置就是权值有效的位置了。ans[i][j]代表模式串为i的时候两串相与为j的情况数。 以及，string会tle</p>
+</code></pre><p>正解是利用类似bitset的思想，因为两串相与只可能是0~2^12，所以我们可以预处理所有的情况，把他们转10进制表示，然后查询的时候就是$O(1)$的了. 有一点要注意的就是因为两个串都是0或者都是1 的时候权值都是有效的，为了方便统计，我们可以把set里面的串全部取反，然后查询的时候两个串异或一下，是1的位置就是权值有效的位置了。ans[i][j]代表模式串为i的时候两串相与为j的情况数。 以及，string会tle</p>
 <pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
 int w[5000],s[5000],ans[5000][105],f[5000];//s是将字符串转化为数字串,ans存答案,f预处理
@@ -921,7 +921,7 @@ int main() {
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/图论/暑假训练/比赛杂集/算法/网络流/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/网络流/算法/比赛杂集/暑假训练/图论/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -940,7 +940,7 @@ int main() {
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/图论/暑假训练/比赛杂集/算法/网络流/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/" itemprop="url">2018 BUPT Summer Training 网络流</a></h1>
+                <a class="post-title-link" href="/网络流/算法/比赛杂集/暑假训练/图论/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/" itemprop="url">2018 BUPT Summer Training 网络流</a></h1>
         
 
         <div class="post-meta">
@@ -975,8 +975,8 @@ int main() {
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/" itemprop="url" rel="index">
-                    <span itemprop="name">图论</span>
+                  <a href="/categories/网络流/" itemprop="url" rel="index">
+                    <span itemprop="name">网络流</span>
                   </a>
                 </span>
 
@@ -986,29 +986,7 @@ int main() {
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/暑假训练/" itemprop="url" rel="index">
-                    <span itemprop="name">暑假训练</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/暑假训练/比赛杂集/" itemprop="url" rel="index">
-                    <span itemprop="name">比赛杂集</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/暑假训练/比赛杂集/算法/" itemprop="url" rel="index">
+                  <a href="/categories/网络流/算法/" itemprop="url" rel="index">
                     <span itemprop="name">算法</span>
                   </a>
                 </span>
@@ -1019,8 +997,30 @@ int main() {
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/暑假训练/比赛杂集/算法/网络流/" itemprop="url" rel="index">
-                    <span itemprop="name">网络流</span>
+                  <a href="/categories/网络流/算法/比赛杂集/" itemprop="url" rel="index">
+                    <span itemprop="name">比赛杂集</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/比赛杂集/暑假训练/" itemprop="url" rel="index">
+                    <span itemprop="name">暑假训练</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/比赛杂集/暑假训练/图论/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
                   </a>
                 </span>
 
@@ -1037,8 +1037,8 @@ int main() {
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/图论/暑假训练/比赛杂集/算法/网络流/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="图论/暑假训练/比赛杂集/算法/网络流/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/" itemprop="commentCount"></span>
+                <a href="/网络流/算法/比赛杂集/暑假训练/图论/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="网络流/算法/比赛杂集/暑假训练/图论/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1255,7 +1255,7 @@ int main() {
 
     return 0;
 }
-</code></pre><h4 id="D-Number-HYSBZ-3275"><a href="#D-Number-HYSBZ-3275" class="headerlink" title="D - Number HYSBZ - 3275"></a>D - Number HYSBZ - 3275</h4><p>注意题目条件是同时满足两个条件的数才不能一起选。对于每个点a，我们拆成$$a_x$$和$$a_y$$,源点连接$$a_x$$,容量为数值，$$a_y$$连接汇点，容量为数值。如果两个数a，b不能同时选，那么我们就将$$a_x$$连接$$b_y$$,$$b_x$$ 连接$$a_y$$,容量为INF。那么答案就是所有数的和-maxflow/2</p>
+</code></pre><h4 id="D-Number-HYSBZ-3275"><a href="#D-Number-HYSBZ-3275" class="headerlink" title="D - Number HYSBZ - 3275"></a>D - Number HYSBZ - 3275</h4><p>注意题目条件是同时满足两个条件的数才不能一起选。对于每个点a，我们拆成$a_x$和$a_y$,源点连接$a_x$,容量为数值，$a_y$连接汇点，容量为数值。如果两个数a，b不能同时选，那么我们就将$a_x$连接$b_y$,$b_x$ 连接$a_y$,容量为INF。那么答案就是所有数的和-maxflow/2</p>
 <pre><code>#include&lt;cstdio&gt;
 #include&lt;iostream&gt;
 #include&lt;algorithm&gt;
@@ -1857,7 +1857,7 @@ int main()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/图论/模板/算法/网络流/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -1876,7 +1876,7 @@ int main()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/图论/模板/算法/网络流/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/" itemprop="url">（模板）有上下界的网络流 总结</a></h1>
+                <a class="post-title-link" href="/网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/" itemprop="url">（模板）有上下界的网络流 总结</a></h1>
         
 
         <div class="post-meta">
@@ -1911,8 +1911,8 @@ int main()
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/" itemprop="url" rel="index">
-                    <span itemprop="name">图论</span>
+                  <a href="/categories/网络流/" itemprop="url" rel="index">
+                    <span itemprop="name">网络流</span>
                   </a>
                 </span>
 
@@ -1922,18 +1922,7 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/模板/" itemprop="url" rel="index">
-                    <span itemprop="name">模板</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/模板/算法/" itemprop="url" rel="index">
+                  <a href="/categories/网络流/算法/" itemprop="url" rel="index">
                     <span itemprop="name">算法</span>
                   </a>
                 </span>
@@ -1944,8 +1933,19 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/模板/算法/网络流/" itemprop="url" rel="index">
-                    <span itemprop="name">网络流</span>
+                  <a href="/categories/网络流/算法/模板/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/模板/图论/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
                   </a>
                 </span>
 
@@ -1962,8 +1962,8 @@ int main()
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/图论/模板/算法/网络流/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="图论/模板/算法/网络流/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/" itemprop="commentCount"></span>
+                <a href="/网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1995,7 +1995,7 @@ int main()
           
             <h3 id="无源汇可行流"><a href="#无源汇可行流" class="headerlink" title="无源汇可行流"></a>无源汇可行流</h3><h4 id="建图方法"><a href="#建图方法" class="headerlink" title="建图方法"></a>建图方法</h4><p>将有上下界的网络流图转化成普通的网络流图 首先建立附加源点ss和附加汇点tt 对于原图中的边x-&gt;y，若限制为[b,c]，那么连边x-&gt;y，流量为c-b 对于原图中的某一个点i，记d(i)为流入这个点的所有边的下界和减去流出这个点的所有边的下界和 （上面在连每一条边的时候建一个cur数组记一下输入输出即可） 若d(i)&gt;0，那么连边ss-&gt;i，流量为d(i) ，同时期望的流量值sum+=d（i) 若d(i)&lt;0，那么连边i-&gt;tt，流量为-d(i) 求解方法 在新图上跑ss到tt的最大流 若新图满流（流量等于sum），那么一定存在一种可行流 此时，原图中每一条边的流量应为新图中对应的边的流量+这条边的流量下界</p>
 <h4 id="EX：LOJ115"><a href="#EX：LOJ115" class="headerlink" title="EX：LOJ115"></a>EX：LOJ115</h4><blockquote>
-<p>这是一道模板题。 n个点，m条边，每条边 e有一个流量下界 $$lower(e) $$ 和流量上界 $$upper(e)$$，求一种可行方案使得在所有点满足流量平衡条件的前提下，所有边满足流量限制。</p>
+<p>这是一道模板题。 n个点，m条边，每条边 e有一个流量下界 $lower(e) $ 和流量上界 $upper(e)$，求一种可行方案使得在所有点满足流量平衡条件的前提下，所有边满足流量限制。</p>
 </blockquote>
 <pre><code>#include&lt;cstdio&gt;
 #include&lt;iostream&gt;
@@ -2103,9 +2103,9 @@ int main()
     return 0;
 }
 </code></pre><h3 id="有源汇可行流"><a href="#有源汇可行流" class="headerlink" title="有源汇可行流"></a>有源汇可行流</h3><h4 id="建图方法-1"><a href="#建图方法-1" class="headerlink" title="建图方法"></a>建图方法</h4><p>在原图中添加一条边t-&gt;s，流量为inf 即让源点和汇点也满足流量平衡条件 这样就改造成了无源汇的网络流图，其余建图方法与无源汇可行流相同。</p>
-<h3 id="有源汇有上下界最大流"><a href="#有源汇有上下界最大流" class="headerlink" title="有源汇有上下界最大流"></a>有源汇有上下界最大流</h3><h4 id="建图方法-2"><a href="#建图方法-2" class="headerlink" title="建图方法"></a>建图方法</h4><p>将有上下界的网络流图转化成普通的网络流图 首先建立附加源点ss和附加汇点tt 对于原图中的边x-&gt;y，若限制为[b,c]，那么连边x-&gt;y，流量为c-b 对于原图中的某一个点i，记d(i)为流入这个点的所有边的下界和减去流出这个点的所有边的下界和 若d(i)&gt;0，那么连边ss-&gt;i，流量为d(i) 若d(i)&lt;0，那么连边i-&gt;tt，流量为-d(i) <strong>（以上与无源汇可行流相同）</strong> 在原图中添加一条边t-&gt;s，流量为inf 即让源点和汇点也满足流量平衡条件 这样就改造成了无源汇的网络流图 <strong>（以上与有源汇可行流相同）</strong> 在新图上跑ss到tt的最大流 若新图满流，那么一定存在一种可行流 记此时$$∑f(s,i)=sum1$$ ，即此时t-&gt;s的最大流，也就是求反向边s-&gt;t的流量 将t-&gt;s这条边拆掉，在新图上跑s到t的最大流 记此时$$∑f(s,i)=sum2 $$，即maxflow（s，t） 最终答案即为sum1+sum2</p>
+<h3 id="有源汇有上下界最大流"><a href="#有源汇有上下界最大流" class="headerlink" title="有源汇有上下界最大流"></a>有源汇有上下界最大流</h3><h4 id="建图方法-2"><a href="#建图方法-2" class="headerlink" title="建图方法"></a>建图方法</h4><p>将有上下界的网络流图转化成普通的网络流图 首先建立附加源点ss和附加汇点tt 对于原图中的边x-&gt;y，若限制为[b,c]，那么连边x-&gt;y，流量为c-b 对于原图中的某一个点i，记d(i)为流入这个点的所有边的下界和减去流出这个点的所有边的下界和 若d(i)&gt;0，那么连边ss-&gt;i，流量为d(i) 若d(i)&lt;0，那么连边i-&gt;tt，流量为-d(i) <strong>（以上与无源汇可行流相同）</strong> 在原图中添加一条边t-&gt;s，流量为inf 即让源点和汇点也满足流量平衡条件 这样就改造成了无源汇的网络流图 <strong>（以上与有源汇可行流相同）</strong> 在新图上跑ss到tt的最大流 若新图满流，那么一定存在一种可行流 记此时$∑f(s,i)=sum1$ ，即此时t-&gt;s的最大流，也就是求反向边s-&gt;t的流量 将t-&gt;s这条边拆掉，在新图上跑s到t的最大流 记此时$∑f(s,i)=sum2 $，即maxflow（s，t） 最终答案即为sum1+sum2</p>
 <h4 id="EX-LOJ116"><a href="#EX-LOJ116" class="headerlink" title="EX:LOJ116"></a>EX:LOJ116</h4><blockquote>
-<p>这是一道模板题。 n个点，m条边，每条边 e有一个流量下界$$ lower(e) $$和流量上界 $$upper(e) $$，给定源点 s与汇点 t，求源点到汇点的最大流。</p>
+<p>这是一道模板题。 n个点，m条边，每条边 e有一个流量下界$ lower(e) $和流量上界 $upper(e) $，给定源点 s与汇点 t，求源点到汇点的最大流。</p>
 </blockquote>
 <pre><code>#include&lt;cstdio&gt;
 #include&lt;iostream&gt;
@@ -2201,7 +2201,7 @@ int main()
 }
 </code></pre><h3 id="有源汇有上下界最小流"><a href="#有源汇有上下界最小流" class="headerlink" title="有源汇有上下界最小流"></a>有源汇有上下界最小流</h3><h4 id="建图方法-3"><a href="#建图方法-3" class="headerlink" title="建图方法"></a>建图方法</h4><p>将有上下界的网络流图转化成普通的网络流图 首先建立附加源点ss和附加汇点tt 对于原图中的边x-&gt;y，若限制为[b,c]，那么连边x-&gt;y，流量为c-b 对于原图中的某一个点i，记d(i)为流入这个点的所有边的下界和减去流出这个点的所有边的下界和 若d(i)&gt;0，那么连边ss-&gt;i，流量为d(i) 若d(i)&lt;0，那么连边i-&gt;tt，流量为-d(i) <strong>（以上与无源汇可行流相同)</strong> 求res=ss-&gt;tt最大流 连边t-&gt;s,inf 求res+=ss-&gt;tt最大流 如果res！=sum也就是期望中的满流，那么就没有可行解。 <strong>需要格外注意最小流判断是否有可行解的位置与时机与另外几种上下界网络流的不同！！！ 否则，输出G[s].back().cap也就是从t到s inf边的实际流量，即为所求。</strong></p>
 <h4 id="EX-LOJ117"><a href="#EX-LOJ117" class="headerlink" title="EX:LOJ117"></a>EX:LOJ117</h4><blockquote>
-<p>n 个点，m条边，每条边 e有一个流量下界 $$lower(e) $$和流量上界 $$upper(e)$$，给定源点 s与汇点 t，求源点到汇点的最小流。</p>
+<p>n 个点，m条边，每条边 e有一个流量下界 $lower(e) $和流量上界 $upper(e)$，给定源点 s与汇点 t，求源点到汇点的最小流。</p>
 </blockquote>
 <pre><code>#include&lt;cstdio&gt;
 #include&lt;iostream&gt;
@@ -2339,7 +2339,7 @@ int main()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Codeforces/比赛杂集/算法/codeforces-round-452-div-2/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/比赛杂集/Codeforces/codeforces-round-452-div-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -2358,7 +2358,7 @@ int main()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Codeforces/比赛杂集/算法/codeforces-round-452-div-2/" itemprop="url">Codeforces Round #452 (Div. 2)</a></h1>
+                <a class="post-title-link" href="/算法/比赛杂集/Codeforces/codeforces-round-452-div-2/" itemprop="url">Codeforces Round #452 (Div. 2)</a></h1>
         
 
         <div class="post-meta">
@@ -2393,8 +2393,8 @@ int main()
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Codeforces/" itemprop="url" rel="index">
-                    <span itemprop="name">Codeforces</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -2404,7 +2404,7 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Codeforces/比赛杂集/" itemprop="url" rel="index">
+                  <a href="/categories/算法/比赛杂集/" itemprop="url" rel="index">
                     <span itemprop="name">比赛杂集</span>
                   </a>
                 </span>
@@ -2415,8 +2415,8 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Codeforces/比赛杂集/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/算法/比赛杂集/Codeforces/" itemprop="url" rel="index">
+                    <span itemprop="name">Codeforces</span>
                   </a>
                 </span>
 
@@ -2433,8 +2433,8 @@ int main()
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Codeforces/比赛杂集/算法/codeforces-round-452-div-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Codeforces/比赛杂集/算法/codeforces-round-452-div-2/" itemprop="commentCount"></span>
+                <a href="/算法/比赛杂集/Codeforces/codeforces-round-452-div-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/比赛杂集/Codeforces/codeforces-round-452-div-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2719,7 +2719,7 @@ int main()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/RMQ/数据结构/模板/算法/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89st-e8-a1-a8/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/数据结构/RMQ/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89st-e8-a1-a8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -2738,7 +2738,7 @@ int main()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/RMQ/数据结构/模板/算法/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89st-e8-a1-a8/" itemprop="url">（模板）ST表</a></h1>
+                <a class="post-title-link" href="/算法/模板/数据结构/RMQ/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89st-e8-a1-a8/" itemprop="url">（模板）ST表</a></h1>
         
 
         <div class="post-meta">
@@ -2773,8 +2773,8 @@ int main()
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RMQ/" itemprop="url" rel="index">
-                    <span itemprop="name">RMQ</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -2784,18 +2784,7 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RMQ/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RMQ/数据结构/模板/" itemprop="url" rel="index">
+                  <a href="/categories/算法/模板/" itemprop="url" rel="index">
                     <span itemprop="name">模板</span>
                   </a>
                 </span>
@@ -2806,8 +2795,19 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RMQ/数据结构/模板/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/算法/模板/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/模板/数据结构/RMQ/" itemprop="url" rel="index">
+                    <span itemprop="name">RMQ</span>
                   </a>
                 </span>
 
@@ -2824,8 +2824,8 @@ int main()
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/RMQ/数据结构/模板/算法/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89st-e8-a1-a8/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="RMQ/数据结构/模板/算法/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89st-e8-a1-a8/" itemprop="commentCount"></span>
+                <a href="/算法/模板/数据结构/RMQ/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89st-e8-a1-a8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/模板/数据结构/RMQ/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89st-e8-a1-a8/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2855,8 +2855,8 @@ int main()
       
         
           
-            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>ST表就是一个用来解决rmq（区间最值）问题的算法. <strong>ST表不支持在线修改</strong> 预处理时间复杂度$$O(nlogn)$$，查询时间$$O(1)$$</p>
-<h4 id="算法详解（求最小值）："><a href="#算法详解（求最小值）：" class="headerlink" title="算法详解（求最小值）："></a>算法详解（求最小值）：</h4><p>用$$mn[i][j]$$表示从$$i$$到$$i+2^j-1$$的最小值（长度显然为$$2^i$$）。 任意一段的最小值显然等于min（前半段最小值，后半段最小值）。 那么$$mn[i][j]$$如何用其他状态来继承呢？ $$i$$到$$i+2^j-1$$的长度为$$2^j$$，那么一半的长度就等于$$2^{j-1}$$。 那么前半段的状态表示为$$mn[i][j-1]$$。 后半段的长度也为$$2^{j-1}$$，起始位置为$$i+2^{(j-1)}$$。 那么后半段的状态表示为$$mn[i+2^{j-1}][j-1]$$。 所以： $$mn[i][j]=min(mn[i][j-1],mn[i+2^{j-1}][j-1]$$。</p>
+            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>ST表就是一个用来解决rmq（区间最值）问题的算法. <strong>ST表不支持在线修改</strong> 预处理时间复杂度$O(nlogn)$，查询时间$O(1)$</p>
+<h4 id="算法详解（求最小值）："><a href="#算法详解（求最小值）：" class="headerlink" title="算法详解（求最小值）："></a>算法详解（求最小值）：</h4><p>用$mn[i][j]$表示从$i$到$i+2^j-1$的最小值（长度显然为$2^i$）。 任意一段的最小值显然等于min（前半段最小值，后半段最小值）。 那么$mn[i][j]$如何用其他状态来继承呢？ $i$到$i+2^j-1$的长度为$2^j$，那么一半的长度就等于$2^{j-1}$。 那么前半段的状态表示为$mn[i][j-1]$。 后半段的长度也为$2^{j-1}$，起始位置为$i+2^{(j-1)}$。 那么后半段的状态表示为$mn[i+2^{j-1}][j-1]$。 所以： $mn[i][j]=min(mn[i][j-1],mn[i+2^{j-1}][j-1]$。</p>
 <h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><p>注意修改数组大小！ (洛谷P3865)</p>
 <pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
@@ -2942,7 +2942,7 @@ int main()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/暑假训练/比赛杂集/算法/2018-summer-training-3/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/比赛杂集/暑假训练/2018-summer-training-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -2961,7 +2961,7 @@ int main()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/暑假训练/比赛杂集/算法/2018-summer-training-3/" itemprop="url">2018  Summer Training #3</a></h1>
+                <a class="post-title-link" href="/算法/比赛杂集/暑假训练/2018-summer-training-3/" itemprop="url">2018  Summer Training #3</a></h1>
         
 
         <div class="post-meta">
@@ -2996,8 +2996,8 @@ int main()
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/暑假训练/" itemprop="url" rel="index">
-                    <span itemprop="name">暑假训练</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -3007,7 +3007,7 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/暑假训练/比赛杂集/" itemprop="url" rel="index">
+                  <a href="/categories/算法/比赛杂集/" itemprop="url" rel="index">
                     <span itemprop="name">比赛杂集</span>
                   </a>
                 </span>
@@ -3018,8 +3018,8 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/暑假训练/比赛杂集/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/算法/比赛杂集/暑假训练/" itemprop="url" rel="index">
+                    <span itemprop="name">暑假训练</span>
                   </a>
                 </span>
 
@@ -3036,8 +3036,8 @@ int main()
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/暑假训练/比赛杂集/算法/2018-summer-training-3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="暑假训练/比赛杂集/算法/2018-summer-training-3/" itemprop="commentCount"></span>
+                <a href="/算法/比赛杂集/暑假训练/2018-summer-training-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/比赛杂集/暑假训练/2018-summer-training-3/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -3067,7 +3067,7 @@ int main()
       
         
           
-            <h4 id="A-HackerRank-array-partition"><a href="#A-HackerRank-array-partition" class="headerlink" title="A.HackerRank array-partition"></a>A.HackerRank array-partition</h4><p>首先注意到一点，如果有两个数a，b，$$gcd(a,b)\geq 1$$,那么a，b显然是要放在一组的。考虑到数组中的数字过多，因此我们并不能进行两两的枚举，但是数据的范围都非常有限。因此我们可以考虑枚举所有的质数，然后枚举质数的倍数，如果同一个质数存在一些倍数是数组中的数的话，就把这些数都合并起来（显然用并查集效率最高）。然后最后求出连通块的数量k。注意，因为数字1的特殊性，所以每个1都可以算一个单独的连通块，这个要额外统计。那么方案数就是$$2^k-2$$</p>
+            <h4 id="A-HackerRank-array-partition"><a href="#A-HackerRank-array-partition" class="headerlink" title="A.HackerRank array-partition"></a>A.HackerRank array-partition</h4><p>首先注意到一点，如果有两个数a，b，$gcd(a,b)\geq 1$,那么a，b显然是要放在一组的。考虑到数组中的数字过多，因此我们并不能进行两两的枚举，但是数据的范围都非常有限。因此我们可以考虑枚举所有的质数，然后枚举质数的倍数，如果同一个质数存在一些倍数是数组中的数的话，就把这些数都合并起来（显然用并查集效率最高）。然后最后求出连通块的数量k。注意，因为数字1的特殊性，所以每个1都可以算一个单独的连通块，这个要额外统计。那么方案数就是$2^k-2$</p>
 <pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
 typedef long long ll;
@@ -3144,7 +3144,7 @@ int main()
 
     return 0;
 }
-</code></pre><h4 id="B-CodeChef-F2NDMAX"><a href="#B-CodeChef-F2NDMAX" class="headerlink" title="B.CodeChef - F2NDMAX"></a>B.CodeChef - F2NDMAX</h4><p>这道题其实是一幅图…设想一下，对于两个数a，b，如果$$a&gt;b$$,那么从a连边指向b，那么当满足题意的询问完成后，我们一定能得到一幅图，其中只有一个点入度为0，即最大的那个点，那么第二大的点应当就是它的一个直接的儿子。 于是我们可以先统计所有入度为0的点，对于这cnt个点，我们至少要询问cnt-1次才能明确其中最大的数，然后为了使总次数最少，我们把这些入度为0的点的儿子中当前入度为1的数量丢进一个小根堆，然后每次询问都应当找出堆顶最大的两个数a，b，那么至少要询问max(a,b)+1次才能找出合并这两组之后第二大的数。（似乎有点混乱？）</p>
+</code></pre><h4 id="B-CodeChef-F2NDMAX"><a href="#B-CodeChef-F2NDMAX" class="headerlink" title="B.CodeChef - F2NDMAX"></a>B.CodeChef - F2NDMAX</h4><p>这道题其实是一幅图…设想一下，对于两个数a，b，如果$a&gt;b$,那么从a连边指向b，那么当满足题意的询问完成后，我们一定能得到一幅图，其中只有一个点入度为0，即最大的那个点，那么第二大的点应当就是它的一个直接的儿子。 于是我们可以先统计所有入度为0的点，对于这cnt个点，我们至少要询问cnt-1次才能明确其中最大的数，然后为了使总次数最少，我们把这些入度为0的点的儿子中当前入度为1的数量丢进一个小根堆，然后每次询问都应当找出堆顶最大的两个数a，b，那么至少要询问max(a,b)+1次才能找出合并这两组之后第二大的数。（似乎有点混乱？）</p>
 <pre><code>#include &lt;bits/stdc++.h&gt;
 using namespace std;
 const int maxn=3e5+5;
@@ -3185,7 +3185,7 @@ int main()
 
     return 0;
 }
-</code></pre><h4 id="J-CodeChef-RIN"><a href="#J-CodeChef-RIN" class="headerlink" title="J.CodeChef - RIN"></a>J.CodeChef - RIN</h4><p>首先，我们把分数进行转化，得到的分数变成100-得到的分数，也就是亏损的分数。如果分数是-1那么亏损无限大。那么我们的问题其实就变成了如何选择使得亏损尽可能的小。我们把每个课的每个学期都建成点，从源点向所有课的第一学期连权值为该亏损的课，从第一学期向第二学期连第二学期亏损的课…依次类推，最后一学期向汇点连容量无穷的边。那么，如果不考虑前置课程的要求，我们现在的问题其实就是在求图的最小割。 考虑到前置课程，假设a是b的前置课程，那么对于a的每个学期，我们都向b的下一学期连一条无限的边确保b的割不会发生在a之前。注意的是b的第一学期的肯定不能选的，因此从源点向该学期连权值INF的边。 答案就是$$(n* 100-maxflow)/n$$</p>
+</code></pre><h4 id="J-CodeChef-RIN"><a href="#J-CodeChef-RIN" class="headerlink" title="J.CodeChef - RIN"></a>J.CodeChef - RIN</h4><p>首先，我们把分数进行转化，得到的分数变成100-得到的分数，也就是亏损的分数。如果分数是-1那么亏损无限大。那么我们的问题其实就变成了如何选择使得亏损尽可能的小。我们把每个课的每个学期都建成点，从源点向所有课的第一学期连权值为该亏损的课，从第一学期向第二学期连第二学期亏损的课…依次类推，最后一学期向汇点连容量无穷的边。那么，如果不考虑前置课程的要求，我们现在的问题其实就是在求图的最小割。 考虑到前置课程，假设a是b的前置课程，那么对于a的每个学期，我们都向b的下一学期连一条无限的边确保b的割不会发生在a之前。注意的是b的第一学期的肯定不能选的，因此从源点向该学期连权值INF的边。 答案就是$(n* 100-maxflow)/n$</p>
 <pre><code>#include&lt;cstdio&gt;
 #include&lt;iostream&gt;
 #include&lt;algorithm&gt;
@@ -3326,7 +3326,7 @@ int main()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Codeforces/比赛杂集/算法/educational-codeforces-round-48-rated-for-div-2/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/比赛杂集/Codeforces/educational-codeforces-round-48-rated-for-div-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -3345,7 +3345,7 @@ int main()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Codeforces/比赛杂集/算法/educational-codeforces-round-48-rated-for-div-2/" itemprop="url">Educational Codeforces Round 48 (Rated for Div. 2)</a></h1>
+                <a class="post-title-link" href="/算法/比赛杂集/Codeforces/educational-codeforces-round-48-rated-for-div-2/" itemprop="url">Educational Codeforces Round 48 (Rated for Div. 2)</a></h1>
         
 
         <div class="post-meta">
@@ -3380,8 +3380,8 @@ int main()
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Codeforces/" itemprop="url" rel="index">
-                    <span itemprop="name">Codeforces</span>
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
                   </a>
                 </span>
 
@@ -3391,7 +3391,7 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Codeforces/比赛杂集/" itemprop="url" rel="index">
+                  <a href="/categories/算法/比赛杂集/" itemprop="url" rel="index">
                     <span itemprop="name">比赛杂集</span>
                   </a>
                 </span>
@@ -3402,8 +3402,8 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Codeforces/比赛杂集/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/算法/比赛杂集/Codeforces/" itemprop="url" rel="index">
+                    <span itemprop="name">Codeforces</span>
                   </a>
                 </span>
 
@@ -3420,8 +3420,8 @@ int main()
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Codeforces/比赛杂集/算法/educational-codeforces-round-48-rated-for-div-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Codeforces/比赛杂集/算法/educational-codeforces-round-48-rated-for-div-2/" itemprop="commentCount"></span>
+                <a href="/算法/比赛杂集/Codeforces/educational-codeforces-round-48-rated-for-div-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/比赛杂集/Codeforces/educational-codeforces-round-48-rated-for-div-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -3616,7 +3616,7 @@ int main()
 
     return 0;
 }
-</code></pre><h4 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h4><p>其实只要$$a_1\oplus a_2\oplus …a_n=b_1\oplus b_2\oplus…b_n$$就是一定可以的。 然后除了最后一列及最后一行之外的所有位置其实都可以随便放。根据放的情况推最后一行最后一列即可。</p>
+</code></pre><h4 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h4><p>其实只要$a_1\oplus a_2\oplus …a_n=b_1\oplus b_2\oplus…b_n$就是一定可以的。 然后除了最后一列及最后一行之外的所有位置其实都可以随便放。根据放的情况推最后一行最后一列即可。</p>
 <pre><code>#include&lt;bits/stdc++.h&gt;
 using namespace std;
 int ma[105][105];
@@ -3739,7 +3739,7 @@ int main()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/图论/模板/算法/网络流/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-a4-a7-e6-9d-83-e9-97-ad-e5-90-88-e5-9b-be/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-a4-a7-e6-9d-83-e9-97-ad-e5-90-88-e5-9b-be/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -3758,7 +3758,7 @@ int main()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/图论/模板/算法/网络流/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-a4-a7-e6-9d-83-e9-97-ad-e5-90-88-e5-9b-be/" itemprop="url">（模板）最大权闭合图</a></h1>
+                <a class="post-title-link" href="/网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-a4-a7-e6-9d-83-e9-97-ad-e5-90-88-e5-9b-be/" itemprop="url">（模板）最大权闭合图</a></h1>
         
 
         <div class="post-meta">
@@ -3793,8 +3793,8 @@ int main()
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/" itemprop="url" rel="index">
-                    <span itemprop="name">图论</span>
+                  <a href="/categories/网络流/" itemprop="url" rel="index">
+                    <span itemprop="name">网络流</span>
                   </a>
                 </span>
 
@@ -3804,18 +3804,7 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/模板/" itemprop="url" rel="index">
-                    <span itemprop="name">模板</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/模板/算法/" itemprop="url" rel="index">
+                  <a href="/categories/网络流/算法/" itemprop="url" rel="index">
                     <span itemprop="name">算法</span>
                   </a>
                 </span>
@@ -3826,8 +3815,19 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/模板/算法/网络流/" itemprop="url" rel="index">
-                    <span itemprop="name">网络流</span>
+                  <a href="/categories/网络流/算法/模板/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/模板/图论/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
                   </a>
                 </span>
 
@@ -3844,8 +3844,8 @@ int main()
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/图论/模板/算法/网络流/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-a4-a7-e6-9d-83-e9-97-ad-e5-90-88-e5-9b-be/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="图论/模板/算法/网络流/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-a4-a7-e6-9d-83-e9-97-ad-e5-90-88-e5-9b-be/" itemprop="commentCount"></span>
+                <a href="/网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-a4-a7-e6-9d-83-e9-97-ad-e5-90-88-e5-9b-be/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-a4-a7-e6-9d-83-e9-97-ad-e5-90-88-e5-9b-be/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -4024,7 +4024,7 @@ int main()
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/图论/模板/算法/网络流/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b4-b9-e7-94-a8-e6-b5-81/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b4-b9-e7-94-a8-e6-b5-81/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -4043,7 +4043,7 @@ int main()
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/图论/模板/算法/网络流/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b4-b9-e7-94-a8-e6-b5-81/" itemprop="url">（模板）最小费用流</a></h1>
+                <a class="post-title-link" href="/网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b4-b9-e7-94-a8-e6-b5-81/" itemprop="url">（模板）最小费用流</a></h1>
         
 
         <div class="post-meta">
@@ -4078,8 +4078,8 @@ int main()
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/" itemprop="url" rel="index">
-                    <span itemprop="name">图论</span>
+                  <a href="/categories/网络流/" itemprop="url" rel="index">
+                    <span itemprop="name">网络流</span>
                   </a>
                 </span>
 
@@ -4089,18 +4089,7 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/模板/" itemprop="url" rel="index">
-                    <span itemprop="name">模板</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/模板/算法/" itemprop="url" rel="index">
+                  <a href="/categories/网络流/算法/" itemprop="url" rel="index">
                     <span itemprop="name">算法</span>
                   </a>
                 </span>
@@ -4111,8 +4100,19 @@ int main()
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/图论/模板/算法/网络流/" itemprop="url" rel="index">
-                    <span itemprop="name">网络流</span>
+                  <a href="/categories/网络流/算法/模板/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/模板/图论/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
                   </a>
                 </span>
 
@@ -4129,8 +4129,8 @@ int main()
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/图论/模板/算法/网络流/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b4-b9-e7-94-a8-e6-b5-81/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="图论/模板/算法/网络流/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b4-b9-e7-94-a8-e6-b5-81/" itemprop="commentCount"></span>
+                <a href="/网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b4-b9-e7-94-a8-e6-b5-81/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b4-b9-e7-94-a8-e6-b5-81/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -4325,7 +4325,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">62</span>
+                  <span class="site-state-item-count">50</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -4336,7 +4336,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -4378,7 +4378,7 @@ int main()
             <div class="links-of-blogroll motion-element links-of-blogroll-block">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-link"></i>
-                Links
+                友链
               </div>
               <ul class="links-of-blogroll-list">
                 

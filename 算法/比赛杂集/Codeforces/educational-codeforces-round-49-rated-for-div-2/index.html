@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法,比赛杂集,Codeforces,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="A.小心处理z与a的问题，以及注意每个字母都必须发生变化即可 #include&amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef long long ll; int main() {     string str1,str2;     int n,i,j,k;     int t;     cin&amp;gt;&amp;gt;t;     while(t--){">
+<meta name="keywords" content="算法,比赛杂集,Codeforces">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Educational Codeforces Round 49 (Rated for Div. 2)">
+<meta property="og:url" content="http://www.huweihuang.com/算法/比赛杂集/Codeforces/educational-codeforces-round-49-rated-for-div-2/index.html">
+<meta property="og:site_name" content="HumveeA6">
+<meta property="og:description" content="A.小心处理z与a的问题，以及注意每个字母都必须发生变化即可 #include&amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef long long ll; int main() {     string str1,str2;     int n,i,j,k;     int t;     cin&amp;gt;&amp;gt;t;     while(t--){">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-17T00:53:09.415Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Educational Codeforces Round 49 (Rated for Div. 2)">
+<meta name="twitter:description" content="A.小心处理z与a的问题，以及注意每个字母都必须发生变化即可 #include&amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef long long ll; int main() {     string str1,str2;     int n,i,j,k;     int t;     cin&amp;gt;&amp;gt;t;     while(t--){">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.huweihuang.com/算法/比赛杂集/Codeforces/educational-codeforces-round-49-rated-for-div-2/">
+
+
+
+
+
+  <title>Educational Codeforces Round 49 (Rated for Div. 2) | HumveeA6</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HumveeA6</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">の Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/比赛杂集/Codeforces/educational-codeforces-round-49-rated-for-div-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Educational Codeforces Round 49 (Rated for Div. 2)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-19T21:33:46+08:00">
+                2018-08-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/比赛杂集/" itemprop="url" rel="index">
+                    <span itemprop="name">比赛杂集</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/比赛杂集/Codeforces/" itemprop="url" rel="index">
+                    <span itemprop="name">Codeforces</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/算法/比赛杂集/Codeforces/educational-codeforces-round-49-rated-for-div-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/比赛杂集/Codeforces/educational-codeforces-round-49-rated-for-div-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="A"><a href="#A" class="headerlink" title="A."></a>A.</h3><p>小心处理z与a的问题，以及注意每个字母都必须发生变化即可</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+int main()
+{
+    string str1,str2;
+    int n,i,j,k;
+    int t;
+    cin&gt;&gt;t;
+    while(t--){
+        bool isok=true;
+        cin&gt;&gt;n&gt;&gt;str1;str2=str1;reverse(str2.begin(),str2.end());
+        for(i=0;i&lt;str1.size();i++){
+            if(abs((int)(str1[i]-str2[i]))==1||abs((int)(str1[i]-str2[i]))&gt;2){
+                isok=false;break;
+            }
+        }
+        if(isok)puts(&quot;YES&quot;);
+        else puts(&quot;NO&quot;);
+    }
+
+    return 0;
+}
+</code></pre><h3 id="B"><a href="#B" class="headerlink" title="B."></a>B.</h3><p>注意n为奇数的时候需要特别讨论,每两行为一组刚好n个数，然后可能多一行得单独讨论一下。</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+
+int main()
+{
+    ll n, q, x, y;
+    cin &gt;&gt; n &gt;&gt; q;
+    int i,j,k;
+    for (i = 1; i &lt;= q; i++) {
+        cin &gt;&gt; x &gt;&gt; y;
+        ll ans = 0;
+        if ((x + y) &amp;1) {
+            ans += (n * n - 1) / 2 + 1;
+
+        }
+        if (n &amp;1) {
+
+            ans += (x - 1) / 2 * n;
+
+            if ((x + y) % 2 == 1)
+
+                ans += (x - 1) % 2 * (n / 2);
+
+            else
+
+                ans += (x - 1) % 2 * (n / 2 + 1);
+
+            ans += (y + 1) / 2;
+
+        } else if (n % 2 == 0) {
+
+            ans += (x - 1) * n / 2;
+
+            ans += (y + 1) / 2;
+
+        }
+
+        cout &lt;&lt; ans &lt;&lt; endl;
+
+    }
+
+
+    return 0;
+}
+</code></pre><h3 id="C"><a href="#C" class="headerlink" title="C."></a>C.</h3><p>注意到取到的最小值的组合肯定是那些比较相邻长度的木棍，因此我们可以将木棍排序，然后暴力枚举相邻长度且根数&gt;=2的木棍。</p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int maxn = 1e6 + 50;
+long double minnum;
+int num[maxn];
+int main()
+{
+    int i,j,k, t, n;
+    int q1, q2, P1, P2;
+    cin&gt;&gt;t;
+    while(t--){
+        minnum = 1ll &lt;&lt; 60;P1 = P2 = 0;
+        cin &gt;&gt; n;
+        for (int i = 1; i &lt;= n; i++) {
+            scanf(&quot;%d&quot;,&amp;num[i]);
+        }
+        sort(num + 1, num + n + 1);
+        for (i = 1; i &lt;= n; i++) {
+            if (P1 == num[i]) {
+                if (P2 != 0) {
+                    long double x(P1), y(P2);
+                    long double temp = (x + x + y + y)*(x + x + y + y) / (x*y);
+                    if (temp &lt; minnum) {
+                        q1 = P2;
+                        q2 = P1;
+                        minnum = temp;
+                    }
+                }
+                P2 = P1;P1 = 0;
+            }
+            else {
+                P1 = num[i];
+            }
+        }
+        printf(&quot;%d %d %d %d\n&quot;,q1,q1,q2,q2);
+        //cout &lt;&lt; q1 &lt;&lt; &apos; &apos; &lt;&lt; q1 &lt;&lt; &apos; &apos; &lt;&lt; q2 &lt;&lt; &apos; &apos; &lt;&lt; q2 &lt;&lt; endl;
+    }
+
+    return 0;
+}
+</code></pre><h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>每个房间都有出度…所以最后每个房间都可以归结于某个连通分量之中，求出这个连通分量中的最小的c就是这个连通分量的答案，但是还要注意那些a[i]=i的点，这种房间一定要在自己那里放一个。跑跑tarjan就完了。</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn=2e5+50;
+int dfn[maxn],low[maxn],scccnt=0,sccindex=0,belong[maxn];
+bool instack[maxn];
+stack&lt;int&gt;sta;
+vector&lt;int&gt;G[maxn];
+void tarjan(int v)
+{
+    dfn[v]=low[v]=++sccindex;
+    sta.push(v);instack[v]=true;int j;
+    for(auto i=G[v].begin();i!=G[v].end();i++){
+        int j=*i;
+        if(!dfn[j]){
+            tarjan(j);
+            low[v]=min(low[v],low[j]);
+        }
+        else if(instack[j]&amp;&amp;dfn[j]&lt;low[v])
+            low[v]=dfn[j];
+    }
+    if(low[v]==dfn[v]){
+        scccnt++;
+        do{
+            j=sta.top();instack[j]=false;
+            sta.pop();belong[j]=scccnt;
+        }while(j!=v);
+    }
+}
+int outdegree[maxn],c[maxn];
+int minn[maxn],size1[maxn];
+int main()
+{
+    int n,i,j,k;
+    cin&gt;&gt;n;
+    for(i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;c[i]);
+    long long ans=0;
+    for(i=1;i&lt;=n;i++){
+        scanf(&quot;%d&quot;,&amp;j);
+        G[i].push_back(j);outdegree[i]++;
+        if(j==i)ans+=c[i];
+    }
+    for(i=1;i&lt;=n;i++)
+        if(!dfn[i])
+            tarjan(i);
+
+    for(i=1;i&lt;=n;i++)
+        size1[belong[i]]++;
+    memset(minn,0x3f,sizeof(minn));
+    for(i=1;i&lt;=n;i++){
+        if(size1[belong[i]]&lt;=1)continue;
+        minn[belong[i]]=min(minn[belong[i]],c[i]);
+    }
+    for(i=1;i&lt;=n;i++){
+        if(minn[i]!=0x3f3f3f3f)
+            ans+=minn[i];
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><h3 id="E"><a href="#E" class="headerlink" title="E."></a>E.</h3><blockquote>
+<p>题意大概是构造一个n* n的矩阵，要求满足相邻行与相邻列之间要么完全相同，要么完全相反。且不存在面积大于等于k的子矩阵颜色完全相同。</p>
+</blockquote>
+<p>首先可以发现一个事实：一旦第一行第一列确定了，那么整个图的染色方案也就确定了。那么我们就可以设法去求第一行的染色方案（第一列跟第一行是一样的） 这可以用dp来求</p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int maxn = 510;
+const int mod = 998244353;
+ll f[maxn][maxn][2];//位置，连续数量，颜色；
+ll num[maxn];
+int main()
+{
+    //ios::sync_with_stdio(0);  cin.tie(0); cout.tie(0);
+    int n, k,i,j,q;
+    cin &gt;&gt; n &gt;&gt; k;
+    for (q = 1; q &lt;= n; q++) {
+        memset(f, 0, sizeof(f));
+        f[1][1][0] = f[1][1][1] = 1;
+        for (i = 2; i &lt;= n; i++) {//位置
+            for (j = 1; j &lt;= min(i,q); j++) {//连续数量
+                f[i][1][1] += f[i - 1][j][0];//连续长度为1,那么前一个位置的颜色一定与这个位置不同
+                f[i][1][0] += f[i - 1][j][1];
+                f[i][j][1] += f[i - 1][j - 1][1];//与前一个位置颜色相同
+                f[i][j][0] += f[i - 1][j - 1][0];
+                f[i][1][0] %= mod; f[i][1][1] %= mod;
+                f[i][j][0] %= mod; f[i][j][1] %= mod;
+            }
+        }
+        for (i = 1; i &lt;= q; i++) {
+            num[q] += f[n][i][0] + f[n][i][1];
+            num[q] %= mod;
+        }
+    }
+    for (i = n; i &gt;= 2; i--) {
+        num[i] = num[i] - num[i - 1] + mod;//减去不是这个长度的 数量
+        num[i] %= mod;
+    }
+    ll ans = 0;
+    for (i = 1; i &lt;= n; i++) {
+        for (j = 1; j &lt;= n; j++) {
+            if (i*j &gt;= k)break;//如果这个矩形的面积大于等于k
+            ans += num[i] * num[j]; ans %= mod;
+        }
+    }
+    if (ans % 2 == 1)ans = (ans + mod) / 2;//答案是要除以2的(重复),
+        // 但是模数是奇数且之前多次取模,因此如果答案是奇数,应该变成偶数再除以2
+    else ans /= 2;
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre><h3 id="F"><a href="#F" class="headerlink" title="F."></a>F.</h3><blockquote>
+<p>有n个考试，每个考试有两个可以通过的日期，每天只能通过一个考试，问如何安排可以尽早完成所有考试。</p>
+</blockquote>
+<p>暴力二分网络流是没错的，但是会t。但是可以从中得到启发，我们可以对每个考试的两天，先选择那个比较小的天，然后从比较小的天向比较大的天连一条边，表示选择的这一天也可以换成比较大的那一天。如果某个考试即使转移了以后也没法完成的话，就是没有可行解了。代码中利用了类似并查集的方式来维护转移；</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn=1e6+50;
+struct e{
+    int x,y;
+}G[maxn];
+bool cmp1(e a,e b)
+{
+    return a.x&lt;b.x;
+}
+bool cmp2(e a,e b)
+{
+    return a.y&lt;b.y;
+}
+int anotherchoice[maxn*2];
+int find(int x)
+{
+    return x==anotherchoice[x]?x:anotherchoice[x]=find(anotherchoice[x]);
+}
+int main()
+{
+    int cnt=0,i,j,k,n;
+    cin&gt;&gt;n;
+    int ys[maxn*2];
+    for(i=1;i&lt;=n;i++){
+        scanf(&quot;%d%d&quot;,&amp;G[i].x,&amp;G[i].y);ys[++cnt]=G[i].x;ys[++cnt]=G[i].y;
+    }
+    sort(ys+1,ys+1+cnt);
+    cnt=unique(ys+1,ys+1+cnt)-ys;int pos;
+    sort(G+1,G+n+1,cmp1);pos=1;
+    for(i=1;i&lt;=cnt;i++)while(pos&lt;=n&amp;&amp;G[pos].x==ys[i])G[pos++].x=i;
+    sort(G+1,G+n+1,cmp2);pos=1;
+    for(i=1;i&lt;=cnt;i++)while(pos&lt;=n&amp;&amp;G[pos].y==ys[i])G[pos++].y=i;//离散化,同时保证原大小关系不会改变
+    for(i=1;i&lt;=cnt;i++)anotherchoice[i]=i;//开始的时候每个日期的选择都只有自己
+    int ans=0;
+    for(i=1;i&lt;=n;i++){
+        int ch1,ch2;
+        ch1=find(G[i].x);ch2=find(G[i].y);
+        if(!ch1&amp;&amp;!ch2){//如果这个考试的两个日期都没有选择了,那么显然无法完成
+            puts(&quot;-1&quot;);return 0;
+        }
+        else if(ch1==ch2||!ch1||!ch2){//如果这个考试只有一个可用的日期,那么显然只能唯一选择
+            ans=max(ans,max(ch1,ch2));anotherchoice[ch1]=anotherchoice[ch2]=0;
+        }
+        else{//考试有两个选择,那么先选那个日期比较小的,同时标记一下日期比较小的那题还有一个日期比较大的选择
+            ans=max(ans,min(ch1,ch2));anotherchoice[min(ch1,ch2)]=max(ch1,ch2);
+        }
+    }
+    cout&lt;&lt;ys[ans]&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/比赛杂集/" rel="tag"># 比赛杂集</a>
+          
+            <a href="/tags/Codeforces/" rel="tag"># Codeforces</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/算法/模板/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e5-bf-ab-e9-80-9f-e8-af-bb-e5-85-a5/" rel="next" title="（模板）快速读入">
+                <i class="fa fa-chevron-left"></i> （模板）快速读入
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/算法/比赛杂集/Codeforces/educational-codeforces-round-34-rated-for-div-2/" rel="prev" title="Educational Codeforces Round 34 (Rated for Div. 2)">
+                Educational Codeforces Round 34 (Rated for Div. 2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">HumveeA6</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/humveea6" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="humveea6@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/humveea6/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://poeroz.cn/" title="Poeroz" target="_blank">Poeroz</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wallacenews.tk/" title="笨訇" target="_blank">笨訇</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.oneliey.tk" title="root" target="_blank">root</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://silentselene.com/" title="SilentSelene" target="_blank">SilentSelene</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nihil.top/" title="NIHIL EON" target="_blank">NIHIL EON</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#A"><span class="nav-number">1.</span> <span class="nav-text">A.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B"><span class="nav-number">2.</span> <span class="nav-text">B.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C"><span class="nav-number">3.</span> <span class="nav-text">C.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D"><span class="nav-number">4.</span> <span class="nav-text">D.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E"><span class="nav-number">5.</span> <span class="nav-text">E.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F"><span class="nav-number">6.</span> <span class="nav-text">F.</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HumveeA6</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.huweihuang.com/算法/比赛杂集/Codeforces/educational-codeforces-round-49-rated-for-div-2/';
+          this.page.identifier = '算法/比赛杂集/Codeforces/educational-codeforces-round-49-rated-for-div-2/';
+          this.page.title = 'Educational Codeforces Round 49 (Rated for Div. 2)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

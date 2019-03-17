@@ -1,0 +1,2010 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法,比赛杂集,暑假训练,网络流,图论,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="A - Drainage Ditches POJ - 1273板子题，没什么好说的 #include&amp;lt;cstdio&amp;gt; #include&amp;lt;iostream&amp;gt; #include&amp;lt;vector&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;queue&amp;gt; using namespace">
+<meta name="keywords" content="算法,比赛杂集,暑假训练,网络流,图论">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2018 BUPT Summer Training 网络流">
+<meta property="og:url" content="http://www.huweihuang.com/网络流/算法/比赛杂集/暑假训练/图论/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/index.html">
+<meta property="og:site_name" content="HumveeA6">
+<meta property="og:description" content="A - Drainage Ditches POJ - 1273板子题，没什么好说的 #include&amp;lt;cstdio&amp;gt; #include&amp;lt;iostream&amp;gt; #include&amp;lt;vector&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;queue&amp;gt; using namespace">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-17T00:53:09.398Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2018 BUPT Summer Training 网络流">
+<meta name="twitter:description" content="A - Drainage Ditches POJ - 1273板子题，没什么好说的 #include&amp;lt;cstdio&amp;gt; #include&amp;lt;iostream&amp;gt; #include&amp;lt;vector&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;cstring&amp;gt; #include&amp;lt;queue&amp;gt; using namespace">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.huweihuang.com/网络流/算法/比赛杂集/暑假训练/图论/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/">
+
+
+
+
+
+  <title>2018 BUPT Summer Training 网络流 | HumveeA6</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HumveeA6</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">の Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/网络流/算法/比赛杂集/暑假训练/图论/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2018 BUPT Summer Training 网络流</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-08T00:00:10+08:00">
+                2018-08-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/" itemprop="url" rel="index">
+                    <span itemprop="name">网络流</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/比赛杂集/" itemprop="url" rel="index">
+                    <span itemprop="name">比赛杂集</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/比赛杂集/暑假训练/" itemprop="url" rel="index">
+                    <span itemprop="name">暑假训练</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/比赛杂集/暑假训练/图论/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/网络流/算法/比赛杂集/暑假训练/图论/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="网络流/算法/比赛杂集/暑假训练/图论/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="A-Drainage-Ditches-POJ-1273"><a href="#A-Drainage-Ditches-POJ-1273" class="headerlink" title="A - Drainage Ditches POJ - 1273"></a>A - Drainage Ditches POJ - 1273</h4><p>板子题，没什么好说的</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;queue&gt;
+using namespace std;
+struct edge{
+    int to,cap,rev;
+};
+vector&lt;edge&gt;G[210];
+int level[205],iter[205];
+void addedge(int from,int to,int cap)
+{
+    G[from].push_back(edge{to,cap,(int)G[to].size()});
+    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
+}
+void bfs(int s)
+{
+    memset(level,-1,sizeof(level));
+    queue&lt;int&gt;que;
+    level[s]=0;que.push(s);
+    while(!que.empty()){
+        int t=que.front();que.pop();
+        for(int i=0;i&lt;G[t].size();i++){
+            edge e=G[t][i];
+            if(e.cap&gt;0&amp;&amp;level[e.to]&lt;0){
+                level[e.to]=level[t]+1;
+                que.push(e.to);
+            }
+        }
+    }
+}
+int dfs(int v,int t,int f)
+{
+    if(v==t)return f;
+    for(int&amp;i=iter[v];i&lt;G[v].size();i++){//注意传引用!
+        edge&amp;e=G[v][i];
+        if(e.cap&gt;0&amp;&amp;level[v]&lt;level[e.to]){
+            int d=dfs(e.to,t,min(f,e.cap));
+            if(d&gt;0){
+                e.cap-=d;
+                G[e.to][e.rev].cap+=d;
+                return d;
+            }
+        }
+    }
+    return 0;//不要漏了这个,很多时候可能是无法增广的
+}
+int maxflow(int s,int t){
+    int flow=0;
+    for(;;){
+        bfs(s);
+        if(level[t]&lt;0)return flow;
+        memset(iter,0,sizeof(iter));
+        int f;
+        while(f=dfs(s,t,0x7f7f7f7f))
+            flow+=f;
+    }
+}
+int main()
+{
+    int n,m,i,j,k;
+    while(cin&gt;&gt;n&gt;&gt;m){
+        for(i=1;i&lt;=200;i++)G[i].clear();
+        for(i=1;i&lt;=n;i++){
+            int a,b,c;
+            scanf(&quot;%d%d%d&quot;,&amp;a,&amp;b,&amp;c);addedge(a,b,c);
+        }
+        cout&lt;&lt;maxflow(1,m)&lt;&lt;endl;
+    }
+
+    return 0;
+}
+</code></pre><h4 id="C-Reactor-Cooling-ZOJ-2314"><a href="#C-Reactor-Cooling-ZOJ-2314" class="headerlink" title="C - Reactor Cooling ZOJ - 2314"></a>C - Reactor Cooling ZOJ - 2314</h4><p>无源汇可行流模板题</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;queue&gt;
+#include&lt;vector&gt;
+#include&lt;cstring&gt;
+using namespace std;
+struct edge{
+    int to,cap,rev,id;
+};
+vector&lt;edge&gt;G[210];
+int level[205],iter[205],cha[205],lower[200005],cur[205];
+void addedge(int from,int to,int cap)
+{
+    G[from].push_back(edge{to,cap,(int)G[to].size()});
+    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
+}
+void bfs(int s)
+{
+    memset(level,-1,sizeof(level));
+    queue&lt;int&gt;que;
+    level[s]=0;que.push(s);
+    while(!que.empty()){
+        int t=que.front();que.pop();
+        for(int i=0;i&lt;G[t].size();i++){
+            edge e=G[t][i];
+            if(e.cap&gt;0&amp;&amp;level[e.to]&lt;0){
+                level[e.to]=level[t]+1;
+                que.push(e.to);
+            }
+        }
+    }
+}
+int dfs(int v,int t,int f)
+{
+    if(v==t)return f;
+    for(int&amp;i=iter[v];i&lt;G[v].size();i++){//注意传引用!
+        edge&amp;e=G[v][i];
+        if(e.cap&gt;0&amp;&amp;level[v]&lt;level[e.to]){
+            int d=dfs(e.to,t,min(f,e.cap));
+            if(d&gt;0){
+                e.cap-=d;
+                G[e.to][e.rev].cap+=d;
+                return d;
+            }
+        }
+    }
+    return 0;//不要漏了这个,很多时候可能是无法增广的
+}
+int maxflow(int s,int t){
+    int flow=0;
+    for(;;){
+        bfs(s);
+        if(level[t]&lt;0)return flow;
+        memset(iter,0,sizeof(iter));
+        int f;
+        while(f=dfs(s,t,0x7f7f7f7f))
+            flow+=f;
+    }
+}
+struct ans{
+    int id,cap;
+    bool operator&lt;(const ans v)const{
+        return id&lt;v.id;
+    }
+};
+int main() {
+    int n, m, i, j, k,t;
+    cin&gt;&gt;t;
+    while(t--) {
+        cin&gt;&gt;n&gt;&gt;m;memset(cur,0,sizeof(cur));
+        for(i=0;i&lt;205;i++)G[i].clear();
+        for (i = 1; i &lt;= m; i++) {
+            int a, b, d;
+            scanf(&quot;%d%d%d%d&quot;, &amp;a, &amp;b, &amp;lower[i], &amp;d);
+            cur[b] += lower[i];
+            cur[a] -= lower[i];
+            addedge(a, b, d - lower[i]);
+            G[a].back().id = i;//记录边的id
+        }
+        int sum = 0;
+        for (i = 1; i &lt;= n; i++) {
+            if (cur[i] &gt; 0) {
+                addedge(0, i, cur[i]);
+                sum += cur[i];
+            } else if (cur[i] &lt; 0) {
+                addedge(i, 201, -cur[i]);
+            }
+        }
+        int flow = maxflow(0, 201);
+        if (flow != sum) {
+            cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;
+            continue;
+        }
+        cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;
+        vector&lt;ans&gt; as;//存答案
+        for (i = 1; i &lt;= n; i++) {
+            for (j = 0; j &lt; G[i].size(); j++) {
+                edge e = G[i][j];
+                if (!e.id)continue;//反向边或者连向附加汇点的边无视
+                as.push_back(ans{e.id, G[e.to][e.rev].cap + lower[e.id]});//这条边的反向边的容量+这条边的下界
+            }
+        }
+        sort(as.begin(), as.end());
+        for (i = 0; i &lt; as.size(); i++) {
+            printf(&quot;%d\n&quot;, as[i].cap);
+        }
+    }
+
+    return 0;
+}
+</code></pre><h4 id="D-Number-HYSBZ-3275"><a href="#D-Number-HYSBZ-3275" class="headerlink" title="D - Number HYSBZ - 3275"></a>D - Number HYSBZ - 3275</h4><p>注意题目条件是同时满足两个条件的数才不能一起选。对于每个点a，我们拆成$a_x$和$a_y$,源点连接$a_x$,容量为数值，$a_y$连接汇点，容量为数值。如果两个数a，b不能同时选，那么我们就将$a_x$连接$b_y$,$b_x$ 连接$a_y$,容量为INF。那么答案就是所有数的和-maxflow/2</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;queue&gt;
+#include&lt;vector&gt;
+#include&lt;cstring&gt;
+using namespace std;
+struct edge{
+    int to,cap,rev,id;
+};
+vector&lt;edge&gt;G[210];
+int level[205],iter[205],cha[205],lower[200005],cur[205];
+void addedge(int from,int to,int cap)
+{
+    G[from].push_back(edge{to,cap,(int)G[to].size()});
+    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
+}
+void bfs(int s)
+{
+    memset(level,-1,sizeof(level));
+    queue&lt;int&gt;que;
+    level[s]=0;que.push(s);
+    while(!que.empty()){
+        int t=que.front();que.pop();
+        for(int i=0;i&lt;G[t].size();i++){
+            edge e=G[t][i];
+            if(e.cap&gt;0&amp;&amp;level[e.to]&lt;0){
+                level[e.to]=level[t]+1;
+                que.push(e.to);
+            }
+        }
+    }
+}
+int dfs(int v,int t,int f)
+{
+    if(v==t)return f;
+    for(int&amp;i=iter[v];i&lt;G[v].size();i++){//注意传引用!
+        edge&amp;e=G[v][i];
+        if(e.cap&gt;0&amp;&amp;level[v]&lt;level[e.to]){
+            int d=dfs(e.to,t,min(f,e.cap));
+            if(d&gt;0){
+                e.cap-=d;
+                G[e.to][e.rev].cap+=d;
+                return d;
+            }
+        }
+    }
+    return 0;//不要漏了这个,很多时候可能是无法增广的
+}
+int maxflow(int s,int t){
+    int flow=0;
+    for(;;){
+        bfs(s);
+        if(level[t]&lt;0)return flow;
+        memset(iter,0,sizeof(iter));
+        int f;
+        while(f=dfs(s,t,0x7f7f7f7f))
+            flow+=f;
+    }
+}
+struct ans{
+    int id,cap;
+    bool operator&lt;(const ans v)const{
+        return id&lt;v.id;
+    }
+};
+int main() {
+    int n, m, i, j, k,t;
+    cin&gt;&gt;t;
+    while(t--) {
+        cin&gt;&gt;n&gt;&gt;m;memset(cur,0,sizeof(cur));
+        for(i=0;i&lt;205;i++)G[i].clear();
+        for (i = 1; i &lt;= m; i++) {
+            int a, b, d;
+            scanf(&quot;%d%d%d%d&quot;, &amp;a, &amp;b, &amp;lower[i], &amp;d);
+            cur[b] += lower[i];
+            cur[a] -= lower[i];
+            addedge(a, b, d - lower[i]);
+            G[a].back().id = i;//记录边的id
+        }
+        int sum = 0;
+        for (i = 1; i &lt;= n; i++) {
+            if (cur[i] &gt; 0) {
+                addedge(0, i, cur[i]);
+                sum += cur[i];
+            } else if (cur[i] &lt; 0) {
+                addedge(i, 201, -cur[i]);
+            }
+        }
+        int flow = maxflow(0, 201);
+        if (flow != sum) {
+            cout &lt;&lt; &quot;NO&quot; &lt;&lt; endl;
+            continue;
+        }
+        cout &lt;&lt; &quot;YES&quot; &lt;&lt; endl;
+        vector&lt;ans&gt; as;//存答案
+        for (i = 1; i &lt;= n; i++) {
+            for (j = 0; j &lt; G[i].size(); j++) {
+                edge e = G[i][j];
+                if (!e.id)continue;//反向边或者连向附加汇点的边无视
+                as.push_back(ans{e.id, G[e.to][e.rev].cap + lower[e.id]});//这条边的反向边的容量+这条边的下界
+            }
+        }
+        sort(as.begin(), as.end());
+        for (i = 0; i &lt; as.size(); i++) {
+            printf(&quot;%d\n&quot;, as[i].cap);
+        }
+    }
+
+    return 0;
+}
+</code></pre><h4 id="E-软件开发-HYSBZ-1221"><a href="#E-软件开发-HYSBZ-1221" class="headerlink" title="E - 软件开发 HYSBZ - 1221"></a>E - 软件开发 HYSBZ - 1221</h4><p>非常类似餐巾计划问题。唯一的不同就是洗的时间，第i天的毛巾在i+1天才开始洗，所以在第i+k+1天才洗好，其他就没什么区别了。 <strong>关于构图：</strong> 这是一道最小费用（费用指单价）最大流的题目。 首先，我们拆点，将一天拆成晚上和早上，每天晚上会受到脏餐巾（来源：当天早上用完的餐巾，在这道题中可理解为从原点获得），每天早上又有干净的餐巾（来源：购买、快洗店、慢洗店）。（本题中对应两种清洗方式，其实就是换了个名字而已） 1.从原点向每一天晚上连一条流量为当天所用餐巾x，费用为0的边，表示每天晚上从起点获得x条脏餐巾。 2.从每一天早上向汇点连一条流量为当天所用餐巾x，费用为0的边，每天白天,表示向汇点提供x条干净的餐巾,流满时表示第i天的餐巾够用 。 3.从每一天晚上向第二天晚上连一条流量为INF，费用为0的边，表示每天晚上可以将脏餐巾留到第二天晚上（注意不是早上，因为脏餐巾在早上不可以使用）。 4.从每一天晚上向这一天+快洗所用天数t1的那一天早上连一条流量为INF，费用为快洗所用钱数的边，表示每天晚上可以送去快洗部,在地i+t1天早上收到餐巾 。 5.同理，从每一天晚上向这一天+慢洗所用天数t2的那一天早上连一条流量为INF，费用为慢洗所用钱数的边，表示每天晚上可以送去慢洗部,在地i+t2天早上收到餐巾 。 6.从起点向每一天早上连一条流量为INF，费用为购买餐巾所用钱数的边，表示每天早上可以购买餐巾 。 注意，以上6点需要建反向边！3~6点需要做判断（即连向的边必须&lt;=n）</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+struct edge{
+    int to,cap,cost,rev;//终点,容量,费用,反向边
+};
+vector&lt;edge&gt;G[5010];
+int dis[5010],prevv[5010],preve[5010],n,m,s,t,flow=0,cost=0;//最短路中前驱节点和对应的边
+bool inque[5010];
+const int INF=1&lt;&lt;30;
+void add(int from,int to,int cap,int cost)
+{
+    G[from].push_back(edge{to,cap,cost,(int)G[to].size()});
+    G[to].push_back(edge{from,0,-cost,(int)G[from].size()-1});//注意反向边的加法!!-cost和cap=0!!
+}
+bool spfa(int s,int t)
+{
+    memset(dis,0x3f, sizeof(dis));memset(inque,0,sizeof(inque));
+    queue&lt;int&gt;que;que.push(s);dis[s]=0;
+    while(!que.empty()){
+        int t=que.front();que.pop();inque[t]=false;
+        for(int i=0;i&lt;G[t].size();i++){
+            edge e=G[t][i];
+            if(e.cap&amp;&amp;dis[e.to]&gt;dis[t]+e.cost){
+                dis[e.to]=dis[t]+e.cost;
+                prevv[e.to]=t;preve[e.to]=i;
+                if(!inque[e.to]){
+                    que.push(e.to);inque[e.to]=true;
+                }
+            }
+        }
+    }
+    if(dis[t]==0x3f3f3f3f)
+        return false;
+    int d=0x7f7f7f7f;
+    for(int v=t;v!=s;v=prevv[v])
+        d=min(d,G[prevv[v]][preve[v]].cap);//全最短路中的最小流量限制就是本次总的流量限制
+    flow+=d;cost+=d*dis[t];
+    for(int v=t;v!=s;v=prevv[v]){
+        edge&amp;e=G[prevv[v]][preve[v]];//更新路径信息
+        e.cap-=d;
+        G[e.to][e.rev].cap+=d;
+    }
+    return true;
+}
+void mincostmaxflow(int s,int t)
+{
+    while(spfa(s,t));
+}
+int main()
+{
+    int n,a,b,f,fa,fb,i,j,k;
+    cin&gt;&gt;n&gt;&gt;a&gt;&gt;b&gt;&gt;f&gt;&gt;fa&gt;&gt;fb;
+    int peo[1005];
+    for(i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;peo[i]);
+    for(i=1;i&lt;=n;i++)
+        add(0,i,peo[i],0);
+    for(i=1;i&lt;=n;i++)
+        add(i+n,2005,peo[i],0);
+    for(i=1;i&lt;n;i++)
+        add(i,i+1,INF,0);
+    for(i=1;i+a+1&lt;=n;i++)
+        add(i,i+a+n+1,INF,fa);
+    for(i=1;i+b+1&lt;=n;i++)
+        add(i,i+b+n+1,INF,fb);
+    for(i=1;i&lt;=n;i++)
+        add(0,i+n,INF,f);
+    mincostmaxflow(0,2005);
+    cout&lt;&lt;cost&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><h4 id="F-修车-HYSBZ-1070"><a href="#F-修车-HYSBZ-1070" class="headerlink" title="F - 修车 HYSBZ - 1070"></a>F - 修车 HYSBZ - 1070</h4><p>题目的难点在于怎么去计算总的等待时间。方法是把修车人员拆成n个点，每个人的第i个点分别表示这个人在倒数第i个对某辆车进行修理，那么等待修的车连向这个点的边就应该是 修车时间* i，因为还有i个人在等这个修车师傅。然后跑最小费用流即可。</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int maxn=1e3+5;
+struct edge{
+    int to,cap,cost,rev;//终点,容量,费用,反向边
+};
+vector&lt;edge&gt;G[maxn];
+int dis[maxn],prevv[maxn],preve[maxn],n,m,s,t,flow=0,cost=0;//最短路中前驱节点和对应的边,
+// 小心cost爆int,多组数据时记得清零
+bool inque[maxn];
+void add(int from,int to,int cap,int cost)
+{
+    G[from].push_back(edge{to,cap,cost,(int)G[to].size()});
+    G[to].push_back(edge{from,0,-cost,(int)G[from].size()-1});//注意反向边的加法!!-cost和cap=0!!
+}
+bool spfa(int s,int t)
+{
+    memset(dis,0x3f, sizeof(dis));memset(inque,0,sizeof(inque));
+    queue&lt;int&gt;que;que.push(s);dis[s]=0;
+    while(!que.empty()){
+        int t=que.front();que.pop();inque[t]=false;
+        for(int i=0;i&lt;G[t].size();i++){
+            edge e=G[t][i];
+            if(e.cap&amp;&amp;dis[e.to]&gt;dis[t]+e.cost){
+                dis[e.to]=dis[t]+e.cost;
+                prevv[e.to]=t;preve[e.to]=i;
+                if(!inque[e.to]){
+                    que.push(e.to);inque[e.to]=true;
+                }
+            }
+        }
+    }
+    if(dis[t]==0x3f3f3f3f)//小心爆int的情况
+        return false;
+    int d=0x7f7f7f7f;
+    for(int v=t;v!=s;v=prevv[v])
+        d=min(d,G[prevv[v]][preve[v]].cap);//全最短路中的最小流量限制就是本次总的流量限制
+    flow+=d;cost+=d*dis[t];
+    for(int v=t;v!=s;v=prevv[v]){
+        edge&amp;e=G[prevv[v]][preve[v]];//更新路径信息
+        e.cap-=d;
+        G[e.to][e.rev].cap+=d;
+    }
+    return true;
+}
+void mincostmaxflow(int s,int t)
+{
+    while(spfa(s,t));
+}
+int main()
+{
+    int m,n,i,j,k,a,b;
+    cin&gt;&gt;m&gt;&gt;n;
+    for(i=1;i&lt;=n;i++)
+        add(0,n*m+i,1,0);
+    for(i=1;i&lt;=n;i++)
+        for(j=1;j&lt;=m;j++){
+        cin&gt;&gt;a;
+        for(k=1;k&lt;=n;k++){
+            add(n*m+i,(j-1)*n+k,1,a*k);
+        }
+    }
+    for(i=1;i&lt;=m;i++)
+        for(j=1;j&lt;=n;j++)
+            add((i-1)*n+j,900,1,0);
+    mincostmaxflow(0,900);
+    printf(&quot;%.2f\n&quot;,(double)cost/n);
+
+    return 0;
+}
+</code></pre><h4 id="G-Firing-POJ-2987"><a href="#G-Firing-POJ-2987" class="headerlink" title="G - Firing POJ - 2987"></a>G - Firing POJ - 2987</h4><p>最大权闭合图的模板题</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int maxn=5e3+5;
+struct edge{
+    int to,cap,rev;
+};
+vector&lt;edge&gt;G[maxn];
+int level[maxn],iter[maxn];
+void addedge(int from,int to,int cap)
+{
+    G[from].push_back(edge{to,cap,(int)G[to].size()});
+    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
+}
+void bfs(int s)
+{
+    memset(level,-1,sizeof(level));
+    queue&lt;int&gt;que;
+    level[s]=0;que.push(s);
+    while(!que.empty()){
+        int t=que.front();que.pop();
+        for(int i=0;i&lt;G[t].size();i++){
+            edge e=G[t][i];
+            if(e.cap&gt;0&amp;&amp;level[e.to]&lt;0){
+                level[e.to]=level[t]+1;
+                que.push(e.to);
+            }
+        }
+    }
+}
+int dfs(int v,int t,int f)
+{
+    if(v==t)return f;
+    for(int&amp;i=iter[v];i&lt;G[v].size();i++){//注意传引用!
+        edge&amp;e=G[v][i];
+        if(e.cap&gt;0&amp;&amp;level[v]&lt;level[e.to]){
+            int d=dfs(e.to,t,min(f,e.cap));
+            if(d&gt;0){
+                e.cap-=d;
+                G[e.to][e.rev].cap+=d;
+                return d;
+            }
+        }
+    }
+    return 0;//不要漏了这个,很多时候可能是无法增广的
+}
+long long  maxflow(int s,int t){
+    long long flow=0;//小心爆int
+    for(;;){
+        bfs(s);
+        if(level[t]&lt;0)return flow;
+        memset(iter,0,sizeof(iter));
+        long long f;
+        while(f=dfs(s,t,0x7f7f7f7f))//注意如果爆int这里初始最大值要更改最大值
+            flow+=f;
+    }
+}
+bool vis[maxn];int cnt=0;
+void dfs(int x)
+{
+    vis[x]=true;cnt++;
+    for(int i=0;i&lt;G[x].size();i++){
+        if(G[x][i].cap&gt;0&amp;&amp;!vis[G[x][i].to])
+            dfs(G[x][i].to);
+    }
+}
+int main()
+{
+    int n,m,i,j,k;
+    cin&gt;&gt;n&gt;&gt;m;
+    long long sum=0;
+    for(i=1;i&lt;=n;i++){
+        scanf(&quot;%d&quot;,&amp;j);
+        if(j&gt;=0){
+            addedge(0,i,j);sum+=j;
+        }
+        else{
+            addedge(i,5001,-j);
+        }
+    }
+    for(i=1;i&lt;=m;i++){
+        int a,b;
+        scanf(&quot;%d%d&quot;,&amp;a,&amp;b);
+        addedge(a,b,1&lt;&lt;30);
+    }
+    sum-=maxflow(0,5001);
+    dfs(0);
+    cout&lt;&lt;cnt-1&lt;&lt;&apos; &apos;&lt;&lt;sum&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><h4 id="H-Being-a-Hero-HDU-3251"><a href="#H-Being-a-Hero-HDU-3251" class="headerlink" title="H - Being a Hero HDU - 3251"></a>H - Being a Hero HDU - 3251</h4><p>添加汇点T，原图上的单向边依次建边，容量为花费，允许选择的f个点向汇点T连边，容量为点上权值。跑一遍最小割得到花费值cost，然后用总的能获得利润（就是f个点的权值之和）减去cost 从源点S在残留网络中dfs遍历能走到的点，那么这些点就是属于S集，其他剩下的点就属于T集了， 然后判断边的两个点所属的集合，如果属于不同的集合那么这条边就是割边。 对于原图上的边如果被割到，那么这条边就是要破坏的，需要特别注意的是一定要标记每条边是不是原图中的边，否则很可能反向边会被误判为割边！！！</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int maxn=1e3+5;
+struct edge{
+    int to,cap,rev,id;
+    bool iscor;
+};
+vector&lt;edge&gt;G[maxn];
+int level[maxn],iter[maxn];
+void addedge(int from,int to,int cap,int id)
+{
+    G[from].push_back(edge{to,cap,(int)G[to].size(),id,true});
+    G[to].push_back(edge{from,0,(int)G[from].size()-1,id,false});//反向容量为0!!
+}
+void bfs(int s)
+{
+    memset(level,-1,sizeof(level));
+    queue&lt;int&gt;que;
+    level[s]=0;que.push(s);
+    while(!que.empty()){
+        int t=que.front();que.pop();
+        for(int i=0;i&lt;G[t].size();i++){
+            edge e=G[t][i];
+            if(e.cap&gt;0&amp;&amp;level[e.to]&lt;0){
+                level[e.to]=level[t]+1;
+                que.push(e.to);
+            }
+        }
+    }
+}
+int dfs(int v,int t,int f)
+{
+    if(v==t)return f;
+    for(int&amp;i=iter[v];i&lt;G[v].size();i++){//注意传引用!
+        edge&amp;e=G[v][i];
+        if(e.cap&gt;0&amp;&amp;level[v]&lt;level[e.to]){
+            int d=dfs(e.to,t,min(f,e.cap));
+            if(d&gt;0){
+                e.cap-=d;
+                G[e.to][e.rev].cap+=d;
+                return d;
+            }
+        }
+    }
+    return 0;//不要漏了这个,很多时候可能是无法增广的
+}
+int maxflow(int s,int t){
+    int flow=0;//小心爆int
+    for(;;){
+        bfs(s);
+        if(level[t]&lt;0)return flow;
+        memset(iter,0,sizeof(iter));
+        int f;
+        while(f=dfs(s,t,0x7f7f7f7f))//注意如果爆int这里初始最大值要更改最大值
+            flow+=f;
+    }
+}
+bool vis[1005];
+void dfs(int x)
+{
+    vis[x]=true;
+    for(int i=0;i&lt;G[x].size();i++){
+        if(G[x][i].cap&gt;0&amp;&amp;!vis[G[x][i].to]){
+            dfs(G[x][i].to);
+        }
+    }
+}
+int main()
+{
+    int t,i,j,k,n,m,f;
+    cin&gt;&gt;t;int case1=0;
+    while(t--){
+        case1++;
+        cin&gt;&gt;n&gt;&gt;m&gt;&gt;f;
+        for(i=1;i&lt;=1001;i++)G[i].clear();
+        //int ava[1005]={0};
+        for(i=1;i&lt;=m;i++){
+            int u,v,w;scanf(&quot;%d%d%d&quot;,&amp;u,&amp;v,&amp;w);
+            addedge(u,v,w,i);//连边
+        }
+        long long sum=0;
+        while(f--){
+            int u,w;scanf(&quot;%d%d&quot;,&amp;u,&amp;w);sum+=w;//ava[u]=1;
+            addedge(u,1001,w,0);//1001为汇点
+        }
+        printf(&quot;Case %d: &quot;,case1);
+        cout&lt;&lt;sum-maxflow(1,1001)&lt;&lt;endl;
+        memset(vis,0,sizeof(vis));
+        dfs(1);
+        vector&lt;int&gt;road;//破坏的边
+        for(i=1;i&lt;=n;i++){
+            for(j=0;j&lt;G[i].size();j++){
+                edge e=G[i][j];
+                if(vis[i]&amp;&amp;!vis[e.to]&amp;&amp;e.id&amp;&amp;e.iscor){
+                    road.push_back(e.id);
+                }
+            }
+        }
+        cout&lt;&lt;road.size();
+        //sort(road.begin(),road.end());
+        for(i=0;i&lt;road.size();i++)
+            cout&lt;&lt;&apos; &apos;&lt;&lt;road[i];
+        cout&lt;&lt;endl;
+    }
+
+    return 0;
+}
+</code></pre><h4 id="I-志愿者招募-HYSBZ-1061"><a href="#I-志愿者招募-HYSBZ-1061" class="headerlink" title="I - 志愿者招募 HYSBZ - 1061"></a>I - 志愿者招募 HYSBZ - 1061</h4><p>源点连第一天，最后一天（n+1）连汇点，容量为INF费用为0 这样跑网络流是沿时间流的（就是依次解决每一天的问题） <strong>然后每一天向后一天连一条容量为INF-a[i]，费用为0的边</strong>（这其实是本题精髓） 为什么容量为INF-a[i]？这就相当于少了a[i]，得用带权边也就是招来的志愿者补全INF 这就是志愿者连续干时沿这条边跑，因为连续干不花钱，所以优先选这种边 然后将每一类志愿者s[i]与t[i]+1连一条容量为INF花费为c[i]的边，当连续干的人不够时，就得充钱使劲往里塞人，补全INF。</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int INF = (1 &lt;&lt; 31) - 1;
+struct edge {
+    int to, cap, cost, rev;
+};
+vector&lt;edge&gt;G[2010];
+int dis[2010], prevv[2010], preve[2010], n, m, flow = 0, cost = 0;
+bool inque[2010];
+void add(int from, int to, int cap, int cost)
+{
+    edge e;
+    e.to = to; e.cap = cap; e.cost = cost; e.rev = G[to].size();
+    G[from].push_back(e);
+    e.to = from; e.cap = 0; e.cost = -cost; e.rev = G[from].size() - 1;//-cost!
+    G[to].push_back(e);
+}
+bool Spfa(int s, int t)
+{
+    fill(dis, dis + 2000, 1 &lt;&lt; 30); memset(inque, 0, sizeof(inque));
+    queue&lt;int&gt;que;
+    dis[s] = 0; inque[s] = true; que.push(s);
+    while (!que.empty()) {
+        int t = que.front(); que.pop(); inque[t] = false;
+        for (int i = 0; i &lt; G[t].size(); i++) {
+            edge e = G[t][i];
+            if (e.cap&amp;&amp;dis[e.to] &gt; dis[t] + e.cost) {
+                dis[e.to] = dis[t] + e.cost;
+                prevv[e.to] = t;
+                preve[e.to] = i;//一个边一个点不要混淆！
+                if (!inque[e.to]) {
+                    que.push(e.to);
+                    inque[e.to] = true;
+                }
+            }
+        }
+    }
+    if (dis[t] == 1 &lt;&lt; 30)//如果已经无法增广，返回
+        return false;
+    int d = 1 &lt;&lt; 30;
+    for (int v = t; v != s; v = prevv[v])
+        d = min(d, G[prevv[v]][preve[v]].cap);//此次可增广容量是全路径中容量最小的那个
+    flow += d;
+    cost += d * dis[t];//dis是路径中单位费用和
+    for (int v = t; v != s; v = prevv[v]) {//更改容量
+        edge &amp;e = G[prevv[v]][preve[v]];
+        e.cap -= d;
+        G[v][e.rev].cap += d;//v或者e.to都可以
+    }
+    return true;
+}
+void mincostmaxflow(int s, int t)
+{
+    while (Spfa(s, t)&amp;&amp;flow&lt;INF);
+}
+int main()
+{
+    int i, j;
+    cin &gt;&gt; n &gt;&gt; m;
+    add(0, 1, INF, 0); add(n + 1, 1500, INF, 0);
+    for (i = 1; i &lt;= n; i++) {
+        scanf(&quot;%d&quot;, &amp;j);
+        add(i, i + 1, INF - j, 0);
+    }
+    for (i = 1; i &lt;= m; i++) {
+        int s, t, c;
+        scanf(&quot;%d %d %d&quot;, &amp;s, &amp;t, &amp;c);
+        add(s, t + 1, INF, c);
+    }
+    mincostmaxflow(0, 1500);
+    cout &lt;&lt; cost &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+            <a href="/tags/比赛杂集/" rel="tag"># 比赛杂集</a>
+          
+            <a href="/tags/暑假训练/" rel="tag"># 暑假训练</a>
+          
+            <a href="/tags/网络流/" rel="tag"># 网络流</a>
+          
+            <a href="/tags/图论/" rel="tag"># 图论</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/" rel="next" title="（模板）有上下界的网络流 总结">
+                <i class="fa fa-chevron-left"></i> （模板）有上下界的网络流 总结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/算法/比赛杂集/Codeforces/codeforces-round-502-ef-bc-88div-1-div-2/" rel="prev" title="Codeforces Round #502（Div. 1 + Div. 2)">
+                Codeforces Round #502（Div. 1 + Div. 2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">HumveeA6</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/humveea6" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="humveea6@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/humveea6/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://poeroz.cn/" title="Poeroz" target="_blank">Poeroz</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wallacenews.tk/" title="笨訇" target="_blank">笨訇</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.oneliey.tk" title="root" target="_blank">root</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://silentselene.com/" title="SilentSelene" target="_blank">SilentSelene</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nihil.top/" title="NIHIL EON" target="_blank">NIHIL EON</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-Drainage-Ditches-POJ-1273"><span class="nav-number">1.</span> <span class="nav-text">A - Drainage Ditches POJ - 1273</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-Reactor-Cooling-ZOJ-2314"><span class="nav-number">2.</span> <span class="nav-text">C - Reactor Cooling ZOJ - 2314</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-Number-HYSBZ-3275"><span class="nav-number">3.</span> <span class="nav-text">D - Number HYSBZ - 3275</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#E-软件开发-HYSBZ-1221"><span class="nav-number">4.</span> <span class="nav-text">E - 软件开发 HYSBZ - 1221</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#F-修车-HYSBZ-1070"><span class="nav-number">5.</span> <span class="nav-text">F - 修车 HYSBZ - 1070</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#G-Firing-POJ-2987"><span class="nav-number">6.</span> <span class="nav-text">G - Firing POJ - 2987</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#H-Being-a-Hero-HDU-3251"><span class="nav-number">7.</span> <span class="nav-text">H - Being a Hero HDU - 3251</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#I-志愿者招募-HYSBZ-1061"><span class="nav-number">8.</span> <span class="nav-text">I - 志愿者招募 HYSBZ - 1061</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HumveeA6</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.huweihuang.com/网络流/算法/比赛杂集/暑假训练/图论/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/';
+          this.page.identifier = '网络流/算法/比赛杂集/暑假训练/图论/2018-bupt-summer-training-e7-bd-91-e7-bb-9c-e6-b5-81/';
+          this.page.title = '2018 BUPT Summer Training 网络流';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

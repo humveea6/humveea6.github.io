@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="__int128最简单粗暴的做法。 这种类型只有部分GCC编译器支持。经测试，正常运算与普通int无异，但是输入输出时无论是cin，cout还是printf都会报错，所以必须自己写输入输出函数。 定义时与别的数据类型并没有什么区别 eg: __int128 a,b,c; 输入暂时采用字符串读入方式。 方法一：重载输出 std::ostream&amp;amp; operator&amp;lt;&amp;lt;(std::">
+<meta property="og:type" content="website">
+<meta property="og:title" content="（模板）高精度算法">
+<meta property="og:url" content="http://www.huweihuang.com/post1/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e9-ab-98-e7-b2-be-e5-ba-a6-e7-ae-97-e6-b3-95.html">
+<meta property="og:site_name" content="HumveeA6">
+<meta property="og:description" content="__int128最简单粗暴的做法。 这种类型只有部分GCC编译器支持。经测试，正常运算与普通int无异，但是输入输出时无论是cin，cout还是printf都会报错，所以必须自己写输入输出函数。 定义时与别的数据类型并没有什么区别 eg: __int128 a,b,c; 输入暂时采用字符串读入方式。 方法一：重载输出 std::ostream&amp;amp; operator&amp;lt;&amp;lt;(std::">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-15T14:14:00.131Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="（模板）高精度算法">
+<meta name="twitter:description" content="__int128最简单粗暴的做法。 这种类型只有部分GCC编译器支持。经测试，正常运算与普通int无异，但是输入输出时无论是cin，cout还是printf都会报错，所以必须自己写输入输出函数。 定义时与别的数据类型并没有什么区别 eg: __int128 a,b,c; 输入暂时采用字符串读入方式。 方法一：重载输出 std::ostream&amp;amp; operator&amp;lt;&amp;lt;(std::">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://www.huweihuang.com/post1/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e9-ab-98-e7-b2-be-e5-ba-a6-e7-ae-97-e6-b3-95.html">
+
+
+
+
+
+  <title>（模板）高精度算法 | HumveeA6</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">HumveeA6</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">の Blog</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+	<h1 class="post-title" itemprop="name headline">（模板）高精度算法</h1>
+
+
+
+</header>
+
+      
+      
+      
+      <div class="post-body">
+        
+        
+          <h3 id="int128"><a href="#int128" class="headerlink" title="__int128"></a>__int128</h3><p>最简单粗暴的做法。 这种类型只有部分GCC编译器支持。经测试，正常运算与普通int无异，但是输入输出时无论是cin，cout还是printf都会报错，所以必须自己写输入输出函数。 定义时与别的数据类型并没有什么区别 <strong>eg: __int128 a,b,c;</strong> 输入暂时采用字符串读入方式。 <strong>方法一：重载输出</strong></p>
+<pre><code>std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, __int128 T) {
+    if (T&lt;0) os&lt;&lt;&quot;-&quot;;if (T&gt;=10 ) os&lt;&lt;T/10;if (T&lt;=-10) os&lt;&lt;(-(T/10));
+    return os&lt;&lt;( (int) (T%10) &gt;0 ? (int) (T%10) : -(int) (T%10) ) ;
+}
+</code></pre><p><strong>方法二：变为字符串式输入输出</strong> 输入：</p>
+<pre><code>void scan(__int128 &amp;x)//输入
+{
+    x = 0;
+    int f = 1;
+    char ch;
+    if((ch = getchar()) == &apos;-&apos;) f = -f;
+    else x = x*10 + ch-&apos;0&apos;;
+    while((ch = getchar()) &gt;= &apos;0&apos; &amp;&amp; ch &lt;= &apos;9&apos;)
+        x = x*10 + ch-&apos;0&apos;;
+    x *= f;
+}
+</code></pre><p>输出：</p>
+<pre><code>void print(__int128 x)
+{
+    if(x &lt; 0)
+    {
+        x = -x;
+        putchar(‘-‘);
+    }
+     if(x &gt; 9) print(x/10);
+    putchar(x%10 + ‘0‘);
+}
+</code></pre><h3 id="简单模板（不支持负数）"><a href="#简单模板（不支持负数）" class="headerlink" title="简单模板（不支持负数）"></a>简单模板（不支持负数）</h3><pre><code>#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdio&gt;
+using namespace std;
+
+const int maxn = 1000;
+
+struct bign{
+    int d[maxn], len;
+
+    void clean() { while(len &gt; 1 &amp;&amp; !d[len-1]) len--; }
+
+    bign()          { memset(d, 0, sizeof(d)); len = 1; }
+    bign(int num)   { *this = num; } 
+    bign(char* num) { *this = num; }
+    bign operator = (const char* num){
+        memset(d, 0, sizeof(d)); len = strlen(num);
+        for(int i = 0; i &lt; len; i++) d[i] = num[len-1-i] - &apos;0&apos;;
+        clean();
+        return *this;
+    }
+    bign operator = (int num){
+        char s[20]; sprintf(s, &quot;%d&quot;, num);
+        *this = s;
+        return *this;
+    }
+
+    bign operator + (const bign&amp; b){
+        bign c = *this; int i;
+        for (i = 0; i &lt; b.len; i++){
+            c.d[i] += b.d[i];
+            if (c.d[i] &gt; 9) c.d[i]%=10, c.d[i+1]++;
+        }
+        while (c.d[i] &gt; 9) c.d[i++]%=10, c.d[i]++;
+        c.len = max(len, b.len);
+        if (c.d[i] &amp;&amp; c.len &lt;= i) c.len = i+1;
+        return c;
+    }
+    bign operator - (const bign&amp; b){
+        bign c = *this; int i;
+        for (i = 0; i &lt; b.len; i++){
+            c.d[i] -= b.d[i];
+            if (c.d[i] &lt; 0) c.d[i]+=10, c.d[i+1]--;
+        }
+        while (c.d[i] &lt; 0) c.d[i++]+=10, c.d[i]--;
+        c.clean();
+        return c;
+    }
+    bign operator * (const bign&amp; b)const{
+        int i, j; bign c; c.len = len + b.len; 
+        for(j = 0; j &lt; b.len; j++) for(i = 0; i &lt; len; i++) 
+            c.d[i+j] += d[i] * b.d[j];
+        for(i = 0; i &lt; c.len-1; i++)
+            c.d[i+1] += c.d[i]/10, c.d[i] %= 10;
+        c.clean();
+        return c;
+    }
+    bign operator / (const bign&amp; b){
+        int i, j;
+        bign c = *this, a = 0;
+        for (i = len - 1; i &gt;= 0; i--)
+        {
+            a = a*10 + d[i];
+            for (j = 0; j &lt; 10; j++) if (a &lt; b*(j+1)) break;
+            c.d[i] = j;
+            a = a - b*j;
+        }
+        c.clean();
+        return c;
+    }
+    bign operator % (const bign&amp; b){
+        int i, j;
+        bign a = 0;
+        for (i = len - 1; i &gt;= 0; i--)
+        {
+            a = a*10 + d[i];
+            for (j = 0; j &lt; 10; j++) if (a &lt; b*(j+1)) break;
+            a = a - b*j;
+        }
+        return a;
+    }
+    bign operator += (const bign&amp; b){
+        *this = *this + b;
+        return *this;
+    }
+
+    bool operator &lt;(const bign&amp; b) const{
+        if(len != b.len) return len &lt; b.len;
+        for(int i = len-1; i &gt;= 0; i--)
+            if(d[i] != b.d[i]) return d[i] &lt; b.d[i];
+        return false;
+    }
+    bool operator &gt;(const bign&amp; b) const{return b &lt; *this;}
+    bool operator&lt;=(const bign&amp; b) const{return !(b &lt; *this);}
+    bool operator&gt;=(const bign&amp; b) const{return !(*this &lt; b);}
+    bool operator!=(const bign&amp; b) const{return b &lt; *this || *this &lt; b;}
+    bool operator==(const bign&amp; b) const{return !(b &lt; *this) &amp;&amp; !(b &gt; *this);}
+
+    string str() const{
+        char s[maxn]={};
+        for(int i = 0; i &lt; len; i++) s[len-1-i] = d[i]+&apos;0&apos;;
+        return s;
+    }
+};
+
+istream&amp; operator &gt;&gt; (istream&amp; in, bign&amp; x)
+{
+    string s;
+    in &gt;&gt; s;
+    x = s.c_str();
+    return in;
+}
+
+ostream&amp; operator &lt;&lt; (ostream&amp; out, const bign&amp; x)
+{
+    out &lt;&lt; x.str();
+    return out;
+}
+</code></pre><h3 id="更完善的模板"><a href="#更完善的模板" class="headerlink" title="更完善的模板"></a>更完善的模板</h3><p>支持负数之类的操作。需要注意的是如果涉及bign与常规类型的数值之间的之间计算，比如一个bign+ll，可能需要额外新增重载运算符，因为默认的似乎只有bign+int的重载，否则可能溢出出错。 以及，大数的长度需要额外注意，开太大容易爆内存。</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+#define MAX_L 100 //最大长度，可以修改
+using namespace std;
+
+class bign {
+public:
+    int len, s[MAX_L];//数的长度，记录数组
+//构造函数
+    bign();
+
+    bign(const char *);
+
+    bign(int);
+
+    bool sign;//符号 1正数 0负数
+    string toStr() const;//转化为字符串，主要是便于输出
+    friend istream &amp;operator&gt;&gt;(istream &amp;, bign &amp;);//重载输入流
+    friend ostream &amp;operator&lt;&lt;(ostream &amp;, bign &amp;);//重载输出流
+//重载复制
+    bign operator=(const char *);
+
+    bign operator=(int);
+
+    bign operator=(ll);
+
+    bign operator=(const string);
+
+//重载各种比较
+    bool operator&gt;(const bign &amp;) const;
+
+    bool operator&gt;=(const bign &amp;) const;
+
+    bool operator&lt;(const bign &amp;) const;
+
+    bool operator&lt;=(const bign &amp;) const;
+
+    bool operator==(const bign &amp;) const;
+
+    bool operator!=(const bign &amp;) const;
+
+//重载四则运算
+    bign operator+(const bign &amp;) const;
+
+    bign operator++();
+
+    bign operator++(int);
+
+    bign operator+=(const bign &amp;);
+
+    bign operator-(const bign &amp;) const;
+
+    bign operator--();
+
+    bign operator--(int);
+
+    bign operator-=(const bign &amp;);
+
+    bign operator*(const bign &amp;) const;
+
+    bign operator*(const int num) const;
+
+    bign operator*=(const bign &amp;);
+
+    bign operator/(const bign &amp;) const;
+
+    bign operator/=(const bign &amp;);
+
+//四则运算的衍生运算
+    bign operator%(const bign &amp;) const;//取模（余数）
+    bign factorial() const;//阶乘
+    bign Sqrt() const;//整数开根（向下取整）
+    bign pow(const bign &amp;) const;//次方
+//一些乱乱的函数
+    void clean();
+
+    //~bign();
+};
+
+bign::bign()
+{
+    memset(s, 0, sizeof(s));
+    len = 1;
+    sign = 1;
+}
+
+bign::bign(const char *num)
+{
+    *this = num;
+}
+
+bign::bign(int num)
+{
+    *this = num;
+}
+
+string bign::toStr() const
+{
+    string res;
+    res = &quot;&quot;;
+    for (int i = 0; i &lt; len; i++)
+        res = (char)(s[i] + &apos;0&apos;) + res;
+    if (res == &quot;&quot;)
+        res = &quot;0&quot;;
+    if (!sign&amp;&amp;res != &quot;0&quot;)
+        res = &quot;-&quot; + res;
+    return res;
+}
+
+istream &amp;operator&gt;&gt;(istream &amp;in, bign &amp;num)
+{
+    string str;
+    in&gt;&gt;str;
+    num=str;
+    return in;
+}
+
+ostream &amp;operator&lt;&lt;(ostream &amp;out, bign &amp;num)
+{
+    out&lt;&lt;num.toStr();
+    return out;
+}
+
+bign bign::operator=(const char *num)
+{
+    memset(s, 0, sizeof(s));
+    char a[MAX_L] = &quot;&quot;;
+    if (num[0] != &apos;-&apos;)
+        strcpy(a, num);
+    else
+        for (int i = 1; i &lt; strlen(num); i++)
+            a[i - 1] = num[i];
+    sign = !(num[0] == &apos;-&apos;);
+    len = strlen(a);
+    for (int i = 0; i &lt; strlen(a); i++)
+        s[i] = a[len - i - 1] - 48;
+    return *this;
+}
+
+bign bign::operator=(int num)
+{
+    char temp[MAX_L];
+    sprintf(temp, &quot;%d&quot;, num);
+    *this = temp;
+    return *this;
+}
+
+bign bign::operator=(ll num)
+{
+    char temp[MAX_L];
+    sprintf(temp, &quot;%lld&quot;, num);
+    *this = temp;
+    return *this;
+}
+
+
+bign bign::operator=(const string num)
+{
+    const char *tmp;
+    tmp = num.c_str();
+    *this = tmp;
+    return *this;
+}
+
+bool bign::operator&lt;(const bign &amp;num) const
+{
+    if (sign^num.sign)
+        return num.sign;
+    if (len != num.len)
+        return len &lt; num.len;
+    for (int i = len - 1; i &gt;= 0; i--)
+        if (s[i] != num.s[i])
+            return sign ? (s[i] &lt; num.s[i]) : (!(s[i] &lt; num.s[i]));
+    return !sign;
+}
+
+bool bign::operator&gt;(const bign&amp;num)const
+{
+    return num &lt; *this;
+}
+
+bool bign::operator&lt;=(const bign&amp;num)const
+{
+    return !(*this&gt;num);
+}
+
+bool bign::operator&gt;=(const bign&amp;num)const
+{
+    return !(*this&lt;num);
+}
+
+bool bign::operator!=(const bign&amp;num)const
+{
+    return *this &gt; num || *this &lt; num;
+}
+
+bool bign::operator==(const bign&amp;num)const
+{
+    return !(num != *this);
+}
+
+bign bign::operator+(const bign &amp;num) const
+{
+    if (sign^num.sign)
+    {
+        bign tmp = sign ? num : *this;
+        tmp.sign = 1;
+        return sign ? *this - tmp : num - tmp;
+    }
+    bign result;
+    result.len = 0;
+    int temp = 0;
+    for (int i = 0; temp || i &lt; (max(len, num.len)); i++)
+    {
+        int t = s[i] + num.s[i] + temp;
+        result.s[result.len++] = t % 10;
+        temp = t / 10;
+    }
+    result.sign = sign;
+    return result;
+}
+
+bign bign::operator++()
+{
+    *this = *this + 1;
+    return *this;
+}
+
+bign bign::operator++(int)
+{
+    bign old = *this;
+    ++(*this);
+    return old;
+}
+
+bign bign::operator--()
+{
+    *this = *this - 1;
+    return *this;
+}
+
+bign bign::operator--(int)
+{
+    bign old = *this;
+    --(*this);
+    return old;
+}
+
+bign bign::operator+=(const bign &amp;num)
+{
+    *this = *this + num;
+    return *this;
+}
+
+bign bign::operator-=(const bign &amp;num)
+{
+    *this = *this - num;
+    return *this;
+}
+
+
+bign bign::operator-(const bign &amp;num) const
+{
+    bign b=num,a=*this;
+    if (!num.sign &amp;&amp; !sign)
+    {
+        b.sign=1;
+        a.sign=1;
+        return b-a;
+    }
+    if (!b.sign)
+    {
+        b.sign=1;
+        return a+b;
+    }
+    if (!a.sign)
+    {
+        a.sign=1;
+        b=bign(0)-(a+b);
+        return b;
+    }
+    if (a&lt;b)
+    {
+        bign c=(b-a);
+        c.sign=false;
+        return c;
+    }
+    bign result;
+    result.len = 0;
+    for (int i = 0, g = 0; i &lt; a.len; i++)
+    {
+        int x = a.s[i] - g;
+        if (i &lt; b.len) x -= b.s[i];
+        if (x &gt;= 0) g = 0;
+        else
+        {
+            g = 1;
+            x += 10;
+        }
+        result.s[result.len++] = x;
+    }
+    result.clean();
+    return result;
+}
+
+bign bign::operator * (const bign &amp;num)const
+{
+    bign result;
+    result.len = len + num.len;
+
+    for (int i = 0; i &lt; len; i++)
+        for (int j = 0; j &lt; num.len; j++)
+            result.s[i + j] += s[i] * num.s[j];
+
+    for (int i = 0; i &lt; result.len; i++)
+    {
+        result.s[i + 1] += result.s[i] / 10;
+        result.s[i] %= 10;
+    }
+    result.clean();
+    result.sign = !(sign^num.sign);
+    return result;
+}
+
+bign bign::operator*(const int num)const
+{
+    bign x = num;
+    bign z = *this;
+    return x*z;
+}
+bign bign::operator*=(const bign&amp;num)
+{
+    *this = *this * num;
+    return *this;
+}
+
+bign bign::operator /(const bign&amp;num)const
+{
+    bign ans;
+    ans.len = len - num.len + 1;
+    if (ans.len &lt; 0)
+    {
+        ans.len = 1;
+        return ans;
+    }
+
+    bign divisor = *this, divid = num;
+    divisor.sign = divid.sign = 1;
+    int k = ans.len - 1;
+    int j = len - 1;
+    while (k &gt;= 0)
+    {
+        while (divisor.s[j] == 0) j--;
+        if (k &gt; j) k = j;
+        char z[MAX_L];
+        memset(z, 0, sizeof(z));
+        for (int i = j; i &gt;= k; i--)
+            z[j - i] = divisor.s[i] + &apos;0&apos;;
+        bign dividend = z;
+        if (dividend &lt; divid) { k--; continue; }
+        int key = 0;
+        while (divid*key &lt;= dividend) key++;
+        key--;
+        ans.s[k] = key;
+        bign temp = divid*key;
+        for (int i = 0; i &lt; k; i++)
+            temp = temp * 10;
+        divisor = divisor - temp;
+        k--;
+    }
+    ans.clean();
+    ans.sign = !(sign^num.sign);
+    return ans;
+}
+
+bign bign::operator/=(const bign&amp;num)
+{
+    *this = *this / num;
+    return *this;
+}
+
+bign bign::operator%(const bign&amp; num)const
+{
+    bign a = *this, b = num;
+    a.sign = b.sign = 1;
+    bign result, temp = a / b*b;
+    result = a - temp;
+    result.sign = sign;
+    return result;
+}
+
+bign bign::pow(const bign&amp; num)const
+{
+    bign result = 1;
+    for (bign i = 0; i &lt; num; i++)
+        result = result*(*this);
+    return result;
+}
+
+bign bign::factorial()const
+{
+    bign result = 1;
+    for (bign i = 1; i &lt;= *this; i++)
+        result *= i;
+    return result;
+}
+
+void bign::clean()
+{
+    if (len == 0) len++;
+    while (len &gt; 1 &amp;&amp; s[len - 1] == &apos;\0&apos;)
+        len--;
+}
+
+bign bign::Sqrt()const
+{
+    if(*this&lt;0)return -1;
+    if(*this&lt;=1)return *this;
+    bign l=0,r=*this,mid;
+    while(r-l&gt;1)
+    {
+        mid=(l+r)/2;
+        if(mid*mid&gt;*this)
+            r=mid;
+        else
+            l=mid;
+    }
+    return l;
+}
+
+bign sum[200005];
+</code></pre>
+        
+      </div>
+      
+      
+      
+    </div>
+    
+    
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">HumveeA6</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">70</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/humveea6" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="humveea6@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/humveea6/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-globe"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友链
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://poeroz.cn/" title="Poeroz" target="_blank">Poeroz</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://wallacenews.tk/" title="笨訇" target="_blank">笨訇</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.oneliey.tk" title="root" target="_blank">root</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://silentselene.com/" title="SilentSelene" target="_blank">SilentSelene</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nihil.top/" title="NIHIL EON" target="_blank">NIHIL EON</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#int128"><span class="nav-number">1.</span> <span class="nav-text">__int128</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单模板（不支持负数）"><span class="nav-number">2.</span> <span class="nav-text">简单模板（不支持负数）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更完善的模板"><span class="nav-number">3.</span> <span class="nav-text">更完善的模板</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HumveeA6</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://www.huweihuang.com/post1/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e9-ab-98-e7-b2-be-e5-ba-a6-e7-ae-97-e6-b3-95.html';
+          this.page.identifier = 'post1/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e9-ab-98-e7-b2-be-e5-ba-a6-e7-ae-97-e6-b3-95.html';
+          this.page.title = '（模板）高精度算法';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
