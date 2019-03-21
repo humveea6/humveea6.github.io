@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="注释#  基本数据类型int可以是任何大小的整数  变量名的第一个字符必须是字母或下划线；变量名区分大小写；  使用单/双引号指定字符串，所有引号内的字符，包括空格与制表符都将原样保留。两种引号工作机制相同  输出格式三引号用于指定多行字符串（&amp;quot;&amp;quot;&amp;quot;或&amp;#39;&amp;#39;&amp;#39;均可以）  例如：  12345print(&apos;&apos;&apos;this is the first l">
+<meta name="description" content="注释# 基本数据类型int可以是任何大小的整数 变量名的第一个字符必须是字母或下划线；变量名区分大小写； 使用单/双引号指定字符串，所有引号内的字符，包括空格与制表符都将原样保留。两种引号工作机制相同 输出格式三引号用于指定多行字符串（&amp;quot;&amp;quot;&amp;quot;或&amp;#39;&amp;#39;&amp;#39;均可以）例如：123print(&apos;&apos;&apos;this is the first lineand thi">
 <meta name="keywords" content="Python,Python基本语法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python基本语法">
 <meta property="og:url" content="http://www.huweihuang.com/Python/Python基本语法/Python基本语法/index.html">
 <meta property="og:site_name" content="HumveeA6">
-<meta property="og:description" content="注释#  基本数据类型int可以是任何大小的整数  变量名的第一个字符必须是字母或下划线；变量名区分大小写；  使用单/双引号指定字符串，所有引号内的字符，包括空格与制表符都将原样保留。两种引号工作机制相同  输出格式三引号用于指定多行字符串（&amp;quot;&amp;quot;&amp;quot;或&amp;#39;&amp;#39;&amp;#39;均可以）  例如：  12345print(&apos;&apos;&apos;this is the first l">
+<meta property="og:description" content="注释# 基本数据类型int可以是任何大小的整数 变量名的第一个字符必须是字母或下划线；变量名区分大小写； 使用单/双引号指定字符串，所有引号内的字符，包括空格与制表符都将原样保留。两种引号工作机制相同 输出格式三引号用于指定多行字符串（&amp;quot;&amp;quot;&amp;quot;或&amp;#39;&amp;#39;&amp;#39;均可以）例如：123print(&apos;&apos;&apos;this is the first lineand thi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-21T07:43:16.603Z">
+<meta property="og:updated_time" content="2019-03-21T11:59:38.647Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python基本语法">
-<meta name="twitter:description" content="注释#  基本数据类型int可以是任何大小的整数  变量名的第一个字符必须是字母或下划线；变量名区分大小写；  使用单/双引号指定字符串，所有引号内的字符，包括空格与制表符都将原样保留。两种引号工作机制相同  输出格式三引号用于指定多行字符串（&amp;quot;&amp;quot;&amp;quot;或&amp;#39;&amp;#39;&amp;#39;均可以）  例如：  12345print(&apos;&apos;&apos;this is the first l">
+<meta name="twitter:description" content="注释# 基本数据类型int可以是任何大小的整数 变量名的第一个字符必须是字母或下划线；变量名区分大小写； 使用单/双引号指定字符串，所有引号内的字符，包括空格与制表符都将原样保留。两种引号工作机制相同 输出格式三引号用于指定多行字符串（&amp;quot;&amp;quot;&amp;quot;或&amp;#39;&amp;#39;&amp;#39;均可以）例如：123print(&apos;&apos;&apos;this is the first lineand thi">
 
 
 
@@ -411,64 +411,28 @@
       
 
       
-        <p>注释<code>#</code> </p>
-<h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>int可以是任何大小的整数 </p>
-<p>变量名的第一个字符必须是字母或下划线；变量名区分大小写； </p>
-<p>使用单/双引号指定字符串，所有引号内的字符，包括空格与制表符都将原样保留。两种引号工作机制相同 </p>
-<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>三引号用于指定多行字符串（<code>&quot;&quot;&quot;或&#39;&#39;&#39;</code>均可以） </p>
-<p>例如： </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'''this is the first line </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">and this is the second </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">hhahahah'''</span>)</span><br></pre></td></tr></table></figure>
-<p>就会原样输出3行 </p>
-<p>有时候我们会想要从其他信息中构建字符串。这正是 format() 方法大有用武之地的地方。 </p>
-<p>例如： </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">20</span> </span><br><span class="line"></span><br><span class="line">name = <span class="string">'Swaroop'</span> </span><br><span class="line"></span><br><span class="line">print(<span class="string">'&#123;&#125; was &#123;&#125; years old when he wrote this book'</span>.format(name, age)) </span><br><span class="line"></span><br><span class="line">print(<span class="string">'Why is &#123;&#125; playing with that python?'</span>.format(name))</span><br></pre></td></tr></table></figure>
-<p>Python 中 format 方法所做的事情便是将每个参数值替换至格式所在的位置。这之中可以有 更详细的格式，例如: </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对于浮点数 '0.333' 保留小数点(.)后三位 </span></span><br><span class="line"></span><br><span class="line">print(<span class="string">'&#123;0:.3f&#125;'</span>.format(<span class="number">1.0</span>/<span class="number">3</span>)) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者省略花括号里面那个0也是可以的 </span></span><br><span class="line"></span><br><span class="line">print(<span class="string">'&#123;:.3f&#125;'</span>.format(<span class="number">1.0</span>/<span class="number">3</span>)) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用下划线填充文本，并保持文字处于中间位置 </span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用 (^) 定义 'hello'字符串长度为 11 </span></span><br><span class="line"></span><br><span class="line">print(<span class="string">'&#123;0:_^11&#125;'</span>.format(<span class="string">'hello'</span>)) </span><br><span class="line"></span><br><span class="line"><span class="comment"># 基于关键词输出 'Swaroop wrote A Byte of Python' </span></span><br><span class="line"></span><br><span class="line">print(<span class="string">'&#123;name&#125; wrote &#123;book&#125;'</span>.format(name=<span class="string">'Swaroop'</span>, book=<span class="string">'A Byte of Python'</span>))</span><br></pre></td></tr></table></figure>
-<p>由于我们正在讨论格式问题，就要注意 print 总是会以一个不可见的“新一行”字符( <code>\n</code> ) 结尾，因此重复调用 print 将会在相互独立的一行中分别打印。为防止打印过程中出现这一 换行符，你可以通过 <code>end</code> 指定其应以空白结尾: </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'a'</span>, end=<span class="string">''</span>) </span><br><span class="line"></span><br><span class="line">print(<span class="string">'b'</span>, end=<span class="string">' '</span>)<span class="comment">#以空格结尾</span></span><br></pre></td></tr></table></figure>
-<h5 id="转义序列"><a href="#转义序列" class="headerlink" title="转义序列"></a>转义序列</h5><p>如果希望生成一串包含单引号( ‘ )的字符串，你应该如何指定这串字符串? 例如，你想要的字符串是 “What’s your name?” 。你不能指定 ‘What’s your name?’ ，因为这 会使 Python 对于何处是字符串的开始、何处又是结束而感到困惑。所以，你必须指定这个单引号不代表这串字符串的结尾。这可以通过<strong>转义序列(Escape Sequence)</strong> 来实现。你通过\ 来指定单引号:要注意它可是反斜杠。现在，你可以将字符串指定为 ‘What\’s your name?’ </p>
-<p>另一种指定这一特别的字符串的方式是这样的: “What’s your name?” ，如这个例子般使用 双引号。类似地， 你必须在使用双引号括起的字符串中对字符串内的双引号使用转义序列。 同样，你必须使用转义序列 \ 来指定反斜杠本身。 </p>
-<p>如果你想指定一串双行字符串该怎么办?一种方式即使用如前所述的三引号字符串，或者你 可以使用一个表示新一行的转义序列——\n 来表示新一行的开始。（与cpp类似） </p>
-<p>在一个字符串中，一个放置在末尾的反斜杠表示字符串将在下一行继续，但不会添加新的一行。来看看例子: </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"This is the first sentence. \ </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">This is the second sentence."</span></span><br></pre></td></tr></table></figure>
-<p>相当于<code>&quot;This is the first sentence. This is the second sentence.&quot;</code> </p>
-<h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><p>所谓<strong>物理行(Physical Line)</strong>是你在编写程序时 你所看到的内容。所谓逻辑行(Logical Line)是 Python 所看到 的单个语句。Python 会假定每一物理行会对应一个逻辑行。如果你希望在一行物理行中指定多行逻辑行，那么你必须通过使用分号( ; )来明确表明逻辑行或语句的结束。 </p>
-<p>空白区在 Python 中十分重要。实际上，空白区在各行的开头非常重要。这被称作 缩进 (Indentation)。在逻辑行的开头留下空白区(使用空格或制表符)用以确定各逻辑行的缩 进级别，而后者又可用于确定语句的分组。<strong>这意味着放置在一起的语句必须拥有相同的缩进。每一组这样的语句被称为 块(block)。</strong> </p>
-<p><strong><u>Attention：</u>使用四个空格来缩进。这是来自 Python 语言官方的建议。好的编辑器会自动为你完成这 一工作。请确保你在缩进中使用数量一致的空格，否则你的程序将不会运行，或引发不 期望的行为。</strong> </p>
-<h3 id="运算符与优先级"><a href="#运算符与优先级" class="headerlink" title="运算符与优先级"></a>运算符与优先级</h3><h4 id="需要注意的运算符"><a href="#需要注意的运算符" class="headerlink" title="需要注意的运算符"></a>需要注意的运算符</h4><p><code>**</code> (乘方) </p>
-<p>返回 x 的 y 次方。 </p>
-<p><code>3**4</code> 输出 81 (即 3<em> 3</em> 3* 3 )。 </p>
-<p><code>/</code>(除) </p>
-<p>x 除以 y </p>
-<p>13 / 3 输出 4.333333333333333 。 </p>
-<p><code>//</code> (整除) </p>
-<p>x 除以 y 并对结果向下取整至最接近的整数。 13 // 3 输出 4 。 </p>
-<p>-13 // 3 输出 -5 。 </p>
-<p><code>&lt;</code> (小于) <code>&gt;</code> (大于) </p>
-<p>返回 x 是否小于 y。<strong>所有的比较运算符返回的结果均为 <code>True</code> 或 <code>False</code> 。请注意这 些名称之中的<u>大写字母</u>。</strong> </p>
-<p>5&lt;3 输出 False ，3&lt;6 输出 True 。 </p>
-<p>比较可以任意组成链接: 3 &lt; 5 &lt; 7 返回 True 。 </p>
-<p>如果两个操作数均为数字，它们首先将会被转换至一种共同的类型。否则，它将总是返回 False 。 </p>
-<p><code>not</code> (布尔“非”) 对应cpp的！ </p>
-<p><code>and</code> (布尔“与”) 对应cpp的&amp; </p>
-<p><code>or</code> (布尔“或”) 对应cpp的| </p>
-<p>其余运算符与cpp基本一致 </p>
-<p>#### 优先级 </p>
-<p><strong>以下运算符优先级由低至高排序</strong> </p>
-<p><code>lambda</code> :Lambda 表达式 if - else :条件表达式 or :布尔“或” </p>
-<p><code>and</code>:布尔“与” </p>
-<p><code>not x</code> :布尔“非” </p>
-<p><code>in, not in, is, is not, &lt;, &lt;=, &gt;, &gt;=, !=, ==</code> :比较，包括成员资格测试 (Membership Tests)和身份测试(Identity Tests)。 </p>
-<p><code>|</code> :按位或 </p>
-<p><code>^</code> :按位异或 </p>
-<p><code>&amp;</code> :按位与 </p>
-<p><code>&lt;&lt;, &gt;&gt;</code> :移动 </p>
-<p><code>+, -</code>:加与减 </p>
-<p><code>*, /, //, %</code>:乘、除、整除、取余 </p>
-<p><code>+x, -x, ~x</code> :正、负、按位取反 </p>
-<p><code>**</code> :求幂 </p>
-<p><code>x[index], x[index:index], x(arguments...), x.attribute</code> :下标、切片、调用、属性引 用 </p>
-<p><code>(expressions...), [expressions...], {key: value...}{expressions...}</code>:表示绑定或元 组、表示列表、表示字典、表示集合 </p>
+        <p>注释<code>#</code></p>
+<h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><p>int可以是任何大小的整数</p>
+<p>变量名的第一个字符必须是字母或下划线；变量名区分大小写；</p>
+<p>使用单/双引号指定字符串，所有引号内的字符，包括空格与制表符都将原样保留。两种引号工作机制相同</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>三引号用于指定多行字符串（<code>&quot;&quot;&quot;或&#39;&#39;&#39;</code>均可以）<br>例如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'''this is the first line</span></span><br><span class="line"><span class="string">and this is the second</span></span><br><span class="line"><span class="string">hhahahah'''</span>)</span><br></pre></td></tr></table></figure></p>
+<p>就会原样输出3行</p>
+<p>有时候我们会想要从其他信息中构建字符串。这正是 format() 方法大有用武之地的地方。<br>例如：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">age = <span class="number">20</span></span><br><span class="line">name = <span class="string">'Swaroop'</span></span><br><span class="line">print(<span class="string">'&#123;&#125; was &#123;&#125; years old when he wrote this book'</span>.format(name, age))</span><br><span class="line">print(<span class="string">'Why is &#123;&#125; playing with that python?'</span>.format(name))</span><br></pre></td></tr></table></figure></p>
+<p>Python 中 format 方法所做的事情便是将每个参数值替换至格式所在的位置。这之中可以有 更详细的格式，例如:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对于浮点数 '0.333' 保留小数点(.)后三位</span></span><br><span class="line">print(<span class="string">'&#123;0:.3f&#125;'</span>.format(<span class="number">1.0</span>/<span class="number">3</span>))</span><br><span class="line"><span class="comment"># 或者省略花括号里面那个0也是可以的</span></span><br><span class="line">print(<span class="string">'&#123;:.3f&#125;'</span>.format(<span class="number">1.0</span>/<span class="number">3</span>))</span><br><span class="line"><span class="comment"># 使用下划线填充文本，并保持文字处于中间位置</span></span><br><span class="line"><span class="comment"># 使用 (^) 定义 '___hello___'字符串长度为 11</span></span><br><span class="line">print(<span class="string">'&#123;0:_^11&#125;'</span>.format(<span class="string">'hello'</span>))</span><br><span class="line"><span class="comment"># 基于关键词输出 'Swaroop wrote A Byte of Python'</span></span><br><span class="line">print(<span class="string">'&#123;name&#125; wrote &#123;book&#125;'</span>.format(name=<span class="string">'Swaroop'</span>, book=<span class="string">'A Byte of Python'</span>))</span><br></pre></td></tr></table></figure></p>
+<p>由于我们正在讨论格式问题，就要注意 print 总是会以一个不可见的“新一行”字符( <code>\n</code> ) 结尾，因此重复调用 print 将会在相互独立的一行中分别打印。为防止打印过程中出现这一 换行符，你可以通过 <code>end</code> 指定其应以空白结尾:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'a'</span>, end=<span class="string">''</span>)</span><br><span class="line">print(<span class="string">'b'</span>, end=<span class="string">' '</span>)<span class="comment">#以空格结尾</span></span><br></pre></td></tr></table></figure></p>
+<h5 id="转义序列"><a href="#转义序列" class="headerlink" title="转义序列"></a>转义序列</h5><p>   如果希望生成一串包含单引号( ‘ )的字符串，你应该如何指定这串字符串? 例如，你想要的字符串是 “What’s your name?” 。你不能指定 ‘What’s your name?’ ，因为这 会使 Python 对于何处是字符串的开始、何处又是结束而感到困惑。所以，你必须指定这个单引号不代表这串字符串的结尾。这可以通过<strong>转义序列(Escape Sequence)</strong> 来实现。你通过\ 来指定单引号:要注意它可是反斜杠。现在，你可以将字符串指定为 ‘What\’s your name?’<br>    另一种指定这一特别的字符串的方式是这样的: “What’s your name?” ，如这个例子般使用 双引号。类似地， 你必须在使用双引号括起的字符串中对字符串内的双引号使用转义序列。 同样，你必须使用转义序列 \ 来指定反斜杠本身。<br>    如果你想指定一串双行字符串该怎么办?一种方式即使用如前所述的三引号字符串，或者你 可以使用一个表示新一行的转义序列——\n 来表示新一行的开始。（与cpp类似）</p>
+<p>在一个字符串中，一个放置在末尾的反斜杠表示字符串将在下一行继续，但不会添加新的一行。来看看例子:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"This is the first sentence. \</span></span><br><span class="line"><span class="string">This is the second sentence."</span></span><br></pre></td></tr></table></figure></p>
+<p>相当于<code>&quot;This is the first sentence. This is the second sentence.&quot;</code></p>
+<h3 id="基础语法"><a href="#基础语法" class="headerlink" title="基础语法"></a>基础语法</h3><p>所谓<strong>物理行(Physical Line)</strong>是你在编写程序时 你所看到的内容。所谓逻辑行(Logical Line)是 Python 所看到 的单个语句。Python 会假定每一物理行会对应一个逻辑行。如果你希望在一行物理行中指定多行逻辑行，那么你必须通过使用分号( ; )来明确表明逻辑行或语句的结束。</p>
+<p>空白区在 Python 中十分重要。实际上，空白区在各行的开头非常重要。这被称作 缩进 (Indentation)。在逻辑行的开头留下空白区(使用空格或制表符)用以确定各逻辑行的缩 进级别，而后者又可用于确定语句的分组。<strong>这意味着放置在一起的语句必须拥有相同的缩进。每一组这样的语句被称为 块(block)。</strong></p>
+<p><strong><u>Attention：</u>使用四个空格来缩进。这是来自 Python 语言官方的建议。好的编辑器会自动为你完成这 一工作。请确保你在缩进中使用数量一致的空格，否则你的程序将不会运行，或引发不 期望的行为。</strong></p>
+<h3 id="运算符与优先级"><a href="#运算符与优先级" class="headerlink" title="运算符与优先级"></a>运算符与优先级</h3><h4 id="需要注意的运算符"><a href="#需要注意的运算符" class="headerlink" title="需要注意的运算符"></a>需要注意的运算符</h4><p><code>**</code> (乘方)<br>返回 x 的 y 次方。<br><code>3**4</code> 输出 81 (即 3<em> 3</em> 3* 3 )。</p>
+<p><code>/</code>(除)<br>x 除以 y<br>13 / 3 输出 4.333333333333333 。</p>
+<p><code>//</code> (整除)<br>x 除以 y 并对结果向下取整至最接近的整数。 13 // 3 输出 4 。<br>-13 // 3 输出 -5 。</p>
+<p><code>&lt;</code> (小于) <code>&gt;</code> (大于)<br>返回 x 是否小于 y。<strong>所有的比较运算符返回的结果均为 <code>True</code> 或 <code>False</code> 。请注意这 些名称之中的<u>大写字母</u>。</strong><br>5&lt;3 输出 False ，3&lt;6 输出 True 。<br>比较可以任意组成链接: 3 &lt; 5 &lt; 7 返回 True 。<br>如果两个操作数均为数字，它们首先将会被转换至一种共同的类型。否则，它将总是返回 False 。</p>
+<p><code>not</code> (布尔“非”)  对应cpp的！<br><code>and</code> (布尔“与”)    对应cpp的&amp;<br><code>or</code> (布尔“或”)      对应cpp的|</p>
+<p>其余运算符与cpp基本一致</p>
+<h4 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h4><p><strong>以下运算符优先级由低至高排序</strong><br><code>lambda</code> :Lambda 表达式 if - else :条件表达式 or :布尔“或”<br><code>and</code>:布尔“与”<br><code>not x</code> :布尔“非”<br><code>in, not in, is, is not, &lt;, &lt;=, &gt;, &gt;=, !=, ==</code> :比较，包括成员资格测试 (Membership Tests)和身份测试(Identity Tests)。<br><code>|</code> :按位或<br><code>^</code> :按位异或<br><code>&amp;</code> :按位与<br><code>&lt;&lt;, &gt;&gt;</code> :移动<br><code>+, -</code>:加与减<br><code>*, /, //, %</code>:乘、除、整除、取余<br><code>+x, -x, ~x</code> :正、负、按位取反<br><code>**</code> :求幂<br><code>x[index], x[index:index], x(arguments...), x.attribute</code> :下标、切片、调用、属性引 用<br><code>(expressions...), [expressions...], {key: value...}{expressions...}</code>:表示绑定或元 组、表示列表、表示字典、表示集合</p>
 
       
     </div>
@@ -707,7 +671,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式"><span class="nav-number">2.</span> <span class="nav-text">输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#转义序列"><span class="nav-number">2.0.1.</span> <span class="nav-text">转义序列</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#基础语法"><span class="nav-number">3.</span> <span class="nav-text">基础语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符与优先级"><span class="nav-number">4.</span> <span class="nav-text">运算符与优先级</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需要注意的运算符"><span class="nav-number">4.1.</span> <span class="nav-text">需要注意的运算符</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.</span> <span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出格式"><span class="nav-number">2.</span> <span class="nav-text">输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#转义序列"><span class="nav-number">2.0.1.</span> <span class="nav-text">转义序列</span></a></li></ol></li></ol><li class="nav-item nav-level-3"><a class="nav-link" href="#基础语法"><span class="nav-number">3.</span> <span class="nav-text">基础语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运算符与优先级"><span class="nav-number">4.</span> <span class="nav-text">运算符与优先级</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需要注意的运算符"><span class="nav-number">4.1.</span> <span class="nav-text">需要注意的运算符</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#优先级"><span class="nav-number">4.2.</span> <span class="nav-text">优先级</span></a></li></ol></li></div>
             
 
           </div>
