@@ -297,6 +297,207 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Cpp基本语法/Cpp/左值引用/const/左值引用与const限定符/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Cpp基本语法/Cpp/左值引用/const/左值引用与const限定符/" itemprop="url">左值引用与const限定符</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-22T10:37:25+08:00">
+                2019-03-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cpp基本语法/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp基本语法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cpp基本语法/Cpp/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cpp基本语法/Cpp/左值引用/" itemprop="url" rel="index">
+                    <span itemprop="name">左值引用</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cpp基本语法/Cpp/左值引用/const/" itemprop="url" rel="index">
+                    <span itemprop="name">const</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Cpp基本语法/Cpp/左值引用/const/左值引用与const限定符/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Cpp基本语法/Cpp/左值引用/const/左值引用与const限定符/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><blockquote>
+<p>这里的引用指左值引用而不是C++11中的右值引用</p>
+</blockquote>
+<p>引用为对象起了一个别名。<strong>注意：引用并不是对象，它只是为一个已经存在的对象所起的另外一个名字。</strong></p>
+<p>因为引用不是一个对象，所以不能定义引用的引用！</p>
+<p>为引用赋值，实际上是把值赋给了引用绑定的对象，获取引用的值，其实也是获取了引用绑定对象的值。</p>
+<p>引用的类型必须和要绑定的对象严格匹配（比如int类型的引用不能绑定在double上），但是有2个例外。而且引用只能绑定在对象上而不能与字面值或者某个表达式的计算结果绑定在一起。</p>
+<p>在定义引用时，程序把引用跟它的初始值<strong>绑定</strong>在一起（而不是拷贝），<strong>无法令引用绑定到另一个对象</strong>，所以引用定义时必须被初始化。</p>
+<h1 id="const"><a href="#const" class="headerlink" title="const"></a>const</h1><p>const对象一旦创造就不能再更改，所以const对象必须被初始化；<br>    默认情况下const对象被设定为仅在文件内有效，当多个文件内出现同名的const变量时相当于在不同文件中分别定义了独立变量；如果要在多个文件中使用同一个const变量，那么它的声明与定义都应该加上extern关键字（存疑）；</p>
+<h3 id="const的引用"><a href="#const的引用" class="headerlink" title="const的引用"></a>const的引用</h3><p>可以把引用绑定到const对象上，就像绑定到其他对象上一样，称之为<strong>对常量的引用</strong>。对常量的引用并不能修改它绑定的对象，同时，非常量引用也不能绑定到常量对象上；<br>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci=<span class="number">1024</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;ri=ci;<span class="comment">//正确,引用及其对应对象都是常量</span></span><br><span class="line"><span class="keyword">int</span> &amp;r2=ci;<span class="comment">//错误,试图用一个非常量引用指向一个常量对象</span></span><br></pre></td></tr></table></figure></p>
+<p>“对const的引用”简称为“常量引用”。</p>
+<blockquote>
+<p>引用的类型必须和要绑定的对象严格匹配（比如int类型的引用不能绑定在double上），但是有2个例外。</p>
+</blockquote>
+<p>其中一个例外就是在初始化常量引用时允许用任意表达式作为初始值，只要该表达式的结果能够转换成引用的类型即可。允许为一个常量引用绑定非常量的对象，字面值甚至一个一般表达式。<br>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">42</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r1=i;<span class="comment">//正确</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r2=<span class="number">42</span>;<span class="comment">//correct</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r3=r1*<span class="number">2</span><span class="comment">//correct</span></span><br><span class="line"><span class="keyword">int</span> &amp;r4=r1*<span class="number">2</span>;<span class="comment">//错误！非常量引用不允许这么搞！</span></span><br></pre></td></tr></table></figure></p>
+<p>甚至可以这么搞：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> a=<span class="number">1.22</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;ri=a;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;ri&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></p>
+<p>这种情况下ri其实是绑定了一个由a转换而来的临时的int类型的变量。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Cpp/Cpp语法/CPP类/Cpp阅读笔记-类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2375,823 +2576,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/比赛杂集/Codeforces/educational-codeforces-round-34-rated-for-div-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/比赛杂集/Codeforces/educational-codeforces-round-34-rated-for-div-2/" itemprop="url">Educational Codeforces Round 34 (Rated for Div. 2)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-22T10:22:56+08:00">
-                2018-08-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/比赛杂集/" itemprop="url" rel="index">
-                    <span itemprop="name">比赛杂集</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/比赛杂集/Codeforces/" itemprop="url" rel="index">
-                    <span itemprop="name">Codeforces</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/算法/比赛杂集/Codeforces/educational-codeforces-round-34-rated-for-div-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/比赛杂集/Codeforces/educational-codeforces-round-34-rated-for-div-2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="A"><a href="#A" class="headerlink" title="A."></a>A.</h3><p>数据范围那么小直接暴力枚举啊</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-    int n,i,j,k,x;
-    cin&gt;&gt;n;
-    while(n--){
-        cin&gt;&gt;x;
-        for(i=0;3*i&lt;=x;i++){
-            if((x-i*3)%7==0){
-                cout&lt;&lt;&quot;YES&quot;&lt;&lt;&apos;\n&apos;;break;
-            }
-        }
-        if(3*i&gt;x)
-            puts(&quot;NO&quot;);
-    }
-
-    return 0;
-}
-</code></pre><h3 id="B"><a href="#B" class="headerlink" title="B."></a>B.</h3><p>弱智* 2</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-    int h1,a1,c1,h2,a2,cnt=0;
-    vector&lt;int&gt;ans;
-    cin&gt;&gt;h1&gt;&gt;a1&gt;&gt;c1&gt;&gt;h2&gt;&gt;a2;
-    while(h2&gt;0){
-        cnt++;
-        if(h2-a1&lt;=0){
-            ans.push_back(1);break;
-        }
-        else{
-            if(h1-a2&lt;=0){
-                ans.push_back(0);h1=h1-a2+c1;
-            }
-            else {
-                ans.push_back(1);h1-=a2;h2-=a1;
-            }
-        }
-    }
-    cout&lt;&lt;cnt&lt;&lt;endl;
-    for(auto a:ans)
-        if(a)
-            puts(&quot;STRIKE&quot;);
-        else puts(&quot;HEAL&quot;);
-
-    return 0;
-}
-</code></pre><h3 id="C"><a href="#C" class="headerlink" title="C."></a>C.</h3><p>从大到小排序，然后维护一个大根堆，每次如果堆顶的箱子能放下当前箱子，就把当前箱子丢进去并更新箱子大小，否则这个箱子就得单独放。</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-    int n,i,j,k,box[5005];
-    priority_queue&lt;int&gt;que;
-    cin&gt;&gt;n;
-    for(i=1;i&lt;=n;i++)
-        cin&gt;&gt;box[i];
-    sort(box+1,box+1+n);
-    for(i=n;i;i--){
-        if(que.empty()||que.top()&lt;=box[i]){
-            que.push(box[i]);
-        }
-        else{
-            que.pop();que.push(box[i]);
-        }
-    }
-    cout&lt;&lt;que.size()&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>其实我的想法很简单：首先搞个map统计每个数的出现次数，再搞个后缀和。然后从前往后扫，对于每个数，先在map里对这个数–，然后看看在这个数-1~这个数+1的范围内还有多少个数（用map查询），然后处理一下后缀和就行了。然而这个万恶的题目卡long long…于是我就抄了个400行的高精度模板…</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-typedef long long ll;
-#define MAX_L 100 //最大长度，可以修改
-using namespace std;
-
-class bign {
-public:
-    int len, s[MAX_L];//数的长度，记录数组
-//构造函数
-    bign();
-
-    bign(const char *);
-
-    bign(int);
-
-    bool sign;//符号 1正数 0负数
-    string toStr() const;//转化为字符串，主要是便于输出
-    friend istream &amp;operator&gt;&gt;(istream &amp;, bign &amp;);//重载输入流
-    friend ostream &amp;operator&lt;&lt;(ostream &amp;, bign &amp;);//重载输出流
-//重载复制
-    bign operator=(const char *);
-
-    bign operator=(int);
-
-    bign operator=(ll);
-
-    bign operator=(const string);
-
-//重载各种比较
-    bool operator&gt;(const bign &amp;) const;
-
-    bool operator&gt;=(const bign &amp;) const;
-
-    bool operator&lt;(const bign &amp;) const;
-
-    bool operator&lt;=(const bign &amp;) const;
-
-    bool operator==(const bign &amp;) const;
-
-    bool operator!=(const bign &amp;) const;
-
-//重载四则运算
-    bign operator+(const bign &amp;) const;
-
-    bign operator++();
-
-    bign operator++(int);
-
-    bign operator+=(const bign &amp;);
-
-    bign operator-(const bign &amp;) const;
-
-    bign operator--();
-
-    bign operator--(int);
-
-    bign operator-=(const bign &amp;);
-
-    bign operator*(const bign &amp;) const;
-
-    bign operator*(const int num) const;
-
-    bign operator*=(const bign &amp;);
-
-    bign operator/(const bign &amp;) const;
-
-    bign operator/=(const bign &amp;);
-
-//四则运算的衍生运算
-    bign operator%(const bign &amp;) const;//取模（余数）
-    bign factorial() const;//阶乘
-    bign Sqrt() const;//整数开根（向下取整）
-    bign pow(const bign &amp;) const;//次方
-//一些乱乱的函数
-    void clean();
-
-    //~bign();
-};
-
-bign::bign()
-{
-    memset(s, 0, sizeof(s));
-    len = 1;
-    sign = 1;
-}
-
-bign::bign(const char *num)
-{
-    *this = num;
-}
-
-bign::bign(int num)
-{
-    *this = num;
-}
-
-string bign::toStr() const
-{
-    string res;
-    res = &quot;&quot;;
-    for (int i = 0; i &lt; len; i++)
-        res = (char)(s[i] + &apos;0&apos;) + res;
-    if (res == &quot;&quot;)
-        res = &quot;0&quot;;
-    if (!sign&amp;&amp;res != &quot;0&quot;)
-        res = &quot;-&quot; + res;
-    return res;
-}
-
-istream &amp;operator&gt;&gt;(istream &amp;in, bign &amp;num)
-{
-    string str;
-    in&gt;&gt;str;
-    num=str;
-    return in;
-}
-
-ostream &amp;operator&lt;&lt;(ostream &amp;out, bign &amp;num)
-{
-    out&lt;&lt;num.toStr();
-    return out;
-}
-
-bign bign::operator=(const char *num)
-{
-    memset(s, 0, sizeof(s));
-    char a[MAX_L] = &quot;&quot;;
-    if (num[0] != &apos;-&apos;)
-        strcpy(a, num);
-    else
-        for (int i = 1; i &lt; strlen(num); i++)
-            a[i - 1] = num[i];
-    sign = !(num[0] == &apos;-&apos;);
-    len = strlen(a);
-    for (int i = 0; i &lt; strlen(a); i++)
-        s[i] = a[len - i - 1] - 48;
-    return *this;
-}
-
-bign bign::operator=(int num)
-{
-    char temp[MAX_L];
-    sprintf(temp, &quot;%d&quot;, num);
-    *this = temp;
-    return *this;
-}
-
-bign bign::operator=(ll num)
-{
-    char temp[MAX_L];
-    sprintf(temp, &quot;%lld&quot;, num);
-    *this = temp;
-    return *this;
-}
-
-
-bign bign::operator=(const string num)
-{
-    const char *tmp;
-    tmp = num.c_str();
-    *this = tmp;
-    return *this;
-}
-
-bool bign::operator&lt;(const bign &amp;num) const
-{
-    if (sign^num.sign)
-        return num.sign;
-    if (len != num.len)
-        return len &lt; num.len;
-    for (int i = len - 1; i &gt;= 0; i--)
-        if (s[i] != num.s[i])
-            return sign ? (s[i] &lt; num.s[i]) : (!(s[i] &lt; num.s[i]));
-    return !sign;
-}
-
-bool bign::operator&gt;(const bign&amp;num)const
-{
-    return num &lt; *this;
-}
-
-bool bign::operator&lt;=(const bign&amp;num)const
-{
-    return !(*this&gt;num);
-}
-
-bool bign::operator&gt;=(const bign&amp;num)const
-{
-    return !(*this&lt;num);
-}
-
-bool bign::operator!=(const bign&amp;num)const
-{
-    return *this &gt; num || *this &lt; num;
-}
-
-bool bign::operator==(const bign&amp;num)const
-{
-    return !(num != *this);
-}
-
-bign bign::operator+(const bign &amp;num) const
-{
-    if (sign^num.sign)
-    {
-        bign tmp = sign ? num : *this;
-        tmp.sign = 1;
-        return sign ? *this - tmp : num - tmp;
-    }
-    bign result;
-    result.len = 0;
-    int temp = 0;
-    for (int i = 0; temp || i &lt; (max(len, num.len)); i++)
-    {
-        int t = s[i] + num.s[i] + temp;
-        result.s[result.len++] = t % 10;
-        temp = t / 10;
-    }
-    result.sign = sign;
-    return result;
-}
-
-bign bign::operator++()
-{
-    *this = *this + 1;
-    return *this;
-}
-
-bign bign::operator++(int)
-{
-    bign old = *this;
-    ++(*this);
-    return old;
-}
-
-bign bign::operator--()
-{
-    *this = *this - 1;
-    return *this;
-}
-
-bign bign::operator--(int)
-{
-    bign old = *this;
-    --(*this);
-    return old;
-}
-
-bign bign::operator+=(const bign &amp;num)
-{
-    *this = *this + num;
-    return *this;
-}
-
-bign bign::operator-=(const bign &amp;num)
-{
-    *this = *this - num;
-    return *this;
-}
-
-
-bign bign::operator-(const bign &amp;num) const
-{
-    bign b=num,a=*this;
-    if (!num.sign &amp;&amp; !sign)
-    {
-        b.sign=1;
-        a.sign=1;
-        return b-a;
-    }
-    if (!b.sign)
-    {
-        b.sign=1;
-        return a+b;
-    }
-    if (!a.sign)
-    {
-        a.sign=1;
-        b=bign(0)-(a+b);
-        return b;
-    }
-    if (a&lt;b)
-    {
-        bign c=(b-a);
-        c.sign=false;
-        return c;
-    }
-    bign result;
-    result.len = 0;
-    for (int i = 0, g = 0; i &lt; a.len; i++)
-    {
-        int x = a.s[i] - g;
-        if (i &lt; b.len) x -= b.s[i];
-        if (x &gt;= 0) g = 0;
-        else
-        {
-            g = 1;
-            x += 10;
-        }
-        result.s[result.len++] = x;
-    }
-    result.clean();
-    return result;
-}
-
-bign bign::operator * (const bign &amp;num)const
-{
-    bign result;
-    result.len = len + num.len;
-
-    for (int i = 0; i &lt; len; i++)
-        for (int j = 0; j &lt; num.len; j++)
-            result.s[i + j] += s[i] * num.s[j];
-
-    for (int i = 0; i &lt; result.len; i++)
-    {
-        result.s[i + 1] += result.s[i] / 10;
-        result.s[i] %= 10;
-    }
-    result.clean();
-    result.sign = !(sign^num.sign);
-    return result;
-}
-
-bign bign::operator*(const int num)const
-{
-    bign x = num;
-    bign z = *this;
-    return x*z;
-}
-bign bign::operator*=(const bign&amp;num)
-{
-    *this = *this * num;
-    return *this;
-}
-
-bign bign::operator /(const bign&amp;num)const
-{
-    bign ans;
-    ans.len = len - num.len + 1;
-    if (ans.len &lt; 0)
-    {
-        ans.len = 1;
-        return ans;
-    }
-
-    bign divisor = *this, divid = num;
-    divisor.sign = divid.sign = 1;
-    int k = ans.len - 1;
-    int j = len - 1;
-    while (k &gt;= 0)
-    {
-        while (divisor.s[j] == 0) j--;
-        if (k &gt; j) k = j;
-        char z[MAX_L];
-        memset(z, 0, sizeof(z));
-        for (int i = j; i &gt;= k; i--)
-            z[j - i] = divisor.s[i] + &apos;0&apos;;
-        bign dividend = z;
-        if (dividend &lt; divid) { k--; continue; }
-        int key = 0;
-        while (divid*key &lt;= dividend) key++;
-        key--;
-        ans.s[k] = key;
-        bign temp = divid*key;
-        for (int i = 0; i &lt; k; i++)
-            temp = temp * 10;
-        divisor = divisor - temp;
-        k--;
-    }
-    ans.clean();
-    ans.sign = !(sign^num.sign);
-    return ans;
-}
-
-bign bign::operator/=(const bign&amp;num)
-{
-    *this = *this / num;
-    return *this;
-}
-
-bign bign::operator%(const bign&amp; num)const
-{
-    bign a = *this, b = num;
-    a.sign = b.sign = 1;
-    bign result, temp = a / b*b;
-    result = a - temp;
-    result.sign = sign;
-    return result;
-}
-
-bign bign::pow(const bign&amp; num)const
-{
-    bign result = 1;
-    for (bign i = 0; i &lt; num; i++)
-        result = result*(*this);
-    return result;
-}
-
-bign bign::factorial()const
-{
-    bign result = 1;
-    for (bign i = 1; i &lt;= *this; i++)
-        result *= i;
-    return result;
-}
-
-void bign::clean()
-{
-    if (len == 0) len++;
-    while (len &gt; 1 &amp;&amp; s[len - 1] == &apos;\0&apos;)
-        len--;
-}
-
-bign bign::Sqrt()const
-{
-    if(*this&lt;0)return -1;
-    if(*this&lt;=1)return *this;
-    bign l=0,r=*this,mid;
-    while(r-l&gt;1)
-    {
-        mid=(l+r)/2;
-        if(mid*mid&gt;*this)
-            r=mid;
-        else
-            l=mid;
-    }
-    return l;
-}
-
-bign sum[200005];
-
-int main()
-{
-    int n,i,j,k,num[200005];
-    bign ans=0;
-    cin&gt;&gt;n;
-    map&lt;int,int&gt;mp1;
-    for(i=1;i&lt;=n;i++)
-        scanf(&quot;%d&quot;,&amp;num[i]),mp1[num[i]]++;
-    for(i=n;i;i--){
-        sum[i]=num[i];sum[i]+=sum[i+1];
-    }
-    for(i=1;i&lt;=n;i++){
-        mp1[num[i]]--;
-        int tot=n-i;
-        if(mp1[num[i]]==0)mp1.erase(num[i]);
-        bign temp;temp=num[i];
-        sum[i]-=temp;
-        if(mp1.count(num[i]-1)){
-            temp=(ll)mp1[num[i]-1]*(num[i]-1);
-            sum[i]-=temp;
-            tot-=mp1[num[i]-1];
-        }
-        if(mp1.count(num[i])){
-            temp=(ll)mp1[num[i]]*(num[i]);
-            sum[i]-=temp;
-            tot-=mp1[num[i]];
-        }
-        if(mp1.count(num[i]+1)){
-            temp=(ll)mp1[num[i]+1]*(num[i]+1);
-            sum[i]-=temp;
-            tot-=mp1[num[i]+1];
-        }
-        temp=(ll)tot*num[i];
-        ans-=temp;ans+=sum[i];
-    }
-    //ans*=-1;
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-
-    return 0;
-}
-</code></pre><p>然后我看提交记录的时候发现了一个简单得多的做法…其实也可能是因为拿long double代替了高精度所以显得比较简单。 首先从前往后扫，对于每一位数a[i]，我们拿a[i]* i减去前缀和就是没有相减为0条件下的答案，然后对于那些绝对值相差1 的数，我们先拿一个map cnt统计迄今为止各个数的出现次数，然后加上cnt[a[i]+1]-cnt[a[i]-1]即可。long double居然能搞过去…</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-map&lt;int,int&gt; cnt;
-int main()
-{
-    int n;
-    long double ans=0,sum=0,num;
-    scanf(&quot;%d&quot;,&amp;n);
-    for(int i=0;i&lt;n;i++){
-        scanf(&quot;%Lf&quot;,&amp;num);
-        ans+=num*i-sum+cnt[(int)num+1]-cnt[(int)num-1];
-        sum+=num;
-        cnt[(int)num]++;
-    }
-    printf(&quot;%.0Lf&quot;,ans+0.000000001);
-
-    return 0;
-}
-</code></pre><h3 id="E"><a href="#E" class="headerlink" title="E."></a>E.</h3><blockquote>
-<p>给定一堆字符串，问能不能构造一个字符串使得所有的字符串在交换自己的某两个字符之后都与构造出来的字符一模一样。</p>
-</blockquote>
-<p>首先，如果所有的字符串长得都一样，那随便换两个字母的位置输出即可。 否则，我们找到两个不同的字符串（第一个不妨就是输入的第一个字符串），然后把他们所有不相同的位置的下标都保存在diff数组里。如果diff的size&gt;4，那么显然，无解（每个字符串最多交换2个字符，不可能使得5个以上不同的位置变得相同）。 然后，对于每个不同的下标，我们都尝试拿第一个字符串中不同位置的字符去与之交换，看看换完的字符串能不能是答案。 如何检查一个交换完的字符串是不是答案呢？ 对于所有的字符串（当然自己跟自己除外），我们都统计不同的位置的下标并保存在dif数组中，如果有任意一个字符串的dif数组的size!=0&amp;&amp;size!=2，显然这个换完的字符串是不能成为答案的。如果size=0，那么那个字符串如果所有的字符都是不一样的，也不行（因为每个字符串都要交换两个字符，全部不同的话换完就不可能满足当前答案了）。如果size=2，那么那个字符串交换完这俩位置之后必须与当前答案一样。 扫完所有可能以后，如果还没有找到答案，输出-1即可。</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-bool check(string str)
-{
-    int cnt[30]={0};
-    for(auto a:str)
-        cnt[a-&apos;a&apos;]++;
-    for(int i=0;i&lt;26;i++)
-        if(cnt[i]&gt;=2)
-            return true;
-    return false;
-}
-int main()
-{
-    set&lt;string&gt;s;
-    int k,n,i,j,a,b,len;
-    cin&gt;&gt;n&gt;&gt;len;
-    string str[2505],str1,str2;
-    for(i=1;i&lt;=n;i++){
-        cin&gt;&gt;str[i];s.insert(str[i]);
-    }
-    if(s.size()==1){
-        swap(str[1][0],str[1][1]);
-        cout&lt;&lt;str[1]&lt;&lt;endl;return 0;
-    }
-    str1=str[1];
-    for(i=2;i&lt;=n;i++)
-        if(str[i]!=str[1]) {
-            str2 = str[i];break;
-        }
-    vector&lt;int&gt;diff;
-    for(i=0;i&lt;len;i++)
-        if(str1[i]!=str2[i])
-            diff.push_back(i);
-    if(diff.size()&gt;4){
-        puts(&quot;-1&quot;);return 0;
-    }
-    for(auto a:diff){
-        for(i=0;i&lt;len;i++){
-            if(i==a)continue;
-            bool isok=true;
-            string str3=str1;swap(str3[i],str3[a]);
-            for(j=2;j&lt;=n;j++){
-                vector&lt;int&gt;dif;
-                for(k=0;k&lt;len;k++){
-                    if(str3[k]!=str[j][k])
-                        dif.push_back(k);
-                }
-                if(dif.size()!=0&amp;&amp;dif.size()!=2){
-                    isok=false;
-                    break;
-                }
-                if(dif.empty()){
-                    if(!check(str[j])){
-                        isok=false;break;
-                    }
-                }
-                else{
-                    string str4=str[j];swap(str4[dif[0]],str4[dif[1]]);
-                    if(str4!=str3){
-                        isok=false;break;
-                    }
-                }
-            }
-            if(isok){
-                cout&lt;&lt;str3&lt;&lt;endl;return 0;
-            }
-        }
-    }
-    puts(&quot;-1&quot;);
-
-    return 0;
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3242,7 +2626,7 @@ int main()
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3253,7 +2637,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3264,7 +2648,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

@@ -297,6 +297,285 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/博弈论/nim-e6-b8-b8-e6-88-8f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/模板/博弈论/nim-e6-b8-b8-e6-88-8f/" itemprop="url">Nim 游戏</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-17T17:22:42+08:00">
+                2018-07-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/模板/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/模板/博弈论/" itemprop="url" rel="index">
+                    <span itemprop="name">博弈论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/算法/模板/博弈论/nim-e6-b8-b8-e6-88-8f/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/模板/博弈论/nim-e6-b8-b8-e6-88-8f/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <blockquote>
+<p>Nim游戏是组合游戏(Combinatorial Games)的一种，准确来说，属于“Impartial Combinatorial Games”（以下简称ICG）。满足以下条件的游戏是ICG（可能不太严谨）：1、有两名选手；2、两名选手交替对游戏进行移动(move)，每次一步，选手可以在（一般而言）有限的合法移动集合中任选一种进行移动；3、对于游戏的任何一种可能的局面，合法的移动集合只取决于这个局面本身，不取决于轮到哪名选手操作、以前的任何操作、骰子的点数或者其它什么因素； 4、如果轮到某名选手移动，且这个局面的合法的移动集合为空（也就是说此时无法进行移动），则这名选手负。根据这个定义，很多日常的游戏并非ICG。例如象棋就不满足条件3，因为红方只能移动红子，黑方只能移动黑子，合法的移动集合取决于轮到哪名选手操作。</p>
+</blockquote>
+<h3 id="经典Nim游戏"><a href="#经典Nim游戏" class="headerlink" title="经典Nim游戏"></a>经典Nim游戏</h3><p><strong>通常的Nim游戏的定义是这样的：有若干堆石子，每堆石子的数量都是有限的，合法的移动是“选择一堆石子并拿走若干颗（不能不拿）”，如果轮到某个人时所有的石子堆都已经被拿空了，则判负（因为他此刻没有任何合法的移动）。</strong> 我们定义Position: P：表示当前局面下先手必败 N：表示当前局面下先手必胜 结论：<strong>(Bouton’s Theorem)： 对于一个Nim游戏的局面(a1,a2,…,an)，它是P-position（后手必胜）当且仅当 </strong>a1^a2^…^an=0<strong>，其中^表示异或(xor)运算。</strong> 可以利用二进制来证明，详细证明过程：<a href="https://blog.csdn.net/Summer\_\_show\_/article/details/70185470" target="_blank" rel="noopener">https://blog.csdn.net/Summer\_\_show\_/article/details/70185470</a> 如果Nim游戏中的规则稍微变动一下,每次最多只能取K个,怎么处理? Ans：将每堆石子数mod (k+1).</p>
+<h3 id="Nim的各种变形"><a href="#Nim的各种变形" class="headerlink" title="Nim的各种变形"></a>Nim的各种变形</h3><h4 id="Moore’s-Nimk"><a href="#Moore’s-Nimk" class="headerlink" title="Moore’s Nimk"></a>Moore’s Nimk</h4><blockquote>
+<p>n堆石子，每次从不超过k堆中取任意多个石子，最后不能取的人失败。</p>
+</blockquote>
+<p>这是一个nim游戏的变形，也是有结论的。 <strong>结论为：把n堆石子的石子数用二进制表示，统计每个二进制位上1的个数，若每一位上1的个数mod(k+1)全部为0，则必败，否则必胜。</strong></p>
+<h4 id="anti-nim-反Nim游戏"><a href="#anti-nim-反Nim游戏" class="headerlink" title="anti-nim(反Nim游戏)"></a>anti-nim(反Nim游戏)</h4><blockquote>
+<p>正常的nim游戏是取走最后一颗的人获胜，而反nim游戏是取走最后一颗的人输。</p>
+</blockquote>
+<p><strong>一个状态为必胜态，当且仅当： 1）所有堆的石子个数为1，且NIM_sum=0 2）至少有一堆的石子个数大于1，且 NIM_sum≠0</strong> 例子：Bzoj1022 : <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1022" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=1022</a></p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+using namespace std;
+int main()
+{
+    int t,i,j,k,n;
+    cin&gt;&gt;t;
+    while(t--){
+        cin&gt;&gt;n;
+        bool onlyone=true;
+        int sum=0;
+        while(n--){
+            scanf(&quot;%d&quot;,&amp;j);
+            if(j!=1)onlyone=false;
+            sum^=j;
+        }
+        if((onlyone&amp;&amp;!sum)||(!onlyone&amp;&amp;sum)){
+            puts(&quot;John&quot;);
+        }
+        else puts(&quot;Brother&quot;);
+    }
+
+    return 0;
+}
+</code></pre><h4 id="威佐夫博弈"><a href="#威佐夫博弈" class="headerlink" title="威佐夫博弈"></a>威佐夫博弈</h4><blockquote>
+<p>两堆石子，每次可以从一堆或两堆中取任意数目的石子，从两堆中取得时候,从不同堆取的石子个数必须相同，先取完的获胜。</p>
+</blockquote>
+<p>这种情况下是颇为复杂的。我们用（ak，bk）（ak ≤ bk ,k=0，1，2，…,n)表示两堆物品的数量并称其为局势，如果甲面对（0，0），那么甲已经输了，这种局势我们 称为<strong>奇异局势</strong>。前几个奇异局势是：（0，0）、（1，2）、（3，5）、（4，7）、（6，10）、（8，13）、（9，15）、（11，18）、（12，20）。 <strong>奇异局势的3条性质： 1.任何自然数都包含在一个且仅有一个奇异局势中。 2.任意操作都可将奇异局势变为非奇异局势。 3.采用适当的方法，可以将非奇异局势变为奇异局势。</strong> 假设面对的局势是（a,b）： 1.若 b = a，则同时从两堆中取走 a 个物体，就变为了奇异局势（0，0）； 2.如果a = ak ，b &gt; bk，那么，取走b – bk个物体，即变为奇异局势； 3.如果 a = ak ， b &lt; bk ,则同时从两堆中拿走 ak – ab – ak个物体,变为奇异局 势（ ab – ak , ab – ak+ b – ak）； 4.如果a &gt; ak ，b= ak + k,则从第一堆中拿走多余的数量a – ak 即可； 5.如果a &lt; ak ，b= ak + k,分两种情况，第一种，a=aj （j &lt; k）,从第二堆里面拿走 b – bj 即可；第二种，a=bj （j &lt; k）,从第二堆里面拿走 b – aj 即可。 从如上性质可知，两个人如果都采用正确操作，那么面对非奇异局势，先拿者必胜 ；反之，（面对奇异局势）则后拿者取胜。 <strong>任给一个局势（a，b），判断它是不是奇异局势（先手负）： $a_k =[k\times \frac{（1+√5）}{2}]， b_k= a_k + k $ </strong>（k=0，1，2，…,n ，方括号表示向下取整函数)<strong> 其中k由bk-ak求得，如果两个数不符合这样的形式，则不是奇异局势</strong> <strong>注意一定要满足a&lt;=b，不满足时对调a，b</strong> 例子：<a href="http://poj.org/problem?id=1067" target="_blank" rel="noopener">http://poj.org/problem?id=1067</a></p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;cmath&gt;
+using namespace std;
+int main()
+{
+    double t=(1+sqrt(5.0))/2;//系数
+    int a,b,k;
+    while(cin&gt;&gt;a&gt;&gt;b){
+        if(a&gt;b)swap(a,b);
+        k=b-a;
+        if(a==(int)(k*t)){//计算a是否符合该形式
+            cout&lt;&lt;0&lt;&lt;endl;
+        }
+        else cout&lt;&lt;1&lt;&lt;endl;
+    }
+
+    return 0;
+}
+</code></pre><h4 id="巴什博奕"><a href="#巴什博奕" class="headerlink" title="巴什博奕"></a>巴什博奕</h4><blockquote>
+<p>只有一堆石子共n个。每次从最少取1个，最多取m个，最后取光的人取胜。</p>
+</blockquote>
+<p>如果$n=(m+1)* k+s (s!=0)$ 那么先手一定必胜，因为第一次取走s个，接下来无论对手怎么取，我们都能保证取到所有(m+1)倍数的点，那么循环下去一定能取到最后一个。(也就是说只要n不是m+1的倍数先手必胜)</p>
+<h4 id="staircase-nim"><a href="#staircase-nim" class="headerlink" title="staircase nim"></a>staircase nim</h4><blockquote>
+<p>顾名思义就是在阶梯上进行，每层有若干个石子，每次可以选择任意层的任意个石子&gt;将其移动到该层的下一层。最后不能操作的人输。</p>
+</blockquote>
+<p>（这个博弈的解释不是特别明白QAQ） 阶梯博弈经过转换可以变为Nim，把所有奇数阶梯看成N堆石子做nim。把石子从奇数堆移动到偶数堆可以理解为拿走石子，就相当于几个奇数堆的石子在做Nim。 <strong>结论：所有奇数阶梯（奇数堆）的石子的Nim sum如果不为0，先手胜，否则后手胜</strong> （以下仅供参考，没太看懂）</p>
+<blockquote>
+<p>假设我们是先手，所给的阶梯石子状态的奇数堆做Nim先手能必胜.我就按照能赢的步骤将奇数堆的石子移动到偶数堆.如果对手也是移动奇数堆，我们继续移动奇数堆.如果对手将偶数堆的石子移动到了奇数堆..那么我们紧接着将对手所移动的这么多石子从那个奇数堆移动到下面的偶数堆.两次操作后.相当于偶数堆的石子向下移动了几个。而奇数堆依然是原来的样子，即为必胜的状态。就算后手一直在移动偶数堆的石子到奇数堆，我们就一直跟着他将石子继续往下移，保持奇数堆不变。我可以跟着后手把偶数堆的石子最终移动到0，然后对手就不能移动这些石子了.所以整个过程.将偶数堆移动到奇数堆不会影响奇数堆做Nim博弈的过程..整个过程可以抽象为奇数堆的Nim博弈. 为什么是只对奇数堆做Nim就可以而不是偶数堆呢？因为如果是对偶数堆做Nim，对手移动奇数堆的石子到偶数堆，我们跟着移动这些石子到下一个奇数堆。那么最后是对手把这些石子移动到了0，我们不能继续跟着移动，就只能去破坏原有的Nim而导致胜负关系的不确定。所以只要对奇数堆做Nim判断即可知道胜负情况。</p>
+</blockquote>
+<p>例子：<a href="http://poj.org/problem?id=1704" target="_blank" rel="noopener">http://poj.org/problem?id=1704</a> （ POJ1704） （可参考挑战程序设计竞赛P312） 本题的做法与上面描述的又不完全一致。我们把棋子按位置升序排列后（没有保证一定按升序给出），从后往前把他们两两绑定成一对。如果总个数是奇数，就把最前面一个和边界（位置为0）绑定。 在同一对棋子中，如果对手移动前一个，你总能对后一个移动相同的步数，所以一对棋子的前一个和前一对棋子的后一个之间有多少个空位置对最终的结果是没有影响的。于是我们只需要考虑同一对的两个棋子之间有多少空位。 这样一来就成了N堆取石子游戏了.</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+int n,k;
+int s[1010];
+
+int main()
+{
+    int T;
+    scanf(&quot;%d&quot;,&amp;T);
+    while(T--)
+    {
+        scanf(&quot;%d&quot;,&amp;n);
+        for(int i=1; i&lt;=n; i++)
+            scanf(&quot;%d&quot;,&amp;s[i]);
+        sort(s+1, s+n+1);
+        int ans;
+        if(n%2 == 0)
+        {
+            ans = s[2]-s[1]-1;
+            for(int i=4; i&lt;=n; i+=2) ans ^= (s[i]-s[i-1]-1);
+            if(ans == 0) cout&lt;&lt;&quot;Bob will win&quot;&lt;&lt;endl;
+            else cout&lt;&lt;&quot;Georgia will win&quot;&lt;&lt;endl;
+        }
+        else
+        {
+            ans = s[1]-1;
+            for(int i=3; i&lt;=n; i+=2) ans ^= (s[i]-s[i-1]-1);
+            if(ans == 0) cout&lt;&lt;&quot;Bob will win&quot;&lt;&lt;endl;
+            else cout&lt;&lt;&quot;Georgia will win&quot;&lt;&lt;endl;
+        }
+    }
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/Codeforces/codeforces-good-bye-2017/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2596,369 +2875,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/数据结构/平衡树/splay/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/模板/数据结构/平衡树/splay/" itemprop="url">（模板）Splay 平衡树</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-12T17:13:17+08:00">
-                2018-07-12
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/" itemprop="url" rel="index">
-                    <span itemprop="name">模板</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/数据结构/平衡树/" itemprop="url" rel="index">
-                    <span itemprop="name">平衡树</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/算法/模板/数据结构/平衡树/splay/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/模板/数据结构/平衡树/splay/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <blockquote>
-<p>您需要写一种数据结构（可参考题目标题），来维护一些数，其中需要提供以下操作： 1.插入 xx 数 2.删除 xx 数(若有多个相同的数，因只删除一个) 3.查询 xx 数的排名(排名定义为比当前数小的数的个数 +1+1 。若有多个相同的数，因输4.出最小的排名) 5.查询排名为 xx 的数 6.求 xx 的前驱(前驱定义为小于 xx ，且最大的数) 7.求 xx 的后继(后继定义为大于 xx ，且最小的数)</p>
-</blockquote>
-<p>洛谷P3369 不讲解，直接上代码：</p>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;cstring&gt;
-#include&lt;cstdio&gt;
-using namespace std;
-const int MAXN=1000000;
-int ch[MAXN][2],f[MAXN],size[MAXN],cnt[MAXN],key[MAXN];
-int nodecnt,root;
-void clear(int x)//清除(当这个点被删除之后)
-{
-    ch[x][0]=ch[x][1]=f[x]=size[x]=cnt[x]=key[x]=0;
-}
-bool get(int x)//判断是父节点的左节点还是右节点
-{
-    return ch[f[x]][1]==x;
-}
-void update(int x)//更新当前点以下的元素个数(发生修改以后更新)
-{
-    if (x){
-        size[x]=cnt[x];
-        if (ch[x][0]) size[x]+=size[ch[x][0]];
-        if (ch[x][1]) size[x]+=size[ch[x][1]];
-    }
-}
-void rotate(int x)//旋转
-{
-    int old=f[x],oldf=f[old],whichx=get(x);
-    ch[old][whichx]=ch[x][whichx^1]; f[ch[old][whichx]]=old;
-    ch[x][whichx^1]=old; f[old]=x;
-    f[x]=oldf;
-    if (oldf)
-        ch[oldf][ch[oldf][1]==old]=x;
-    update(old); update(x);
-}
-void splay(int x)//splay,不停地rotate直到满足要求
-{
-    for (int fa;fa=f[x];rotate(x))
-        if (f[fa])
-            rotate((get(x)==get(fa))?fa:x);
-    root=x;
-}
-void insert(int x)//插入
-{
-    if (root==0) {
-        nodecnt++;
-        ch[nodecnt][0] = ch[nodecnt][1] = f[nodecnt] = 0;
-        root = nodecnt;
-        size[nodecnt] = cnt[nodecnt] = 1;
-        key[nodecnt] = x;
-        return;
-    }
-    int now=root,fa=0;
-    while(1){
-        if (x==key[now]){
-            cnt[now]++; update(now); update(fa); splay(now); break;
-        }
-        fa=now;
-        now=ch[now][key[now]&lt;x];
-        if (now==0){
-            nodecnt++;
-            ch[nodecnt][0]=ch[nodecnt][1]=0;
-            f[nodecnt]=fa;
-            size[nodecnt]=cnt[nodecnt]=1;
-            ch[fa][key[fa]&lt;x]=nodecnt;
-            key[nodecnt]=x;
-            update(fa);
-            splay(nodecnt);
-            break;
-        }
-    }
-}
-int find(int x)//查询x的排名(排名定义为比当前数小的数的个数 +1+1 。若有多个相同的数，应输出最小的排名)
-{
-    int now=root,ans=0;
-    while(1){
-        if (x&lt;key[now])
-            now=ch[now][0];
-        else{
-            ans+=(ch[now][0]?size[ch[now][0]]:0);
-            if (x==key[now]){
-                splay(now); return ans+1;
-            }
-            ans+=cnt[now];
-            now=ch[now][1];
-        }
-    }
-}
-int findx(int x)//寻找排名为x的数
-{
-    int now=root;
-    while(1){
-        if (ch[now][0]&amp;&amp;x&lt;=size[ch[now][0]])
-            now=ch[now][0];
-        else{
-            int temp=(ch[now][0]?size[ch[now][0]]:0)+cnt[now];
-            if (x&lt;=temp) return key[now];
-            x-=temp; now=ch[now][1];
-        }
-    }
-}
-int pre()//求 xx 的前驱(前驱定义为小于 xx ，且最大的数),注意这个数不一定在树中
-{
-    int now=ch[root][0];
-    while (ch[now][1]) now=ch[now][1];
-    return now;
-}
-//注意,查找某个数的前驱后驱时,要先把这个数插进树中,然后把这个数转到根节点(insert中已集成),
-//求x的前驱其实就是求x的左子树的最右边的一个结点，后继是求x的右子树的左边一个结点,求完后要删除这个点
-int next1()//求 xx 的后继(后继定义为大于 xx ，且最小的数)
-{
-    int now=ch[root][1];
-    while (ch[now][0]) now=ch[now][0];
-    return now;
-}
-void del(int x)//删除值为x的节点
-{
-    int whatever=find(x);//主要作用就是把x旋转到根节点...不能省略
-    if (cnt[root]&gt;1) {
-        cnt[root]--;
-        update(root);
-        return;
-    }
-    if (!ch[root][0]&amp;&amp;!ch[root][1]) {
-        clear(root);
-        root = 0;
-        return;
-    }
-    if (!ch[root][0]) {
-        int oldroot = root;
-        root = ch[root][1];
-        f[root] = 0;
-        clear(oldroot);
-        return;
-    }
-    else if (!ch[root][1]) {
-        int oldroot = root;
-        root = ch[root][0];
-        f[root] = 0;
-        clear(oldroot);
-        return;
-    }
-    int leftbig=pre(),oldroot=root;
-    splay(leftbig);
-    ch[root][1]=ch[oldroot][1];
-    f[ch[oldroot][1]]=root;
-    clear(oldroot);
-    update(root);
-}
- int main()
- {
-     int n,i,j,k;
-     cin&gt;&gt;n;
-     for(i=1;i&lt;=n;i++){
-         scanf(&quot;%d%d&quot;,&amp;j,&amp;k);
-         if(j==1){
-             insert(k);
-         }
-         else if(j==2){
-             del(k);
-         }
-         else if(j==3){
-             cout&lt;&lt;find(k)&lt;&lt;endl;
-         }
-         else if(j==4){
-             cout&lt;&lt;findx(k)&lt;&lt;endl;
-         }
-         else if(j==5){
-             insert(k);cout&lt;&lt;key[pre()]&lt;&lt;endl;del(k);
-         }
-         else if(j==6){
-             insert(k);cout&lt;&lt;key[next1()]&lt;&lt;endl;del(k);
-         }
-     }
-
-     return 0;
- }
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3009,7 +2925,7 @@ void del(int x)//删除值为x的节点
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">72</span>
+                  <span class="site-state-item-count">73</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3020,7 +2936,7 @@ void del(int x)//删除值为x的节点
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">55</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3031,7 +2947,7 @@ void del(int x)//删除值为x的节点
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
