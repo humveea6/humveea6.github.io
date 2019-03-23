@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Cpp基本语法/Cpp/左值引用/const/左值引用与const限定符/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Cpp语法/Cpp/左值引用/const/左值引用与const限定符/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -316,7 +316,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Cpp基本语法/Cpp/左值引用/const/左值引用与const限定符/" itemprop="url">左值引用与const限定符</a></h1>
+                <a class="post-title-link" href="/Cpp语法/Cpp/左值引用/const/左值引用与const限定符/" itemprop="url">左值引用与const限定符</a></h1>
         
 
         <div class="post-meta">
@@ -351,8 +351,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cpp基本语法/" itemprop="url" rel="index">
-                    <span itemprop="name">Cpp基本语法</span>
+                  <a href="/categories/Cpp语法/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp语法</span>
                   </a>
                 </span>
 
@@ -362,7 +362,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cpp基本语法/Cpp/" itemprop="url" rel="index">
+                  <a href="/categories/Cpp语法/Cpp/" itemprop="url" rel="index">
                     <span itemprop="name">Cpp</span>
                   </a>
                 </span>
@@ -373,7 +373,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cpp基本语法/Cpp/左值引用/" itemprop="url" rel="index">
+                  <a href="/categories/Cpp语法/Cpp/左值引用/" itemprop="url" rel="index">
                     <span itemprop="name">左值引用</span>
                   </a>
                 </span>
@@ -384,7 +384,7 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Cpp基本语法/Cpp/左值引用/const/" itemprop="url" rel="index">
+                  <a href="/categories/Cpp语法/Cpp/左值引用/const/" itemprop="url" rel="index">
                     <span itemprop="name">const</span>
                   </a>
                 </span>
@@ -402,8 +402,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Cpp基本语法/Cpp/左值引用/const/左值引用与const限定符/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Cpp基本语法/Cpp/左值引用/const/左值引用与const限定符/" itemprop="commentCount"></span>
+                <a href="/Cpp语法/Cpp/左值引用/const/左值引用与const限定符/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Cpp语法/Cpp/左值引用/const/左值引用与const限定符/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -444,12 +444,24 @@
 <h1 id="const"><a href="#const" class="headerlink" title="const"></a>const</h1><p>const对象一旦创造就不能再更改，所以const对象必须被初始化；<br>    默认情况下const对象被设定为仅在文件内有效，当多个文件内出现同名的const变量时相当于在不同文件中分别定义了独立变量；如果要在多个文件中使用同一个const变量，那么它的声明与定义都应该加上extern关键字（存疑）；</p>
 <h3 id="const的引用"><a href="#const的引用" class="headerlink" title="const的引用"></a>const的引用</h3><p>可以把引用绑定到const对象上，就像绑定到其他对象上一样，称之为<strong>对常量的引用</strong>。对常量的引用并不能修改它绑定的对象，同时，非常量引用也不能绑定到常量对象上；<br>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci=<span class="number">1024</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;ri=ci;<span class="comment">//正确,引用及其对应对象都是常量</span></span><br><span class="line"><span class="keyword">int</span> &amp;r2=ci;<span class="comment">//错误,试图用一个非常量引用指向一个常量对象</span></span><br></pre></td></tr></table></figure></p>
 <p>“对const的引用”简称为“常量引用”。</p>
+<p>之前提到过：</p>
 <blockquote>
 <p>引用的类型必须和要绑定的对象严格匹配（比如int类型的引用不能绑定在double上），但是有2个例外。</p>
 </blockquote>
 <p>其中一个例外就是在初始化常量引用时允许用任意表达式作为初始值，只要该表达式的结果能够转换成引用的类型即可。允许为一个常量引用绑定非常量的对象，字面值甚至一个一般表达式。<br>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">42</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r1=i;<span class="comment">//正确</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r2=<span class="number">42</span>;<span class="comment">//correct</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r3=r1*<span class="number">2</span><span class="comment">//correct</span></span><br><span class="line"><span class="keyword">int</span> &amp;r4=r1*<span class="number">2</span>;<span class="comment">//错误！非常量引用不允许这么搞！</span></span><br></pre></td></tr></table></figure></p>
 <p>甚至可以这么搞：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> a=<span class="number">1.22</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;ri=a;</span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;ri&lt;&lt;<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure></p>
 <p>这种情况下ri其实是绑定了一个由a转换而来的临时的int类型的变量。</p>
+<h4 id="注意：对const的引用可能引用一个并非const的对象"><a href="#注意：对const的引用可能引用一个并非const的对象" class="headerlink" title="注意：对const的引用可能引用一个并非const的对象"></a>注意：对const的引用可能引用一个并非const的对象</h4><p>其实就是，只有常量引用可以绑定到常量对象上，但是常量引用也可以绑定到非常量对象上，此时可以通过其他途径修改非常量对象的值。<br>例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">42</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;r1=i;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r2=i;<span class="comment">//并不能通过让r2修改i的值</span></span><br><span class="line">r1=<span class="number">0</span>;<span class="comment">//correct</span></span><br><span class="line">r2=<span class="number">0</span>;<span class="comment">//illegal!</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="指针和const"><a href="#指针和const" class="headerlink" title="指针和const"></a>指针和const</h3><p><strong>指向常量的指针（pointer to const）</strong>不能用于改变其所指向对象的值，要想存放常量对象的地址，只能使用指向常量的指针。但是，可以改变指针指向的地址。<br>例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">double</span> *ptr=&amp;pi;<span class="comment">//illegal!ptr是普通指针</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cptr=&amp;pi;<span class="comment">//correct!</span></span><br><span class="line">*cptr=<span class="number">42</span>;<span class="comment">//illegal!</span></span><br></pre></td></tr></table></figure></p>
+<p>和常量引用一样，指向常量的指针也没用规定其所指的对象必须是一个常量，所谓指向常量的指针只是要求不能通过该指针改变对象的值，而没有规定那个对象的值不能通过其他途径改变。</p>
+<p>指针本身是一个对象，因此也可以定义<strong>常量指针（const pointer）</strong>。常量指针必须初始化，并且一旦初始化完成，它的值也就是存放在指针中的那个地址就不能再改变了。把* 放在const关键字之前用以说明指针是一个常量，即不变的是指针本身的值而不是指向的那个值。<br>例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> errnumb=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> curErr=&amp;errnum;<span class="comment">//常量指针curErr将一直指向errnum</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="number">3</span>,<span class="number">1415</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *<span class="keyword">const</span> pip=&amp;pi;<span class="comment">//pip是一个指向常量对象的常量指针</span></span><br></pre></td></tr></table></figure></p>
+<p>指针本身是常量并不意味着不能通过指针去修改所指对象的值（可以通过非常量指针修改该对象的值）。</p>
+<p>指针本身是不常量以及指向的对象是不是常量是两个相互独立的问题。</p>
+<h3 id="常量表达式与constexpr"><a href="#常量表达式与constexpr" class="headerlink" title="常量表达式与constexpr"></a>常量表达式与constexpr</h3><p><strong>常量表达式</strong>是指值不会改变并且在编译过程就能得到计算结果的表达式。如果一个对象是const型但是对象的值要到运行时才能获取（比如一个非常量函数的返回值），那么它也不是常量表达式。</p>
+<p>在C++11中，允许将变量声明为<code>constexpr</code>类型然后由编译器来验证变量的值是否是一个常量表达式。声明constexpr时用到的类型称为<strong>“字面值类型”</strong>，它们可以是算术类型，引用和指针。</p>
+<p>指针与引用都可以被声明为constexpr类型，但是指针的初始值必须是nullptr或者0或者是存储于某个固定地址中的对象。</p>
+<p><strong>注意区分：</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p=<span class="literal">nullptr</span>;<span class="comment">//p是一个指向整形常量的指针</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> *q=<span class="literal">nullptr</span>;<span class="comment">//q是一个指向整数的常量指针（类似于*const)</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keyword">int</span> *p=<span class="literal">nullptr</span>;<span class="comment">//指向整形常量的常量指针</span></span><br></pre></td></tr></table></figure></p>
+<p>于其他常量指针类似，constexpr既可以指向常量又可以指向一个非常量。</p>
 
           
         
@@ -2648,7 +2660,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
