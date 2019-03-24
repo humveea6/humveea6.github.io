@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2018ICPC沈阳现场赛模拟]]></title>
+    <url>%2F%E4%B9%B1%E4%B8%83%E5%85%AB%E7%B3%9F%E7%9A%84%E6%AF%94%E8%B5%9B%2F%E7%BB%84%E9%98%9F%E8%AE%AD%E7%BB%83%2F%E5%8C%BA%E5%9F%9F%E8%B5%9B%E8%AE%AD%E7%BB%83%2F2018ICPC%E6%B2%88%E9%98%B3%E7%8E%B0%E5%9C%BA%E8%B5%9B%E6%A8%A1%E6%8B%9F%2F</url>
+    <content type="text"><![CDATA[J. How Much Memory Your Code Is Using?大意：对一堆变量声明进行扫描然后计算占用的空间。 一道签到题，注意考虑周全即可。 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;string&gt;using namespace std;int findlb(string &amp;b)&#123; for(int i=0;i&lt;b.length();i++)&#123; if(b[i]=='[')return i; &#125; return -1;&#125;int fbyte(string &amp;b)&#123; // cout &lt;&lt; b&lt;&lt;endl; if(b[0]=='b')&#123; return 1; &#125; if(b[0]=='c')&#123; return 1; &#125; if(b[0]=='i')&#123; return 4; &#125; if(b[0]=='_')&#123; return 16; &#125; if(b[0]=='f')&#123; return 4; &#125; if(b[0]=='d')&#123; return 8; &#125; if(b[0]=='l')&#123; if(b[5]=='d')&#123; return 16; &#125;else&#123; return 8; &#125; &#125; return -1;&#125;int farr(string &amp;b)&#123; if(b[b.length()-2]!=']')return 1; int x=findlb(b) + 1,res=0; for(int i=x;i&lt;b.length()-2;i++)&#123; res=res*10+b[i]-'0'; &#125; return res;&#125;int main()&#123; ios::sync_with_stdio(false); int T,n,gt,arrl; cin&gt;&gt;T; string l,a,b; for(int i=1;i&lt;=T;i++)&#123; cin&gt;&gt;n; int res=0; getline(cin,l); for(int i=1;i&lt;=n;i++)&#123; getline(cin,l); gt = fbyte(l); arrl = farr(l); res+=gt*arrl; // cout &lt;&lt; gt &lt;&lt;" "&lt;&lt;arrl&lt;&lt;endl; &#125; res = res/1024 + ((res%1024)&gt;0); cout&lt;&lt;"Case #"&lt;&lt;i&lt;&lt;": " &lt;&lt;res&lt;&lt;endl; &#125; return 0;&#125; C. Insertion Sort大意：给定一个$n$，然后问对于所有1~n这n个数的排列中，有多少个排列在把那个排列的前k项从小到大拍好之后，排列中的最长上升子序列的长度$\geq n-1$，要取模。 挺玄学的一道题…看起来要么打表找规律要么玄学推公式… 12345678910111213141516171819#include &lt;bits/stdc++.h&gt;using namespace std;int main()&#123; long long n,k,q; int t; cin&gt;&gt;t; for (int i=1;i&lt;=t;i++)&#123; cin&gt;&gt;n&gt;&gt;k&gt;&gt;q; if (k&gt;n)k=n; long long temp = k*(n-k)+(n-k)*(n-k-1)+1; for (int i=1;i&lt;=k;i++)&#123; temp *=i; temp %=q; &#125; int k = temp; printf ("Case #%d: %d\n",i,k); &#125;&#125; G. Best ACMer Solves the Hardest Problem大意：6000x6000的平面上有n个点，每个点有点权。m次操作。操作1：插入一个点。操作2：删除一个点。操作3：给出一个圆心(x,y)，半径为sqrt(k)的圆，当前圆上存在的点，点权+w。操作4：询问圆心(x,y)，半径为sqrt(k)的圆，当前圆上存在的点的点权和。强制在线。 由于题目给的都是整数点，在圆上的整数格点很少，所以对于操作3和操作4暴力枚举圆上的整数点即可。 那么先预处理出所有的$a^2 +b^2=c^2$，对应每个$c^2$，把符合条件的$(a,b)$存到vector里。 对于操作3和4，即$(x-x_0)^2+(y-y_0)^2=k$，展开$|x-x_0|$和$|y-y_0|$的绝对值，判断存不存在$(x_0,y_0)$即可。 实现中因为c可能会对应一些特别的a，b的情况，比如a=0，这样往4个方向展开的$|x-x_0|$可能会一样导致点重复，因此应当查重，代码中用set去重。 再就是每次初始化都memset会tle，因此要用时间戳。 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788899091929394#include&lt;bits/stdc++.h&gt;using namespace std;const int maxn=1e7+10;typedef pair&lt;int,int&gt;P;typedef long long ll;vector&lt;P&gt;yc[maxn];vector&lt;P&gt;clear;//时间戳ll lastans;void init(void)&#123; int i,j,k; for(i=0;i&lt;=6000;i++)&#123;//此处一定要从0开始！否则k=1这种情况就会被忽略 for(j=0;j&lt;=6000;j++)&#123; if(i*i+j*j&lt;=maxn-10) yc[i*i+j*j].push_back(P(i,j)); else break; &#125; &#125;&#125;bool judge(int x,int y)&#123; if(x&lt;0||x&gt;6000||y&lt;0||y&gt;6000)//判定边界 return false; return true;&#125;void change(int &amp;x,int &amp;y)&#123; x=(x+lastans)%6000+1; y=(y+lastans)%6000+1;&#125;bool exist[6005][6005];int W[6005][6005];int move1[4][2]=&#123;1,-1,1,1,-1,1,-1,-1&#125;;int main()&#123; int n,m,i,j,k,T,x,y,w; init(); cin&gt;&gt;T; int cnt=0; while(T--)&#123; cnt++;printf("Case #%d:\n",cnt);lastans=0; scanf("%d%d",&amp;n,&amp;m); for(i=1;i&lt;=n;i++)&#123; scanf("%d%d%d",&amp;x,&amp;y,&amp;w); exist[x][y]=true;W[x][y]=w;clear.push_back(P(x,y)); &#125; int opt; for(i=1;i&lt;=m;i++)&#123; scanf("%d%d%d",&amp;opt,&amp;x,&amp;y);change(x,y); if(opt==1)&#123; scanf("%d",&amp;w);exist[x][y]=true; W[x][y]=w;clear.push_back(P(x,y)); &#125; else if(opt==2)&#123; exist[x][y]=false;W[x][y]=0; &#125; else if(opt==3)&#123; scanf("%d%d",&amp;k,&amp;w); set&lt;P&gt;s;//set去重 for(auto a:yc[k])&#123; for(j=0;j&lt;4;j++)&#123; int xx=x+move1[j][0]*a.first; int yy=y+move1[j][1]*a.second; if(!judge(xx,yy))continue; if(exist[xx][yy])s.insert(P(xx,yy)); &#125; &#125; for(auto a:s)W[a.first][a.second]+=w; &#125; else&#123; scanf("%d",&amp;k); set&lt;P&gt;s; for(auto a:yc[k])&#123; for(j=0;j&lt;4;j++)&#123; int xx=x+move1[j][0]*a.first; int yy=y+move1[j][1]*a.second; if(!judge(xx,yy))continue; if(exist[xx][yy])s.insert(P(xx,yy)); &#125; &#125; ll ans=0; for(auto a:s)ans+=W[a.first][a.second]; printf("%lld\n",ans); lastans=ans; &#125; &#125; for(auto a:clear)&#123; exist[a.first][a.second]=false; W[a.first][a.second]=0; &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>乱七八糟的比赛</category>
+        <category>组队训练</category>
+        <category>区域赛训练</category>
+      </categories>
+      <tags>
+        <tag>乱七八糟的比赛</tag>
+        <tag>组队训练</tag>
+        <tag>区域赛训练</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[左值引用，const限定符与类型]]></title>
     <url>%2FCpp%E8%AF%AD%E6%B3%95%2FCpp%2F%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%2Fconst%2F%E7%B1%BB%E5%9E%8B-auto%2Fdecltype%2F%E5%B7%A6%E5%80%BC%E5%BC%95%E7%94%A8%EF%BC%8Cconst%E9%99%90%E5%AE%9A%E7%AC%A6%E4%B8%8E%E7%B1%BB%E5%9E%8B%2F</url>
     <content type="text"><![CDATA[引用 这里的引用指左值引用而不是C++11中的右值引用 引用为对象起了一个别名。注意：引用并不是对象，它只是为一个已经存在的对象所起的另外一个名字。 因为引用不是一个对象，所以不能定义引用的引用！ 为引用赋值，实际上是把值赋给了引用绑定的对象，获取引用的值，其实也是获取了引用绑定对象的值。 引用的类型必须和要绑定的对象严格匹配（比如int类型的引用不能绑定在double上），但是有2个例外。而且引用只能绑定在对象上而不能与字面值或者某个表达式的计算结果绑定在一起。 在定义引用时，程序把引用跟它的初始值绑定在一起（而不是拷贝），无法令引用绑定到另一个对象，所以引用定义时必须被初始化。 constconst对象一旦创造就不能再更改，所以const对象必须被初始化； 默认情况下const对象被设定为仅在文件内有效，当多个文件内出现同名的const变量时相当于在不同文件中分别定义了独立变量；如果要在多个文件中使用同一个const变量，那么它的声明与定义都应该加上extern关键字（存疑）； const的引用可以把引用绑定到const对象上，就像绑定到其他对象上一样，称之为对常量的引用。对常量的引用并不能修改它绑定的对象，同时，非常量引用也不能绑定到常量对象上；例如：123const int ci=1024;const int &amp;ri=ci;//正确,引用及其对应对象都是常量int &amp;r2=ci;//错误,试图用一个非常量引用指向一个常量对象 “对const的引用”简称为“常量引用”。 之前提到过： 引用的类型必须和要绑定的对象严格匹配（比如int类型的引用不能绑定在double上），但是有2个例外。 其中一个例外就是在初始化常量引用时允许用任意表达式作为初始值，只要该表达式的结果能够转换成引用的类型即可。允许为一个常量引用绑定非常量的对象，字面值甚至一个一般表达式。例如：12345int i=42;const int &amp;r1=i;//正确const int &amp;r2=42;//correctconst int &amp;r3=r1*2//correctint &amp;r4=r1*2;//错误！非常量引用不允许这么搞！ 甚至可以这么搞：123double a=1.22;const int &amp;ri=a;cout&lt;&lt;ri&lt;&lt;endl; 这种情况下ri其实是绑定了一个由a转换而来的临时的int类型的变量。 注意：对const的引用可能引用一个并非const的对象其实就是，只有常量引用可以绑定到常量对象上，但是常量引用也可以绑定到非常量对象上，此时可以通过其他途径修改非常量对象的值。例子：12345int i=42;int &amp;r1=i;const int &amp;r2=i;//并不能通过让r2修改i的值r1=0;//correctr2=0;//illegal! 指针和const指向常量的指针（pointer to const）不能用于改变其所指向对象的值，要想存放常量对象的地址，只能使用指向常量的指针。但是，可以改变指针指向的地址。例子：1234const double pi=3.14;double *ptr=&amp;pi;//illegal!ptr是普通指针const double *cptr=&amp;pi;//correct!*cptr=42;//illegal! 和常量引用一样，指向常量的指针也没用规定其所指的对象必须是一个常量，所谓指向常量的指针只是要求不能通过该指针改变对象的值，而没有规定那个对象的值不能通过其他途径改变（如果指向的对象是非常量当然可以更改它的值）。 指针本身是一个对象，因此也可以定义常量指针（const pointer）。常量指针必须初始化，并且一旦初始化完成，它的值也就是存放在指针中的那个地址就不能再改变了。把* 放在const关键字之前用以说明指针是一个常量，即不变的是指针本身的值而不是指向的那个值。例子：1234int errnumb=0;int *const curErr=&amp;errnum;//常量指针curErr将一直指向errnumconst double pi=3,1415;const double *const pip=&amp;pi;//pip是一个指向常量对象的常量指针 指针本身是常量并不意味着不能通过指针去修改所指对象的值（可以通过非常量指针修改该对象的值）。 指针本身是不常量以及指向的对象是不是常量是两个相互独立的问题。 常量表达式与constexpr常量表达式是指值不会改变并且在编译过程就能得到计算结果的表达式。如果一个对象是const型但是对象的值要到运行时才能获取（比如一个非常量函数的返回值），那么它也不是常量表达式。 在C++11中，允许将变量声明为constexpr类型然后由编译器来验证变量的值是否是一个常量表达式。声明constexpr时用到的类型称为“字面值类型”，它们可以是算术类型，引用和指针。 指针与引用都可以被声明为constexpr类型，但是指针的初始值必须是nullptr或者0或者是存储于某个固定地址中的对象。 注意区分：123const int *p=nullptr;//p是一个指向整形常量的指针constexpr int *q=nullptr;//q是一个指向整数的常量指针（类似于*const)constexpr const int *p=nullptr;//指向整形常量的常量指针 于其他常量指针类似，constexpr既可以指向常量又可以指向一个非常量。 类型类型别名有两种方式可以定义类型别名。 typedef例如typedef double wages; using新标准规定的一种新的方法，使用别名声明来定义类型的别名例如：12using db=double;db a=1.22; 作用是把等号左侧的名字规定成等号右侧类型的别名。类型别名和类型的名字等价，只要类型的名字能出现的地方，都可以使用类型别名。 请注意以下情况：123typedef char *pstring;const pstring cstr=nullptr;//cstr是是指向char的常量指针const char *cstr1=0; 注意两个声明是不同的！pstring实际上是指向char的指针，因此const pstring就是指向char的常量指针（类似于*const)，而后面那个则是指向const char 的指针（指向常量的指针）。 autoauto定义的变量必须有初始值（不然编译器怎么推断是什么类型233）同一条声明语句中可以有多个auto变量，但是变量的初始基本数据类型必须一样，例如：12auto i=0,*p=&amp;i;//正确，一个是整数，一个是整数指针auto sz=0,pi=3.14;//错误，类型不一致 注意，符号&amp;和*只从属于某个声明符，不影响基本数据类型，但是int和const int并不是同一种基本数据类型！！ 当auto遇到const类型时，一般会忽略顶层const而保留底层的const。顶层const：指针本身是一个常量底层const：指针所指对象是一个常量例如：12345const int ci=i,&amp;cr=ci;auto b=ci;//b是一个整数,顶层const特性忽略auto c=cr;//c是一个整数auto d=&amp;i;//d是一个整形指针auto e=&amp;ci;//e是一个指向整数常量的指针（对常量对象取地址是一种底层const） 如果希望推导出的auto类型是一个顶层const，需要明确指出：1const auto f=ci; 也可以将引用的类型设置为auto，原本的初始化规则依然适用：123auto &amp;g=ci;auto &amp;h=42;//错误，非常量引用不能绑定字面值const auto &amp;j=42;//correct decltypedecltype的作用是选择并返回操作数的数据类型。编译器分析表达式并得到它的类型，但是并不计算表达式的具体值。例子：12345678910int f(void)&#123; return 1;&#125;decltype(f())sum=2;//sum的类型就是函数f的返回类型const int ci=0,&amp;cj=ci;decltype(ci)x=0;//x的类型是const intdecltype(cj)y=x;//y的类型是const int&amp;，y绑定到xdecltype(cj)z;//错误！z是一个引用，必须被初始化 上述例子中也可以看到decltype处理顶层const和引用的方式与auto不同，如果decltype使用的表达式是一个变量，那么decltype返回该变量的类型（包括顶层const和引用在内） 注意：decltype((variable))（两个括号或者以上）的结果永远是返回一个引用，而decltype(variable)结果只有在变量本身是引用时才会返回一个引用。 一些其他例子：123int i=42,*p=&amp;i,&amp;r=i;decltype(r+0)b;//correct,加法结果是int，b是一个未初始化的intdecltype(*p)c;//illegal! c是&amp;int，必须初始化！]]></content>
@@ -561,8 +576,8 @@
       </categories>
       <tags>
         <tag>算法</tag>
-        <tag>模板</tag>
         <tag>计算几何</tag>
+        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
@@ -576,8 +591,8 @@
       </categories>
       <tags>
         <tag>算法</tag>
-        <tag>模板</tag>
         <tag>计算几何</tag>
+        <tag>模板</tag>
       </tags>
   </entry>
   <entry>
@@ -735,8 +750,8 @@
         <category>模板</category>
       </categories>
       <tags>
-        <tag>模板</tag>
         <tag>计算几何</tag>
+        <tag>模板</tag>
       </tags>
   </entry>
   <entry>

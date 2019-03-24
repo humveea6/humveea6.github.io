@@ -297,6 +297,390 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/比赛杂集/暑假训练/2018-summer-training-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/比赛杂集/暑假训练/2018-summer-training-3/" itemprop="url">2018  Summer Training #3</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-05T22:38:55+08:00">
+                2018-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/比赛杂集/" itemprop="url" rel="index">
+                    <span itemprop="name">比赛杂集</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/比赛杂集/暑假训练/" itemprop="url" rel="index">
+                    <span itemprop="name">暑假训练</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/算法/比赛杂集/暑假训练/2018-summer-training-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/比赛杂集/暑假训练/2018-summer-training-3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="A-HackerRank-array-partition"><a href="#A-HackerRank-array-partition" class="headerlink" title="A.HackerRank array-partition"></a>A.HackerRank array-partition</h4><p>首先注意到一点，如果有两个数a，b，$gcd(a,b)\geq 1$,那么a，b显然是要放在一组的。考虑到数组中的数字过多，因此我们并不能进行两两的枚举，但是数据的范围都非常有限。因此我们可以考虑枚举所有的质数，然后枚举质数的倍数，如果同一个质数存在一些倍数是数组中的数的话，就把这些数都合并起来（显然用并查集效率最高）。然后最后求出连通块的数量k。注意，因为数字1的特殊性，所以每个1都可以算一个单独的连通块，这个要额外统计。那么方案数就是$2^k-2$</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int mod=1e9+7;
+bool notprime[1000005];
+vector&lt;int&gt;prime;
+void checkprime(int n)
+{
+    for(int i=2;i&lt;=n;i++){
+        if(notprime[i])continue;
+        prime.push_back(i);
+        for(int j=i;j&lt;=n/i;j++)
+            notprime[j*i]=true;
+    }
+}
+ll mod_pow(ll x, ll n, ll mod)
+{
+    ll res = 1;
+    while (n) {
+        if (n &amp; 1)
+            res = res*x%mod;
+        x = x*x%mod;
+        n &gt;&gt;= 1;
+    }
+    return res;
+}
+bool s[1000005];
+int par[1000005];
+int find(int x)
+{
+    return x==par[x]?x:par[x]=find(par[x]);
+}
+void unite(int x,int y)
+{
+    x=find(x),y=find(y);
+    if(x==y)
+        return;
+    par[x]=y;
+}
+int main()
+{
+    int t,i,j,k;
+    checkprime(1000000);
+    cin&gt;&gt;t;
+    int num[100005];
+    while(t--){
+        int n;cin&gt;&gt;n;
+        int num1=0;
+        int maxn=0;
+        memset(s,0,sizeof(s));
+        for(i=1;i&lt;=n;i++){
+            scanf(&quot;%d&quot;,&amp;num[i]);s[num[i]]=true;
+            if(num[i]==1)num1++;maxn=max(maxn,num[i]);
+        }
+        for(i=1;i&lt;=maxn;i++)par[i]=i;
+        for(auto a:prime){
+            int t=0;
+            for(i=1;i*a&lt;=maxn;i++){
+                if(s[i*a]){
+                    if(!t)t=i*a;
+                    else unite(t,i*a);
+                }
+            }
+        }
+        int cnt=1;find(num[1]);set&lt;int&gt;s;
+        for(i=1;i&lt;=n;i++)
+            s.insert(find(num[i]));
+        cnt=s.size();
+        if(num1&gt;1)cnt+=num1-1;
+        ll ans=mod_pow(2,cnt,mod);
+        ans=(ans-2+mod)%mod;
+        cout&lt;&lt;ans&lt;&lt;endl;
+    }
+
+    return 0;
+}
+</code></pre><h4 id="B-CodeChef-F2NDMAX"><a href="#B-CodeChef-F2NDMAX" class="headerlink" title="B.CodeChef - F2NDMAX"></a>B.CodeChef - F2NDMAX</h4><p>这道题其实是一幅图…设想一下，对于两个数a，b，如果$a&gt;b$,那么从a连边指向b，那么当满足题意的询问完成后，我们一定能得到一幅图，其中只有一个点入度为0，即最大的那个点，那么第二大的点应当就是它的一个直接的儿子。 于是我们可以先统计所有入度为0的点，对于这cnt个点，我们至少要询问cnt-1次才能明确其中最大的数，然后为了使总次数最少，我们把这些入度为0的点的儿子中当前入度为1的数量丢进一个小根堆，然后每次询问都应当找出堆顶最大的两个数a，b，那么至少要询问max(a,b)+1次才能找出合并这两组之后第二大的数。（似乎有点混乱？）</p>
+<pre><code>#include &lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn=3e5+5;
+int indegree[maxn], outdegree[maxn];
+int main()
+{
+    int t;
+    cin &gt;&gt; t;
+    int n,m,i,j,k;
+    while(t--){
+        cin &gt;&gt; n &gt;&gt; m;
+        memset(indegree, 0, sizeof(indegree));memset(outdegree, 0, sizeof(outdegree));
+        vector&lt;int&gt; adj[maxn];
+        while(m--) {
+            int u, v;
+            scanf(&quot;%d%d&quot;,&amp;u,&amp;v);
+            adj[u].push_back(v);
+            indegree[v]++;
+        }
+        for(i=1; i&lt;=n; i++)
+            for(auto j : adj[i])
+                outdegree[i]+=(indegree[j]==1);
+        int cnt=0;
+        priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt;&gt; que;
+        for(i=1; i&lt;=n; i++) {
+            cnt+=indegree[i]==0?1:0;
+            if(!indegree[i])
+                que.push(outdegree[i]);
+        }
+        cnt--;
+        while(que.size()&gt;1) {
+            int a=que.top();que.pop();
+            int b=que.top();que.pop();
+            que.push(max(a, b)+1);
+        }
+        cout &lt;&lt; cnt+que.top()-1 &lt;&lt; endl;
+    }
+
+    return 0;
+}
+</code></pre><h4 id="J-CodeChef-RIN"><a href="#J-CodeChef-RIN" class="headerlink" title="J.CodeChef - RIN"></a>J.CodeChef - RIN</h4><p>首先，我们把分数进行转化，得到的分数变成100-得到的分数，也就是亏损的分数。如果分数是-1那么亏损无限大。那么我们的问题其实就变成了如何选择使得亏损尽可能的小。我们把每个课的每个学期都建成点，从源点向所有课的第一学期连权值为该亏损的课，从第一学期向第二学期连第二学期亏损的课…依次类推，最后一学期向汇点连容量无穷的边。那么，如果不考虑前置课程的要求，我们现在的问题其实就是在求图的最小割。 考虑到前置课程，假设a是b的前置课程，那么对于a的每个学期，我们都向b的下一学期连一条无限的边确保b的割不会发生在a之前。注意的是b的第一学期的肯定不能选的，因此从源点向该学期连权值INF的边。 答案就是$(n* 100-maxflow)/n$</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int maxn=1e4+50;
+struct edge{
+    int to,cap,rev;
+};
+vector&lt;edge&gt;G[maxn];
+int level[maxn],iter[maxn];
+void addedge(int from,int to,int cap)
+{
+    G[from].push_back(edge{to,cap,(int)G[to].size()});
+    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
+}
+void bfs(int s)
+{
+    memset(level,-1,sizeof(level));
+    queue&lt;int&gt;que;
+    level[s]=0;que.push(s);
+    while(!que.empty()){
+        int t=que.front();que.pop();
+        for(int i=0;i&lt;G[t].size();i++){
+            edge e=G[t][i];
+            if(e.cap&gt;0&amp;&amp;level[e.to]&lt;0){
+                level[e.to]=level[t]+1;
+                que.push(e.to);
+            }
+        }
+    }
+}
+int dfs(int v,int t,int f)
+{
+    if(v==t)return f;
+    for(int&amp;i=iter[v];i&lt;G[v].size();i++){//注意传引用!
+        edge&amp;e=G[v][i];
+        if(e.cap&gt;0&amp;&amp;level[v]&lt;level[e.to]){
+            int d=dfs(e.to,t,min(f,e.cap));
+            if(d&gt;0){
+                e.cap-=d;
+                G[e.to][e.rev].cap+=d;
+                return d;
+            }
+        }
+    }
+    return 0;//不要漏了这个,很多时候可能是无法增广的
+}
+int maxflow(int s,int t){
+    int flow=0;//小心爆int
+    for(;;){
+        bfs(s);
+        if(level[t]&lt;0)return flow;
+        memset(iter,0,sizeof(iter));
+        int f;
+        while(f=dfs(s,t,0x7f7f7f7f))//注意如果爆int这里初始最大值要更改最大值
+            flow+=f;
+    }
+}
+int main()
+{
+    int n,m,k,i,j;
+    int x[105][105];
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;
+    for(i=1;i&lt;=n;i++)
+        for(j=1;j&lt;=m;j++){
+        int mar;
+        scanf(&quot;%d&quot;,&amp;mar);
+        if(mar==-1)x[i][j]=1&lt;&lt;30;
+        else x[i][j]=100-mar;
+    }
+    for(i=1;i&lt;=n;i++){
+        addedge(0,(i-1)*m+1,x[i][1]);
+        for(j=2;j&lt;=m;j++){
+            addedge((i-1)*m+j-1,(i-1)*m+j,x[i][j]);
+        }
+        addedge((i-1)*m+m,10005,1&lt;&lt;30);
+    }
+    while(k--){
+        int a,b;scanf(&quot;%d%d&quot;,&amp;a,&amp;b);
+        for(i=1;i&lt;m;i++)
+            addedge((a-1)*m+i,(b-1)*m+i+1,1&lt;&lt;30);
+        addedge(0,(b-1)*m+1,1&lt;&lt;30);
+        //addedge((a-1)*m+m,10005,1&lt;&lt;30);
+    }
+    double ans=n*100-maxflow(0,10005);
+    printf(&quot;%.2f\n&quot;,ans/n);
+
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/比赛杂集/Codeforces/educational-codeforces-round-48-rated-for-div-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2901,419 +3285,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/比赛杂集/暑假训练/2018-summer-training-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/比赛杂集/暑假训练/2018-summer-training-2/" itemprop="url">2018  Summer Training #2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-30T09:43:06+08:00">
-                2018-07-30
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/比赛杂集/" itemprop="url" rel="index">
-                    <span itemprop="name">比赛杂集</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/比赛杂集/暑假训练/" itemprop="url" rel="index">
-                    <span itemprop="name">暑假训练</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/算法/比赛杂集/暑假训练/2018-summer-training-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/比赛杂集/暑假训练/2018-summer-training-2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="A"><a href="#A" class="headerlink" title="A."></a>A.</h3><blockquote>
-<p>有两个数组A，B，每次可以选择一个A，B中出现过的数字x并将它替换为另一个随意的数y，一次操作会把A，B中的所有的x都换成y，并且，最后应当使得A，B完全相等，即对应位上的数一样。同时，问在操作数最少时有多少种操作的方法。</p>
-</blockquote>
-<p>首先，应该想到的一点是因为一个数可能重复出现很多次，而他在不同位置出现时与他同一位置的不同数组的数很可能是不一样的，这就意味着所有的这些数最后是要变成一个相同的数的。那么为了确定有多少组这样最后要变成一样的数，可以搜素或者并查集搞一波。注意的是每一组里面如果有n个数，那么他只需要做n-1次变换。 对于第二问，首先我们假设这一组中有n个数（相同的数搜索的时候会被合并，所以计算的时候肯定不会有重复），那么最后变成的数就有n种选择，这个数确定了以后，对于其余n-1个数而言，他们先后变换一次（不一定一次就变为选定的这个数），那么可能有$(n-1)!$种。同时，每个数变换的时候一定是变为这一组中剩下数中的一个（每当一个数发生了变换，他就永久从数组中消失了，因为我们要求总操作次数最少），所以对于第一个变的数而言，它的选择是$n-1$，第二个数是$n-2$…，因此，每一组大小为n的数的可能是$n\times (n-1)!\times (n-1)!$种。而对于全体数而言，我们的先后顺序是无所谓的，所以可能数应该是$m!$,但是因为对于每一组数，其内部的顺序已经计算过了一次，根据除法原理，每一组大小为n的数都会带来$(n-1)!$的重复，所以应当除去。所以最后总的可能数就是$\prod {n!}\ \times m!$</p>
-<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><pre><code>#include &lt;bits/stdc++.h&gt;
-using namespace std;
-typedef long long ll;
-const int maxn=1e5+5;
-const int mod=1e9+7;
-vector&lt;int&gt; G[maxn];
-bool vis[maxn];
-ll fac[maxn];
-int cnt;
-void dfs(int u)
-{
-    vis[u]=true;cnt++;
-    for(auto a:G[u])
-        if(!vis[a])
-            dfs(a);
-}
-int main()
-{
-    fac[0] = 1;int t;
-    cin &gt;&gt; t;
-    while (t--) {
-        for (int i = 0; i &lt; maxn; i++) {
-            G[i].clear();
-        }
-        memset(vis,0,sizeof(vis));
-        for (int i = 1; i &lt; maxn; i++)
-            fac[i] = (fac[i - 1] * i) % mod;
-        int n, k;
-        cin &gt;&gt; n &gt;&gt; k;
-        int ans = 0;
-        ll a[maxn], b[maxn];
-        for (int i = 0; i &lt; n; i++)
-            scanf(&quot;%lld&quot;,&amp;a[i]);
-        for (int i = 0; i &lt; n; i++) {
-            scanf(&quot;%lld&quot;,&amp;b[i]);
-            if (b[i] != a[i]) {
-                G[a[i]].push_back(b[i]);G[b[i]].push_back(a[i]);
-            }
-        }
-        ll ans1 = 1;
-        for (int i = 0; i &lt; n; i++) {
-            if (vis[a[i]])continue;
-            cnt = 0;dfs(a[i]);
-            ans += (cnt - 1);
-            ans1 = ans1 * fac[cnt] % mod;
-        }
-        ans1 = ans1 * fac[ans] % mod;
-        cout &lt;&lt; ans &lt;&lt; &quot; &quot;;
-        if (k == 2)cout &lt;&lt; ans1;
-        cout &lt;&lt; endl;
-    }
-
-    return 0;
-}
-</code></pre><h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>画画图大胆猜结论啊，其实我们会发现如果一个图形能被分割为有限个平行四边形的话，那么它一定可以被分割为随意数量的更多的平行四边形（在分割好的平行四边形里面不断做平行线不就好了）。因此就是要判断一个图形能不能分成若干个平行四边形。 猜结论：每条边至少有另外一条边与其平行且长度相等。 计算斜率的时候为了避免分母为0要注意一下。</p>
-<h4 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h4><pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-typedef long long ll;
-typedef pair&lt;ll,ll&gt;P;
-const double eps=1e-6;
-int main()
-{
-    int n,i,j,k;
-    cin&gt;&gt;n;
-    vector&lt;P&gt;v;
-    for(i=1;i&lt;=n;i++){
-        int a,b;
-        scanf(&quot;%d%d&quot;,&amp;a,&amp;b);v.push_back(P(a,b));//边
-    }
-    vector&lt;P&gt;xl;vector&lt;double&gt;len;
-    for(i=0;i&lt;v.size();i++){
-        xl.push_back(P(v[(i+1)%n].first-v[i].first, v[(i+1)%n].second-v[i].second));//斜率(防止分母0没有直接除)
-        len.push_back(sqrt((v[(i+1)%n].first-v[i].first) *  (v[(i+1)%n].first-v[i].first) +
-        (v[(i+1)%n].second-v[i].second)*(v[(i+1)%n].second-v[i].second)));//边长度
-    }
-    for(i=0;i&lt;xl.size();i++){
-        bool isok=false;
-        for(j=0;j&lt;xl.size();j++){//暴力枚举
-            if(i==j)continue;
-            if(xl[i].first*xl[j].second==xl[i].second*xl[j].first&amp;&amp;fabs(len[i]-len[j])&lt;eps){
-                isok=true;break;
-            }
-        }
-        if(!isok){
-            puts(&quot;no&quot;);return 0;
-        }
-    }
-    puts(&quot;yes&quot;);
-
-    return 0;
-}
-</code></pre><h3 id="H"><a href="#H" class="headerlink" title="H."></a>H.</h3><p>首先明确一点，即题目中给的函数$f(l,r)$他的值是唯一确定的（$（l，r）$代表其左右边界位置），但是我们要求的是在$(l,r)$范围内的所有$f(l_1,r_1)$的最大值，这就不确定了。因此想法很简单：先算出所有的$f$，然后区间dp求答案。 当然，首先要简单写写，推出公式： $f(l,r)=f(l,r-1)\ \oplus\ f(l+1,r)=f(l,r-2)\ \oplus\ f(l+2,r)$（拿哪个公式来推都没问题）</p>
-<h4 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h4><pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int num[5005][5005],f[5005][5005];
-int main()
-{
-    int n,i,j,k,len;
-    cin&gt;&gt;n;
-    for(i=1;i&lt;=n;i++){
-        cin&gt;&gt;num[i][i];f[i][i]=num[i][i];
-        num[i-1][i]=num[i-1][i-1]^num[i][i];
-    }
-    for(len=2;len&lt;n;len++)
-        for(i=1;i+len&lt;=n;i++){
-        num[i][i+len]=num[i][i+len-2]^num[i+2][i+len];
-    }
-    for(len=1;len&lt;n;len++){
-        for(i=1;i+len&lt;=n;i++){
-            f[i][i+len]=max(num[i][i+len],max(f[i+1][i+len],f[i][i+len-1]));//注意这里的比较
-        }
-    }
-    int q,l,r;
-    cin&gt;&gt;q;
-    while(q--){
-        scanf(&quot;%d%d&quot;,&amp;l,&amp;r);
-        printf(&quot;%d\n&quot;,f[l][r]);
-    }
-
-    return 0;
-}
-</code></pre><h3 id="I"><a href="#I" class="headerlink" title="I."></a>I.</h3><blockquote>
-<p>给定两个等长数组A，B，要求对于每个$a_i$,在B中找一个数与其异或，并且B中每个数只能用一次，求异或后字典序最小的A数组</p>
-</blockquote>
-<p>显然就是对A从前往后找它异或后最小的b就行了呀，为了找出最小的b，建立一棵二进制trie树即可。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;vector&gt;
-#include&lt;cstring&gt;
-#include&lt;algorithm&gt;
-#include&lt;string&gt;
-using namespace std;
-const int maxn=3e6+5;
-struct node{
-    int sum;
-    node*next1[2];
-    bool tag,ask;
-    node(){//新建函数
-        sum=0;tag=false;ask=false;next1[0]=next1[1]=NULL;
-    }
-}*root=new node();
-void add(int x)
-{
-    int i,j;
-    struct node*p=root;
-    for(i=30;~i;i--) {
-        if((1&lt;&lt;i)&amp;x){
-            if(!p-&gt;next1[1]) {
-                node*t=new node();
-                p-&gt;next1[1] = t;
-            }
-            p=p-&gt;next1[1];
-        }
-        else {
-            if(!p-&gt;next1[0]) {
-                node*t=new node();
-                p-&gt;next1[0] = t;
-            }
-            p=p-&gt;next1[0];
-        }
-        p-&gt;sum++;
-    }
-}
-int query(int x)
-{
-    int i,j;node*p=root,*pre;
-    int res=0;
-    for(i=30;~i;i--){
-        pre=p;
-        if((1&lt;&lt;i)&amp;x){
-            if(p-&gt;next1[1]&amp;&amp;p-&gt;next1[1]-&gt;sum)
-                p=p-&gt;next1[1],res=res&lt;&lt;1|1;
-            else p=p-&gt;next1[0],res&lt;&lt;=1;
-        }
-        else{
-            if(p-&gt;next1[0]&amp;&amp;p-&gt;next1[0]-&gt;sum)
-                p=p-&gt;next1[0],res&lt;&lt;=1;
-            else p=p-&gt;next1[1],res=res&lt;&lt;1|1;
-        }
-        p-&gt;sum--;
-    }
-    return res;
-}
-int main()
-{
-    int n,i,j,k;
-    cin&gt;&gt;n;int a[maxn];
-    for(i=1;i&lt;=n;i++){
-        scanf(&quot;%d&quot;,&amp;a[i]);
-    }
-    for(i=1;i&lt;=n;i++){
-        scanf(&quot;%d&quot;,&amp;j);add(j);
-    }
-    for(i=1;i&lt;=n;i++){
-        int ans=query(a[i]);ans^=a[i];
-        cout&lt;&lt;ans&lt;&lt;&apos; &apos;;
-    }
-
-    return 0;
-}
-</code></pre><h3 id="J"><a href="#J" class="headerlink" title="J."></a>J.</h3><blockquote>
-<p>给定n个形如$y=(x-a_i)^2+b_i$的抛物线，求它们划分平面的区域数。</p>
-</blockquote>
-<p>注意到给定的抛物线都是同一种形式的，当$a_i\neq a_j$时，这两个抛物线就有一个交点，否则没有。因此可以类比直线划分平面来做：对于每一条新的抛物线，我们计算它与之前抛物线的交点数，它划分出来的新区域数就是<strong>（交点数+1）</strong>。注意查重，即交点重复问题。</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-
-pair&lt;int,int&gt; p[1010];
-pair&lt;double,double&gt; s[1010];
-
-int main()
-{
-    int n;
-    scanf(&quot;%d&quot;, &amp;n);
-    for (int i = 1; i &lt;= n; i++)
-        scanf(&quot;%d%d&quot;, &amp;p[i].first, &amp;p[i].second);
-    sort(p + 1, p + n + 1);
-    n = unique(p + 1, p + n + 1) - p - 1;
-    int ans = 1;
-    for (int i = 1; i &lt;= n; i++) {
-        int tot = 0;
-        for (int j = 1; j &lt; i; j++)
-            if (p[i].first != p[j].first) {
-                double x = (double) (p[i].first * p[i].first + p[i].second -
-                                     p[j].first * p[j].first - p[j].second) / (2 * (p[i].first - p[j].first));
-                double y = (double) (x - p[i].first) * (x - p[i].first) + p[i].second;
-                s[++tot] = make_pair(x, y);
-            }
-        sort(s + 1, s + tot + 1);
-        tot = unique(s + 1, s + tot + 1) - s - 1;
-        ans += tot + 1;
-    }
-    printf(&quot;%d\n&quot;, ans);
-
-    return 0;
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3364,7 +3335,7 @@ int main()
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3375,7 +3346,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">61</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3386,7 +3357,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">38</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
