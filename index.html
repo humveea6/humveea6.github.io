@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Cpp语法/Cpp/左值引用/const/左值引用与const限定符/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Cpp语法/Cpp/左值引用/const/类型-auto/decltype/左值引用，const限定符与类型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -316,7 +316,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/Cpp语法/Cpp/左值引用/const/左值引用与const限定符/" itemprop="url">左值引用与const限定符</a></h1>
+                <a class="post-title-link" href="/Cpp语法/Cpp/左值引用/const/类型-auto/decltype/左值引用，const限定符与类型/" itemprop="url">左值引用，const限定符与类型</a></h1>
         
 
         <div class="post-meta">
@@ -391,6 +391,28 @@
 
                 
                 
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cpp语法/Cpp/左值引用/const/类型-auto/" itemprop="url" rel="index">
+                    <span itemprop="name">类型/auto</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cpp语法/Cpp/左值引用/const/类型-auto/decltype/" itemprop="url" rel="index">
+                    <span itemprop="name">decltype</span>
+                  </a>
+                </span>
+
+                
+                
               
             </span>
           
@@ -402,8 +424,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/Cpp语法/Cpp/左值引用/const/左值引用与const限定符/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Cpp语法/Cpp/左值引用/const/左值引用与const限定符/" itemprop="commentCount"></span>
+                <a href="/Cpp语法/Cpp/左值引用/const/类型-auto/decltype/左值引用，const限定符与类型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Cpp语法/Cpp/左值引用/const/类型-auto/decltype/左值引用，const限定符与类型/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -453,7 +475,7 @@
 <p>这种情况下ri其实是绑定了一个由a转换而来的临时的int类型的变量。</p>
 <h4 id="注意：对const的引用可能引用一个并非const的对象"><a href="#注意：对const的引用可能引用一个并非const的对象" class="headerlink" title="注意：对const的引用可能引用一个并非const的对象"></a>注意：对const的引用可能引用一个并非const的对象</h4><p>其实就是，只有常量引用可以绑定到常量对象上，但是常量引用也可以绑定到非常量对象上，此时可以通过其他途径修改非常量对象的值。<br>例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">42</span>;</span><br><span class="line"><span class="keyword">int</span> &amp;r1=i;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;r2=i;<span class="comment">//并不能通过让r2修改i的值</span></span><br><span class="line">r1=<span class="number">0</span>;<span class="comment">//correct</span></span><br><span class="line">r2=<span class="number">0</span>;<span class="comment">//illegal!</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="指针和const"><a href="#指针和const" class="headerlink" title="指针和const"></a>指针和const</h3><p><strong>指向常量的指针（pointer to const）</strong>不能用于改变其所指向对象的值，要想存放常量对象的地址，只能使用指向常量的指针。但是，可以改变指针指向的地址。<br>例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="number">3.14</span>;</span><br><span class="line"><span class="keyword">double</span> *ptr=&amp;pi;<span class="comment">//illegal!ptr是普通指针</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *cptr=&amp;pi;<span class="comment">//correct!</span></span><br><span class="line">*cptr=<span class="number">42</span>;<span class="comment">//illegal!</span></span><br></pre></td></tr></table></figure></p>
-<p>和常量引用一样，指向常量的指针也没用规定其所指的对象必须是一个常量，所谓指向常量的指针只是要求不能通过该指针改变对象的值，而没有规定那个对象的值不能通过其他途径改变。</p>
+<p>和常量引用一样，指向常量的指针也没用规定其所指的对象必须是一个常量，所谓指向常量的指针只是要求不能通过该指针改变对象的值，而没有规定那个对象的值不能通过其他途径改变（如果指向的对象是非常量当然可以更改它的值）。</p>
 <p>指针本身是一个对象，因此也可以定义<strong>常量指针（const pointer）</strong>。常量指针必须初始化，并且一旦初始化完成，它的值也就是存放在指针中的那个地址就不能再改变了。把* 放在const关键字之前用以说明指针是一个常量，即不变的是指针本身的值而不是指向的那个值。<br>例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> errnumb=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> curErr=&amp;errnum;<span class="comment">//常量指针curErr将一直指向errnum</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> pi=<span class="number">3</span>,<span class="number">1415</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">double</span> *<span class="keyword">const</span> pip=&amp;pi;<span class="comment">//pip是一个指向常量对象的常量指针</span></span><br></pre></td></tr></table></figure></p>
 <p>指针本身是常量并不意味着不能通过指针去修改所指对象的值（可以通过非常量指针修改该对象的值）。</p>
 <p>指针本身是不常量以及指向的对象是不是常量是两个相互独立的问题。</p>
@@ -462,6 +484,21 @@
 <p>指针与引用都可以被声明为constexpr类型，但是指针的初始值必须是nullptr或者0或者是存储于某个固定地址中的对象。</p>
 <p><strong>注意区分：</strong><br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p=<span class="literal">nullptr</span>;<span class="comment">//p是一个指向整形常量的指针</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">int</span> *q=<span class="literal">nullptr</span>;<span class="comment">//q是一个指向整数的常量指针（类似于*const)</span></span><br><span class="line"><span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keyword">int</span> *p=<span class="literal">nullptr</span>;<span class="comment">//指向整形常量的常量指针</span></span><br></pre></td></tr></table></figure></p>
 <p>于其他常量指针类似，constexpr既可以指向常量又可以指向一个非常量。</p>
+<h1 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h1><h3 id="类型别名"><a href="#类型别名" class="headerlink" title="类型别名"></a>类型别名</h3><p>有两种方式可以定义类型别名。</p>
+<h4 id="typedef"><a href="#typedef" class="headerlink" title="typedef"></a>typedef</h4><p>例如<code>typedef double wages;</code></p>
+<h4 id="using"><a href="#using" class="headerlink" title="using"></a>using</h4><p>新标准规定的一种新的方法，使用<strong>别名声明</strong>来定义类型的别名<br>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> db=<span class="keyword">double</span>;</span><br><span class="line">db a=<span class="number">1.22</span>;</span><br></pre></td></tr></table></figure></p>
+<p>作用是把等号左侧的名字规定成等号右侧类型的别名。<br>类型别名和类型的名字等价，只要类型的名字能出现的地方，都可以使用类型别名。</p>
+<p>请注意以下情况：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> *pstring;</span><br><span class="line"><span class="keyword">const</span> pstring cstr=<span class="literal">nullptr</span>;<span class="comment">//cstr是是指向char的常量指针</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> *cstr1=<span class="number">0</span>;</span><br></pre></td></tr></table></figure></p>
+<p>注意两个声明是不同的！pstring实际上是指向char的指针，因此const pstring就是指向char的常量指针（类似于<code>*const</code>)，而后面那个则是指向const char 的指针（指向常量的指针）。</p>
+<h3 id="auto"><a href="#auto" class="headerlink" title="auto"></a>auto</h3><p>auto定义的变量必须有初始值（不然编译器怎么推断是什么类型233）<br>同一条声明语句中可以有多个auto变量，但是变量的初始基本数据类型必须一样，例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> i=<span class="number">0</span>,*p=&amp;i;<span class="comment">//正确，一个是整数，一个是整数指针</span></span><br><span class="line"><span class="keyword">auto</span> sz=<span class="number">0</span>,pi=<span class="number">3.14</span>;<span class="comment">//错误，类型不一致</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>注意，符号&amp;和*只从属于某个声明符，不影响基本数据类型，但是int和const int并不是同一种基本数据类型！！</strong></p>
+<p><strong>当auto遇到const类型时，一般会忽略顶层const而保留底层的const。</strong><br><strong>顶层const</strong>：指针本身是一个常量<br><strong>底层const</strong>：指针所指对象是一个常量<br>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci=i,&amp;cr=ci;</span><br><span class="line"><span class="keyword">auto</span> b=ci;<span class="comment">//b是一个整数,顶层const特性忽略</span></span><br><span class="line"><span class="keyword">auto</span> c=cr;<span class="comment">//c是一个整数</span></span><br><span class="line"><span class="keyword">auto</span> d=&amp;i;<span class="comment">//d是一个整形指针</span></span><br><span class="line"><span class="keyword">auto</span> e=&amp;ci;<span class="comment">//e是一个指向整数常量的指针（对常量对象取地址是一种底层const）</span></span><br></pre></td></tr></table></figure></p>
+<p>如果希望推导出的auto类型是一个顶层const，需要明确指出：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">auto</span> f=ci;</span><br></pre></td></tr></table></figure></p>
+<p>也可以将引用的类型设置为auto，原本的初始化规则依然适用：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> &amp;g=ci;</span><br><span class="line"><span class="keyword">auto</span> &amp;h=<span class="number">42</span>;<span class="comment">//错误，非常量引用不能绑定字面值</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">auto</span> &amp;j=<span class="number">42</span>;<span class="comment">//correct</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="decltype"><a href="#decltype" class="headerlink" title="decltype"></a>decltype</h3><p><strong>decltype</strong>的作用是选择并返回操作数的数据类型。编译器分析表达式并得到它的类型，但是并不计算表达式的具体值。<br>例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">f</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">decltype</span>(f())sum=<span class="number">2</span>;<span class="comment">//sum的类型就是函数f的返回类型</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> ci=<span class="number">0</span>,&amp;cj=ci;</span><br><span class="line"><span class="keyword">decltype</span>(ci)x=<span class="number">0</span>;<span class="comment">//x的类型是const int</span></span><br><span class="line"><span class="keyword">decltype</span>(cj)y=x;<span class="comment">//y的类型是const int&amp;，y绑定到x</span></span><br><span class="line"><span class="keyword">decltype</span>(cj)z;<span class="comment">//错误！z是一个引用，必须被初始化</span></span><br></pre></td></tr></table></figure></p>
+<p>上述例子中也可以看到decltype处理顶层const和引用的方式与auto不同，如果decltype使用的表达式是一个变量，那么<strong>decltype返回该变量的类型（包括顶层const和引用在内）</strong></p>
+<p><strong>注意：<code>decltype((variable))</code>（两个括号或者以上）的结果永远是返回一个引用，而<code>decltype(variable)</code>结果只有在变量本身是引用时才会返回一个引用。</strong></p>
+<p>一些其他例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">42</span>,*p=&amp;i,&amp;r=i;</span><br><span class="line"><span class="keyword">decltype</span>(r+<span class="number">0</span>)b;<span class="comment">//correct,加法结果是int，b是一个未初始化的int</span></span><br><span class="line"><span class="keyword">decltype</span>(*p)c;<span class="comment">//illegal! c是&amp;int，必须初始化！</span></span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -2649,7 +2686,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">59</span>
+                  <span class="site-state-item-count">61</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2660,7 +2697,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">35</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
