@@ -297,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/CPP/CPP语法/字符串与向量/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Cpp/Cpp语法/IO类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -316,7 +316,183 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/CPP/CPP语法/字符串与向量/" itemprop="url">字符串与向量</a></h1>
+                <a class="post-title-link" href="/Cpp/Cpp语法/IO类/" itemprop="url">IO类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-31T15:38:48+08:00">
+                2019-03-31
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cpp/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cpp/Cpp语法/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp语法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Cpp/Cpp语法/IO类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Cpp/Cpp语法/IO类/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="IO类"><a href="#IO类" class="headerlink" title="IO类"></a>IO类</h2><p><strong>IO对象不能拷贝或者被赋值</strong><br>例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ofstream out1,out2;</span><br><span class="line">out1=out2;<span class="comment">//error!不能对流对象赋值</span></span><br><span class="line"><span class="function">ofstream <span class="title">print</span><span class="params">(ofstream)</span></span>;<span class="comment">//错误，不能初始化ofstream参数</span></span><br><span class="line">out2=print(out2);<span class="comment">//错误：不能拷贝流对象</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>因为不能拷贝流对象，所以也不能将形参或返回类型设置为流类型。进行IO操作的函数通常以引用方式传递和返回流。读写一个IO对象会改变其状态，所以传递和返回的引用不能是const的。</strong></p>
+<h3 id="条件状态（存疑）"><a href="#条件状态（存疑）" class="headerlink" title="条件状态（存疑）"></a>条件状态（存疑）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">strm::iostate  <span class="comment">//一种机器相关类型，提供表达条件状态的完整功能</span></span><br><span class="line">strm::badbit   <span class="comment">//指出流已崩溃</span></span><br><span class="line">strm::failbit   <span class="comment">//指出一个IO操作失败了</span></span><br><span class="line">strm::eofbit    <span class="comment">//指出流到达了文件结束</span></span><br><span class="line">strm::goodbit   <span class="comment">//指出流未处于错误状态</span></span><br></pre></td></tr></table></figure>
+<p>一些对应函数：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s.eof();    <span class="comment">//若eofbit置位，返回true</span></span><br><span class="line">s.fail();   <span class="comment">//若failbit或badbit置位，返回true</span></span><br><span class="line">s.bad();    <span class="comment">//若badbit置位，返回true</span></span><br><span class="line">s.good();   <span class="comment">//若流处于有效状态，返回true</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="刷新缓冲区的几种方式"><a href="#刷新缓冲区的几种方式" class="headerlink" title="刷新缓冲区的几种方式"></a>刷新缓冲区的几种方式</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"HI"</span>&lt;&lt;<span class="built_in">endl</span>;   <span class="comment">//输出一个换行后刷新缓冲区</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"HI"</span>&lt;&lt;flush;   <span class="comment">//输出后刷新，不添加额外字符</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;<span class="string">"HI"</span>&lt;&lt;ends;   <span class="comment">//输出一个空字符，然后刷新</span></span><br></pre></td></tr></table></figure>
+<h4 id="输入输出流的关联"><a href="#输入输出流的关联" class="headerlink" title="输入输出流的关联"></a>输入输出流的关联</h4><p>当一个输入流被关联到一个输出流时，任何从输入流读取数据的操作都会先刷新关联的输出流，例如：标准库将cin与cout关联在一起。</p>
+<p><code>tie</code>有2个重载的版本，一个版本不带参数，返回指向输出流的指针，如果本对象目前关联到一个输出流，那么输出的就是指向这个流的指针。若对象没关联则返回空指针。tie的第二个版本接受一个指向ostream的指针，将自己关联到此ostream（istream与ostream皆可进行关联操作）。</p>
+<p>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cin</span>.tie(&amp;<span class="built_in">cout</span>);<span class="comment">//cin关联到cout</span></span><br><span class="line">ostream *old_tie=<span class="built_in">cin</span>.tie(<span class="literal">nullptr</span>);<span class="comment">//old_tie指向当前cin关联的流（如果有），同时cin不再关联其他流</span></span><br><span class="line"><span class="built_in">cin</span>.tie(old_tie);<span class="comment">//重建cin与cout的关联</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="文件输入输出"><a href="#文件输入输出" class="headerlink" title="文件输入输出"></a>文件输入输出</h2><p>头文件<code>fstream</code>中包含三个类型用来支持文件IO：<code>ifstream</code>从一个给定文件读取数据，<code>ofstream</code>向一个给定文件写入数据，<code>fstream</code>可以读写给定文件。</p>
+<p>（其余待进一步理解（</p>
+<h2 id="string流"><a href="#string流" class="headerlink" title="string流"></a>string流</h2><p><code>sstream</code>头文件定义了三个类型来支持内存IO，这些类型可以向string写入数据，从string读取数据。<code>istringstream</code>从string读取数据，<code>ostringstream</code>向string写入数据，而头文件<code>stringstream</code>既可以读也可以写。</p>
+<h4 id="stringstream特有的操作"><a href="#stringstream特有的操作" class="headerlink" title="stringstream特有的操作"></a><code>stringstream</code>特有的操作</h4><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sstream strm;   <span class="comment">//strm是一个未绑定的stringstream对象，sstream是头文件sstream中定义的一个类型</span></span><br><span class="line"><span class="function">sstream <span class="title">strm</span><span class="params">(s)</span></span>;    <span class="comment">//strm是一个sstream对象，保存string s的一个拷贝</span></span><br><span class="line">strm.str();     <span class="comment">//返回strm所保存的string的拷贝</span></span><br><span class="line">strm.str(s);    <span class="comment">//将string s拷贝到strm中，返回void</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用istringstream"><a href="#使用istringstream" class="headerlink" title="使用istringstream"></a>使用<code>istringstream</code></h3><p>例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">PersonInfo</span>&#123;</span></span><br><span class="line">    <span class="built_in">string</span> name;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;phone;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> line,word;</span><br><span class="line">    <span class="built_in">vector</span>&lt;PersonInfo&gt;people;</span><br><span class="line">    <span class="keyword">while</span>(getline(<span class="built_in">cin</span>,line))&#123;</span><br><span class="line">        PersonInfo info;</span><br><span class="line">        <span class="function"><span class="built_in">istringstream</span> <span class="title">record</span><span class="params">(line)</span></span>;<span class="comment">//似乎使用stringstream也可以</span></span><br><span class="line">        record&gt;&gt;info.name;</span><br><span class="line">        <span class="keyword">while</span>(record&gt;&gt;word)</span><br><span class="line">            info.phone.push_back(word);</span><br><span class="line">        people.push_back(info);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">morgan 312342234 452423424</span></span><br><span class="line"><span class="comment">drew  32321321 537648658</span></span><br><span class="line"><span class="comment">lee 8983888898 88809099 9090909909 999900909</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="使用ostringstream"><a href="#使用ostringstream" class="headerlink" title="使用ostringstream"></a>使用<code>ostringstream</code></h3><p>接着上面的例子，现在的例子如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span> &amp;a:people)&#123;</span><br><span class="line">        <span class="built_in">ostringstream</span> t1,t2;<span class="comment">//同样可以使用stringstream</span></span><br><span class="line">        t1&lt;&lt;a.name;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">const</span> <span class="keyword">auto</span> &amp;b:a.phone)&#123;</span><br><span class="line">            t1&lt;&lt;<span class="string">' '</span>&lt;&lt;b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!t1.str().empty())</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;t1.str()&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">cerr</span>&lt;&lt;<span class="string">"input error!"</span>&lt;&lt;a.name&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Cpp/Cpp语法/字符串与向量/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Cpp/Cpp语法/字符串与向量/" itemprop="url">字符串与向量</a></h1>
         
 
         <div class="post-meta">
@@ -351,8 +527,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CPP/" itemprop="url" rel="index">
-                    <span itemprop="name">CPP</span>
+                  <a href="/categories/Cpp/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp</span>
                   </a>
                 </span>
 
@@ -362,8 +538,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/CPP/CPP语法/" itemprop="url" rel="index">
-                    <span itemprop="name">CPP语法</span>
+                  <a href="/categories/Cpp/Cpp语法/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp语法</span>
                   </a>
                 </span>
 
@@ -380,8 +556,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/CPP/CPP语法/字符串与向量/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="CPP/CPP语法/字符串与向量/" itemprop="commentCount"></span>
+                <a href="/Cpp/Cpp语法/字符串与向量/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Cpp/Cpp语法/字符串与向量/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -2056,298 +2232,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/比赛杂集/Codeforces/manthan-codefest-18-rated-div-1-div-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/比赛杂集/Codeforces/manthan-codefest-18-rated-div-1-div-2/" itemprop="url">Manthan, Codefest 18 (rated, Div. 1 + Div. 2)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-16T21:35:12+08:00">
-                2018-10-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/比赛杂集/" itemprop="url" rel="index">
-                    <span itemprop="name">比赛杂集</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/比赛杂集/Codeforces/" itemprop="url" rel="index">
-                    <span itemprop="name">Codeforces</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/比赛杂集/Codeforces/manthan-codefest-18-rated-div-1-div-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="比赛杂集/Codeforces/manthan-codefest-18-rated-div-1-div-2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>1w年没更新了QAQ A. 傻逼题二进制分解一下即可</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-    int n,i,j,k;
-    cin&gt;&gt;n;
-    for(i=0;;i++){
-        if(n&lt;=(1&lt;&lt;i))break;
-        n-=(1&lt;&lt;i);
-    }
-    cout&lt;&lt;i+1&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>B. 排个序贪心搞搞就行，自己zz了还wa了3发…</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-typedef long long ll;
-int main()
-{
-    int num[200005],n,s,i,j,k;
-    ll ans=0;
-    cin&gt;&gt;n&gt;&gt;s;
-    for(i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;num[i]);
-    sort(num+1,num+1+n);
-    int mid=(n+1)&gt;&gt;1;
-    if(num[mid]==s){
-        cout&lt;&lt;0&lt;&lt;endl;return 0;
-    }
-    else if(num[mid]&gt;s){
-        for(i=mid;i;i--){
-            if(num[i]&lt;=s)break;
-            ans+=num[i]-s;
-        }
-    }
-    else{
-        for(i=mid;i&lt;=n;i++){
-
-            if(num[i]&gt;=s)break;
-            ans+=s-num[i];
-            //cout&lt;&lt;ans&lt;&lt;endl;
-        }
-    }
-    //cout&lt;&lt;mid&lt;&lt;endl;
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>C. 除非相邻位置刚好要交换，否则都没有交换意义，随便搞搞即可</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-    int n,i,j,k;string str1,str2;
-    int ans=0;
-    cin&gt;&gt;n;
-    cin&gt;&gt;str1&gt;&gt;str2;
-    for(i=0;i&lt;str1.size();i++){
-        if(str1[i]!=str2[i]){
-            if(i&lt;str1.size()-1&amp;&amp;str1[i+1]!=str2[i+1]&amp;&amp;str1[i]!=str1[i+1]){
-                ans++;i++;
-            }
-            else{
-                ans++;
-            }
-        }
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>D. 其实就是一个二叉树的层次遍历，但是还有一点要注意的就是父亲层的遍历顺序决定了下一层的遍历顺序，所以这也要考虑。解决方案是每个点建一个map记录边，然后检测序列的时候弄两个指针，一个指示当前节点，另一个指示当前节点的儿子。如果是非法序列，最后第二个指针肯定没法走完所有的节点。同时还要注意特判根节点是否为1</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-map&lt;int,int&gt;mp1[200005];
-int main()
-{
-    int n,i,j,k,x,y;
-    cin&gt;&gt;n;
-    for(i=1;i&lt;n;i++){
-        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);mp1[x][y]=1;mp1[y][x]=1;
-    }
-    int num[200005];
-    for(i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;num[i]);
-    for(i=1,j=2;i&lt;=n;i++)
-        while(mp1[num[i]][num[j]])
-            j++;
-    if(j==n+1&amp;&amp;num[1]==1){//注意这里是j==n+1!!
-        cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
-    }
-    else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
-//cout&lt;&lt;j&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>E. 难点在于怎么去检测一个人是否有至少k个朋友，并且这些朋友也都有至少k个可以去旅游的朋友…标算很精妙…</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-const int maxn=2e5+50;
-set&lt;int&gt;s,G[maxn];
-int k,a[maxn],b[maxn],ans[maxn],n,m;
-void check(int x)
-{
-    if(G[x].size()&lt;k&amp;&amp;s.erase(x)){//如果这个人的朋友小于k,他肯定要滚蛋,同时在s里面也要删去此人
-        for(auto a:G[x]){
-            G[a].erase(x);check(a);//他的朋友也要check一发
-        }
-    }
-}
-int main()
-{
-    int i,j;
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;
-    for(i=1;i&lt;=m;i++){
-        scanf(&quot;%d%d&quot;,&amp;a[i],&amp;b[i]);
-        G[a[i]].insert(b[i]);G[b[i]].insert(a[i]);//建立朋友关系
-    }
-    for(i=1;i&lt;=n;i++)s.insert(i);
-    for(i=1;i&lt;=n;i++)check(i);//检查每一个人的朋友关系
-    for(i=m;i;i--){
-        ans[i]=s.size();//此时集合中的所有人都满足要求
-        G[a[i]].erase(b[i]);G[b[i]].erase(a[i]);//删去这天才成为朋友的人
-        check(a[i]);check(b[i]);
-    }
-    for(i=1;i&lt;=m;i++)
-        printf(&quot;%d\n&quot;,ans[i]);
-
-    return 0;
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2398,7 +2282,7 @@ int main()
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2409,7 +2293,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2420,7 +2304,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

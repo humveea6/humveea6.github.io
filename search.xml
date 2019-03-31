@@ -1,16 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[字符串与向量]]></title>
-    <url>%2FCPP%2FCPP%E8%AF%AD%E6%B3%95%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E5%90%91%E9%87%8F%2F</url>
-    <content type="text"><![CDATA[string初始化string的一些方法：123string s3="hiya";//s3是字面值的副本string s4(10,'c');//s4的内容是cccccccccccstring s2(s1);//s2是s1的副本 使用=执行的是拷贝初始化，而反之则是直接初始化。 getline函数的参数是一个输入流和一个string对象，函数从输入流中读取直到遇到换行符为止（换行符也被读入），但是string中不会存换行符。 string.size()函数返回的是一个string::size_type类型的值，这个值是无符号整形数，因此不能直接与一个带负值的int作比较，例如s.size()&lt;n这样，因为负值n会自动转换为一个比较大的无符号值，结果肯定是true. string比较大小按照大小写敏感的字典序比较；2个注意点：1.如果2个string对象长度不同且较短的对象的每个字符都与较长的string对应位置相等的话，那么较短的string小于较长的string。2.如果2个字符串不完全相同，那么比较的结果其实是第一对相异字符的比较结果。 注意：字符串字面值与string并不是同一种类型！因此当把string对象与字符/字符串字面值混在一个语句中使用时，应该保证+左右两侧至少有一个是string。例如：1234string s3=s1+','+s2+'\n';string s5="hello"+",";//错误string s6=s1+","+"world";//正确，左边两个先相加依然是一个stringstring s7="hello"+","+s2;//错误！左边两个都不是string vectorvector初始化的几种方法：12345vector&lt;T&gt;v2(v1);//v2有v1中所有元素的副本Vector&lt;T&gt;v2=v1;vector&lt;T&gt;v3(n,val);//v3包含了n个重复元素，每个都是valvector&lt;T&gt;v4(n);//v4包含了n个重复的执行了默认值初始化的对象，一般来说int为0，string为空vector&lt;T&gt;v5&#123;a,b,c,d,e...&#125;;//列表初始化，注意一定要使用花括号 通过圆括号与花括号的区别区分初始化的意义例子：1234vector&lt;int&gt;v1(10);//v1有10个元素，每个的值都是0vector&lt;int&gt;v2&#123;10&#125;;//v2有一个元素，该元素值为10vector&lt;int&gt;v3(10,1);//v3有10个元素，每个值都为1vector&lt;int&gt;v4&#123;10,1&#125;;//v4有2个元素，分别为10，1 一般来说，花括号就意味着列表初始化，但是如果确认了无法执行列表初始化以后，编译器就会尝试用默认值初始化vector对象。例如：1vector&lt;string&gt;v7&#123;10&#125;;//v7有10个默认初始化的元素 vector对象的下标运算符可用于访问已存在的元素而不能用来添加元素使用了迭代器的循环体，都不要向迭代器所属容器添加元素，否则会造成迭代器失效！]]></content>
+    <title><![CDATA[IO类]]></title>
+    <url>%2FCpp%2FCpp%E8%AF%AD%E6%B3%95%2FIO%E7%B1%BB%2F</url>
+    <content type="text"><![CDATA[IO类IO对象不能拷贝或者被赋值例子：1234ofstream out1,out2;out1=out2;//error!不能对流对象赋值ofstream print(ofstream);//错误，不能初始化ofstream参数out2=print(out2);//错误：不能拷贝流对象 因为不能拷贝流对象，所以也不能将形参或返回类型设置为流类型。进行IO操作的函数通常以引用方式传递和返回流。读写一个IO对象会改变其状态，所以传递和返回的引用不能是const的。 条件状态（存疑）12345strm::iostate //一种机器相关类型，提供表达条件状态的完整功能strm::badbit //指出流已崩溃strm::failbit //指出一个IO操作失败了strm::eofbit //指出流到达了文件结束strm::goodbit //指出流未处于错误状态 一些对应函数：1234s.eof(); //若eofbit置位，返回trues.fail(); //若failbit或badbit置位，返回trues.bad(); //若badbit置位，返回trues.good(); //若流处于有效状态，返回true 刷新缓冲区的几种方式123cout&lt;&lt;"HI"&lt;&lt;endl; //输出一个换行后刷新缓冲区cout&lt;&lt;"HI"&lt;&lt;flush; //输出后刷新，不添加额外字符cout&lt;&lt;"HI"&lt;&lt;ends; //输出一个空字符，然后刷新 输入输出流的关联当一个输入流被关联到一个输出流时，任何从输入流读取数据的操作都会先刷新关联的输出流，例如：标准库将cin与cout关联在一起。 tie有2个重载的版本，一个版本不带参数，返回指向输出流的指针，如果本对象目前关联到一个输出流，那么输出的就是指向这个流的指针。若对象没关联则返回空指针。tie的第二个版本接受一个指向ostream的指针，将自己关联到此ostream（istream与ostream皆可进行关联操作）。 例如：123cin.tie(&amp;cout);//cin关联到coutostream *old_tie=cin.tie(nullptr);//old_tie指向当前cin关联的流（如果有），同时cin不再关联其他流cin.tie(old_tie);//重建cin与cout的关联 文件输入输出头文件fstream中包含三个类型用来支持文件IO：ifstream从一个给定文件读取数据，ofstream向一个给定文件写入数据，fstream可以读写给定文件。 （其余待进一步理解（ string流sstream头文件定义了三个类型来支持内存IO，这些类型可以向string写入数据，从string读取数据。istringstream从string读取数据，ostringstream向string写入数据，而头文件stringstream既可以读也可以写。 stringstream特有的操作1234sstream strm; //strm是一个未绑定的stringstream对象，sstream是头文件sstream中定义的一个类型sstream strm(s); //strm是一个sstream对象，保存string s的一个拷贝strm.str(); //返回strm所保存的string的拷贝strm.str(s); //将string s拷贝到strm中，返回void 使用istringstream例子：1234567891011121314151617181920212223242526#include&lt;bits/stdc++.h&gt;using namespace std;struct PersonInfo&#123; string name; vector&lt;string&gt;phone;&#125;;int main()&#123; string line,word; vector&lt;PersonInfo&gt;people; while(getline(cin,line))&#123; PersonInfo info; istringstream record(line);//似乎使用stringstream也可以 record&gt;&gt;info.name; while(record&gt;&gt;word) info.phone.push_back(word); people.push_back(info); &#125; return 0;&#125;/*morgan 312342234 452423424drew 32321321 537648658lee 8983888898 88809099 9090909909 999900909 */ 使用ostringstream接着上面的例子，现在的例子如下：12345678910for(const auto &amp;a:people)&#123; ostringstream t1,t2;//同样可以使用stringstream t1&lt;&lt;a.name; for(const auto &amp;b:a.phone)&#123; t1&lt;&lt;' '&lt;&lt;b; &#125; if(!t1.str().empty()) cout&lt;&lt;t1.str()&lt;&lt;endl; else cerr&lt;&lt;"input error!"&lt;&lt;a.name&lt;&lt;endl; &#125;]]></content>
       <categories>
-        <category>CPP</category>
-        <category>CPP语法</category>
+        <category>Cpp</category>
+        <category>Cpp语法</category>
       </categories>
       <tags>
-        <tag>CPP</tag>
-        <tag>CPP语法</tag>
+        <tag>Cpp</tag>
+        <tag>Cpp语法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[字符串与向量]]></title>
+    <url>%2FCpp%2FCpp%E8%AF%AD%E6%B3%95%2F%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E5%90%91%E9%87%8F%2F</url>
+    <content type="text"><![CDATA[string初始化string的一些方法：123string s3="hiya";//s3是字面值的副本string s4(10,'c');//s4的内容是cccccccccccstring s2(s1);//s2是s1的副本 使用=执行的是拷贝初始化，而反之则是直接初始化。 getline函数的参数是一个输入流和一个string对象，函数从输入流中读取直到遇到换行符为止（换行符也被读入），但是string中不会存换行符。 string.size()函数返回的是一个string::size_type类型的值，这个值是无符号整形数，因此不能直接与一个带负值的int作比较，例如s.size()&lt;n这样，因为负值n会自动转换为一个比较大的无符号值，结果肯定是true. string比较大小按照大小写敏感的字典序比较；2个注意点：1.如果2个string对象长度不同且较短的对象的每个字符都与较长的string对应位置相等的话，那么较短的string小于较长的string。2.如果2个字符串不完全相同，那么比较的结果其实是第一对相异字符的比较结果。 注意：字符串字面值与string并不是同一种类型！因此当把string对象与字符/字符串字面值混在一个语句中使用时，应该保证+左右两侧至少有一个是string。例如：1234string s3=s1+','+s2+'\n';string s5="hello"+",";//错误string s6=s1+","+"world";//正确，左边两个先相加依然是一个stringstring s7="hello"+","+s2;//错误！左边两个都不是string vectorvector初始化的几种方法：12345vector&lt;T&gt;v2(v1);//v2有v1中所有元素的副本Vector&lt;T&gt;v2=v1;vector&lt;T&gt;v3(n,val);//v3包含了n个重复元素，每个都是valvector&lt;T&gt;v4(n);//v4包含了n个重复的执行了默认值初始化的对象，一般来说int为0，string为空vector&lt;T&gt;v5&#123;a,b,c,d,e...&#125;;//列表初始化，注意一定要使用花括号 通过圆括号与花括号的区别区分初始化的意义例子：1234vector&lt;int&gt;v1(10);//v1有10个元素，每个的值都是0vector&lt;int&gt;v2&#123;10&#125;;//v2有一个元素，该元素值为10vector&lt;int&gt;v3(10,1);//v3有10个元素，每个值都为1vector&lt;int&gt;v4&#123;10,1&#125;;//v4有2个元素，分别为10，1 一般来说，花括号就意味着列表初始化，但是如果确认了无法执行列表初始化以后，编译器就会尝试用默认值初始化vector对象。例如：1vector&lt;string&gt;v7&#123;10&#125;;//v7有10个默认初始化的元素 vector对象的下标运算符可用于访问已存在的元素而不能用来添加元素使用了迭代器的循环体，都不要向迭代器所属容器添加元素，否则会造成迭代器失效！]]></content>
+      <categories>
+        <category>Cpp</category>
+        <category>Cpp语法</category>
+      </categories>
+      <tags>
+        <tag>Cpp</tag>
+        <tag>Cpp语法</tag>
       </tags>
   </entry>
   <entry>

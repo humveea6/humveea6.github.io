@@ -297,6 +297,298 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/比赛杂集/Codeforces/manthan-codefest-18-rated-div-1-div-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/比赛杂集/Codeforces/manthan-codefest-18-rated-div-1-div-2/" itemprop="url">Manthan, Codefest 18 (rated, Div. 1 + Div. 2)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-16T21:35:12+08:00">
+                2018-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/比赛杂集/" itemprop="url" rel="index">
+                    <span itemprop="name">比赛杂集</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/比赛杂集/Codeforces/" itemprop="url" rel="index">
+                    <span itemprop="name">Codeforces</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/比赛杂集/Codeforces/manthan-codefest-18-rated-div-1-div-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="比赛杂集/Codeforces/manthan-codefest-18-rated-div-1-div-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>1w年没更新了QAQ A. 傻逼题二进制分解一下即可</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main()
+{
+    int n,i,j,k;
+    cin&gt;&gt;n;
+    for(i=0;;i++){
+        if(n&lt;=(1&lt;&lt;i))break;
+        n-=(1&lt;&lt;i);
+    }
+    cout&lt;&lt;i+1&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p>B. 排个序贪心搞搞就行，自己zz了还wa了3发…</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+int main()
+{
+    int num[200005],n,s,i,j,k;
+    ll ans=0;
+    cin&gt;&gt;n&gt;&gt;s;
+    for(i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;num[i]);
+    sort(num+1,num+1+n);
+    int mid=(n+1)&gt;&gt;1;
+    if(num[mid]==s){
+        cout&lt;&lt;0&lt;&lt;endl;return 0;
+    }
+    else if(num[mid]&gt;s){
+        for(i=mid;i;i--){
+            if(num[i]&lt;=s)break;
+            ans+=num[i]-s;
+        }
+    }
+    else{
+        for(i=mid;i&lt;=n;i++){
+
+            if(num[i]&gt;=s)break;
+            ans+=s-num[i];
+            //cout&lt;&lt;ans&lt;&lt;endl;
+        }
+    }
+    //cout&lt;&lt;mid&lt;&lt;endl;
+    cout&lt;&lt;ans&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p>C. 除非相邻位置刚好要交换，否则都没有交换意义，随便搞搞即可</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int main()
+{
+    int n,i,j,k;string str1,str2;
+    int ans=0;
+    cin&gt;&gt;n;
+    cin&gt;&gt;str1&gt;&gt;str2;
+    for(i=0;i&lt;str1.size();i++){
+        if(str1[i]!=str2[i]){
+            if(i&lt;str1.size()-1&amp;&amp;str1[i+1]!=str2[i+1]&amp;&amp;str1[i]!=str1[i+1]){
+                ans++;i++;
+            }
+            else{
+                ans++;
+            }
+        }
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p>D. 其实就是一个二叉树的层次遍历，但是还有一点要注意的就是父亲层的遍历顺序决定了下一层的遍历顺序，所以这也要考虑。解决方案是每个点建一个map记录边，然后检测序列的时候弄两个指针，一个指示当前节点，另一个指示当前节点的儿子。如果是非法序列，最后第二个指针肯定没法走完所有的节点。同时还要注意特判根节点是否为1</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+map&lt;int,int&gt;mp1[200005];
+int main()
+{
+    int n,i,j,k,x,y;
+    cin&gt;&gt;n;
+    for(i=1;i&lt;n;i++){
+        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);mp1[x][y]=1;mp1[y][x]=1;
+    }
+    int num[200005];
+    for(i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;num[i]);
+    for(i=1,j=2;i&lt;=n;i++)
+        while(mp1[num[i]][num[j]])
+            j++;
+    if(j==n+1&amp;&amp;num[1]==1){//注意这里是j==n+1!!
+        cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
+    }
+    else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
+//cout&lt;&lt;j&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p>E. 难点在于怎么去检测一个人是否有至少k个朋友，并且这些朋友也都有至少k个可以去旅游的朋友…标算很精妙…</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn=2e5+50;
+set&lt;int&gt;s,G[maxn];
+int k,a[maxn],b[maxn],ans[maxn],n,m;
+void check(int x)
+{
+    if(G[x].size()&lt;k&amp;&amp;s.erase(x)){//如果这个人的朋友小于k,他肯定要滚蛋,同时在s里面也要删去此人
+        for(auto a:G[x]){
+            G[a].erase(x);check(a);//他的朋友也要check一发
+        }
+    }
+}
+int main()
+{
+    int i,j;
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;
+    for(i=1;i&lt;=m;i++){
+        scanf(&quot;%d%d&quot;,&amp;a[i],&amp;b[i]);
+        G[a[i]].insert(b[i]);G[b[i]].insert(a[i]);//建立朋友关系
+    }
+    for(i=1;i&lt;=n;i++)s.insert(i);
+    for(i=1;i&lt;=n;i++)check(i);//检查每一个人的朋友关系
+    for(i=m;i;i--){
+        ans[i]=s.size();//此时集合中的所有人都满足要求
+        G[a[i]].erase(b[i]);G[b[i]].erase(a[i]);//删去这天才成为朋友的人
+        check(a[i]);check(b[i]);
+    }
+    for(i=1;i&lt;=m;i++)
+        printf(&quot;%d\n&quot;,ans[i]);
+
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/生活/旅游/e6-84-8f-e7-91-9e-e6-b3-95-e4-b9-8b-e6-97-85-e5-92-95-e5-92-95-e5-92-95-e7-b3-bb-e5-88-97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3872,285 +4164,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/最小生成树/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e7-94-9f-e6-88-90-e6-a0-91/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/模板/最小生成树/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e7-94-9f-e6-88-90-e6-a0-91/" itemprop="url">（模板）最小生成树</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T21:37:26+08:00">
-                2018-08-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/" itemprop="url" rel="index">
-                    <span itemprop="name">模板</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/最小生成树/" itemprop="url" rel="index">
-                    <span itemprop="name">最小生成树</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/最小生成树/图论/" itemprop="url" rel="index">
-                    <span itemprop="name">图论</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/算法/模板/最小生成树/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e7-94-9f-e6-88-90-e6-a0-91/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/模板/最小生成树/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e7-94-9f-e6-88-90-e6-a0-91/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="Kruskal"><a href="#Kruskal" class="headerlink" title="Kruskal"></a>Kruskal</h3><p>最重要的还是记得并查集要初始化！！</p>
-<pre><code>// luogu-judger-enable-o2
-#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-using namespace std;
-const int N=1e6,M=1e6;
-int par[N];
-struct edge{
-    int from,to,len;
-    bool operator&lt;(const edge&amp;v)const{
-        return len&lt;v.len;
-    }
-}G[M];
-int find(int x)
-{
-    return x==par[x]?x:par[x]=find(par[x]);
-}
-bool unite(int x,int y)
-{
-    x=find(x);y=find(y);
-    if(x==y)return false;
-    par[x]=y;return true;
-}
-int main()
-{
-    int n,m,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m;
-    for(i=1;i&lt;=n;i++)par[i]=i;
-    for(i=1;i&lt;=m;i++){
-        cin&gt;&gt;G[i].from&gt;&gt;G[i].to&gt;&gt;G[i].len;
-    }
-    sort(G+1,G+1+m);
-    int cnt=0,ans=0;
-    for(i=1;i&lt;=m;i++){
-        if(unite(G[i].from,G[i].to))
-            cnt++,ans+=G[i].len;
-        if(cnt==n-1)break;
-    }
-    if(cnt&lt;n-1)cout&lt;&lt;&quot;orz&quot;&lt;&lt;endl;
-    else cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><h3 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h3><p>算法跟Dijkstra很像 ，但是要特别注意两点： 1.最好使用一个额外的数组来保证每个点只被访问一次，否则的话应该保证在35行处使用e.dis&gt;=dis[e.num]而不仅是&gt;，否则会造成一些相等的额外相加。  2.40行的地方要注意与Dijkstra的区别！！不是加而是直接换！！！</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;vector&gt;
-#include&lt;cstring&gt;
-#include&lt;queue&gt;
-using namespace std;
-const int maxn=1e5+5;
-struct edge{
-    int to,cost;
-};
-vector&lt;edge&gt;G[maxn];
-struct d{
-    int num,dis;
-};
-bool operator &lt;(d a,d b)
-{
-    return a.dis&gt;b.dis;
-}
-bool vis[maxn];
-int main()
-{
-    int n,m,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m;
-    for(i=1;i&lt;=m;i++){
-        int a,b,c;
-        scanf(&quot;%d %d %d&quot;,&amp;a,&amp;b,&amp;c);
-        G[a].push_back(edge{b,c});
-        G[b].push_back(edge{a,c});
-    }
-    int dis[maxn];memset(dis,0x7f,sizeof(dis));dis[1]=0;
-    priority_queue&lt;d&gt;que;que.push(d{1,0});
-    int ans=0;
-    while(!que.empty()){
-        d t=que.top();que.pop();
-        if(vis[t.num])continue;//如果不用额外数组这里要注意
-        ans+=t.dis;vis[t.num]=true;
-        for(i=0;i&lt;G[t.num].size();i++){
-            edge e=G[t.num][i];
-            if(dis[e.to]&gt;e.cost){
-                dis[e.to]=e.cost;//注意这里与Dijkstra的区别
-                que.push(d{e.to,dis[e.to]});
-            }
-        }
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4201,7 +4214,7 @@ int main()
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -4212,7 +4225,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -4223,7 +4236,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

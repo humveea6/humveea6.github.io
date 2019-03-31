@@ -297,6 +297,285 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/最小生成树/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e7-94-9f-e6-88-90-e6-a0-91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/模板/最小生成树/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e7-94-9f-e6-88-90-e6-a0-91/" itemprop="url">（模板）最小生成树</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T21:37:26+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/模板/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/模板/最小生成树/" itemprop="url" rel="index">
+                    <span itemprop="name">最小生成树</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/模板/最小生成树/图论/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/算法/模板/最小生成树/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e7-94-9f-e6-88-90-e6-a0-91/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/模板/最小生成树/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e7-94-9f-e6-88-90-e6-a0-91/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="Kruskal"><a href="#Kruskal" class="headerlink" title="Kruskal"></a>Kruskal</h3><p>最重要的还是记得并查集要初始化！！</p>
+<pre><code>// luogu-judger-enable-o2
+#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int N=1e6,M=1e6;
+int par[N];
+struct edge{
+    int from,to,len;
+    bool operator&lt;(const edge&amp;v)const{
+        return len&lt;v.len;
+    }
+}G[M];
+int find(int x)
+{
+    return x==par[x]?x:par[x]=find(par[x]);
+}
+bool unite(int x,int y)
+{
+    x=find(x);y=find(y);
+    if(x==y)return false;
+    par[x]=y;return true;
+}
+int main()
+{
+    int n,m,i,j,k;
+    cin&gt;&gt;n&gt;&gt;m;
+    for(i=1;i&lt;=n;i++)par[i]=i;
+    for(i=1;i&lt;=m;i++){
+        cin&gt;&gt;G[i].from&gt;&gt;G[i].to&gt;&gt;G[i].len;
+    }
+    sort(G+1,G+1+m);
+    int cnt=0,ans=0;
+    for(i=1;i&lt;=m;i++){
+        if(unite(G[i].from,G[i].to))
+            cnt++,ans+=G[i].len;
+        if(cnt==n-1)break;
+    }
+    if(cnt&lt;n-1)cout&lt;&lt;&quot;orz&quot;&lt;&lt;endl;
+    else cout&lt;&lt;ans&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><h3 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h3><p>算法跟Dijkstra很像 ，但是要特别注意两点： 1.最好使用一个额外的数组来保证每个点只被访问一次，否则的话应该保证在35行处使用e.dis&gt;=dis[e.num]而不仅是&gt;，否则会造成一些相等的额外相加。  2.40行的地方要注意与Dijkstra的区别！！不是加而是直接换！！！</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#include&lt;cstring&gt;
+#include&lt;queue&gt;
+using namespace std;
+const int maxn=1e5+5;
+struct edge{
+    int to,cost;
+};
+vector&lt;edge&gt;G[maxn];
+struct d{
+    int num,dis;
+};
+bool operator &lt;(d a,d b)
+{
+    return a.dis&gt;b.dis;
+}
+bool vis[maxn];
+int main()
+{
+    int n,m,i,j,k;
+    cin&gt;&gt;n&gt;&gt;m;
+    for(i=1;i&lt;=m;i++){
+        int a,b,c;
+        scanf(&quot;%d %d %d&quot;,&amp;a,&amp;b,&amp;c);
+        G[a].push_back(edge{b,c});
+        G[b].push_back(edge{a,c});
+    }
+    int dis[maxn];memset(dis,0x7f,sizeof(dis));dis[1]=0;
+    priority_queue&lt;d&gt;que;que.push(d{1,0});
+    int ans=0;
+    while(!que.empty()){
+        d t=que.top();que.pop();
+        if(vis[t.num])continue;//如果不用额外数组这里要注意
+        ans+=t.dis;vis[t.num]=true;
+        for(i=0;i&lt;G[t.num].size();i++){
+            edge e=G[t.num][i];
+            if(dis[e.to]&gt;e.cost){
+                dis[e.to]=e.cost;//注意这里与Dijkstra的区别
+                que.push(d{e.to,dis[e.to]});
+            }
+        }
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/图论/e6-a8-a1-e6-9d-bf-ef-bc-89spfa/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3477,386 +3756,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/比赛杂集/Codeforces/codeforces-round-452-div-2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/比赛杂集/Codeforces/codeforces-round-452-div-2/" itemprop="url">Codeforces Round #452 (Div. 2)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-07T08:43:08+08:00">
-                2018-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/比赛杂集/" itemprop="url" rel="index">
-                    <span itemprop="name">比赛杂集</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/比赛杂集/Codeforces/" itemprop="url" rel="index">
-                    <span itemprop="name">Codeforces</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/算法/比赛杂集/Codeforces/codeforces-round-452-div-2/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/比赛杂集/Codeforces/codeforces-round-452-div-2/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="A"><a href="#A" class="headerlink" title="A."></a>A.</h3><pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-    int n,i,j,k,cnt[3]={0};
-    cin&gt;&gt;n;
-    for(i=1;i&lt;=n;i++){
-        scanf(&quot;%d&quot;,&amp;j);cnt[j]++;
-    }
-    //cout&lt;&lt;min(cnt[1],cnt[2])&lt;&lt;endl;
-    if(cnt[1]&lt;=cnt[2]){
-        cout&lt;&lt;cnt[1]&lt;&lt;endl;
-    }
-    else{
-        if(cnt[1]-cnt[2]&lt;3)
-            cout&lt;&lt;cnt[2]&lt;&lt;endl;
-        else cout&lt;&lt;cnt[2]+(cnt[1]-cnt[2])/3&lt;&lt;endl;
-    }
-
-    return 0;
-}
-</code></pre><h3 id="B"><a href="#B" class="headerlink" title="B."></a>B.</h3><p>就是打表暴力</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-    int init[15]={31,31,28,31,30,31,30,31,31,30,31,30,31},days[5][50];
-    int i,j,n,tar[30],k;
-    for(i=1;i&lt;=4;i++)
-        for(j=1;j&lt;=36;j++){
-        days[i][j]=init[j%12];
-    }
-    days[1][2]=29;days[2][14]=29;days[3][26]=29;
-    cin&gt;&gt;n;
-    for(i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;tar[i]);
-    bool isok=false;
-    for(i=1;i&lt;=4;i++){
-        for(j=1;j&lt;=36-n+1;j++){
-            for(k=1;k&lt;=n;k++){
-                if(tar[k]!=days[i][j+k-1])
-                    break;
-            }
-            if(k&gt;n){
-                isok=true;break;
-            }
-        }
-    }
-    if(isok){
-        cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
-    }
-    else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><h3 id="C"><a href="#C" class="headerlink" title="C."></a>C.</h3><p>如果数字不是1~n的话似乎是一个np问题…当然这里是连续的，因此其实是有规律可循的。讨论n模4的余数，然后就会发现当余数为0或2的时候都是可以构造出来差为0的，其他就只能差为1了。 构造房主要思想就是首位配对，因为这样配出来的每对的和都是相等的。</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-    int n,i,j,k;
-    vector&lt;int&gt;ans;
-    cin&gt;&gt;n;
-    int y=n%4;
-    if(y==0){
-        cout&lt;&lt;0&lt;&lt;endl&lt;&lt;n/2&lt;&lt;&apos; &apos;;
-        for(i=1;i&lt;=n/4;i++)
-            cout&lt;&lt;i&lt;&lt;&apos; &apos;&lt;&lt;n-i+1&lt;&lt;&apos; &apos;;
-    }
-    else if(y==1){
-        cout&lt;&lt;1&lt;&lt;endl&lt;&lt;n/2+1&lt;&lt;&apos; &apos;&lt;&lt;1;
-        for(i=2;i&lt;=n/4+1;i++)
-            cout&lt;&lt;&apos; &apos;&lt;&lt;i&lt;&lt;&apos; &apos;&lt;&lt;n-i+2;
-    }
-    else if(y==2){
-        cout&lt;&lt;1&lt;&lt;endl&lt;&lt;n/2&lt;&lt;&apos; &apos;;
-        for(i=1;i&lt;=n/4;i++)
-            cout&lt;&lt;i&lt;&lt;&apos; &apos;&lt;&lt;n-i+1&lt;&lt;&apos; &apos;;
-        cout&lt;&lt;n/2&lt;&lt;endl;
-    }
-    else{
-        cout&lt;&lt;0&lt;&lt;endl&lt;&lt;n/2&lt;&lt;endl;
-        for(i=1;i&lt;=n/4;i++)
-            cout&lt;&lt;i&lt;&lt;&apos; &apos;;
-        for(i=n-n/4;i&lt;=n;i++)
-            cout&lt;&lt;i&lt;&lt;&apos; &apos;;
-    }
-
-    return 0;
-}
-</code></pre><h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>首先，如果在范围内最大的两个数加起来恰好是9999…99的形式的话，那么并不需要再讨论了，答案就是1.否则所求的9的位数就是最大两个数的和的位数-1； 然后我们就试着在目标个数的9前面依次填上0~8，看看有多少种方式能加起来等于我们当前构造的和。需要注意的是当和p比较小的时候，方式就是p/2，但是和比较大的时候就是n-p/2… 以及，如果n&lt;5的时候并不能构造出9，那就要特判…</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-typedef long long ll;
-int main()
-{
-    ll n,i,j,k;
-    cin&gt;&gt;n;
-    ll maxn=n+n-1;
-    int cnt=0;
-    ll t=maxn;
-    while(t){
-        cnt++;t/=10;
-    }
-    if(maxn==(ll)pow(10,cnt)-1){
-        cout&lt;&lt;1&lt;&lt;endl;return 0;
-    }
-    ll ans=0,nine=pow(10,cnt-1)-1;//ans1=n-n/2;
-    for(i=0;i&lt;9;i++){
-        ll p=(ll)pow(10,cnt-1)*i+nine;
-        if(p&gt;maxn)break;
-        //ans+=((ll)pow(10,cnt-1)*i+nine)/2;
-        ans+=min(n-p/2,p/2);
-    }
-
-    cout&lt;&lt;(n&lt;5?n*(n-1)/2:ans)&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><h3 id="E"><a href="#E" class="headerlink" title="E."></a>E.</h3><p>题目做法就是模拟，关键在于删去一个区间之后，他左右的区间可能会因为数字相同而造成合并。为了解决这个问题，我们用两个set，两个set中都存放pair，第一个set的第一元存放连续数字的长度*-1，第二元则存放连续数字的起始位置。第二个set的第一元存放连续数字的起始位置，第二元存放连续数字的长度。 然后每次我们把第一个set中的第一个pair找出来，他就是要被删除的，然后我们用lowerbound在第二个set中找出他前后的两个pair，看看他们是否需要合并即可。小心set访问非法位置…</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-typedef pair&lt;int,int&gt;P;
-int main()
-{
-    int n,i,j,k;
-    set&lt;P&gt;len,seg;
-    //int pre=0,sum=0;
-    cin&gt;&gt;n;int num[200005]={0},sum=0;
-    for(i=1;i&lt;=n;i++){
-        cin&gt;&gt;num[i];
-        if(num[i]!=num[i-1]){
-            if(i&gt;1){
-                len.insert(P(sum*-1,i-sum));seg.insert(P(i-sum,sum));
-            }
-            sum=1;
-        }
-        else sum++;
-    }
-    len.insert(P(sum*-1,i-sum));seg.insert(P(i-sum,sum));
-    int ans=0;
-    while(!len.empty()){
-        ans++;
-        P p=*len.begin();len.erase(len.begin());
-        auto a=seg.lower_bound(P(p.second,0));
-        if(seg.size()&gt;=3&amp;&amp;a!=seg.begin()&amp;&amp;a!=--seg.end()){
-            auto b=a,c=a;b--,c++;
-            if(num[b-&gt;first]==num[c-&gt;first]){
-                len.erase(P((b-&gt;second)*-1,b-&gt;first));
-                len.erase(P((c-&gt;second)*-1,c-&gt;first));
-                len.insert(P((b-&gt;second+c-&gt;second)*-1,b-&gt;first));
-                seg.insert(P(b-&gt;first,b-&gt;second+c-&gt;second));
-                seg.erase(b);seg.erase(c);
-            }
-        }
-        seg.erase(a);
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><h3 id="F"><a href="#F" class="headerlink" title="F."></a>F.</h3><p>其实做法也挺暴力的…我们建一堆set，每个里面都存这个字符出现所有位置，然后对于每次询问，我们找出l，r在原字符串中的位置，这个可以类似树状数组去维护一下，但是有点不同，需要好好理解一下…然后去这个字符对应的set里面lowerbound一下找出l，r对应原位置区间范围内的所有这些位置然后标记一下…最后从前往后，如果没有被标记过就输出即可。</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-const int maxn=4e5+10;
-int bit[maxn],A;
-void add(int pos,int x)
-{
-    while(pos&lt;=A){
-        bit[pos]+=x;
-        pos+=pos&amp;-pos;
-    }
-}
-int find(int x)
-{
-    int s=0,j=A&gt;&gt;1;
-    for(;j;j&gt;&gt;=1)
-        if(x&gt;bit[s+j])
-            x-=bit[s+j],s+=j;
-    return s+1;
-}
-bool vis[maxn];
-int main()
-{
-    int n,m,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m;
-    string str;cin&gt;&gt;str;
-    set&lt;int&gt;s[150];
-    for(i=0;i&lt;str.size();i++)
-        s[str[i]].insert(i+1);
-    for(A=1;A&lt;n;A&lt;&lt;=1);
-    for(i=1;i&lt;=n;i++)add(i,1);
-    while(m--){
-        int l,r;char c[5];scanf(&quot;%d%d%s&quot;,&amp;l,&amp;r,c);
-        l=find(l),r=find(r);
-        //add()
-        for(auto a=s[c[0]].lower_bound(l);a!=s[c[0]].end()&amp;&amp;(*a)&lt;=r;){
-            vis[*a]=true;
-            add(*a,-1);s[c[0]].erase(a++);
-        }
-    }
-    for(i=1;i&lt;=n;i++)
-        if(!vis[i])
-            cout&lt;&lt;str[i-1];
-    cout&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3907,7 +3806,7 @@ int main()
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">75</span>
+                  <span class="site-state-item-count">76</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -3918,7 +3817,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-count">63</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -3929,7 +3828,7 @@ int main()
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
