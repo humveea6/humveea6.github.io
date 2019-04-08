@@ -297,6 +297,184 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Cpp/Cpp语法/CPP正则表达式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Cpp/Cpp语法/CPP正则表达式/" itemprop="url">CPP正则表达式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-08T20:22:23+08:00">
+                2019-04-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cpp/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cpp/Cpp语法/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp语法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Cpp/Cpp语法/CPP正则表达式/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Cpp/Cpp语法/CPP正则表达式/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>   正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。</p>
+<h3 id="正则表达式中的通配符"><a href="#正则表达式中的通配符" class="headerlink" title="正则表达式中的通配符"></a>正则表达式中的通配符</h3><p>例如：<code>\d</code>匹配任意数字，也就说<code>\d</code>可以匹配0，也可以匹配1，还有2，3，…9都可以匹配。</p>
+<p><strong><code>\d</code> 匹配一个数字，也就是匹配0-9<br><code>\w</code>匹配单词字符，也就是匹配a-z和A-Z还有’_’。<br><code>\s</code>匹配空白字符（空格）。<br><code>\b</code>匹配单词边界（匹配位置而不是实际的字符，边界可以是符号或空格）<br><code>.</code> 匹配任意字符</strong></p>
+<h3 id="正则表达式中的量词"><a href="#正则表达式中的量词" class="headerlink" title="正则表达式中的量词"></a>正则表达式中的量词</h3><p><strong><code>？</code> 匹配前面的字符0次或1次<br><code>*</code>  匹配前面的字符0次或多次<br><code>+</code> 匹配前面的字符1次或者多次<br><code>{m}</code> 匹配前面表达式m次<br><code>{m,}</code> 匹配前面表达式至少m次<br><code>{,n}</code> 匹配前面的正则表达式最多n次<br><code>{m,n}</code> 匹配前面的正则表达式至少m次，最多n次</strong><br>例子：<br>“abc+”可以匹配abc, abcc, abccc, abcccc, abccccc，以此类推。<br>“yts*”可以匹配 yt, yts, ytss, ytsss, ytsss<br>“y{1,5}”可以匹配 y, yy, yyy, yyyy, yyyyy.</p>
+<h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><p>当想要匹配一些上面的通配符或者量词中的符号时，就需要用到转义字符<br>例如：既然’+’在正则表达式中是一个量词，那么如何让正则表达式匹配加号呢？<br><strong><code>\+</code>表示匹配一个加号，类似的<code>\？</code>匹配一个问号，<code>\.</code> 匹配一个句点</strong></p>
+<h3 id="原始字符串"><a href="#原始字符串" class="headerlink" title="原始字符串"></a>原始字符串</h3><p>在C++11中原始字符串具有如下的形式：<code>R”(data)”</code><br>具体来说，以大写字母R开头，后面是一个引号对和一个小括号对，在小括号中的内容才是字符串的正真内容，其中的内容不会反生转义。也就是说R”(\n)”就是字符串\n，而不是换行符。<strong>因此，如果在原始字符串中想要匹配一些诸如<code>?</code>这样的符号的时候，就必须使用<code>/?</code></strong><br>我们在写正则表达式的时候一定要用原始字符串！</p>
+<h3 id="regex-replace"><a href="#regex-replace" class="headerlink" title="regex_replace"></a>regex_replace</h3><p>在regex头文件还定义了一个<code>regex_replace</code>函数，用来进行正则表达式的替换。<br><code>regex_replace(string data, regex re, string new_string);</code><br>功能是将data中满足正则表达式re的所有位置替换成new_string，返回替换后的字符串。注意：<code>regex_replace</code>不会修改输入字符串，它会创建一个新的字符串进行替换后返回。</p>
+<p>两道来自$c^4$的例题：</p>
+<blockquote>
+<p>题意：从左到右扫描输入的句子：如果句子中有超过 3 个连续的 6，则将这串连续的 6 替换成 9；但如果有超过 9 个连续的 6，则将这串连续的 6 替换成 27。其他内容不受影响，原样输出。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">string</span> str;</span><br><span class="line">    getline(<span class="built_in">cin</span>,str);</span><br><span class="line">    str=regex_replace(str,regex(<span class="string">R"(6&#123;10,&#125;)"</span>),<span class="string">"27"</span>);<span class="comment">//匹配10个9或以上</span></span><br><span class="line">    str=regex_replace(str,regex(<span class="string">R"(6&#123;4,9&#125;)"</span>),<span class="string">"9"</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;str&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>本题要求你实现一个稍微更值钱一点的 AI 英文问答程序，规则是：<br>无论用户说什么，首先把对方说的话在一行中原样打印出来；<br>消除原文中多余空格：<br>把相邻单词间的多个空格换成 1 个空格<br>把行首尾的空格全部删掉<br>把标点符号前面的空格删掉；<br>把原文中所有大写英文字母变成小写，除了 I；<br>把原文中所有独立的 can you、could you 对应地换成 I can、I could—— 这里“独立”是指被空格或标点符号分隔开的单词；<br>把原文中所有独立的 I 和 me 换成 you；<br>把原文中所有的问号？换成惊叹号 !；<br>在一行中输出替换后的句子作为 AI 的回答。</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;<span class="built_in">string</span> str;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;getline(<span class="built_in">cin</span>,str);</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        getline(<span class="built_in">cin</span>,str);</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;str&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">        str=regex_replace(str,regex(<span class="string">R"(\s+)"</span>),<span class="string">" "</span>);<span class="comment">//处理多个空格</span></span><br><span class="line">        <span class="keyword">if</span>(str.back()==<span class="string">' '</span>)str.pop_back();</span><br><span class="line">        <span class="keyword">if</span>(str.front()==<span class="string">' '</span>)str.erase(str.begin());<span class="comment">//处理行末行首空格</span></span><br><span class="line">        str=regex_replace(str,regex(<span class="string">R"( !)"</span>), <span class="string">"!"</span>);</span><br><span class="line">        str=regex_replace(str,regex(<span class="string">R"( ,)"</span>), <span class="string">","</span>);</span><br><span class="line">        str=regex_replace(str,regex(<span class="string">R"( \.)"</span>), <span class="string">"."</span>);</span><br><span class="line">        str=regex_replace(str,regex(<span class="string">R"( \?)"</span>), <span class="string">"?"</span>);</span><br><span class="line">        str=regex_replace(str,regex(<span class="string">R"( ')"</span>), <span class="string">"'"</span>);<span class="comment">//处理符号前的空格</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> &amp;a:str)</span><br><span class="line">            a=(a==<span class="string">'I'</span>?<span class="string">'I'</span>:<span class="built_in">tolower</span>(a));</span><br><span class="line">        str=regex_replace(str,regex(<span class="string">R"(\bcan you\b)"</span>),<span class="string">"_I can"</span>);</span><br><span class="line">        str=regex_replace(str,regex(<span class="string">R"(\bcould you\b)"</span>),<span class="string">"_I could"</span>);<span class="comment">//处理can you,因为后面还要处理I所以都替换成_I</span></span><br><span class="line">        str=regex_replace(str,regex(<span class="string">R"(\bI\b)"</span>),<span class="string">"you"</span>);</span><br><span class="line">        str=regex_replace(str,regex(<span class="string">R"(\bme\b)"</span>),<span class="string">"you"</span>);</span><br><span class="line">        str=regex_replace(str,regex(<span class="string">R"(\?)"</span>),<span class="string">"!"</span>);</span><br><span class="line">        str=regex_replace(str,regex(<span class="string">R"(_I)"</span>),<span class="string">"I"</span>);<span class="comment">//替换_I</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"AI: "</span>&lt;&lt;str&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Cpp/Cpp语法/IO类/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1974,264 +2152,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/乱搞/Linux/e8-92-9f-e8-92-bb-e7-9a-84linux-e9-9a-8f-e7-ac-94/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/乱搞/Linux/e8-92-9f-e8-92-bb-e7-9a-84linux-e9-9a-8f-e7-ac-94/" itemprop="url">蒟蒻的Linux随笔</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-10-16T22:53:53+08:00">
-                2018-10-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/乱搞/" itemprop="url" rel="index">
-                    <span itemprop="name">乱搞</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/乱搞/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/乱搞/Linux/e8-92-9f-e8-92-bb-e7-9a-84linux-e9-9a-8f-e7-ac-94/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="乱搞/Linux/e8-92-9f-e8-92-bb-e7-9a-84linux-e9-9a-8f-e7-ac-94/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近突然开始研究了一下Linux，随手记录一下一些用过的看起来比较有意思的命令吧QAQ</p>
-<h3 id="文件浏览-amp-常用乱七八糟"><a href="#文件浏览-amp-常用乱七八糟" class="headerlink" title="文件浏览&amp;常用乱七八糟"></a>文件浏览&amp;常用乱七八糟</h3><p>编译命令：</p>
-<blockquote>
-<p>g++ a+b.cpp -o a+b+c -std=c++11</p>
-</blockquote>
-<p>a+b.cpp是cpp文件名，a+b+c则是可执行文件名，后面则可以选择编译标准。</p>
-<blockquote>
-<p>ls</p>
-</blockquote>
-<p>浏览当前文件夹下的所有文件（不包含隐藏文件</p>
-<blockquote>
-<p>ls -a</p>
-</blockquote>
-<p>显示所有文件（包括隐藏文件）</p>
-<blockquote>
-<p>man ls</p>
-</blockquote>
-<p>man后面加东西，显示该命令的帮助，上下/空格浏览，q退出</p>
-<blockquote>
-<p>cal</p>
-</blockquote>
-<p>显示日历。cal 5 2018可显示指定月份。</p>
-<h3 id="文件打开-amp-新建-amp-删除"><a href="#文件打开-amp-新建-amp-删除" class="headerlink" title="文件打开&amp;新建&amp;删除"></a>文件打开&amp;新建&amp;删除</h3><blockquote>
-<p>cd name</p>
-</blockquote>
-<p>打开文件</p>
-<blockquote>
-<p>cd/cd ~</p>
-</blockquote>
-<p>回到根目录</p>
-<blockquote>
-<p>cd ..</p>
-</blockquote>
-<p>回到上一级目录</p>
-<blockquote>
-<p>pwd</p>
-</blockquote>
-<p>显示当前路径</p>
-<blockquote>
-<p>mkdir name</p>
-</blockquote>
-<p>新建文件夹</p>
-<blockquote>
-<p>mkdir -p name/name/name</p>
-</blockquote>
-<p>按路径建立多个新文件夹</p>
-<blockquote>
-<p>rmdir name</p>
-</blockquote>
-<p>删除此文件夹（被删除文件夹必须为空）</p>
-<blockquote>
-<p>rm -r name</p>
-</blockquote>
-<p>干翻name目录下所有文件（删库跑路？）</p>
-<h3 id="文件复制，移动，删除"><a href="#文件复制，移动，删除" class="headerlink" title="文件复制，移动，删除"></a>文件复制，移动，删除</h3><h4 id="文件复制"><a href="#文件复制" class="headerlink" title="文件复制"></a>文件复制</h4><blockquote>
-<p>cp ~/testpdf.pdf ~/test</p>
-</blockquote>
-<p>将根目录下的文件copy到空格后的目录中，~/不填则默认为当前目录下的文件 可以在复制的同时对复制后的文件进行重命名：</p>
-<blockquote>
-<p>cp ~/testpdf.pdf ~/test/notest.pdf</p>
-</blockquote>
-<p>复制过去的pdf名字就变了 可以加上-i选项，这样有同名文件覆盖前会询问是否覆盖：</p>
-<blockquote>
-<p>cp -i ~/testpdf.pdf ~/test</p>
-</blockquote>
-<p>如果要复制一个目录，或者说是文件夹，那么需要加上指令 -r</p>
-<blockquote>
-<p>cp -r test1 test2</p>
-</blockquote>
-<p>如果要强制执行，还可以使用-f指令；同时，多个指令可以叠加使用，例如：</p>
-<blockquote>
-<p>cp -rf test1 test2</p>
-</blockquote>
-<p>强制复制目录</p>
-<h4 id="文件删除"><a href="#文件删除" class="headerlink" title="文件删除"></a>文件删除</h4><p>使用指令rm以达到目的，同样，删除目录需要使用-r，这是递归删除命令；</p>
-<blockquote>
-<p>rm -r test1</p>
-</blockquote>
-<p>-i则会在删除前确认，-f表示强制执行。同时，还可以使用指令</p>
-<blockquote>
-<p>rm test*</p>
-</blockquote>
-<p>通过加上 “* ” 来删除此目录下所有文件名以test为前缀的文件；</p>
-<h4 id="文件移动"><a href="#文件移动" class="headerlink" title="文件移动"></a>文件移动</h4><p>使用mv指令来达成目的。mv指令可以移动普通文件和目录，因此不存在-r<br>-f 强制，-i：如果存在同名文件，询问是否覆盖； -u：如果目标文件已存在，且当前来源较新才会更新</p>
-<blockquote>
-<p>mv a+b ~/test/test2/</p>
-</blockquote>
-<p>将当前目录中的可执行文件a+b移动到指定文件夹中；</p>
-<blockquote>
-<p>mv a+b ~/test/test2/a+c</p>
-</blockquote>
-<p>移动文件的同时进行名称变更；</p>
-<blockquote>
-<p>mv a+b a+c ~/test/</p>
-</blockquote>
-<p>同时移动多个文件；注意此时最后一个一定是目录！！！</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2282,7 +2202,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

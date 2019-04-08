@@ -297,6 +297,488 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/" itemprop="url">（模板）有上下界的网络流 总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-07T10:43:12+08:00">
+                2018-08-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/" itemprop="url" rel="index">
+                    <span itemprop="name">网络流</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/模板/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/模板/图论/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="无源汇可行流"><a href="#无源汇可行流" class="headerlink" title="无源汇可行流"></a>无源汇可行流</h3><h4 id="建图方法"><a href="#建图方法" class="headerlink" title="建图方法"></a>建图方法</h4><p>将有上下界的网络流图转化成普通的网络流图 首先建立附加源点ss和附加汇点tt 对于原图中的边x-&gt;y，若限制为[b,c]，那么连边x-&gt;y，流量为c-b 对于原图中的某一个点i，记d(i)为流入这个点的所有边的下界和减去流出这个点的所有边的下界和 （上面在连每一条边的时候建一个cur数组记一下输入输出即可） 若d(i)&gt;0，那么连边ss-&gt;i，流量为d(i) ，同时期望的流量值sum+=d（i) 若d(i)&lt;0，那么连边i-&gt;tt，流量为-d(i) 求解方法 在新图上跑ss到tt的最大流 若新图满流（流量等于sum），那么一定存在一种可行流 此时，原图中每一条边的流量应为新图中对应的边的流量+这条边的流量下界</p>
+<h4 id="EX：LOJ115"><a href="#EX：LOJ115" class="headerlink" title="EX：LOJ115"></a>EX：LOJ115</h4><blockquote>
+<p>这是一道模板题。 n个点，m条边，每条边 e有一个流量下界 $lower(e) $ 和流量上界 $upper(e)$，求一种可行方案使得在所有点满足流量平衡条件的前提下，所有边满足流量限制。</p>
+</blockquote>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#include&lt;cstring&gt;
+#include&lt;queue&gt;
+using namespace std;
+struct edge{
+    int to,cap,rev,id;
+};
+vector&lt;edge&gt;G[310];
+int level[305],iter[305],cur[305],lower[30500];
+void addedge(int from,int to,int cap)
+{
+    G[from].push_back(edge{to,cap,(int)G[to].size()});
+    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
+}
+void bfs(int s)
+{
+    memset(level,-1,sizeof(level));
+    queue&lt;int&gt;que;
+    level[s]=0;que.push(s);
+    while(!que.empty()){
+        int t=que.front();que.pop();
+        for(int i=0;i&lt;G[t].size();i++){
+            edge e=G[t][i];
+            if(e.cap&gt;0&amp;&amp;level[e.to]&lt;0){
+                level[e.to]=level[t]+1;
+                que.push(e.to);
+            }
+        }
+    }
+}
+int dfs(int v,int t,int f)
+{
+    if(v==t)return f;
+    for(int&amp;i=iter[v];i&lt;G[v].size();i++){//注意传引用!
+        edge&amp;e=G[v][i];
+        if(e.cap&gt;0&amp;&amp;level[v]&lt;level[e.to]){
+            int d=dfs(e.to,t,min(f,e.cap));
+            if(d&gt;0){
+                e.cap-=d;
+                G[e.to][e.rev].cap+=d;
+                return d;
+            }
+        }
+    }
+    return 0;//不要漏了这个,很多时候可能是无法增广的
+}
+int maxflow(int s,int t){
+    int flow=0;
+    for(;;){
+        bfs(s);
+        if(level[t]&lt;0)return flow;
+        memset(iter,0,sizeof(iter));
+        int f;
+        while(f=dfs(s,t,0x7f7f7f7f))
+            flow+=f;
+    }
+}
+struct ans{
+    int id,flow;
+    bool operator&lt;(const ans&amp;a)const{
+        return id&lt;a.id;
+    }
+};
+int main()
+{
+    int n,m,i,j,k;
+    cin&gt;&gt;n&gt;&gt;m;
+    for(i=1;i&lt;=m;i++){
+        int s,t,l,u;
+        scanf(&quot;%d%d%d%d&quot;,&amp;s,&amp;t,&amp;lower[i],&amp;u);
+        cur[s]-=lower[i];cur[t]+=lower[i];
+        addedge(s,t,u-lower[i]);G[s].back().id=i;
+    }
+    int sum=0;
+    for(i=1;i&lt;=n;i++){
+        if(cur[i]&gt;0){
+            addedge(0,i,cur[i]);
+            sum+=cur[i];
+        }
+        else if(cur[i]&lt;0){
+            addedge(i,250,-cur[i]);
+        }
+    }
+    int flow=maxflow(0,250);
+    if(flow!=sum){
+        cout&lt;&lt;&quot;NO&quot;&lt;&lt;endl;return 0;
+    }
+    vector&lt;ans&gt;as;
+    for(i=1;i&lt;=n;i++){
+        for(auto a:G[i]){
+            if(!a.id)continue;
+            as.push_back(ans{a.id,lower[a.id]+G[a.to][a.rev].cap});
+        }
+    }
+    sort(as.begin(),as.end());
+    cout&lt;&lt;&quot;YES&quot;&lt;&lt;endl;
+    for(auto a:as){
+        cout&lt;&lt;a.flow&lt;&lt;endl;
+    }
+
+    return 0;
+}
+</code></pre><h3 id="有源汇可行流"><a href="#有源汇可行流" class="headerlink" title="有源汇可行流"></a>有源汇可行流</h3><h4 id="建图方法-1"><a href="#建图方法-1" class="headerlink" title="建图方法"></a>建图方法</h4><p>在原图中添加一条边t-&gt;s，流量为inf 即让源点和汇点也满足流量平衡条件 这样就改造成了无源汇的网络流图，其余建图方法与无源汇可行流相同。</p>
+<h3 id="有源汇有上下界最大流"><a href="#有源汇有上下界最大流" class="headerlink" title="有源汇有上下界最大流"></a>有源汇有上下界最大流</h3><h4 id="建图方法-2"><a href="#建图方法-2" class="headerlink" title="建图方法"></a>建图方法</h4><p>将有上下界的网络流图转化成普通的网络流图 首先建立附加源点ss和附加汇点tt 对于原图中的边x-&gt;y，若限制为[b,c]，那么连边x-&gt;y，流量为c-b 对于原图中的某一个点i，记d(i)为流入这个点的所有边的下界和减去流出这个点的所有边的下界和 若d(i)&gt;0，那么连边ss-&gt;i，流量为d(i) 若d(i)&lt;0，那么连边i-&gt;tt，流量为-d(i) <strong>（以上与无源汇可行流相同）</strong> 在原图中添加一条边t-&gt;s，流量为inf 即让源点和汇点也满足流量平衡条件 这样就改造成了无源汇的网络流图 <strong>（以上与有源汇可行流相同）</strong> 在新图上跑ss到tt的最大流 若新图满流，那么一定存在一种可行流 记此时$∑f(s,i)=sum1$ ，即此时t-&gt;s的最大流，也就是求反向边s-&gt;t的流量 将t-&gt;s这条边拆掉，在新图上跑s到t的最大流 记此时$∑f(s,i)=sum2 $，即maxflow（s，t） 最终答案即为sum1+sum2</p>
+<h4 id="EX-LOJ116"><a href="#EX-LOJ116" class="headerlink" title="EX:LOJ116"></a>EX:LOJ116</h4><blockquote>
+<p>这是一道模板题。 n个点，m条边，每条边 e有一个流量下界$ lower(e) $和流量上界 $upper(e) $，给定源点 s与汇点 t，求源点到汇点的最大流。</p>
+</blockquote>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+using namespace std;
+struct edge{
+    int to,cap,rev;
+    bool tag;
+};
+vector&lt;edge&gt;G[410];
+int level[405],iter[405],cur[405],lower[10005];
+void addedge(int from,int to,int cap,int s)
+{
+    G[from].push_back(edge{to,cap,(int)G[to].size()});
+    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
+    if(from==s)G[from].back().tag=true;
+}
+void bfs(int s)
+{
+    memset(level,-1,sizeof(level));
+    queue&lt;int&gt;que;
+    level[s]=0;que.push(s);
+    while(!que.empty()){
+        int t=que.front();que.pop();
+        for(int i=0;i&lt;G[t].size();i++){
+            edge e=G[t][i];
+            if(e.cap&gt;0&amp;&amp;level[e.to]&lt;0){
+                level[e.to]=level[t]+1;
+                que.push(e.to);
+            }
+        }
+    }
+}
+int dfs(int v,int t,int f)
+{
+    if(v==t)return f;
+    for(int&amp;i=iter[v];i&lt;G[v].size();i++){//注意传引用!
+        edge&amp;e=G[v][i];
+        if(e.cap&gt;0&amp;&amp;level[v]&lt;level[e.to]){
+            int d=dfs(e.to,t,min(f,e.cap));
+            if(d&gt;0){
+                e.cap-=d;
+                G[e.to][e.rev].cap+=d;
+                return d;
+            }
+        }
+    }
+    return 0;//不要漏了这个,很多时候可能是无法增广的
+}
+int maxflow(int s,int t){
+    int flow=0;
+    for(;;){
+        bfs(s);
+        if(level[t]&lt;0)return flow;
+        memset(iter,0,sizeof(iter));
+        int f;
+        while(f=dfs(s,t,0x7f7f7f7f))
+            flow+=f;
+    }
+}
+int main()
+{
+    int n,m,s,t,i,j,k;
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s&gt;&gt;t;
+    for(i=1;i&lt;=m;i++){
+        int from,t,up;
+        scanf(&quot;%d%d%d%d&quot;,&amp;from,&amp;t,&amp;lower[i],&amp;up);
+        addedge(from,t,up-lower[i],s);cur[from]-=lower[i];cur[t]+=lower[i];
+    }
+    int sum=0;
+    for(i=1;i&lt;=n;i++){
+        if(cur[i]&gt;0){
+            addedge(0,i,cur[i],s);sum+=cur[i];
+        }
+        else{
+            addedge(i,250,-cur[i],s);
+        }
+    }
+    addedge(t,s,(1&lt;&lt;31)-1,s);
+    int flow=maxflow(0,250);
+    if(sum!=flow){
+        cout&lt;&lt;&quot;please go home to sleep&quot;&lt;&lt;endl;return 0;
+    }
+    int ans=G[s].back().cap;
+    G[s].pop_back();G[t].pop_back();
+    ans+=maxflow(s,t);
+    cout&lt;&lt;ans&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><h3 id="有源汇有上下界最小流"><a href="#有源汇有上下界最小流" class="headerlink" title="有源汇有上下界最小流"></a>有源汇有上下界最小流</h3><h4 id="建图方法-3"><a href="#建图方法-3" class="headerlink" title="建图方法"></a>建图方法</h4><p>将有上下界的网络流图转化成普通的网络流图 首先建立附加源点ss和附加汇点tt 对于原图中的边x-&gt;y，若限制为[b,c]，那么连边x-&gt;y，流量为c-b 对于原图中的某一个点i，记d(i)为流入这个点的所有边的下界和减去流出这个点的所有边的下界和 若d(i)&gt;0，那么连边ss-&gt;i，流量为d(i) 若d(i)&lt;0，那么连边i-&gt;tt，流量为-d(i) <strong>（以上与无源汇可行流相同)</strong> 求res=ss-&gt;tt最大流 连边t-&gt;s,inf 求res+=ss-&gt;tt最大流 如果res！=sum也就是期望中的满流，那么就没有可行解。 <strong>需要格外注意最小流判断是否有可行解的位置与时机与另外几种上下界网络流的不同！！！ 否则，输出G[s].back().cap也就是从t到s inf边的实际流量，即为所求。</strong></p>
+<h4 id="EX-LOJ117"><a href="#EX-LOJ117" class="headerlink" title="EX:LOJ117"></a>EX:LOJ117</h4><blockquote>
+<p>n 个点，m条边，每条边 e有一个流量下界 $lower(e) $和流量上界 $upper(e)$，给定源点 s与汇点 t，求源点到汇点的最小流。</p>
+</blockquote>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+#include&lt;queue&gt;
+#include&lt;vector&gt;
+using namespace std;
+typedef long long ll;
+struct edge{
+    int to;ll cap;int rev;
+};
+vector&lt;edge&gt;G[50210];
+int level[50205],iter[50205],low[125050];ll cur[50205];
+void addedge(int from,int to,ll cap)
+{
+    G[from].push_back(edge{to,cap,(int)G[to].size()});
+    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
+}
+void bfs(int s)
+{
+    memset(level,-1,sizeof(level));
+    queue&lt;int&gt;que;
+    level[s]=0;que.push(s);
+    while(!que.empty()){
+        int t=que.front();que.pop();
+        for(int i=0;i&lt;G[t].size();i++){
+            edge e=G[t][i];
+            if(e.cap&gt;0&amp;&amp;level[e.to]&lt;0){
+                level[e.to]=level[t]+1;
+                que.push(e.to);
+            }
+        }
+    }
+}
+ll dfs(int v,int t,ll f)
+{
+    if(v==t)return f;
+    for(int&amp;i=iter[v];i&lt;G[v].size();i++){//注意传引用!
+        edge&amp;e=G[v][i];
+        if(e.cap&gt;0&amp;&amp;level[v]&lt;level[e.to]){
+            ll d=dfs(e.to,t,min(f,e.cap));
+            if(d&gt;0){
+                e.cap-=d;
+                G[e.to][e.rev].cap+=d;
+                return d;
+            }
+        }
+    }
+    return 0;//不要漏了这个,很多时候可能是无法增广的
+}
+ll maxflow(int s,int t){
+    ll flow=0;
+    for(;;){
+        bfs(s);
+        if(level[t]&lt;0)return flow;
+        memset(iter,0,sizeof(iter));
+        ll f;
+        while(f=dfs(s,t,0x7f7f7f7f7f7f7f7f))
+            flow+=f;
+    }
+}
+int main()
+{
+    int n,m,s,t,i,j,k;
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s&gt;&gt;t;
+    for(i=1;i&lt;=m;i++){
+        int from,to,up;scanf(&quot;%d%d%d%d&quot;,&amp;from,&amp;to,&amp;low[i],&amp;up);
+        cur[from]-=low[i];cur[to]+=low[i];addedge(from,to,up-low[i]);
+    }
+    ll sum=0;
+    for(i=1;i&lt;=n;i++){
+        if(cur[i]&gt;0){
+            addedge(0,i,cur[i]);sum+=cur[i];
+        }
+        else if(cur[i]&lt;0){
+            addedge(i,50050,-cur[i]);
+        }
+    }
+    ll flow=maxflow(0,50050);
+    addedge(t,s,(1LL&lt;&lt;63)-1);
+    flow+=maxflow(0,50050);
+    if(flow!=sum){
+        cout&lt;&lt;&quot;please go home to sleep&quot;&lt;&lt;endl;return 0;
+    }
+    cout&lt;&lt;G[s].back().cap&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/比赛杂集/Codeforces/codeforces-round-452-div-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2903,529 +3385,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/组合数学/算法/比赛杂集/暑假训练/2018-summer-training-e7-bb-84-e5-90-88-e6-95-b0-e5-ad-a6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/组合数学/算法/比赛杂集/暑假训练/2018-summer-training-e7-bb-84-e5-90-88-e6-95-b0-e5-ad-a6/" itemprop="url">2018  Summer Training 组合数学</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T10:35:54+08:00">
-                2018-08-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/组合数学/" itemprop="url" rel="index">
-                    <span itemprop="name">组合数学</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/组合数学/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/组合数学/算法/比赛杂集/" itemprop="url" rel="index">
-                    <span itemprop="name">比赛杂集</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/组合数学/算法/比赛杂集/暑假训练/" itemprop="url" rel="index">
-                    <span itemprop="name">暑假训练</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/组合数学/算法/比赛杂集/暑假训练/2018-summer-training-e7-bb-84-e5-90-88-e6-95-b0-e5-ad-a6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="组合数学/算法/比赛杂集/暑假训练/2018-summer-training-e7-bb-84-e5-90-88-e6-95-b0-e5-ad-a6/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>组合数学+容斥原理 这个每个人必须要拿一个的限制条件非常讨厌…所以我们先不管他。 由于各种特产相互独立，所以可以先算一种特产的分配方法… 这样的话就相当于把m个相同的小球放入n个不同的盒子里(盒子就是人)，答案是$C_{m+n-1}^{\ n-1}$，然后把各个特产的这个值相乘得到答案。 非常科学，非常优雅对不对… 接下来考虑限制条件，每个人至少拿一个，我们把限制去掉后得到的是至少0人没有特产的方案数。 <strong>根据容斥原理</strong> $ans=C_n^0<em> ans[至少0人没有特产]-C_n^1</em> ans[至少1人没有特产]+C_n^2<em> ans[至少2人没有特产]-……+……+/- C_m^m</em> ans[至少m人没有特产]$</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-typedef long long ll;
-const int mod=1e9+7;
-ll c[2005][2005];
-int main()
-{
-    int n,m,i,j,k;
-    c[1][1]=c[1][0]=c[0][0]=1;
-    for(i=2;i&lt;=2000;i++) {
-        c[i][0]=1;
-        for (j=1;j&lt;=i;j++){
-            c[i][j]=(c[i-1][j-1]+c[i-1][j])%mod;//预处理组合数
-        }
-    }
-    cin&gt;&gt;n&gt;&gt;m;
-    int tc[1005];
-    for(i=1;i&lt;=m;i++)
-        scanf(&quot;%d&quot;,&amp;tc[i]);//特产数量
-    ll ans=0;int cur=1;
-    for(i=0;i&lt;=n;i++){
-        ll temp=cur;//容斥原理的系数(决定加减)
-        for(j=1;j&lt;=m;j++){
-            temp=(temp*c[tc[j]+n-i-1][n-i-1])%mod;
-        }
-        ans+=temp*c[n][i]%mod;ans%=mod;
-        cur*=-1;
-    }
-    cout&lt;&lt;(ans+mod)%mod&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><h3 id="E"><a href="#E" class="headerlink" title="E."></a>E.</h3><p>我们把左右区间分别处理： $ r = r / k; \ l = (l - 1) / k + 1$; 这样问题就转化为求<strong>[l,r]</strong> 区间内，选n个数其最大公约数为1的方案数 因为$r-l&lt;=10^5$, 所以这个区间内任意两个不相等的数的最大公约数最大不超过$10^5$ 证明很好证：因为两个数<strong>p &gt; q</strong>的最大公约数如果为x,那么$p / x - q / x \geq 1$,那么$p - q \geq x$ 所以可以暴力枚举所有的最大公约数,<strong>设[l,r]中选n个不完全相同的数其最大公约数为i的方案数为dp[i]</strong> 那么[l,r]中有多少含i因子的数呢？ 显然有$t = r / i - (l - 1) / i$个数 那么$dp[i] = t_n$ 种方案，但是这里面肯定有n个数都相同的方案一共有t个（这时候他们的GCD就不仅仅是i了），所以$dp[i] = (tn - t) mod\ p$种方案 但是这个时候求出的是所有n个数中有i因子的方案数，而不是<strong>gcd=i</strong>的方案数，所以$\forall j\ dp[i] = dp[i] - dp[j](j &lt;= r - l \ and\ j | i)$ 然后这样dp[1]就是正解了 但是我们注意到，我们的dp[1]是在[l,r]中选n个不完全相同的数其最大公约数为i的方案数，但是实际上,如果n个数都等于k的话，那么其实也是满足要求的。 所以当$k∈[l,r]时，dp[1] = dp[1] + 1$;</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-using namespace std;
-const int  maxn=(100000 + 10);
-typedef long long  ll;
-int dp[maxn];
-int p = 1e9+7;
-ll mod_pow(ll n, ll k, ll mod) {
-    ll re = 1;
-    n = n % mod;
-    while(k) {
-        if(k &amp; 1)   re = re * n % mod;
-        k = k &gt;&gt; 1;
-        n = n * n % mod;
-    }
-    return re;
-}
-int main()
-{
-    int l,r,n,k;
-    bool flag = false;
-    scanf(&quot;%d%d%d%d&quot;,&amp;n,&amp;k,&amp;l,&amp;r);
-    if(k &gt;= l &amp;&amp; k &lt;= r)flag = true;
-    r = r / k;
-    l = (l - 1) / k;
-    for(int i = r - l; i &gt;= 1; i --) {
-        int t = r / i - l / i;
-        dp[i] = (mod_pow(t, n, p) - t + p) % p;
-        for(int j = 2; j * i &lt;= r - l; j ++)
-            dp[i] = (dp[i] - dp[i * j] + p) % p;
-    }
-    if(flag == true) dp[1]++;
-    printf(&quot;%d\n&quot;,dp[1] % p);
-
-    return 0;
-}
-</code></pre><h3 id="F"><a href="#F" class="headerlink" title="F."></a>F.</h3><p>非常套路的题目，其实就是要你快速求<strong>1~x</strong>中有多少个数跟给定的<strong>n</strong>互质，那么把<strong>n</strong>分解一下质因数然后用容斥原理求一下这些质因数的倍数的总和就可以了</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;vector&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-typedef long long ll;
-ll sum(ll x,ll n)
-{
-    vector&lt;ll&gt;prime;
-    ll i,j,y=x;
-    for(i=2;i*i&lt;=n;i++){//注意分解要从2开始!!
-        if(n%i==0){
-            prime.push_back(i);
-        }
-        while(n%i==0)
-            n/=i;
-    }
-    ll res=0;
-    if(n&gt;1)prime.push_back(n);
-    for(i=1;i&lt;(1LL&lt;&lt;prime.size());i++){//注意一定要从1开始!!!
-        ll val=1,cnt=0;//二进制枚举每个因数是否要选
-        for(j=0;j&lt;prime.size();j++){
-            if(i&amp;(1LL&lt;&lt;j)){
-                val*=prime[j];cnt++;
-            }
-        }
-        if(cnt&amp;1LL){
-            res+=y/val;
-        }
-        else res-=y/val;
-    }
-    //cout&lt;&lt;res&lt;&lt;endl;
-
-    return x-res;
-}
-int main()
-{
-    int t;ll a,b,n;
-    cin&gt;&gt;t;int cnt=0;
-    while(t--){
-        cnt++;
-        scanf(&quot;%lld%lld%lld&quot;,&amp;a,&amp;b,&amp;n);
-        printf(&quot;Case #%d: %lld\n&quot;,cnt,sum(b,n)-sum(a-1,n));
-    }
-
-    return 0;
-}
-</code></pre><h3 id="G"><a href="#G" class="headerlink" title="G."></a>G.</h3><p>题目求的其实就是$\forall a_i\ a_ix=b(mod\ m )$中b的和。 那么显然<strong>b</strong>必须满足$GCD(a_i,m)|b$,那么所有的这样的b显然都是<strong>m</strong>的某个约数的倍数（ m除外，因为$b\leq m-1$)。于是，对于每个ai，我们枚举其与m的gcd与各个约数的关系，如果它的gcd能整除某个约数，那么这个约数的所有倍数都是可行的，并且和可以用等差数列求和公式求出。但是这显然就带来了一个重复的问题，那么我们在求和的过程中还要统计每个数被求和的次数，然后进行处理。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;vector&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-using namespace std;
-typedef long long ll;
-bool vis[10005];
-int cnt[10005];
-int gcd(int x,int y)
-{
-    return y?gcd(y,x%y):x;
-}
-int main()
-{
-    int t,i,j,k;
-    cin&gt;&gt;t;int case1=0;
-    while(t--){
-        case1++;
-        int n,m;vector&lt;int&gt;ys;
-        memset(vis,0,sizeof(vis));memset(cnt,0,sizeof(cnt));
-        cin&gt;&gt;n&gt;&gt;m;
-        for(i=1;i*i&lt;=m;i++){//求m的约数
-            if(m%i==0){
-                ys.push_back(i);
-                if(i*i!=m)ys.push_back(m/i);
-            }
-        }
-        sort(ys.begin(),ys.end());ys.pop_back();//使约数从小到大排列方便后面求重复的问题
-        for(i=1;i&lt;=n;i++){
-            scanf(&quot;%d&quot;,&amp;k);//
-            k=gcd(k,m);
-            for(j=0;j&lt;ys.size();j++){
-                if(ys[j]%k==0)
-                    vis[j]=1;//这个约数及其倍数都是可行的
-            }
-        }
-        ll ans=0;
-        for(i=0;i&lt;ys.size();i++){
-            if(vis[i]&amp;&amp;cnt[i]!=1){
-                int last1=(m-1)/ys[i]*ys[i],num=(m-1)/ys[i]+1;
-                ans+=(ll)(0+last1)*num/2*(1-cnt[i]);
-                for(j=i+1;j&lt;ys.size();j++)
-                    if(ys[j]%ys[i]==0)//所有是这个约数的倍数的约数都被重复计数了,标记一下
-                        cnt[j]+=1-cnt[i];
-            }
-        }
-        printf(&quot;Case #%d: %lld\n&quot;,case1,ans);
-        //cout&lt;&lt;ans&lt;&lt;endl;
-    }
-
-    return 0;
-}
-</code></pre><h3 id="H"><a href="#H" class="headerlink" title="H."></a>H.</h3><p>题目可以比较暴力的求解，因为有个结论：如果a和m互质，那么$k* m+a$和$m$也互质，于是我们暴力求1~m的范围内与m互质的数的个数n，然后每m个数中就有n个数与m互质。需要注意的就是当$n|k$时要特判一下。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;vector&gt;
-using namespace std;
-typedef long long ll;
-ll gcd(ll x,ll y)
-{
-    return y?gcd(y,x%y):x;
-}
-int main()
-{
-    ll n,m,i,j,k;
-    while(cin&gt;&gt;m&gt;&gt;k){
-        vector&lt;ll&gt;rp;
-        for(i=1;i&lt;=m;i++){
-            if(gcd(i,m)==1)
-                rp.push_back(i);
-        }
-        ll xs=k/rp.size();
-        ll ans;
-        if(k%rp.size())
-            ans=m*xs+rp[k%rp.size()-1];
-        else
-            ans=m*(xs-1)+rp[rp.size()-1];//注意特判
-        printf(&quot;%lld\n&quot;,ans);
-    }
-
-    return 0;
-}
-</code></pre><h3 id="I"><a href="#I" class="headerlink" title="I."></a>I.</h3><p>非常套路的题，枚举集合内的数然后求一下他们的LCM，然后容斥原理搞一搞他们的倍数的个数就ok了</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;vector&gt;
-using namespace std;
-typedef long long ll;
-ll gcd(ll x,ll y)
-{
-    return y?gcd(y,x%y):x;
-}
-ll sum(ll x,vector&lt;int&gt;v)
-{
-    ll res=0,i,j;
-    for(i=1;i&lt;(1&lt;&lt;v.size());i++){
-        ll val=1,cnt=0;
-        for(j=0;j&lt;v.size();j++){
-            if(i&amp;(1LL&lt;&lt;j)){
-                val=val*v[j]/gcd(val,v[j]);//一定要求LCM!集合里的数不见得两两互质
-                cnt++;
-            }
-        }
-        if(cnt&amp;1LL)res+=x/val;
-        else res-=x/val;
-    }
-    return res;
-}
-int main()
-{
-    ll n,m;
-    int i,j,k;
-    while(cin&gt;&gt;n&gt;&gt;m){
-        vector&lt;int&gt;v;//bool haszero=false;
-        for(i=1;i&lt;=m;i++){
-            scanf(&quot;%d&quot;,&amp;j);if(j)v.push_back(j);
-        }
-        printf(&quot;%lld\n&quot;,sum(n-1,v));
-        //else cout&lt;&lt;0&lt;&lt;endl;
-    }
-
-    return 0;
-}
-</code></pre><h3 id="J"><a href="#J" class="headerlink" title="J."></a>J.</h3><p>其实就是求1~b/k跟1~d/k中有多少对互质的数。假设b&gt;d，我可以认为从后一个集合中挑的数一定都是比较小的数（避免重复），那么对于互质对(x,y),x&gt;=y,当x&lt;=d/k时，其实y的取值就是x的欧拉函数值。而当d/k&lt;=x&lt;=b/k时，就用之前题目中求过的那种方式求1~d/k中与x互质的数的个数即可。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;vector&gt;
-using namespace std;
-typedef long long ll;
-ll eular(ll x)
-{
-    ll res = x, a = x;
-    for (ll i = 2; i*i &lt;= a; i++) {
-        if (a%i == 0) {
-            res = res / i*(i - 1);
-            while (a%i == 0)
-                a /= i;
-        }
-    }
-    if (a &gt; 1)
-        res = res / a*(a - 1);
-    return res;
-}
-ll sum(ll x,ll n)
-{
-    ll i,j;
-    vector&lt;ll&gt;prime;
-    for(i=2;i*i&lt;=n;i++){
-        if(n%i==0){
-            prime.push_back(i);
-            while(n%i==0)
-                n/=i;
-        }
-    }
-    if(n&gt;1)prime.push_back(n);
-    ll res=0;
-    for(i=1;i&lt;(1LL&lt;&lt;prime.size());i++){
-        ll val=1;ll cnt=0;
-        for(j=0;j&lt;prime.size();j++){
-            if(i&amp;(1LL&lt;&lt;j)){
-                val*=prime[j];cnt++;
-            }
-        }
-        if(cnt&amp;1){
-            res+=x/val;
-        }
-        else res-=x/val;
-    }
-    return x-res;
-}
-ll phi[1000005];
-void phi_table(ll n)///欧拉函数值表
-{
-    phi[1]=1;
-    for(ll i=2; i&lt;=n; i++)
-    {
-        if(!phi[i])
-        {
-            for(ll j=i; j&lt;=n; j+=i)
-            {
-                if(!phi[j])
-                    phi[j]=j;
-                phi[j]=phi[j]/i*(i-1);
-            }
-        }
-    }
-}
-
-int main()
-{
-    int t;ll a,b,c,d,i,j,k;
-    cin&gt;&gt;t;
-    phi_table(100010);
-    for(ll i=2; i&lt;=100000; i++)
-        phi[i]+=phi[i-1];///前缀和
-    int cnt=0;
-    while(t--){
-        ll ans=0;
-        cnt++;
-        scanf(&quot;%lld%lld%lld%lld%lld&quot;,&amp;a,&amp;b,&amp;c,&amp;d,&amp;k);
-        if(k==0 || k &gt; b || k &gt; d) {
-            printf(&quot;Case %d: 0\n&quot;, cnt);
-            continue;
-        }
-        if(b&lt;d)swap(b,d);
-        b/=k;d/=k;
-//        for(i=1;i&lt;=d;i++)
-//            ans+=eular(i);
-        for(i=d+1;i&lt;=b;i++)
-            ans+=sum(d,i);
-        printf(&quot;Case %d: %lld\n&quot;,cnt,ans+phi[d]);
-    }
-
-    return 0;
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3476,7 +3435,7 @@ int main()
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -297,6 +297,297 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b7-af-e5-be-84-e8-a6-86-e7-9b-96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b7-af-e5-be-84-e8-a6-86-e7-9b-96/" itemprop="url">（模板）最小路径覆盖</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T22:33:25+08:00">
+                2018-08-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/" itemprop="url" rel="index">
+                    <span itemprop="name">网络流</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/模板/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/网络流/算法/模板/图论/" itemprop="url" rel="index">
+                    <span itemprop="name">图论</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b7-af-e5-be-84-e8-a6-86-e7-9b-96/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b7-af-e5-be-84-e8-a6-86-e7-9b-96/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="对于一个给定的有向无环图（DAG），求其最小路径覆盖。"><a href="#对于一个给定的有向无环图（DAG），求其最小路径覆盖。" class="headerlink" title="对于一个给定的有向无环图（DAG），求其最小路径覆盖。"></a>对于一个给定的有向无环图（DAG），求其最小路径覆盖。</h4><p>题目可参见洛谷P2764。 <strong>【问题分析】</strong> 有向无环图最小路径覆盖，可以转化成二分图最大匹配问题，从而用最大流解决。 <strong>【建模方法】</strong> 构造二分图，把原图每个顶点i拆分成二分图X，Y集合中的两个顶点Xi和Yi。对于原图中存在的每条边(i,j)，在二分图中连接边(Xi,Yj)。然后把二分图最大匹配模型转化为网络流模型，求网络最大流。 最小路径覆盖的条数，就是原图顶点数，减去二分图最大匹配数。沿着匹配边查找，就是一个路径上的点，输出所有路径即可。 <strong>【建模分析】</strong> 对于一个路径覆盖，有如下性质： 1、每个顶点属于且只属于一个路径。 2、路径上除终点外，从每个顶点出发只有一条边指向路径上的另一顶点。所以我们可以把每个顶点理解成两个顶点，一个是出发，一个是目标，建立二分图模型。该二分图的任何一个匹配方案，都对应了一个路径覆盖方案。如果匹配数为0，那么显然路径数=顶点数。每增加一条匹配边，那么路径覆盖数就减少一个，所以路径数=顶点数 - 匹配数。要想使路径数最少，则应最大化匹配数，所以要求二分图的最大匹配。注意，此建模方法求最小路径覆盖仅适用于有向无环图，如果有环或是无向图，那么有可能求出的一些环覆盖，而不是路径覆盖。 洛谷题目参考代码：</p>
+<pre><code>// luogu-judger-enable-o2
+#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cstring&gt;
+using namespace std;
+struct edge {
+    int to, cap, rev;
+};
+vector&lt;edge&gt;G[500];
+int level[500], iter[500];
+int n, m;
+void addedge(int from, int to, int cap)
+{
+    edge e;
+    e.to = to; e.cap = cap; e.rev = G[to].size();
+    G[from].push_back(e);
+    e.to = from; e.cap = 0; e.rev = G[from].size() - 1;//一定要小心反向边的cap为0！！！
+    G[to].push_back(e);
+}
+void bfs(int s)
+{
+    memset(level, -1, sizeof(level));//每次bfs的时候构图都不同，要memset
+    queue&lt;int&gt;que;
+    level[s] = 0;
+    que.push(s);
+    while (!que.empty()) {
+        int t = que.front(); que.pop();
+        for (int i = 0; i &lt; G[t].size(); i++) {
+            edge e = G[t][i];
+            if (e.cap&amp;&amp;level[e.to] &lt; 0) {
+                level[e.to] = level[t] + 1;
+                que.push(e.to);
+            }
+        }
+    }
+}
+int dfs(int v, int t, int f)
+{
+    if (v == t)
+        return f;
+    for (int &amp;i = iter[v]; i &lt; G[v].size(); i++) {//因为每次dfs的时候如果找到解就return了，所以有必要记录上次这个点搜到哪了
+        edge &amp;e = G[v][i];
+        if (e.cap&amp;&amp;level[e.to] &gt; level[v]) {
+            int d = dfs(e.to, t, min(f, e.cap));
+            if (d) {
+                e.cap -= d;
+                G[e.to][e.rev].cap += d;
+                return d;
+            }
+        }
+    }
+    return 0;
+}
+int maxflow(int s, int t)
+{
+    int flow = 0;
+    for (;;) {
+        bfs(s);
+        if (level[t] &lt; 0)//说明此时已经不存在没有搜过的路了
+            return flow;
+        memset(iter, 0, sizeof(iter));
+        int f;
+        while (f = dfs(s, t, 1 &lt;&lt; 30))//要搜完当期状况下的所有可能
+            flow += f;
+    }
+}
+int main()
+{
+    int i, j;
+    cin &gt;&gt; n &gt;&gt; m ;
+    for (i = 1; i &lt;= m; i++) {
+        int a, b;
+        scanf(&quot;%d %d&quot;, &amp;a, &amp;b);
+        addedge(a, b+150, 1);
+    }
+    for (i = 1; i &lt;= n; i++) {
+        addedge(0, i, 1);
+        addedge(i+150, 400, 1);
+    }
+    int ans = n - maxflow(0, 400);
+    bool vis[500]; memset(vis, 0, sizeof(vis));
+    for (i = 1; i &lt;= n; i++) {
+        if (!vis[i]) {
+            cout &lt;&lt; i;
+            int k = i; 
+            for (;;) {
+                bool find = false;
+                for (j = 0; j &lt; G[k].size(); j++) {
+                    if (G[k][j].cap == 0&amp;&amp;G[k][j].to&gt;150) {
+                        cout &lt;&lt; &quot; &quot; &lt;&lt; G[k][j].to-150;
+                        k = G[k][j].to - 150; vis[k] = true; find = true;
+                        break;
+                    }
+                }
+                if (!find)break;
+            }
+            cout &lt;&lt; endl;
+        }
+    }
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/最小生成树/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e7-94-9f-e6-88-90-e6-a0-91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3274,488 +3565,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/" itemprop="url">（模板）有上下界的网络流 总结</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-07T10:43:12+08:00">
-                2018-08-07
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络流/" itemprop="url" rel="index">
-                    <span itemprop="name">网络流</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络流/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络流/算法/模板/" itemprop="url" rel="index">
-                    <span itemprop="name">模板</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/网络流/算法/模板/图论/" itemprop="url" rel="index">
-                    <span itemprop="name">图论</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="网络流/算法/模板/图论/e6-9c-89-e4-b8-8a-e4-b8-8b-e7-95-8c-e7-9a-84-e7-bd-91-e7-bb-9c-e6-b5-81-e5-81-9a-e6-b3-95-e6-80-bb-e7-bb-93/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="无源汇可行流"><a href="#无源汇可行流" class="headerlink" title="无源汇可行流"></a>无源汇可行流</h3><h4 id="建图方法"><a href="#建图方法" class="headerlink" title="建图方法"></a>建图方法</h4><p>将有上下界的网络流图转化成普通的网络流图 首先建立附加源点ss和附加汇点tt 对于原图中的边x-&gt;y，若限制为[b,c]，那么连边x-&gt;y，流量为c-b 对于原图中的某一个点i，记d(i)为流入这个点的所有边的下界和减去流出这个点的所有边的下界和 （上面在连每一条边的时候建一个cur数组记一下输入输出即可） 若d(i)&gt;0，那么连边ss-&gt;i，流量为d(i) ，同时期望的流量值sum+=d（i) 若d(i)&lt;0，那么连边i-&gt;tt，流量为-d(i) 求解方法 在新图上跑ss到tt的最大流 若新图满流（流量等于sum），那么一定存在一种可行流 此时，原图中每一条边的流量应为新图中对应的边的流量+这条边的流量下界</p>
-<h4 id="EX：LOJ115"><a href="#EX：LOJ115" class="headerlink" title="EX：LOJ115"></a>EX：LOJ115</h4><blockquote>
-<p>这是一道模板题。 n个点，m条边，每条边 e有一个流量下界 $lower(e) $ 和流量上界 $upper(e)$，求一种可行方案使得在所有点满足流量平衡条件的前提下，所有边满足流量限制。</p>
-</blockquote>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;vector&gt;
-#include&lt;cstring&gt;
-#include&lt;queue&gt;
-using namespace std;
-struct edge{
-    int to,cap,rev,id;
-};
-vector&lt;edge&gt;G[310];
-int level[305],iter[305],cur[305],lower[30500];
-void addedge(int from,int to,int cap)
-{
-    G[from].push_back(edge{to,cap,(int)G[to].size()});
-    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
-}
-void bfs(int s)
-{
-    memset(level,-1,sizeof(level));
-    queue&lt;int&gt;que;
-    level[s]=0;que.push(s);
-    while(!que.empty()){
-        int t=que.front();que.pop();
-        for(int i=0;i&lt;G[t].size();i++){
-            edge e=G[t][i];
-            if(e.cap&gt;0&amp;&amp;level[e.to]&lt;0){
-                level[e.to]=level[t]+1;
-                que.push(e.to);
-            }
-        }
-    }
-}
-int dfs(int v,int t,int f)
-{
-    if(v==t)return f;
-    for(int&amp;i=iter[v];i&lt;G[v].size();i++){//注意传引用!
-        edge&amp;e=G[v][i];
-        if(e.cap&gt;0&amp;&amp;level[v]&lt;level[e.to]){
-            int d=dfs(e.to,t,min(f,e.cap));
-            if(d&gt;0){
-                e.cap-=d;
-                G[e.to][e.rev].cap+=d;
-                return d;
-            }
-        }
-    }
-    return 0;//不要漏了这个,很多时候可能是无法增广的
-}
-int maxflow(int s,int t){
-    int flow=0;
-    for(;;){
-        bfs(s);
-        if(level[t]&lt;0)return flow;
-        memset(iter,0,sizeof(iter));
-        int f;
-        while(f=dfs(s,t,0x7f7f7f7f))
-            flow+=f;
-    }
-}
-struct ans{
-    int id,flow;
-    bool operator&lt;(const ans&amp;a)const{
-        return id&lt;a.id;
-    }
-};
-int main()
-{
-    int n,m,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m;
-    for(i=1;i&lt;=m;i++){
-        int s,t,l,u;
-        scanf(&quot;%d%d%d%d&quot;,&amp;s,&amp;t,&amp;lower[i],&amp;u);
-        cur[s]-=lower[i];cur[t]+=lower[i];
-        addedge(s,t,u-lower[i]);G[s].back().id=i;
-    }
-    int sum=0;
-    for(i=1;i&lt;=n;i++){
-        if(cur[i]&gt;0){
-            addedge(0,i,cur[i]);
-            sum+=cur[i];
-        }
-        else if(cur[i]&lt;0){
-            addedge(i,250,-cur[i]);
-        }
-    }
-    int flow=maxflow(0,250);
-    if(flow!=sum){
-        cout&lt;&lt;&quot;NO&quot;&lt;&lt;endl;return 0;
-    }
-    vector&lt;ans&gt;as;
-    for(i=1;i&lt;=n;i++){
-        for(auto a:G[i]){
-            if(!a.id)continue;
-            as.push_back(ans{a.id,lower[a.id]+G[a.to][a.rev].cap});
-        }
-    }
-    sort(as.begin(),as.end());
-    cout&lt;&lt;&quot;YES&quot;&lt;&lt;endl;
-    for(auto a:as){
-        cout&lt;&lt;a.flow&lt;&lt;endl;
-    }
-
-    return 0;
-}
-</code></pre><h3 id="有源汇可行流"><a href="#有源汇可行流" class="headerlink" title="有源汇可行流"></a>有源汇可行流</h3><h4 id="建图方法-1"><a href="#建图方法-1" class="headerlink" title="建图方法"></a>建图方法</h4><p>在原图中添加一条边t-&gt;s，流量为inf 即让源点和汇点也满足流量平衡条件 这样就改造成了无源汇的网络流图，其余建图方法与无源汇可行流相同。</p>
-<h3 id="有源汇有上下界最大流"><a href="#有源汇有上下界最大流" class="headerlink" title="有源汇有上下界最大流"></a>有源汇有上下界最大流</h3><h4 id="建图方法-2"><a href="#建图方法-2" class="headerlink" title="建图方法"></a>建图方法</h4><p>将有上下界的网络流图转化成普通的网络流图 首先建立附加源点ss和附加汇点tt 对于原图中的边x-&gt;y，若限制为[b,c]，那么连边x-&gt;y，流量为c-b 对于原图中的某一个点i，记d(i)为流入这个点的所有边的下界和减去流出这个点的所有边的下界和 若d(i)&gt;0，那么连边ss-&gt;i，流量为d(i) 若d(i)&lt;0，那么连边i-&gt;tt，流量为-d(i) <strong>（以上与无源汇可行流相同）</strong> 在原图中添加一条边t-&gt;s，流量为inf 即让源点和汇点也满足流量平衡条件 这样就改造成了无源汇的网络流图 <strong>（以上与有源汇可行流相同）</strong> 在新图上跑ss到tt的最大流 若新图满流，那么一定存在一种可行流 记此时$∑f(s,i)=sum1$ ，即此时t-&gt;s的最大流，也就是求反向边s-&gt;t的流量 将t-&gt;s这条边拆掉，在新图上跑s到t的最大流 记此时$∑f(s,i)=sum2 $，即maxflow（s，t） 最终答案即为sum1+sum2</p>
-<h4 id="EX-LOJ116"><a href="#EX-LOJ116" class="headerlink" title="EX:LOJ116"></a>EX:LOJ116</h4><blockquote>
-<p>这是一道模板题。 n个点，m条边，每条边 e有一个流量下界$ lower(e) $和流量上界 $upper(e) $，给定源点 s与汇点 t，求源点到汇点的最大流。</p>
-</blockquote>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-#include&lt;vector&gt;
-#include&lt;queue&gt;
-using namespace std;
-struct edge{
-    int to,cap,rev;
-    bool tag;
-};
-vector&lt;edge&gt;G[410];
-int level[405],iter[405],cur[405],lower[10005];
-void addedge(int from,int to,int cap,int s)
-{
-    G[from].push_back(edge{to,cap,(int)G[to].size()});
-    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
-    if(from==s)G[from].back().tag=true;
-}
-void bfs(int s)
-{
-    memset(level,-1,sizeof(level));
-    queue&lt;int&gt;que;
-    level[s]=0;que.push(s);
-    while(!que.empty()){
-        int t=que.front();que.pop();
-        for(int i=0;i&lt;G[t].size();i++){
-            edge e=G[t][i];
-            if(e.cap&gt;0&amp;&amp;level[e.to]&lt;0){
-                level[e.to]=level[t]+1;
-                que.push(e.to);
-            }
-        }
-    }
-}
-int dfs(int v,int t,int f)
-{
-    if(v==t)return f;
-    for(int&amp;i=iter[v];i&lt;G[v].size();i++){//注意传引用!
-        edge&amp;e=G[v][i];
-        if(e.cap&gt;0&amp;&amp;level[v]&lt;level[e.to]){
-            int d=dfs(e.to,t,min(f,e.cap));
-            if(d&gt;0){
-                e.cap-=d;
-                G[e.to][e.rev].cap+=d;
-                return d;
-            }
-        }
-    }
-    return 0;//不要漏了这个,很多时候可能是无法增广的
-}
-int maxflow(int s,int t){
-    int flow=0;
-    for(;;){
-        bfs(s);
-        if(level[t]&lt;0)return flow;
-        memset(iter,0,sizeof(iter));
-        int f;
-        while(f=dfs(s,t,0x7f7f7f7f))
-            flow+=f;
-    }
-}
-int main()
-{
-    int n,m,s,t,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s&gt;&gt;t;
-    for(i=1;i&lt;=m;i++){
-        int from,t,up;
-        scanf(&quot;%d%d%d%d&quot;,&amp;from,&amp;t,&amp;lower[i],&amp;up);
-        addedge(from,t,up-lower[i],s);cur[from]-=lower[i];cur[t]+=lower[i];
-    }
-    int sum=0;
-    for(i=1;i&lt;=n;i++){
-        if(cur[i]&gt;0){
-            addedge(0,i,cur[i],s);sum+=cur[i];
-        }
-        else{
-            addedge(i,250,-cur[i],s);
-        }
-    }
-    addedge(t,s,(1&lt;&lt;31)-1,s);
-    int flow=maxflow(0,250);
-    if(sum!=flow){
-        cout&lt;&lt;&quot;please go home to sleep&quot;&lt;&lt;endl;return 0;
-    }
-    int ans=G[s].back().cap;
-    G[s].pop_back();G[t].pop_back();
-    ans+=maxflow(s,t);
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><h3 id="有源汇有上下界最小流"><a href="#有源汇有上下界最小流" class="headerlink" title="有源汇有上下界最小流"></a>有源汇有上下界最小流</h3><h4 id="建图方法-3"><a href="#建图方法-3" class="headerlink" title="建图方法"></a>建图方法</h4><p>将有上下界的网络流图转化成普通的网络流图 首先建立附加源点ss和附加汇点tt 对于原图中的边x-&gt;y，若限制为[b,c]，那么连边x-&gt;y，流量为c-b 对于原图中的某一个点i，记d(i)为流入这个点的所有边的下界和减去流出这个点的所有边的下界和 若d(i)&gt;0，那么连边ss-&gt;i，流量为d(i) 若d(i)&lt;0，那么连边i-&gt;tt，流量为-d(i) <strong>（以上与无源汇可行流相同)</strong> 求res=ss-&gt;tt最大流 连边t-&gt;s,inf 求res+=ss-&gt;tt最大流 如果res！=sum也就是期望中的满流，那么就没有可行解。 <strong>需要格外注意最小流判断是否有可行解的位置与时机与另外几种上下界网络流的不同！！！ 否则，输出G[s].back().cap也就是从t到s inf边的实际流量，即为所求。</strong></p>
-<h4 id="EX-LOJ117"><a href="#EX-LOJ117" class="headerlink" title="EX:LOJ117"></a>EX:LOJ117</h4><blockquote>
-<p>n 个点，m条边，每条边 e有一个流量下界 $lower(e) $和流量上界 $upper(e)$，给定源点 s与汇点 t，求源点到汇点的最小流。</p>
-</blockquote>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-#include&lt;queue&gt;
-#include&lt;vector&gt;
-using namespace std;
-typedef long long ll;
-struct edge{
-    int to;ll cap;int rev;
-};
-vector&lt;edge&gt;G[50210];
-int level[50205],iter[50205],low[125050];ll cur[50205];
-void addedge(int from,int to,ll cap)
-{
-    G[from].push_back(edge{to,cap,(int)G[to].size()});
-    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
-}
-void bfs(int s)
-{
-    memset(level,-1,sizeof(level));
-    queue&lt;int&gt;que;
-    level[s]=0;que.push(s);
-    while(!que.empty()){
-        int t=que.front();que.pop();
-        for(int i=0;i&lt;G[t].size();i++){
-            edge e=G[t][i];
-            if(e.cap&gt;0&amp;&amp;level[e.to]&lt;0){
-                level[e.to]=level[t]+1;
-                que.push(e.to);
-            }
-        }
-    }
-}
-ll dfs(int v,int t,ll f)
-{
-    if(v==t)return f;
-    for(int&amp;i=iter[v];i&lt;G[v].size();i++){//注意传引用!
-        edge&amp;e=G[v][i];
-        if(e.cap&gt;0&amp;&amp;level[v]&lt;level[e.to]){
-            ll d=dfs(e.to,t,min(f,e.cap));
-            if(d&gt;0){
-                e.cap-=d;
-                G[e.to][e.rev].cap+=d;
-                return d;
-            }
-        }
-    }
-    return 0;//不要漏了这个,很多时候可能是无法增广的
-}
-ll maxflow(int s,int t){
-    ll flow=0;
-    for(;;){
-        bfs(s);
-        if(level[t]&lt;0)return flow;
-        memset(iter,0,sizeof(iter));
-        ll f;
-        while(f=dfs(s,t,0x7f7f7f7f7f7f7f7f))
-            flow+=f;
-    }
-}
-int main()
-{
-    int n,m,s,t,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s&gt;&gt;t;
-    for(i=1;i&lt;=m;i++){
-        int from,to,up;scanf(&quot;%d%d%d%d&quot;,&amp;from,&amp;to,&amp;low[i],&amp;up);
-        cur[from]-=low[i];cur[to]+=low[i];addedge(from,to,up-low[i]);
-    }
-    ll sum=0;
-    for(i=1;i&lt;=n;i++){
-        if(cur[i]&gt;0){
-            addedge(0,i,cur[i]);sum+=cur[i];
-        }
-        else if(cur[i]&lt;0){
-            addedge(i,50050,-cur[i]);
-        }
-    }
-    ll flow=maxflow(0,50050);
-    addedge(t,s,(1LL&lt;&lt;63)-1);
-    flow+=maxflow(0,50050);
-    if(flow!=sum){
-        cout&lt;&lt;&quot;please go home to sleep&quot;&lt;&lt;endl;return 0;
-    }
-    cout&lt;&lt;G[s].back().cap&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3806,7 +3615,7 @@ int main()
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">76</span>
+                  <span class="site-state-item-count">77</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
