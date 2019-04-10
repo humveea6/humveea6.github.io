@@ -297,6 +297,310 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/Codeforces/codeforces-round-455-div-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/Codeforces/codeforces-round-455-div-2/" itemprop="url">Codeforces Round #455 (Div. 2)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-23T23:49:40+08:00">
+                2018-07-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/Codeforces/" itemprop="url" rel="index">
+                    <span itemprop="name">Codeforces</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/算法/Codeforces/codeforces-round-455-div-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/Codeforces/codeforces-round-455-div-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>A. 暴力枚举即可</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;string&gt;
+#include&lt;set&gt;
+using namespace std;
+int main()
+{
+    set&lt;string&gt;s;
+    string str1,str2;
+    cin&gt;&gt;str1&gt;&gt;str2;
+    int i,j;
+    for(i=0;i&lt;str1.size();i++){
+        string str11=str1.substr(0,i+1);
+        for(j=0;j&lt;str2.size();j++){
+            string str22=str2.substr(0,j+1);
+            s.insert(str11+str22);
+        }
+    }
+    cout&lt;&lt;*s.begin()&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p>B. 结论题。首先想象对于一个区间[i,i+1],所有覆盖这个区间的线段都必然属于不同的层，否则任意两个线段都会相交，显然不行。那么我们有一个大胆的想法：枚举所有的i，找出(i+1)* (n-i)中最大的即是答案。事实上确实如此。</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+int main()
+{
+    int n,i,j,ans=0;
+    cin&gt;&gt;n;
+    for(i=0;i&lt;n;i++){
+        ans=max(ans,(i+1)*(n-i));
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p>C.</p>
+<blockquote>
+<p>题意：f代表for语句，它后面的语句至少有一句是它内部的，其他语句要么在内部要么在外部，s语句是普通语句。给一个没有缩进的f, s代码，求一共有多少种满足上述的缩进方案，结果模1e9+7。</p>
+</blockquote>
+<p>令f[i][j]代表第i行有j个缩进的可能数。那么对于每一行的语句，如果他是f的话，那么显然，这一行的缩进只能++；但如果这一行是s的话，那么其实这一个语句可以是上面任意一个f的缩进。因此对于j=1…cnt,有f[i][j]+=f[i-1]<a href="k=1...j">k</a>，因此我们可以趁机压缩一维（前缀和dp），对于j=1..cnt，有f[j]+=f[j-1]即可，当然要取模； 最后一行如果不是紧接着f的，那么f[cnt]就是前缀和dp，否则就是f在有cnt个缩进下的情况，因此输出f[cnt]即可。</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+using namespace std;
+long long f[5005];
+const int mod=1e9+7;
+int main()
+{
+    int n,i,j,cnt=0;char c;
+    cin&gt;&gt;n;
+    f[0]=1;
+    for(i=1;i&lt;=n;i++){
+        cin&gt;&gt;c;
+        if(c==&apos;f&apos;)
+            cnt++;
+        else{
+            for(j=1;j&lt;=cnt;j++)
+                f[j]=(f[j]+f[j-1])%mod;
+        }
+    }
+    cout&lt;&lt;f[cnt]&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p>D. 我们可以设想，如果我们把这些点按照相邻的相同颜色为标准分为连续的一组组的话，那么每次操作后被删去的点肯定都是每一组左右两端的两个点，因为这两个点与不同颜色的段接壤（当然第一段与最后一段除外，他们每次只减1）。那么我们可以重复此操作，直到至少有一段被删光，这时，他的左右两个区间可能因为颜色相同变成一个区间，这时候就必要重新安排了。写法还是挺精妙的 。</p>
+<pre><code>#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+typedef pair&lt;char,int&gt;P;
+const int maxn=1e6+5;
+char s[maxn];
+int main()
+{
+    int cnt,i,j,ans=0,tot=0;
+    scanf(&quot;%s&quot;,s+1);
+    P pa[maxn];
+    int n=strlen(s+1);
+    for(i=1;i&lt;=n;i++) {
+        if (s[i] != s[i - 1])
+            pa[++tot] = P(s[i], 1);//预处理段
+        else pa[tot].second++;
+    }
+    for(;tot&gt;1;tot=cnt,ans++){
+        pa[1].second--;pa[tot].second--;//处理头尾
+        for(i=2;i&lt;tot;i++)//中间各段-=2
+            pa[i].second-=2;
+        for(cnt=0,i=1;i&lt;=tot;i++){
+            if(pa[i].second&gt;0) {//如果这一段还没有被删完
+                if (pa[i].first != pa[cnt].first)//如果他跟前面接壤的区间颜色不相同,记为新的区间
+                    pa[++cnt]=pa[i];
+                else pa[cnt].second += pa[i].second;//否则重新计量该区间
+            }
+        }
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+
+    return 0;
+}
+</code></pre><p>E. 可以想象，是什么情况下分给副核的任务需要分成几次？显然是因为副核依赖一个主核的任务，而这个主核的任务又依赖于一个副核的任务。除此之外，其余任务都是可以一次丢进核中完成的。因此，我们采用两个队列，每次把所有可以一次完成的任务分别丢进主副核的队列中（类似拓扑排序的思想），直到队列为空。</p>
+<pre><code>#include &lt;cstdio&gt;
+#include &lt;queue&gt;
+#include &lt;vector&gt;
+using namespace std;
+const int N=100050;
+vector&lt;int&gt; E[N];
+queue&lt;int&gt; q[2];
+int c=0,in[N],col[N],sol=0;
+int main()
+{
+    int n,m,u,v,i;
+    scanf(&quot;%i %i&quot;,&amp;n,&amp;m);
+    for(i=0;i&lt;n;i++)
+        scanf(&quot;%d&quot;,&amp;col[i]);
+    while(m--) {
+        scanf(&quot;%d%d&quot;,&amp;u,&amp;v);
+        E[v].push_back(u);
+        in[u]++;//入度
+    }
+    for(i=0;i&lt;n;i++) if(!in[i]) q[col[i]].push(i);
+    while(!q[0].empty() || !q[1].empty()) {
+        if(q[c].empty()) {//此队列空了而另一个队列未空,说明需要换队列执行任务了
+            if (!c) sol++;//副核清空而主核未清空,显然副核需要次数++
+            c ^= 1;//换核
+        }
+        u=q[c].front();
+        q[c].pop();
+        for(i=0;i&lt;E[u].size();i++) {
+            v=E[u][i];
+            in[v]--;
+            if(!in[v]) q[col[v]].push(v);
+        }
+    }
+    printf(&quot;%d\n&quot;,sol);
+
+    return 0;
+}
+</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/lucas-e5-ae-9a-e7-90-86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2671,220 +2975,6 @@ int main()
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/Codeforces/codeforces-round-456-div-2-d-fishes/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/Codeforces/codeforces-round-456-div-2-d-fishes/" itemprop="url">Codeforces Round #456 (Div. 2)   D.Fishes</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-14T16:08:14+08:00">
-                2018-07-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Codeforces/" itemprop="url" rel="index">
-                    <span itemprop="name">Codeforces</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/算法/Codeforces/codeforces-round-456-div-2-d-fishes/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/Codeforces/codeforces-round-456-div-2-d-fishes/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>显然，暴力模拟每个r* r的框覆盖是会tle的，我们不妨换一种思路，即计算每个cell被多少个框所覆盖。 可以发现，在位置x，y的cell的框覆盖数为： <img src="http://www.humveea6.cn/wp-content/uploads/2018/07/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-07-14-16.04.12.png" alt> 因此，总的框覆盖数就是 <img src="http://www.humveea6.cn/wp-content/uploads/2018/07/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7-2018-07-14-16.04.21.png" alt> 注意到无论是怎么样的情况，位于(n+1)/2,(m+1)/2处的cell的框覆盖数一定是最大的之一，因此我们可以从这个cell开始bfs，但是这里的queueu采用有限队列，即以框覆盖数为优先值。最后注意一下重复的问题即可（写的时候用set判了一下重）。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;queue&gt;
-#include&lt;algorithm&gt;
-#include&lt;set&gt;
-using namespace std;
-typedef long long ll;
-typedef pair&lt;int,int&gt;P;
-struct cell{
-    int x,y;ll f;
-    bool operator&lt;(const cell&amp;v)const{
-        return f&lt;v.f;
-    }
-};
-int n,m,r,k;
-ll cal(int x,int y)
-{
-    return (ll)(min(n+1,x+r)-max(x,r))*(min(m+1,y+r)-max(y,r));
-}
-bool ch(int x,int y)
-{
-    if(x&lt;1||x&gt;n||y&lt;1||y&gt;m)
-        return false;
-    return true;
-}
-int main()
-{
-    int i,j;
-    int move1[4][2]={-1,0,1,0,0,-1,0,1};
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;r&gt;&gt;k;
-    priority_queue&lt;cell&gt;que;
-    set&lt;P&gt;ck;
-    ll sum=0;
-    que.push(cell{(n+1)/2,(m+1)/2,cal((n+1)/2,(m+1)/2)});
-    ck.insert(P((n+1)/2,(m+1)/2));
-    while(!que.empty()){
-        k--;
-        cell t=que.top();que.pop();
-        sum+=t.f;
-        for(i=0;i&lt;4;i++){
-            int x1=t.x+move1[i][0],y1=t.y+move1[i][1];
-            if(ch(x1,y1)&amp;&amp;!ck.count(P(x1,y1))){
-                que.push(cell{x1,y1,cal(x1,y1)});ck.insert(P(x1,y1));
-            }
-        }
-        if(!k)break;
-    }
-    printf(&quot;%.10f\n&quot;,(double)sum/((ll)(n-r+1)*(m-r+1)));
-
-    return 0;
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2935,7 +3025,7 @@ int main()
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

@@ -297,6 +297,251 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/字符串/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e5-90-8e-e7-bc-80-e6-95-b0-e7-bb-84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/模板/字符串/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e5-90-8e-e7-bc-80-e6-95-b0-e7-bb-84/" itemprop="url">（模板）后缀数组</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-03T19:41:58+08:00">
+                2018-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/模板/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/模板/字符串/" itemprop="url" rel="index">
+                    <span itemprop="name">字符串</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/算法/模板/字符串/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e5-90-8e-e7-bc-80-e6-95-b0-e7-bb-84/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/模板/字符串/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e5-90-8e-e7-bc-80-e6-95-b0-e7-bb-84/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>字符串$s$连续的一段字符组成的串叫做字符串，更广义地，任何一个由可比较大小的元素组成的数组都可称为字符串。字符串的下标从 1开始，长度为$length(s)$ 。 <strong>后缀</strong>： $suffix(i)$表示字符串$s$从第$i$个位置开始的后缀，即由 $s[i]-s[n] $组成的子串。 <strong>字符串的比较</strong>： 两个字符串大小的比较，从首位开始，一位一位地按照 ASCII 码比较，如果从某位置开始不相同，则认为该位置处字符 ASCII 码小的字符串小； 如果一个字符串比较完了最后一位，而另一个没有，则认为前者（长度小的）小； 如果两个字符串长度相同并且所有位置上的字符均相同，则认为两个字符串相等。 <strong>注意，同一个字符串的两个后缀是不可能相等的，因为无法满足相等的必要条件长度相同。</strong> <strong>后缀数组</strong>： $sa$是一个一维数组，保存了对字符串$s$的所有后缀排序后的结果。 表示第$i$小的后缀在原串中的起始位置。 <strong>名次数组</strong>： $rank$是一个一维数组，按起始位置保存了每个后缀在 $sa$中的排名。 表示$suffix(i)$的排名，即 $rank[sa[i]]=i$（第$i$小的后缀的排名为$i$）。 <strong>高度数组</strong>： 是一个一维数组，保存了相邻两个后缀的最长公共前缀（<strong>Longest Common Prefix，LCP</strong>）长度。 $height[i]=LCP(suffix(sa[i]),suffix[sa[i-1]))$<strong>(i&gt;0) 即$height[i]$表示在位置$i$存在最大的$x$,满足$\forall k \in [0,x)$有$s[sa[i]+k]=s[sa[i-1]+k]$ </strong>最长公共前缀<strong> 通过高度数组$height$ ，我们可以得到排名相邻的两个后缀的最长公共前缀。 对于排名不相邻的两个后缀，它们的前缀的相似性比相邻后缀要差。显然排名不相邻的两个后缀的最长公共前缀长度</strong>一定不会<strong>比这两个后缀在后缀数组中确定的一段</strong>区间中任意两个<strong>相邻后缀的最长公共前缀长度更长。 所以，求出这段区间内最小的$height$值即为这两个不相邻后缀的最长公共前缀长度。 问题转化为区间最值查询</strong>（Range Minimum/Maximum Query，RMQ）<strong>问题，可以使用稀疏表</strong>（Sparse Table，ST）**算法解决。该算法在$O(n\ logn)$ 的时间内预处理，并在 $O(1) $的时间内完成每个询问。</p>
+<h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>字符串/数组保存在<strong>s</strong>数组中，<strong>maxn</strong>是字符串/数组的最大长度，<strong>rk</strong>是$rank$数组，<strong>sa</strong>就是$sa$数组，<strong>ht</strong>是$height$数组。 （按照洛谷P3809的要求）</p>
+<pre><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int maxn=1e6+5;
+char s[maxn];
+int rk[maxn],sa[maxn],ht[maxn];
+inline void suffixArray()
+{
+    int n=strlen(s+1);
+    static int set[maxn + 1], a[maxn + 1];
+    std::copy(s + 1, s + n + 1, set + 1);
+    std::sort(set + 1, set + n + 1);
+    int *end = std::unique(set + 1, set + n + 1);
+    for (int i = 1; i &lt;= n; i++) a[i] = std::lower_bound(set + 1, end, s[i]) - set;
+
+    static int fir[maxn + 1], sec[maxn + 1], tmp[maxn + 1], buc[maxn + 1];
+    for (int i = 1; i &lt;= n; i++) buc[a[i]]++;
+    for (int i = 1; i &lt;= n; i++) buc[i] += buc[i - 1];
+    for (int i = 1; i &lt;= n; i++) rk[i] = buc[a[i] - 1] + 1;
+
+    for (int t = 1; t &lt;= n; t *= 2)
+    {
+        for (int i = 1; i &lt;= n; i++) fir[i] = rk[i];
+        for (int i = 1; i &lt;= n; i++) sec[i] = i + t &gt; n ? 0 : rk[i + t];
+
+        std::fill(buc, buc + n + 1, 0);
+        for (int i = 1; i &lt;= n; i++) buc[sec[i]]++;
+        for (int i = 1; i &lt;= n; i++) buc[i] += buc[i - 1];
+        for (int i = 1; i &lt;= n; i++) tmp[n - --buc[sec[i]]] = i;
+
+        std::fill(buc, buc + n + 1, 0);
+        for (int i = 1; i &lt;= n; i++) buc[fir[i]]++;
+        for (int i = 1; i &lt;= n; i++) buc[i] += buc[i - 1];
+        for (int j = 1, i; j &lt;= n; j++) i = tmp[j], sa[buc[fir[i]]--] = i;
+
+        bool unique = true;
+        for (int j = 1, i, last = 0; j &lt;= n; j++)
+        {
+            i = sa[j];
+            if (!last) rk[i] = 1;
+            else if (fir[i] == fir[last] &amp;&amp; sec[i] == sec[last]) rk[i] = rk[last], unique = false;
+            else rk[i] = rk[last] + 1;
+
+            last = i;
+        }
+
+        if (unique) break;
+    }
+
+    for (int i = 1, k = 0; i &lt;= n; i++)
+    {
+        if (rk[i] == 1) k = 0;
+        else
+        {
+            if (k &gt; 0) k--;
+            int j = sa[rk[i] - 1];
+            while (i + k &lt;= n &amp;&amp; j + k &lt;= n &amp;&amp; a[i + k] == a[j + k]) k++;
+        }
+        ht[rk[i]] = k;
+    }
+}
+int main()
+{
+    scanf(&quot;%s&quot;,s+1);int n=strlen(s+1);
+    suffixArray();
+    for(int i=1;i&lt;=n;i++)
+        printf(&quot;%d%c&quot;,sa[i],i==n?&apos;\n&apos;:&apos; &apos;);
+
+    return 0;
+}
+</code></pre><p>详细参考：<a href="https://oi.men.ci/suffix-array-notes/" title="后缀数组学习笔记" target="_blank" rel="noopener">后缀数组学习笔记</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/组合数学/算法/比赛杂集/暑假训练/2018-summer-training-e7-bb-84-e5-90-88-e6-95-b0-e5-ad-a6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3392,238 +3637,6 @@ bign sum[200005];
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/基础数学/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e8-b4-a8-e6-95-b0-e7-ad-9b-e6-b3-95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/模板/基础数学/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e8-b4-a8-e6-95-b0-e7-ad-9b-e6-b3-95/" itemprop="url">（模板）质数筛法</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-28T20:30:58+08:00">
-                2018-07-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/" itemprop="url" rel="index">
-                    <span itemprop="name">模板</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/基础数学/" itemprop="url" rel="index">
-                    <span itemprop="name">基础数学</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/算法/模板/基础数学/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e8-b4-a8-e6-95-b0-e7-ad-9b-e6-b3-95/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/模板/基础数学/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e8-b4-a8-e6-95-b0-e7-ad-9b-e6-b3-95/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="埃拉托斯特尼筛法"><a href="#埃拉托斯特尼筛法" class="headerlink" title="埃拉托斯特尼筛法"></a>埃拉托斯特尼筛法</h3><pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-using namespace std;
-bool notprime[10000005];
-void checkprime(int n)
-{
-    for(int i=2;i&lt;=n;i++){//注意线性筛法做完以后1是没有被标记的...
-        if(notprime[i])continue;//如果已经被标记为合数,那就滚蛋
-        for(int j=i;j&lt;=n/i;j++)//注意这里一定要小心j*i可能爆int的事实，写成
-        //j=i*i的时候也是一样要小心！！！最好用long long
-            notprime[j*i]=true;//标记合数
-    }
-}
-int main()
-{
-    int n,m,i;
-    cin&gt;&gt;n&gt;&gt;m;
-    checkprime(n);notprime[1]=true;//特别注意要标记1
-    for(i=1;i&lt;=m;i++){
-        int t;
-        scanf(&quot;%d&quot;,&amp;t);
-        if(notprime[t])cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
-        else cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
-    }
-
-    return 0;
-}
-</code></pre><h3 id="线性筛"><a href="#线性筛" class="headerlink" title="线性筛"></a>线性筛</h3><p>（似乎不大常用）</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-using namespace std;
-int v[10000005],prime[10000000],cnt=0;//v记录每个数的最小质因数,prime记录素数
-void checkprime(int n)
-{
-    for(int i=2;i&lt;=n;i++){
-        if(v[i]==0){//如果i是素数
-            v[i]=i;
-            prime[++cnt]=i;
-        }
-        for(int j=1;j&lt;=cnt;j++){
-            if(prime[j]&gt;v[i]||prime[j]&gt;n/i)//如果当前的质数已经比I的最小质因数大了,那么就没有必要再继续下去了,因为后面的i*prime[j]
-                break;//肯定已经被v[i]或者其他更小的质数标记过了;同时,超过n自然也是不用管了
-            v[i*prime[j]]=prime[j];//标记最小质因数
-        }
-    }
-}
-int main()
-{
-    int n,m;
-    cin&gt;&gt;n&gt;&gt;m;
-    checkprime(n);
-    for(int i=1;i&lt;=m;i++){
-        int t;scanf(&quot;%d&quot;,&amp;t);
-        if(v[t]==t)cout&lt;&lt;&quot;Yes&quot;&lt;&lt;endl;
-        else cout&lt;&lt;&quot;No&quot;&lt;&lt;endl;
-    }
-
-    return 0;
-}
-</code></pre>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3674,7 +3687,7 @@ int main()
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">77</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
