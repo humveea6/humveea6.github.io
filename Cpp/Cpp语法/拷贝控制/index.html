@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="算法,图论,模板,">
+  <meta name="keywords" content="Cpp,Cpp语法,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="#include&amp;lt;cstdio&amp;gt; #include&amp;lt;iostream&amp;gt; #include&amp;lt;vector&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;queue&amp;gt; #include&amp;lt;cstring&amp;gt; using namespace std; const int maxn=1e5+5; struct edge{">
-<meta name="keywords" content="算法,图论,模板">
+<meta name="description" content="基本概念定义一个类时的5个基本函数：拷贝构造函数和移动构造函数定义了当用同类型的另一个对象初始化当前对象的时候发生什么。拷贝赋值运算符和移动赋值运算符定义了将一个对象赋予同类型的另一个对象时发生什么。析构函数则定义了此类型对象销毁时做什么。这些操作统称为拷贝控制操作。（很多时候我们会依赖于编译器提供的默认定义）例子：1234Person p;Person p1=p;    //调用拷贝构造函数Pe">
+<meta name="keywords" content="Cpp,Cpp语法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="(模板）SPFA">
-<meta property="og:url" content="http://www.huweihuang.com/算法/模板/图论/e6-a8-a1-e6-9d-bf-ef-bc-89spfa/index.html">
+<meta property="og:title" content="拷贝控制">
+<meta property="og:url" content="http://www.huweihuang.com/Cpp/Cpp语法/拷贝控制/index.html">
 <meta property="og:site_name" content="HumveeA6">
-<meta property="og:description" content="#include&amp;lt;cstdio&amp;gt; #include&amp;lt;iostream&amp;gt; #include&amp;lt;vector&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;queue&amp;gt; #include&amp;lt;cstring&amp;gt; using namespace std; const int maxn=1e5+5; struct edge{">
+<meta property="og:description" content="基本概念定义一个类时的5个基本函数：拷贝构造函数和移动构造函数定义了当用同类型的另一个对象初始化当前对象的时候发生什么。拷贝赋值运算符和移动赋值运算符定义了将一个对象赋予同类型的另一个对象时发生什么。析构函数则定义了此类型对象销毁时做什么。这些操作统称为拷贝控制操作。（很多时候我们会依赖于编译器提供的默认定义）例子：1234Person p;Person p1=p;    //调用拷贝构造函数Pe">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-17T00:53:09.374Z">
+<meta property="og:updated_time" content="2019-04-11T13:28:02.737Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="(模板）SPFA">
-<meta name="twitter:description" content="#include&amp;lt;cstdio&amp;gt; #include&amp;lt;iostream&amp;gt; #include&amp;lt;vector&amp;gt; #include&amp;lt;algorithm&amp;gt; #include&amp;lt;queue&amp;gt; #include&amp;lt;cstring&amp;gt; using namespace std; const int maxn=1e5+5; struct edge{">
+<meta name="twitter:title" content="拷贝控制">
+<meta name="twitter:description" content="基本概念定义一个类时的5个基本函数：拷贝构造函数和移动构造函数定义了当用同类型的另一个对象初始化当前对象的时候发生什么。拷贝赋值运算符和移动赋值运算符定义了将一个对象赋予同类型的另一个对象时发生什么。析构函数则定义了此类型对象销毁时做什么。这些操作统称为拷贝控制操作。（很多时候我们会依赖于编译器提供的默认定义）例子：1234Person p;Person p1=p;    //调用拷贝构造函数Pe">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://www.huweihuang.com/算法/模板/图论/e6-a8-a1-e6-9d-bf-ef-bc-89spfa/">
+  <link rel="canonical" href="http://www.huweihuang.com/Cpp/Cpp语法/拷贝控制/">
 
 
 
 
 
-  <title>(模板）SPFA | HumveeA6</title>
+  <title>拷贝控制 | HumveeA6</title>
   
 
 
@@ -311,7 +311,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/图论/e6-a8-a1-e6-9d-bf-ef-bc-89spfa/">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/Cpp/Cpp语法/拷贝控制/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HumveeA6">
@@ -328,7 +328,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">(模板）SPFA</h1>
+          <h1 class="post-title" itemprop="name headline">拷贝控制</h1>
         
 
         <div class="post-meta">
@@ -340,8 +340,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-10T20:38:29+08:00">
-                2018-08-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-11T16:22:43+08:00">
+                2019-04-11
               </time>
             
 
@@ -363,8 +363,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
+                  <a href="/categories/Cpp/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp</span>
                   </a>
                 </span>
 
@@ -374,19 +374,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/" itemprop="url" rel="index">
-                    <span itemprop="name">模板</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/图论/" itemprop="url" rel="index">
-                    <span itemprop="name">图论</span>
+                  <a href="/categories/Cpp/Cpp语法/" itemprop="url" rel="index">
+                    <span itemprop="name">Cpp语法</span>
                   </a>
                 </span>
 
@@ -403,8 +392,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/算法/模板/图论/e6-a8-a1-e6-9d-bf-ef-bc-89spfa/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/模板/图论/e6-a8-a1-e6-9d-bf-ef-bc-89spfa/" itemprop="commentCount"></span>
+                <a href="/Cpp/Cpp语法/拷贝控制/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="Cpp/Cpp语法/拷贝控制/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -432,48 +421,20 @@
       
 
       
-        <pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;vector&gt;
-#include&lt;algorithm&gt;
-#include&lt;queue&gt;
-#include&lt;cstring&gt;
-using namespace std;
-const int maxn=1e5+5;
-struct edge{
-    int to,cost;
-};
-vector&lt;edge&gt;G[maxn];
-bool inque[maxn];
-int main()
-{
-    int n,m,s,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;
-    int dis[maxn];
-    for(i=1;i&lt;=n;i++)dis[i]=(1&lt;&lt;31)-1;
-    dis[s]=0;
-    for(i=1;i&lt;=m;i++){
-        int a,b,c;
-        scanf(&quot;%d %d %d&quot;,&amp;a,&amp;b,&amp;c);
-        G[a].push_back(edge{b,c});
-    }
-    queue&lt;int&gt;que;que.push(s);//inque[s]=true;
-    while(!que.empty()){
-        int t=que.front();que.pop();inque[t]=false;
-        for(i=0;i&lt;G[t].size();i++){
-            edge e=G[t][i];
-            if(dis[e.to]&gt;dis[t]+e.cost){
-                dis[e.to]=dis[t]+e.cost;
-                if(!inque[e.to]){
-                    que.push(e.to);inque[e.to]=true;
-                }
-            }
-        }
-    }
+        <h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>定义一个类时的5个基本函数：<br><code>拷贝构造函数</code>和<code>移动构造函数</code>定义了当用同类型的另一个对象初始化当前对象的时候发生什么。<code>拷贝赋值运算符</code>和<code>移动赋值运算符</code>定义了将一个对象赋予同类型的另一个对象时发生什么。<code>析构函数</code>则定义了此类型对象销毁时做什么。这些操作统称为<code>拷贝控制操作</code>。（很多时候我们会依赖于编译器提供的默认定义）<br>例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Person p;</span><br><span class="line">Person p1=p;    <span class="comment">//调用拷贝构造函数</span></span><br><span class="line">Person p2;</span><br><span class="line">p2=p;   <span class="comment">//调用拷贝赋值函数</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="拷贝、赋值与销毁"><a href="#拷贝、赋值与销毁" class="headerlink" title="拷贝、赋值与销毁"></a>拷贝、赋值与销毁</h2><h3 id="拷贝构造函数"><a href="#拷贝构造函数" class="headerlink" title="拷贝构造函数"></a>拷贝构造函数</h3><p><strong>如果一个构造函数的第一个参数是自身类类型的引用，且其他任何额外参数都有默认值，则这个构造函数是拷贝构造函数</strong>。同时，拷贝构造函数的第一个参数也就是对自身类型的引用几乎都是const类型的。</p>
+<p>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fool</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    fool(); <span class="comment">//默认构造函数</span></span><br><span class="line">    fool(<span class="keyword">const</span> fool&amp;);  <span class="comment">//拷贝构造函数</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h3 id="拷贝初始化"><a href="#拷贝初始化" class="headerlink" title="拷贝初始化"></a>拷贝初始化</h3><h5 id="直接初始化与拷贝初始化的几个例子："><a href="#直接初始化与拷贝初始化的几个例子：" class="headerlink" title="直接初始化与拷贝初始化的几个例子："></a>直接初始化与拷贝初始化的几个例子：</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">dots</span><span class="params">(<span class="number">10</span>,<span class="string">'.'</span>)</span></span>;    <span class="comment">//直接初始化</span></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">s</span><span class="params">(dots)</span></span>;     <span class="comment">//直接初始化</span></span><br><span class="line"><span class="built_in">string</span> s2=dots;     <span class="comment">//拷贝初始化</span></span><br><span class="line"><span class="built_in">string</span> null_book=<span class="string">"9999999"</span>;     <span class="comment">//拷贝初始化</span></span><br><span class="line"><span class="built_in">string</span> nines=<span class="built_in">string</span>(<span class="number">100</span>,<span class="string">'9'</span>);   <span class="comment">//拷贝初始化</span></span><br></pre></td></tr></table></figure>
+<p>使用直接初始化，事实上是要求编译器选择与我们提供的参数最匹配的构造函数。当使用拷贝初始化时，编译器会将右侧运算对象拷贝到正在创建的对象中，必要时还会进行类型转换。</p>
+<h5 id="发生拷贝初始化的几种情况："><a href="#发生拷贝初始化的几种情况：" class="headerlink" title="发生拷贝初始化的几种情况："></a>发生拷贝初始化的几种情况：</h5><p>·将一个对象作为实参传递给一个非引用类型&amp;的形参<br>·从一个返回类型为非引用类型的函数返回一个对象<br>·用花括号列表初始化一个数组中的元素或者一个聚合类中的成员<br>·某些标准库容器的insert或push操作，而用emplace成员创建的元素都会进行直接初始化</p>
+<h3 id="拷贝赋值运算符"><a href="#拷贝赋值运算符" class="headerlink" title="拷贝赋值运算符"></a>拷贝赋值运算符</h3><p>赋值运算符其实就是一个名为<code>operator=</code>的函数，这个函数也有一个返回类型和参数列表。同时，<strong>赋值运算符必须定义为成员函数，其左侧运算对象绑定到了隐式的*this参数，右侧运算对象则作为显示参数传递。</strong><br>赋值运算符接受一个与其所在类相同类型的参数，并通常返回一个指向其左侧运算对象的引用。<br>例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Foo&amp; <span class="keyword">operator</span>=(<span class="keyword">const</span> Foo&amp;);</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></p>
+<p>如果一个类没有定义自己的拷贝赋值运算符，那么编译器会为它生成一个<strong>合成拷贝赋值运算符</strong>，它会将右侧对象的每个非static值赋予左侧运算对象的相应成员。</p>
+<h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h3><p>析构函数执行与构造函数相反的操作：销毁对象的非static成员。<br><strong>析构函数是类的一个成员函数，名字由波浪号+类名构成，没有返回值也不接受任何参数，也不能被重载</strong><br>例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    ~Foo();</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>只要一个对象被销毁，就会自动调用其析构函数</strong>。一般来说，大多数对象在离开时都会被自动销毁，但是动态分配的对象并不会被销毁（当指向一个对象的引用或指针离开作用域时，析构函数不会执行），此时就必须依赖自定义的析构函数。<br>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">M</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> *p; <span class="comment">/* data */</span></span><br><span class="line">  <span class="keyword">public</span>:</span><br><span class="line">    M(<span class="keyword">int</span> n) &#123; p = <span class="keyword">new</span> <span class="keyword">int</span>[n]; &#125;</span><br><span class="line">    ~M() &#123; <span class="keyword">delete</span>[] p; &#125;<span class="comment">//默认析构函数只会销毁p，而不会销毁动态分配的p指向的内存</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> P;<span class="comment">//对p指向的对象调用析构函数</span></span><br></pre></td></tr></table></figure></p>
+<p>同样的，如果没有显示定义，编译器也会为类定义一个合成析构函数。<br><strong>如果一个类需要一个析构函数，那么它也几乎必须拥有一个拷贝构造函数和一个拷贝赋值函数。</strong> 这是因为默认的构造与赋值函数只会进行简单的复制操作，而简单的指针复制会使多个对象中的指针指向同一个地址，如果其中一个指针进行了销毁操作，那么其他指针也会随之变为无效指针。</p>
+<h3 id="阻止拷贝（定义删除的函数）"><a href="#阻止拷贝（定义删除的函数）" class="headerlink" title="阻止拷贝（定义删除的函数）"></a>阻止拷贝（定义删除的函数）</h3><p>对于某些类而言，希望禁止拷贝构造与拷贝赋值操作，比如iostream类，这种情况下，我们可以将拷贝构造函数与拷贝赋值函数定义为<strong>删除的函数(deleted function)</strong>：我们声明了他们，但是不能以任何方式使用他们，在函数参数列表后面加上=delete来指出这一点。<br>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Nocopy</span>&#123;</span></span><br><span class="line">    Nocopy()-<span class="keyword">default</span>;</span><br><span class="line">    Nocopy(<span class="keyword">const</span> Nocopy&amp;)=<span class="keyword">delete</span>;   <span class="comment">//阻止拷贝构造函数</span></span><br><span class="line">    Nocopy &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> Nocopy&amp;)=<span class="keyword">delete</span>;    <span class="comment">//阻止拷贝赋值</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>注意：析构函数不能是删除的成员</strong>。<br>在某些情况下，合成的构造/赋值函数也可能是删除的。<br>在新标准发布之前，很多时候回通过将构造/赋值运算符声明为private的来阻止拷贝。</p>
 
-    return 0;
-}
-</code></pre>
       
     </div>
     
@@ -490,11 +451,9 @@ int main()
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"># 算法</a>
+            <a href="/tags/Cpp/" rel="tag"># Cpp</a>
           
-            <a href="/tags/图论/" rel="tag"># 图论</a>
-          
-            <a href="/tags/模板/" rel="tag"># 模板</a>
+            <a href="/tags/Cpp语法/" rel="tag"># Cpp语法</a>
           
         </div>
       
@@ -507,8 +466,8 @@ int main()
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/算法/模板/图论/e6-a8-a1-e6-9d-bf-ef-bc-89dijkstra/" rel="next" title="(模板）Dijkstra">
-                <i class="fa fa-chevron-left"></i> (模板）Dijkstra
+              <a href="/乱七八糟的比赛/组队训练/区域赛训练/2017-2018-ACM-ICPC-East-Central-North-America-Regional-Contest-ECNA-2017/" rel="next" title="2017-2018 ACM-ICPC East Central North America Regional Contest (ECNA 2017)">
+                <i class="fa fa-chevron-left"></i> 2017-2018 ACM-ICPC East Central North America Regional Contest (ECNA 2017)
               </a>
             
           </div>
@@ -516,10 +475,6 @@ int main()
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/算法/模板/最小生成树/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e7-94-9f-e6-88-90-e6-a0-91/" rel="prev" title="（模板）最小生成树">
-                （模板）最小生成树 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -581,8 +536,17 @@ int main()
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -698,6 +662,22 @@ int main()
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#拷贝、赋值与销毁"><span class="nav-number"></span> <span class="nav-text">拷贝、赋值与销毁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝构造函数"><span class="nav-number">1.</span> <span class="nav-text">拷贝构造函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝初始化"><span class="nav-number">2.</span> <span class="nav-text">拷贝初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#直接初始化与拷贝初始化的几个例子："><span class="nav-number">2.0.1.</span> <span class="nav-text">直接初始化与拷贝初始化的几个例子：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#发生拷贝初始化的几种情况："><span class="nav-number">2.0.2.</span> <span class="nav-text">发生拷贝初始化的几种情况：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝赋值运算符"><span class="nav-number">3.</span> <span class="nav-text">拷贝赋值运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#析构函数"><span class="nav-number">4.</span> <span class="nav-text">析构函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻止拷贝（定义删除的函数）"><span class="nav-number">5.</span> <span class="nav-text">阻止拷贝（定义删除的函数）</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -875,9 +855,9 @@ int main()
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://www.huweihuang.com/算法/模板/图论/e6-a8-a1-e6-9d-bf-ef-bc-89spfa/';
-          this.page.identifier = '算法/模板/图论/e6-a8-a1-e6-9d-bf-ef-bc-89spfa/';
-          this.page.title = '(模板）SPFA';
+          this.page.url = 'http://www.huweihuang.com/Cpp/Cpp语法/拷贝控制/';
+          this.page.identifier = 'Cpp/Cpp语法/拷贝控制/';
+          this.page.title = '拷贝控制';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
