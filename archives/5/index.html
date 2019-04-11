@@ -226,6 +226,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-my-team">
+          <a href="/My-team" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-users"></i> <br>
+            
+            我的队伍
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -422,7 +432,7 @@
       
         
           
-          定义字符串$s$连续的一段字符组成的串叫做字符串，更广义地，任何一个由可比较大小的元素组成的数组都可称为字符串。字符串的下标从 1开始，长度为$length(s)$ 。 后缀： $suffix(i)$表示字符串$s$从第$i$个位置开始的后缀，即由 $s[i]-s[n] $组成的子串。 字符串的比较
+          定义字符串$s$连续的一段字符组成的串叫做字符串，更广义地，任何一个由可比较大小的元素组成的数组都可称为字符串。字符串的下标从 1开始，长度为$length(s)$ 。 后缀： $suffix(i)$表示字符串$s$从第$i$个位置开始的后缀，即由 $s[i]-s[n] $组成的子串。 字符串的比较： 两个字符串大小的比较，从首位开始，一位一位地按照 ASCII 码比较，如果从某位置开始不相同，则认为该位置处字符 ASCII 码小的字符串小； 如果一个字符串比较完了最后一位，而另一个没有，则认为前者（长度小的）小； 如果两个字符串长度相同并且所有位置上的字符均相同，则认为两个字符串相等。 注意，同一个字符串的两个后缀是不可能相等的，因为无法满足相等的必要条件长度相同。 后缀数组： $sa$是一个一维数组，保存了对字符串$s$的所有后缀排序后的结果。 表示第$i$小的后缀在原串中的起始位置。 名次数组： $rank$是一个一维数组，按起始位置保存了每个后缀在 $sa$中的排名。 表示$suffix(i)$的排名，即 $rank[sa[i]]=i$（第$i$小的后缀的排名为$i$）。 高度
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -613,7 +623,18 @@
       
         
           
-          D.组合数学+容斥原理 这个每个人必须要拿一个的限制条件非常讨厌…所以我们先不管他。 由于各种特产相互独立，所以可以先算一种特产的分配方法… 这样的话就相当于把m个相同的小球放入n个不同的盒子里(盒子就是人)，答案是$C_{m+n-1}^{\ n-1}$，然后把各个特产的这个值相乘得到答案。 非常科
+          D.组合数学+容斥原理 这个每个人必须要拿一个的限制条件非常讨厌…所以我们先不管他。 由于各种特产相互独立，所以可以先算一种特产的分配方法… 这样的话就相当于把m个相同的小球放入n个不同的盒子里(盒子就是人)，答案是$C_{m+n-1}^{\ n-1}$，然后把各个特产的这个值相乘得到答案。 非常科学，非常优雅对不对… 接下来考虑限制条件，每个人至少拿一个，我们把限制去掉后得到的是至少0人没有特产的方案数。 根据容斥原理 $ans=C_n^0 ans[至少0人没有特产]-C_n^1 ans[至少1人没有特产]+C_n^2 ans[至少2人没有特产]-……+……+/- C_m^m ans[至少m人没有特产]$
+#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+using namespace std;
+typedef long long ll;
+const int mod=1e9+7;
+ll c[2005][2005];
+int main()
+{
+    int n,m,i,j,k;
+    
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -793,7 +814,7 @@
       
         
           
-          算法目的：在线性时间复杂度内求出覆盖n个点的最小圆算法步骤：①首先现将所有点随机排列 ②按顺序把点一个一个的加入（一步一步的求前i个点的最小覆盖圆），每加入一个点就进入③ ③如果发现当前i号点在当前的最小圆的外面，那么说明点i一定在前i个点的最小覆盖圆边界上，我们转到④来进一步确定这个圆，否则前i个
+          算法目的：在线性时间复杂度内求出覆盖n个点的最小圆算法步骤：①首先现将所有点随机排列 ②按顺序把点一个一个的加入（一步一步的求前i个点的最小覆盖圆），每加入一个点就进入③ ③如果发现当前i号点在当前的最小圆的外面，那么说明点i一定在前i个点的最小覆盖圆边界上，我们转到④来进一步确定这个圆，否则前i个点的最小覆盖圆与前i-1个点的最小覆盖圆是一样的，则不需要更新，返回② ④此时已经确认点i一定在前i个点的最小覆盖圆的边界上了，那么我们可以把当前圆的圆心设为第i个点，半径为0，然后重新把前i-1个点加入这个圆中（类似上面的步骤，只不过这次我们提前确定了点i在圆上，目的是一步一步求出包含点i的前j个点的最小覆盖圆），每加入一个点就进入⑤ ⑤如果发现当前j号点在当前的最小圆的外面，那么说明点j也一定在前j个点（包括i）的最小覆盖圆边界上，我们转到⑥来再进一步确定这个圆，否则前j个点（包括i）的最小覆盖圆与前i-1个点（包括i）的最小覆盖圆是一样的，则不需要更新，返回④ ⑥此时已经确认点i，j一定在前j个点（包括i）的最小覆盖圆的边界上了，那么我们可以把当前圆的圆心设为第i个点与第j的点连线的中
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -973,7 +994,7 @@
       
         
           
-          计算多边形重心方法：（1）划分多边形为三角形： 以多边形的一个顶点V为源点（V可取输入的第一个顶点），作连结V与所有非相邻顶点的线段，即将原N边形或分为（N-2）个三角形； （2）求每个三角形的重心和面积： 设某个三角形的重心为$G（c_x，c_y）$，顶点坐标分别为$A_1（x_1，y_1），A_
+          计算多边形重心方法：（1）划分多边形为三角形： 以多边形的一个顶点V为源点（V可取输入的第一个顶点），作连结V与所有非相邻顶点的线段，即将原N边形或分为（N-2）个三角形； （2）求每个三角形的重心和面积： 设某个三角形的重心为$G（c_x，c_y）$，顶点坐标分别为$A_1（x_1，y_1），A_2（x_2，y_2），A_3（x_3，y_3）$，则有$C_x = \frac{(x_1 + x_2 + x_3)}{3}$.同理求得cy。求面积的方法是 $S = \frac{( (x_2 - x_1) \times (y_3 - y_1) - (x_3 - x_1) \times (y_2 - y_1) )}{ 2}$，当$A_1,A_2,A_3$顺时针排列时取-，否则取正（叉积）。事实上，在求每个三角形时不需要辨别正负，之后有方法抵消负号。 （3）求原多边形的重心： 公式：$C_x=\frac{\sum (C_{xi}\times S_i)}{\sum S_i}$ $C_y=\frac{\sum (C_{yi}\times S_i)}{\sum S_i}$ ，其中$C_{xi},C_{
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1156,7 +1177,7 @@
           A.
 有两个数组A，B，每次可以选择一个A，B中出现过的数字x并将它替换为另一个随意的数y，一次操作会把A，B中的所有的x都换成y，并且，最后应当使得A，B完全相等，即对应位上的数一样。同时，问在操作数最少时有多少种操作的方法。
 
-首先，应该想到的一点是因为一个数可能重复出现很多次，而他在不同位置出
+首先，应该想到的一点是因为一个数可能重复出现很多次，而他在不同位置出现时与他同一位置的不同数组的数很可能是不一样的，这就意味着所有的这些数最后是要变成一个相同的数的。那么为了确定有多少组这样最后要变成一样的数，可以搜素或者并查集搞一波。注意的是每一组里面如果有n个数，那么他只需要做n-1次变换。 对于第二问，首先我们假设这一组中有n个数（相同的数搜索的时候会被合并，所以计算的时候肯定不会有重复），那么最后变成的数就有n种选择，这个数确定了以后，对于其余n-1个数而言，他们先后变换一次（不一定一次就变为选定的这个数），那么可能有$(n-1)!$种。同时，每个数变换的时候一定是变为这一组中剩下数中的一个（每当一个数发生了变换，他就永久从数组中消失了，因为我们要求总操作次数最少），所以对于第一个变的数而言，它的选择是$n-1$，第二个数是$n-2$…，因此，每一组
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1339,7 +1360,25 @@
           矩阵乘法的计算公式：（第一个矩阵为m s,第二个为s n，结果为m* n矩阵） $C_{ij}=\sum a_{ik}\times b_{kj}$ 暴力计算代码（模拟）：
 const int N=100;
 int c[N][N];
-void multi(int a[][N],int b[][N],i
+void multi(int a[][N],int b[][N],int n)//n是矩阵大小，n&lt;N
+{
+    memset(c,0,sizeof c);
+    for(int i=1;i&lt;=n;i++)
+        for(int j=1;j&lt;=n;j++)
+        for(int k=1;k&lt;=n;k++)
+        c[i][j]+=a[i][k]*b[k][j];
+}
+矩阵快速幂
+给定$n\times n$的矩阵$A$，求$A^k$
+
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+const int mod=1e9+7;
+const int maxn=105;
+typedef long long ll;
+ll tmp[maxn][maxn];
+v
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1520,7 +1559,17 @@ void multi(int a[][N],int b[][N],i
         
           
           中国剩余定理求同余方程组 $x\equiv c_1(mod\ m_1)$ $x\equiv c_2(mod\ m_2)$ $…$ $x\equiv c_k(mod\ m_k)$ 其中，$\forall i,j$有$gcd(m_i,m_j)=1$, 的最小正整数（非负整数）解；
-结论令$M=m_1\t
+结论令$M=m_1\times m_2\times …\times m_k$， 则$x=(\sum c_i\times \frac{M}{m_i}\times inv(\frac{M}{m_i},m_i))$; 其中,$inv(\frac{M}{m_i},m_i)$即$\frac{M}{m_i}$相对于$m_i$的乘法逆元。
+#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;cstring&gt;
+using namespace std;
+typedef long long ll;
+ll extgcd(ll a,ll b,ll&amp;x,ll&amp;y)
+{
+    if(b==0){
+ 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1700,7 +1749,14 @@ void multi(int a[][N],int b[][N],i
       
         
           
-          定义:a,b是整数，形如$ax≡b(mod \ m)$，且x是未知整数的同余式称为一元线性同余方程。 定理：a,b,m是整数且m&gt;0,$gcd(a,m)=d$,如果$d|b$，则方程恰好有d个模m不同余的解，否则方程无解。 由同余方程的定义式可得$ax+my=b$，这个方程称为二元一次不定方程
+          定义:a,b是整数，形如$ax≡b(mod \ m)$，且x是未知整数的同余式称为一元线性同余方程。 定理：a,b,m是整数且m&gt;0,$gcd(a,m)=d$,如果$d|b$，则方程恰好有d个模m不同余的解，否则方程无解。 由同余方程的定义式可得$ax+my=b$，这个方程称为二元一次不定方程。 由扩展欧几里得算法可求出方程$ax+my=gcd(a,m)$的特解，则原方程的通解为 $ x = x_0 \times \frac{b}{gcd(a,m)}+ \frac{m}{gcd(a,m)}\times t$ $ y = y_0 \times \frac{b}{gcd(a,m)}– \frac{a}{gcd(a,m)}\times t$ $t=0,1,2,3…$ 扩展欧几里得：
+int extgcd(int a,int b,int&amp;x,int&amp;y)
+{
+    if(b==0){
+        x=1,y=0;return a;//返回的是初始时a,b的最大公约数
+    }
+    int d=extgcd(b,a%b,x,y);
+    int z=x;x=y
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1869,7 +1925,17 @@ void multi(int a[][N],int b[][N],i
       
         
           
-          __int128最简单粗暴的做法。 这种类型只有部分GCC编译器支持。经测试，正常运算与普通int无异，但是输入输出时无论是cin，cout还是printf都会报错，所以必须自己写输入输出函数。 定义时与别的数据类型并没有什么区别 eg: __int128 a,b,c; 输入暂时采用字符串读入方式。
+          __int128最简单粗暴的做法。 这种类型只有部分GCC编译器支持。经测试，正常运算与普通int无异，但是输入输出时无论是cin，cout还是printf都会报错，所以必须自己写输入输出函数。 定义时与别的数据类型并没有什么区别 eg: __int128 a,b,c; 输入暂时采用字符串读入方式。 方法一：重载输出
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, __int128 T) {
+    if (T&lt;0) os&lt;&lt;&quot;-&quot;;if (T&gt;=10 ) os&lt;&lt;T/10;if (T&lt;=-10) os&lt;&lt;(-(T/10));
+    return os&lt;&lt;( (int) (T%10) &gt;0 ? (int) (T%10) : -(int) (T%10) ) ;
+}
+方法二：变为字符串式输入输出 输入：
+void scan(__int128 &amp;x)//输入
+{
+    x = 0;
+    int f = 1;
+    ch
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2055,8 +2121,18 @@ int eular(int x)
     int res = x, a = x;
     for (int i = 2; i*i &lt;= a; i++) {
         if (a%i == 0) {
-            res = res /
-          ...
+            res = res / i*(i - 1);
+            while (a%i == 0)
+                a /= i;
+        }
+    }
+    if (a &gt; 1)
+        res = res / a*(a - 1);
+    return res;
+}
+性质1：1~n中与n互质的数的和为$n\times eular（n）\div2$; 性质2：若a，b互质，则$eular（a\times b）=eular（a）\times eular（b）$；
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/算法/模板/基础数学/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-ac-a7-e6-8b-89-e5-87-bd-e6-95-b0/#more" rel="contents">

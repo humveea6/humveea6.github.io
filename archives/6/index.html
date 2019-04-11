@@ -226,6 +226,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-my-team">
+          <a href="/My-team" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-users"></i> <br>
+            
+            我的队伍
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -428,7 +438,19 @@ using namespace std;
 bool notprime[10000005];
 void checkprime(int n)
 {
-    for(int i=2;i&lt;=n
+    for(int i=2;i&lt;=n;i++){//注意线性筛法做完以后1是没有被标记的...
+        if(notprime[i])continue;//如果已经被标记为合数,那就滚蛋
+        for(int j=i;j&lt;=n/i;j++)//注意这里一定要小心j*i可能爆int的事实，写成
+        //j=i*i的时候也是一样要小心！！！最好用long long
+            notprime[j*i]=true;//标记合数
+    }
+}
+int main()
+{
+    int n,m,i;
+    cin&gt;&gt;n&gt;&gt;m;
+    checkprime(n);notprime[1]=true;//特别注意要标记1
+    for(i=1;i&lt;=m;i
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -612,7 +634,27 @@ void checkprime(int n)
 费马小定理前提是模数必须是质数；因为$a^{p-1}\ mod\ p=1$,所以a模p的乘法逆元就是$a^{p-2}$ 运用快速幂:
 #include&lt;cstdio&gt;
 #include&lt;iostream&gt;
-#i
+#include&lt;algorithm&gt;
+#include &lt;vector&gt;
+using namespace std;
+typedef long long ll;
+ll pow(ll x,ll n,ll mod)
+{
+    ll ans=1;
+    x%=mod;
+    while(n){
+        if(n&amp;1)
+            ans=ans*x%mod;
+        x=x*x%mod;
+        n&gt;&gt;=1;
+    }
+    return ans;
+}
+int main()
+{
+    int n,p,i,j;
+    cin&gt;&gt;n&gt;&gt;p;
+    vector&lt;int&gt;ans
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -791,7 +833,23 @@ int gcd(int a,int b)
 }
 int main()
 {
-   
+    int x,y;
+    cin&gt;&gt;x&gt;&gt;y;
+    cout&lt;&lt;gcd(x,y)&lt;&lt;endl;
+
+    return 0;
+}
+扩展欧几里得算法：
+int extgcd(int a,int b,int&amp;x,int&amp;y)
+{
+    if(b==0){
+        x=1,y=0;return a;//返回的是初始时a,b的最大公约数
+    }
+    int d=extgcd(b,a%b,x,y);
+    int z=x;x=y;y=z-y*(a/b);
+    return d;
+}
+扩欧求出的$x$,$y$ 是$a x + b y = gcd(a,b)$的一个特解，我们就可以用 x0 和 y0 表示出整个不定
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -974,7 +1032,16 @@ int main()
           快速幂对于任何一个整数的模幂运算 $a^b\ mod \ c$ 对于b我们可以拆成二进制的形式 $b=b_0+b_1 2+b_2 2^2+…+b_n* 2^n$ 这里我们的$b_0$对应的是b二进制的第一位
 ll mod_pow(ll x, ll n, ll mod)
 {
-    ll res = 
+    ll res = 1;
+    while (n) {
+        if (n &amp; 1)
+            res = res*x%mod;
+        x = x*x%mod;
+        n &gt;&gt;= 1;
+    }
+    return res;
+}
+快速乘法　由于计算机底层设计的原因，做加法往往比乘法快的多，因此将乘法转换为加法计算将会大大提高（大数，比较小的数也没必要）乘法运算的速度，除此之外，当我们计算a* b%mod的时候，往往较大的数计算a＊b会超出long long int的范围，这个时候使用快速乘法方法也能解决上述问题． 　　快速乘法的原理就是利用乘法分配率来将a＊b转化为多个式子相加的形式求解（注意这时使用乘法分配率的时候后面的一个乘数转化为二进制的
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1151,7 +1218,31 @@ const int MAXN = 100000;
 const double EPS = 1e-8;
 
 // 带误差比较
-inline bool dcmp(double x,
+inline bool dcmp(double x, double y = 0)
+{
+    return fabs(x - y) &lt;= EPS;
+}
+
+/*
+ * 向量（Vector）或点
+ *
+ * 使用原点到一个点 (x, y) 的有向线段表示向量
+ * 从点 A 到点 B 的向量表示为 A - B
+ */
+typedef struct Vec
+{
+    double x, y;
+
+    Vec(double x = 0, double y = 0) : x(x), y(y) {}
+
+    // 相加
+    Vec operator+(const Vec &amp;v) const
+    {
+        return Vec(x + v.x, y + v.y);
+    }
+
+    // 相减
+    Vec op
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1334,7 +1425,14 @@ inline bool dcmp(double x,
           
 您需要写一种数据结构（可参考题目标题），来维护一个有序数列，其中需要提供以下操作：翻转一个区间，例如原有序序列是5 4 3 2 1，翻转区间是[2,4]的话，结果是5 2 3 4 1
 
-输入输出格式输入格式：第一行为n,m n表示初始序列有n个数，这个序列依次是 $(1,2,…n-1,n)$ ,m
+输入输出格式输入格式：第一行为n,m n表示初始序列有n个数，这个序列依次是 $(1,2,…n-1,n)$ ,m表示翻转操作次数 接下来m行每行两个数$ [l,r][l,r]$ 数据保证 $1≤l≤r≤n$
+输出格式：输出一行n个数字，表示原始序列经过m次变换后的结果 类似线段树的lazytab操作. Splay可以用来维护序列。这样的话是把Splay当作一棵区间树。 所谓区间树和权值树的区别，大概就是区间树每个节点代表的是一段区间（典型代表就是一般的线段树） 权值树好理解一点，就是每个点真的代表一个点。 至于翻转操作，我们可以利用Splay的过程实现。
+#include&lt;bits/stdc++.h&gt;
+#define N 100005
+using namespace std;
+int n,m; 
+int fa[N],ch[N][2],size[N],rev[N],rt;
+inline vo
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1509,7 +1607,21 @@ inline bool dcmp(double x,
 #include&lt;algorithm&gt;
 #include&lt;cstring&gt;
 #include&lt;string&gt;
-#include&lt;vector&
+#include&lt;vector&gt;
+using namespace std;
+int main()
+{
+    int n,k,i,j;
+    string str;
+    cin&gt;&gt;n&gt;&gt;k&gt;&gt;str;
+    vector&lt;char&gt;v;
+    for(auto a:str)v.push_back(a);
+    sort(v.begin(),v.end());
+    int pre=0;int cnt=0,w=0;
+    for(i=0;i&lt;v.size();i++){
+        if(v[i]-pre&lt;2)continue;
+        else{
+            cnt++;pre=v[i];w+=v[i]-&apos;a
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1689,7 +1801,19 @@ inline bool dcmp(double x,
       
         
           
-            树剖，用线段树维护： 数组a[N]表示此时的颜色段数。 数组left1[N]表示此时最左边的节点的颜色。 数组right1[N]表示此时最右边的节点的颜色。 则： 首先我们要明确，线段树的叶子节点一定只有一种颜色，也就是一条颜色段。 a[父亲]=a[左儿子]+a[右儿子]； if (left1[
+            树剖，用线段树维护： 数组a[N]表示此时的颜色段数。 数组left1[N]表示此时最左边的节点的颜色。 数组right1[N]表示此时最右边的节点的颜色。 则： 首先我们要明确，线段树的叶子节点一定只有一种颜色，也就是一条颜色段。 a[父亲]=a[左儿子]+a[右儿子]； if (left1[右儿子]==right1[左儿子]) {a[父亲]–;} 即如果右儿子的最左边颜色和左儿子的最右边颜色相同，那么肯定有中间部分属于同一颜色段。 以及往上跳的时候重链连接处颜色是否相同的问题，相同的话也要减。
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+#include&lt;vector&gt;
+using namespace std;
+typedef long long ll ;
+
+const int maxn=100000+10;
+vector&lt;int&gt;G[maxn];
+//in
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1881,7 +2005,24 @@ inline bool dcmp(double x,
         
           
           
-一棵树上有n个节点，编号分别为1到n，每个节点都有一个权值w。 我们将以下面的形式来要求你对这棵树完成一些操作： I. CHANGE u t : 把结点u的权值改为t II. QMAX u v: 询问从点u到点v的路径上的节点的最大权值 III. QSUM u v: 询问从点u到点v的路径上的节点
+一棵树上有n个节点，编号分别为1到n，每个节点都有一个权值w。 我们将以下面的形式来要求你对这棵树完成一些操作： I. CHANGE u t : 把结点u的权值改为t II. QMAX u v: 询问从点u到点v的路径上的节点的最大权值 III. QSUM u v: 询问从点u到点v的路径上的节点的权值和 注意：从点u到点v的路径上的节点包括u和v本身
+
+在板子的基础上类似线段树那样修改即可，注意n的位置！！定义在了所有函数前面
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+#include&lt;vector&gt;
+#include&lt;string&gt;
+using namespace std;
+typedef long long ll ;
+
+const int maxn=200000+10;
+vector&lt;int&gt;G[maxn];
+int n,m,r;
+//见题意
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2073,7 +2214,9 @@ inline bool dcmp(double x,
         
           
           
-先来回顾两个问题： 1，将树从x到y结点最短路径上所有节点的值都加上z 这也是个模板题了吧 我们很容易想到，树上差分可以以O(n+m)的优秀复杂度解决这个问题 2，求树从x到y结点最短路径上所有节点的值之和 lca大水题，我们又很容易地想到，dfs O(n)预处理每个节点的dis（即到根节点的最短
+先来回顾两个问题： 1，将树从x到y结点最短路径上所有节点的值都加上z 这也是个模板题了吧 我们很容易想到，树上差分可以以O(n+m)的优秀复杂度解决这个问题 2，求树从x到y结点最短路径上所有节点的值之和 lca大水题，我们又很容易地想到，dfs O(n)预处理每个节点的dis（即到根节点的最短路径长度） 然后对于每个询问，求出x,y两点的lca，利用lca的性质distance ( x , y ) = dis ( x ) + dis ( y ) - 2 * dis ( lca )求出结果 时间复杂度O(mlogn+n) 现在来思考一个bug： 如果刚才的两个问题结合起来，成为一道题的两种操作呢？
+
+模板要求： 如题，已知一棵包含N个结点的树（连通且无环），每个节点上包含一个数值，需要支持以下操作： 操作1： 格式： 1 x y z 表示将树从x到y结点最短路径上所有节点的值都加上z 操作2： 格式： 2 x y 表示求树从x到y结点最短路径上所有节点的值之和 操作3： 格式： 3 x z 表示将以x为根节点的子树内所有节点值都加上z 操作4： 格式： 4 x 表示求以x为根节点的
           ...
           <!--noindex-->
           <div class="post-button text-center">

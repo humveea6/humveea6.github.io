@@ -226,6 +226,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-my-team">
+          <a href="/My-team" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-users"></i> <br>
+            
+            我的队伍
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -449,7 +459,22 @@
 #include&lt;iostream&gt;
 #include&lt;vector&gt;
 #include&lt;algorithm&gt;
-#include&lt
+#include&lt;cstring&gt;
+#include&lt;queue&gt;
+using namespace std;
+struct edge{
+    int to,cap,rev;
+};
+vector&lt;edge&gt;G[210];
+int level[205],iter[205];
+void addedge(int from,int to,int cap)
+{
+    G[from].push_back(edge{to,cap,(int)G[to].size()});
+    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
+}
+void bfs(int s)
+{
+    memset(level,-1,size
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -640,7 +665,13 @@
       
         
           
-          无源汇可行流建图方法将有上下界的网络流图转化成普通的网络流图 首先建立附加源点ss和附加汇点tt 对于原图中的边x-&gt;y，若限制为[b,c]，那么连边x-&gt;y，流量为c-b 对于原图中的某一个点i，记d(i)为流入这个点的所有边的下界和减去流出这个点的所有边的下界和 （上面在连每一条边的
+          无源汇可行流建图方法将有上下界的网络流图转化成普通的网络流图 首先建立附加源点ss和附加汇点tt 对于原图中的边x-&gt;y，若限制为[b,c]，那么连边x-&gt;y，流量为c-b 对于原图中的某一个点i，记d(i)为流入这个点的所有边的下界和减去流出这个点的所有边的下界和 （上面在连每一条边的时候建一个cur数组记一下输入输出即可） 若d(i)&gt;0，那么连边ss-&gt;i，流量为d(i) ，同时期望的流量值sum+=d（i) 若d(i)&lt;0，那么连边i-&gt;tt，流量为-d(i) 求解方法 在新图上跑ss到tt的最大流 若新图满流（流量等于sum），那么一定存在一种可行流 此时，原图中每一条边的流量应为新图中对应的边的流量+这条边的流量下界
+EX：LOJ115
+这是一道模板题。 n个点，m条边，每条边 e有一个流量下界 $lower(e) $ 和流量上界 $upper(e)$，求一种可行方案使得在所有点满足流量平衡条件的前提下，所有边满足流量限制。
+
+#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -827,7 +858,22 @@ int main()
     int n,i,j,k,cnt[3]={0};
     cin&gt;&gt;n;
     for(i=1;i&lt;=n;i++){
-        scan
+        scanf(&quot;%d&quot;,&amp;j);cnt[j]++;
+    }
+    //cout&lt;&lt;min(cnt[1],cnt[2])&lt;&lt;endl;
+    if(cnt[1]&lt;=cnt[2]){
+        cout&lt;&lt;cnt[1]&lt;&lt;endl;
+    }
+    else{
+        if(cnt[1]-cnt[2]&lt;3)
+            cout&lt;&lt;cnt[2]&lt;&lt;endl;
+        else cout&lt;&lt;cnt[2]+(cnt[1]-cnt[2])/3&lt;&lt;endl;
+    }
+
+    return 0;
+}
+B.就是打表暴力
+#inclu
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1019,7 +1065,12 @@ int main()
         
           
           概念ST表就是一个用来解决rmq（区间最值）问题的算法. ST表不支持在线修改 预处理时间复杂度$O(nlogn)$，查询时间$O(1)$
-算法详解（求最小值）：用$mn[i][j]$表示从$i$到$i+2^j-1$的最小值（长度显然为$2^i$）。 任意一段的最小值显然等于min（前半段最小值，后
+算法详解（求最小值）：用$mn[i][j]$表示从$i$到$i+2^j-1$的最小值（长度显然为$2^i$）。 任意一段的最小值显然等于min（前半段最小值，后半段最小值）。 那么$mn[i][j]$如何用其他状态来继承呢？ $i$到$i+2^j-1$的长度为$2^j$，那么一半的长度就等于$2^{j-1}$。 那么前半段的状态表示为$mn[i][j-1]$。 后半段的长度也为$2^{j-1}$，起始位置为$i+2^{(j-1)}$。 那么后半段的状态表示为$mn[i+2^{j-1}][j-1]$。 所以： $mn[i][j]=min(mn[i][j-1],mn[i+2^{j-1}][j-1]$。
+模板注意修改数组大小！ (洛谷P3865)
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+const int MAXN=100010;
+int a[MAXN],dp[MAXN][50];//第二个括
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1199,7 +1250,18 @@ int main()
       
         
           
-          A.HackerRank array-partition首先注意到一点，如果有两个数a，b，$gcd(a,b)\geq 1$,那么a，b显然是要放在一组的。考虑到数组中的数字过多，因此我们并不能进行两两的枚举，但是数据的范围都非常有限。因此我们可以考虑枚举所有的质数，然后枚举质数的倍数，如果同一个质
+          A.HackerRank array-partition首先注意到一点，如果有两个数a，b，$gcd(a,b)\geq 1$,那么a，b显然是要放在一组的。考虑到数组中的数字过多，因此我们并不能进行两两的枚举，但是数据的范围都非常有限。因此我们可以考虑枚举所有的质数，然后枚举质数的倍数，如果同一个质数存在一些倍数是数组中的数的话，就把这些数都合并起来（显然用并查集效率最高）。然后最后求出连通块的数量k。注意，因为数字1的特殊性，所以每个1都可以算一个单独的连通块，这个要额外统计。那么方案数就是$2^k-2$
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+typedef long long ll;
+const int mod=1e9+7;
+bool notprime[1000005];
+vector&lt;int&gt;prime;
+void checkprime(int n)
+{
+    for(int i=2;i&lt;=n;i++){
+        if(notprime[i])continue;
+        prime
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1387,7 +1449,22 @@ int main()
 {
     ll n,m,i,j,k;
     cin&gt;&gt;n&gt;&gt;m;
-    ll p
+    ll pre=0;
+    long long sum=0;
+    for(i=1;i&lt;=n;i++){
+        cin&gt;&gt;j;sum+=j;
+        ll d=sum/m;;cout&lt;&lt;d-pre&lt;&lt;&apos; &apos;;
+        pre=d;
+    }
+    return 0;
+}
+B.正解应该是想让你预处理字符串匹配，然后搞个前缀和去对付每个询问。然而串实在太短了以至于对于每次询问暴力kmp就可以轻松过。 暴力kmp：
+#include&lt;bits/stdc++.h&gt;
+using namespace std;
+int next1[1000005];
+void getnext(string str)
+{
+  
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1579,7 +1656,18 @@ int main()
         
           
           所谓闭合图，指的是图中每个点的后续都在图中。最大权闭合图，指的是点的权值之和最大的闭合图。
-最大权闭合图的求解方法1.先构造网络流N，添加源点s，从s到正权值点做一条边，容量为点的权值。 2.添加汇点t，从负权值点到t做一条边，容量为点的权值的绝对值。 3.原来的边的容量统统设为无穷大 4.求解最小
+最大权闭合图的求解方法1.先构造网络流N，添加源点s，从s到正权值点做一条边，容量为点的权值。 2.添加汇点t，从负权值点到t做一条边，容量为点的权值的绝对值。 3.原来的边的容量统统设为无穷大 4.求解最小割，最大权=正权值之和-最小割权值 5.最小割所产生的两个集合中，其源点S所在集合(除去S)为最大权闭合图。（也就是POJ2987所求的裁员） EX:POJ2987
+
+公司官僚成风，盘根错节，办实事的码农没几个。老板决定大裁员，每开除一个人，同时要将其下属一并开除，如果该下属还有下属，照斩不误。给出每个人的贡献值（可为负）和从属关系，求最小裁员数及最大贡献值和。
+
+模板题，记得开longlong即可
+#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;vector&gt;
+#include&lt;queue&gt;
+#include&lt;cstring&gt;
+using
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1776,7 +1864,19 @@ int main()
 #include&lt;vector&gt;
 #include&lt;queue&gt;
 #include&lt;algorithm&gt;
-#include&lt;cstring&gt
+#include&lt;cstring&gt;
+using namespace std;
+const int maxn=1e5+5;
+struct edge{
+    int to,cap,cost,rev;//终点,容量,费用,反向边
+};
+vector&lt;edge&gt;G[maxn];
+int dis[maxn],prevv[maxn],preve[maxn],n,m,s,t,flow=0,cost=0;//最短路中前驱节点和对应的边,
+// 小心cost爆int,多组数据时记得清零
+bool inque[maxn];
+void add(int from,int to,int cap,int cost)
+{
+    G[from].push_back(edge{to,cap,cost,(int)G[to].size()});
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1967,8 +2067,10 @@ int main()
       
         
           
-          匹配，边覆盖，独立集合顶点覆盖概念：$V$：全集 匹配——在图中两两没有公共顶点的边的集合 注意，图中的匹配有很多，一条边也可以算一个匹配。但是最大匹配却是可以确定的。最大匹配也就是要让选出尽可能多的边使得它们两两之间都没有交点（端点）。 边覆盖——图中的任意顶点都至少是集合$F$中某条边的的端点，
-          ...
+          匹配，边覆盖，独立集合顶点覆盖概念：$V$：全集 匹配——在图中两两没有公共顶点的边的集合 注意，图中的匹配有很多，一条边也可以算一个匹配。但是最大匹配却是可以确定的。最大匹配也就是要让选出尽可能多的边使得它们两两之间都没有交点（端点）。 边覆盖——图中的任意顶点都至少是集合$F$中某条边的的端点，满足这样条件的集合的最少的边的集合$F$称为最小边覆盖 独立集——在图中两两不相连的顶点集合 比如一条边$S$的顶点是$S_a,S_b$,那么这两个点就不能同时在一个独立集中。事实上，独立集中的任意两个点之间都不存在有边之间相连。 顶点覆盖——图中的任意边都至少有一个端点属于集合$S$的集合叫做顶点覆盖
+结论(a)对于不存在孤立点的图，|最大匹配|+|最小边覆盖|=|$V$|（边的全集）（即任意一个顶点都至少在某条边中） （b）|最大独立集|+|最小顶点覆盖|=|$V$|（点的全集） （c）在二分图中，有：|最大匹配|=|最小顶点覆盖|（可用于求解二分图的最大独立集和最小顶点覆盖） （d）|图的最大流|=|图的最小割|（图有源汇）
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-a4-a7-e6-b5-81-e4-b8-8e-e4-ba-8c-e5-88-86-e5-9b-be-e7-9a-84-e4-b8-80-e4-ba-9b-e7-bb-93-e8-ae-ba/#more" rel="contents">
@@ -2163,7 +2265,23 @@ int main()
 #include&lt;iostream&gt;
 #include&lt;algorithm&gt;
 #include&lt;vector&gt;
-#include&lt;queue&
+#include&lt;queue&gt;
+#include&lt;cstring&gt;
+using namespace std;
+const int maxn=1e5+5;
+struct edge{
+    int to,cap,rev;
+};
+vector&lt;edge&gt;G[maxn];
+int level[maxn],iter[maxn];
+void addedge(int from,int to,int cap)
+{
+    G[from].push_back(edge{to,cap,(int)G[to].size()});
+    G[to].push_back(edge{from,0,(int)G[from].size()-1});//反向容量为0!!
+}
+void bfs(int s)
+{
+    me
           ...
           <!--noindex-->
           <div class="post-button text-center">

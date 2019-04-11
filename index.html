@@ -226,6 +226,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-my-team">
+          <a href="/My-team" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-users"></i> <br>
+            
+            我的队伍
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -423,7 +433,7 @@
         
           
           C - DRM Messages模拟题
-1234567891011121314151617181920212223242526272829#include&lt;bits/stdc++.h&gt;using namespace std;int main()&#123;    string a,b,c
+1234567891011121314151617181920212223242526272829#include&lt;bits/stdc++.h&gt;using namespace std;int main()&#123;    string a,b,c;    cin&gt;&gt;a;    b=a.substr(0,a.length()/2);c=a.substr(a.length()/2);    int cntb=0,cntc=0;    for(auto x:b)&#123;        cntb+=x-'A';    &#125;    for(auto x:c)&#123;        cntc+=x-'A';    &#125;    for(auto &amp;x:b)&#123;        x=(x-'A'+cntb)%26+'A';    &#125;    for(auto &amp;x:c)&#123;        x=(x-'A'+cntc)%26+'A';    &#125;    for(int 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -594,7 +604,9 @@
           
           定义   正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。
 正则表达式中的通配符例如：\d匹配任意数字，也就说\d可以匹配0，也可以匹配1，还有2，3，…9都可以匹配。
-\d 匹配
+\d 匹配一个数字，也就是匹配0-9\w匹配单词字符，也就是匹配a-z和A-Z还有’_’。\s匹配空白字符（空格）。\b匹配单词边界（匹配位置而不是实际的字符，边界可以是符号或空格）. 匹配任意字符
+正则表达式中的量词？ 匹配前面的字符0次或1次*  匹配前面的字符0次或多次+ 匹配前面的字符1次或者多次{m} 匹配前面表达式m次{m,} 匹配前面表达式至少m次{,n} 匹配前面的正则表达式最多n次{m,n} 匹配前面的正则表达式至少m次，最多n次例子：“abc+”可以匹配abc, abcc, abccc, abcccc, abccccc，以此类推。“yts*”可以匹配 yt, yts, ytss, ytsss, ytsss“y{1,5}”可以匹配 y, yy, yyy, yyyy, yyyyy.
+转
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -764,7 +776,9 @@
         
           
           IO类IO对象不能拷贝或者被赋值例子：1234ofstream out1,out2;out1=out2;//error!不能对流对象赋值ofstream print(ofstream);//错误，不能初始化ofstream参数out2=print(out2);//错误：不能拷贝流对象
-因为不能拷贝流
+因为不能拷贝流对象，所以也不能将形参或返回类型设置为流类型。进行IO操作的函数通常以引用方式传递和返回流。读写一个IO对象会改变其状态，所以传递和返回的引用不能是const的。
+条件状态（存疑）12345strm::iostate  //一种机器相关类型，提供表达条件状态的完整功能strm::badbit   //指出流已崩溃strm::failbit   //指出一个IO操作失败了strm::eofbit    //指出流到达了文件结束strm::goodbit   //指出流未处于错误状态
+一些对应函数：1234s.eof();    //若eofbit置位，返回trues.fail();   //若failbit或badbit置位，返回trues.bad();    //若badbit置位，返回tr
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -935,7 +949,10 @@
           
           string初始化string的一些方法：123string s3="hiya";//s3是字面值的副本string s4(10,'c');//s4的内容是cccccccccccstring s2(s1);//s2是s1的副本
 使用=执行的是拷贝初始化，而反之则是直接初始化。
-getline函数的参
+getline函数的参数是一个输入流和一个string对象，函数从输入流中读取直到遇到换行符为止（换行符也被读入），但是string中不会存换行符。
+string.size()函数返回的是一个string::size_type类型的值，这个值是无符号整形数，因此不能直接与一个带负值的int作比较，例如s.size()&lt;n这样，因为负值n会自动转换为一个比较大的无符号值，结果肯定是true.
+string比较大小按照大小写敏感的字典序比较；2个注意点：1.如果2个string对象长度不同且较短的对象的每个字符都与较长的string对应位置相等的话，那么较短的string小于较长的string。2.如果2个字符串不完全相同，那么比较的结果其实是第一对相异字符的比较结果。
+注意：字符串字面值与string并不是同
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1117,7 +1134,7 @@ getline函数的参
           
           J. How Much Memory Your Code Is Using?大意：对一堆变量声明进行扫描然后计算占用的空间。
 一道签到题，注意考虑周全即可。
-12345678910111213141516171819202122232425262728293031323334353637383940
+1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374#include &lt;iostream&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;string&gt;using namespace std;int findlb(string &amp;b)&#123;    for(int i=0;i&lt;b.length();i++)&#123;        if(b[i]=='[')return i;    &#125;    return -1;&#125;int fbyte(string &amp;b)&#123;  
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1336,7 +1353,10 @@ getline函数的参
 引用为对象起了一个别名。注意：引用并不是对象，它只是为一个已经存在的对象所起的另外一个名字。
 因为引用不是一个对象，所以不能定义引用的引用！
 为引用赋值，实际上是把值赋给了引用绑定的对象，获取引用的值，其实也是获取了引用绑定对象的值。
-引用的
+引用的类型必须和要绑定的对象严格匹配（比如int类型的引用不能绑定在double上），但是有2个例外。而且引用只能绑定在对象上而不能与字面值或者某个表达式的计算结果绑定在一起。
+在定义引用时，程序把引用跟它的初始值绑定在一起（而不是拷贝），无法令引用绑定到另一个对象，所以引用定义时必须被初始化。
+constconst对象一旦创造就不能再更改，所以const对象必须被初始化；    默认情况下const对象被设定为仅在文件内有效，当多个文件内出现同名的const变量时相当于在不同文件中分别定义了独立变量；如果要在多个文件中使用同一个const变量，那么它的声明与定义都应该加上extern关键字（存疑）；
+const的引用可以把引用绑定到const对象上，就像绑定到其他对象上一样，称之为对常量的引用。
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1516,7 +1536,7 @@ getline函数的参
       
         
           
-          类的基本概念首先是一段自定义类的代码：12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970
+          类的基本概念首先是一段自定义类的代码：123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105#include&lt;bits/stdc++.h&gt;using namespace std;class Screen&#123;public:    typedef std::string::size_type pos;    int sit=0;    Screen()= default;    //screen() &#123;&#125;    Screen(pos ht,pos wd,char c):height(ht),width(ht),contents(ht*wd,c),sit(0)&#123;&#125;;    cha
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1689,7 +1709,10 @@ getline函数的参
 基本数据类型int可以是任何大小的整数
 变量名的第一个字符必须是字母或下划线；变量名区分大小写；
 使用单/双引号指定字符串，所有引号内的字符，包括空格与制表符都将原样保留。两种引号工作机制相同
-输出格式三引号用于指定多行字符串（&quot;&quot;&quot;或&#39;
+输出格式三引号用于指定多行字符串（&quot;&quot;&quot;或&#39;&#39;&#39;均可以）例如：123print('''this is the first lineand this is the secondhhahahah''')
+就会原样输出3行
+有时候我们会想要从其他信息中构建字符串。这正是 format() 方法大有用武之地的地方。例如：1234age = 20name = 'Swaroop'print('&#123;&#125; was &#123;&#125; years old when he wrote this book'.format(name, age))print('Why is &#123;&#125; playing with that python?'.format(name))
+Python 中 format 方法所做的
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1827,8 +1850,18 @@ getline函数的参
           
           23323323312345678#include&lt;bits/stdc++.h&gt;using namespace std;int main()&#123;    cout&lt;&lt;"Hello World!"&lt;&lt;endl;        return 0;&#125;
 
+2333
 
-          ...
+test
+ss
+s       $233+34+A^3+A_5^4$
+ 2333      $A_5^4+A+23$
+233333333
+哈哈哈
+test
+
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/article/233/#more" rel="contents">

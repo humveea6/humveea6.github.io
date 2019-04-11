@@ -226,6 +226,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-my-team">
+          <a href="/My-team" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-users"></i> <br>
+            
+            我的队伍
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -411,7 +421,19 @@
       
         
           
-          显然，暴力模拟每个r* r的框覆盖是会tle的，我们不妨换一种思路，即计算每个cell被多少个框所覆盖。 可以发现，在位置x，y的cell的框覆盖数为：  因此，总的框覆盖数就是  注意到无论是怎么样的情况，位于(n+1)/2,(m+1)/2处的cell的框覆盖数一定是最大的之一，因此我们可以从这个
+          显然，暴力模拟每个r* r的框覆盖是会tle的，我们不妨换一种思路，即计算每个cell被多少个框所覆盖。 可以发现，在位置x，y的cell的框覆盖数为：  因此，总的框覆盖数就是  注意到无论是怎么样的情况，位于(n+1)/2,(m+1)/2处的cell的框覆盖数一定是最大的之一，因此我们可以从这个cell开始bfs，但是这里的queueu采用有限队列，即以框覆盖数为优先值。最后注意一下重复的问题即可（写的时候用set判了一下重）。
+#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;queue&gt;
+#include&lt;algorithm&gt;
+#include&lt;set&gt;
+using namespace std;
+typedef long long ll;
+typedef pair&lt;int,int&gt;P;
+struct cell{
+    int x,y;ll f;
+    bool operator&lt;(const cell&amp;v)const{
+        return 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -587,7 +609,26 @@ using namespace std;
 int main()
 {
     long long n,m;
-    cin&gt
+    cin&gt;&gt;n&gt;&gt;m;
+    if(n&gt;=63){
+        cout&lt;&lt;m&lt;&lt;endl;
+    }
+    else{
+        cout&lt;&lt;m%(1LL&lt;&lt;n)&lt;&lt;endl;
+    }
+
+    return 0;
+}
+B. dfs判断一下即可。
+#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;vector&gt;
+using namespace std;
+vector&lt;int&gt;G[1005];
+bool dfs(int x)
+{
+    if(G[x].empty())
+        return true;
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1081,7 +1122,25 @@ int main()
 #include&lt;algorithm&gt;
 using namespace std;
 bool cmp(int a,int b)
+{
+    return a&gt;b;
+}
+int main()
+{
+    int n,k,i,j;
+    //cin&gt;&gt;n;
+    vector&lt;int&gt;v;
+    cin&gt;&gt;n&gt;&gt;k;
+    for(i=1;i&lt;=n;i++){
+        scanf(&quot;%d&quot;,&amp;j);
+        if(k%j==0)v.push_back(j);
+    }
+    sort(v.begin(),v.end(),cmp);
+    cout&lt;&lt;k/v[0]&lt;&lt;endl;
 
+    return 0;
+}
+B. 总共只有两种情况：先关左边再关右边，或者反过来，讨论一下特殊边界情
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1273,7 +1332,19 @@ bool cmp(int a,int b)
         
           
           
-您需要写一种数据结构（可参考题目标题），来维护一些数，其中需要提供以下操作： 1.插入 xx 数 2.删除 xx 数(若有多个相同的数，因只删除一个) 3.查询 xx 数的排名(排名定义为比当前数小的数的个数 +1+1 。若有多个相同的数，因输4.出最小的排名) 5.查询排名为 xx 的数 6.求
+您需要写一种数据结构（可参考题目标题），来维护一些数，其中需要提供以下操作： 1.插入 xx 数 2.删除 xx 数(若有多个相同的数，因只删除一个) 3.查询 xx 数的排名(排名定义为比当前数小的数的个数 +1+1 。若有多个相同的数，因输4.出最小的排名) 5.查询排名为 xx 的数 6.求 xx 的前驱(前驱定义为小于 xx ，且最大的数) 7.求 xx 的后继(后继定义为大于 xx ，且最小的数)
+
+洛谷P3369 不讲解，直接上代码：
+#include&lt;iostream&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+const int MAXN=1000000;
+int ch[MAXN][2],f[MAXN],size[MAXN],cnt[MAXN],key[MAXN];
+int nodecnt,root;
+void clear(int x)//清除(当这个点被删除之后)
+{
+    ch[x][0]=ch[x][1]=f[x]=size[x]=cnt[x]=key[x
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1442,8 +1513,12 @@ int main()
 
 hjsfkwhfkhfh fsdfggs
 
+hkjhka jhhhj njhkkjk $f^2+2f+4$
 
-          ...
+~hjkahfh~ 中文测试
+测试测试
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/Uncategorized/test-1/#more" rel="contents">

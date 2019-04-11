@@ -226,6 +226,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-my-team">
+          <a href="/My-team" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-users"></i> <br>
+            
+            我的队伍
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -418,7 +428,20 @@
 #include&lt;string&gt;
 #include&lt;set&gt;
 using namespace std;
-in
+int main()
+{
+    set&lt;string&gt;s;
+    string str1,str2;
+    cin&gt;&gt;str1&gt;&gt;str2;
+    int i,j;
+    for(i=0;i&lt;str1.size();i++){
+        string str11=str1.substr(0,i+1);
+        for(j=0;j&lt;str2.size();j++){
+            string str22=str2.substr(0,j+1);
+            s.insert(str11+str22);
+        }
+    }
+    cout&lt;&lt;*s.begin()&lt;&lt;en
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -588,7 +611,24 @@ in
         
           
           Lucas定理是用来解决大组合数取模的，即求$C_n ^m \ mod\ p$,其中$p$为质数。 公式：$C_n ^m\ mod\ p=C_{n/p}^{m/p}\times C_{n\ mod\ p}^{m\ mod\ p}\ mod\ p$
-当模数p在变化时运用暴力方法计算组合数：#inclu
+当模数p在变化时运用暴力方法计算组合数：#include &lt;cstdio&gt;
+#include &lt;cstring&gt;
+#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+using namespace std;
+typedef long long ll;
+ll Power_mod(ll a, ll b, ll p)//快速幂
+{
+    ll res = 1;
+    while(b!=0) {
+        if(b&amp;1) res = (res*a)%p;
+        a = (a*a)%p;
+        b &gt;&gt;= 1;
+    }
+    return res;
+}
+ll Comb(ll a,ll b, ll p)//暴力计算组合数
+
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -759,7 +799,24 @@ in
           
           组合数公式： $C_{m}^{n}=\frac{m!}{n!(m-n)!}$ 方法一：利用公式 $C_m^n=C_{m-1}^{n-1}+C_{m-1}^{n}$
 
-从m个元素里挑n个元素，针对第一个元素要么是n个里的要么不是，如果是的,那么就从剩下的m-1个里挑n-1个 就是c(m-1,n-1);
+从m个元素里挑n个元素，针对第一个元素要么是n个里的要么不是，如果是的,那么就从剩下的m-1个里挑n-1个 就是c(m-1,n-1);如果第一个元素不是n里的，就从剩下的m-1个元素里挑n个，就是c(m-1,n)。
+
+递归求法：
+#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+long long comb(int m,int n)
+{
+    if(n==0) return 1;
+    if(n==1) return m;
+    if(n&gt;m/2) return comb(m,m-n);
+    if(n&gt;1) return (comb(m-1,n-1)+comb(m-1,n));
+}
+int main()
+{
+    int m,n;
+    while(cin&gt;&gt;m&gt;&gt;n)
+    cout
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -937,7 +994,24 @@ int main()
 {
     int n,i,j,k;
     cin&gt;&gt;n;
-    int 
+    int minn=1e9;
+    for(i=1;i&lt;=n;i++){
+        scanf(&quot;%d&quot;,&amp;a[i]);minn=min(minn,a[i]);
+    }
+    int pre=0,ans=1e6;
+    for(i=1;i&lt;=n;i++){
+        if(a[i]==minn){
+            if(pre){
+                ans=min(ans,i-pre);
+            }
+            pre=i;
+        }
+    }
+    cout&lt;&lt;ans&lt;&lt;endl;
+
+    return 0;
+}
+B. 最大化最小值，一看就可以二分。
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1110,7 +1184,20 @@ int main()
 void mergearray(int*a, int first, int mid, int last, int*temp)
 {
     int i = first, j = mid+1, k = last,m=0;
-    wh
+    while (i &lt;= mid&amp;&amp;j &lt;= last) {
+        if (a[i] &lt; a[j])
+            temp[++m] = a[i++];
+        else
+            temp[++m] = a[j++];
+    }
+    while (i &lt;= mid)
+        temp[++m] = a[i++];
+    while (j &lt;= last)
+        temp[++m] = a[j++];
+    for (i = 1; i &lt;= m; i++)
+        a[first+i-1] = temp[i];//这里要注意前面数组的下标
+}
+void mergeso
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1291,7 +1378,9 @@ void mergearray(int*a, int first, int mid, int last, int*temp)
         
           
           
-Nim游戏是组合游戏(Combinatorial Games)的一种，准确来说，属于“Impartial Combinatorial Games”（以下简称ICG）。满足以下条件的游戏是ICG（可能不太严谨）：1、有两名选手；2、两名选手交替对游戏进行移动(move)，每次一步，选手可以在（一般而
+Nim游戏是组合游戏(Combinatorial Games)的一种，准确来说，属于“Impartial Combinatorial Games”（以下简称ICG）。满足以下条件的游戏是ICG（可能不太严谨）：1、有两名选手；2、两名选手交替对游戏进行移动(move)，每次一步，选手可以在（一般而言）有限的合法移动集合中任选一种进行移动；3、对于游戏的任何一种可能的局面，合法的移动集合只取决于这个局面本身，不取决于轮到哪名选手操作、以前的任何操作、骰子的点数或者其它什么因素； 4、如果轮到某名选手移动，且这个局面的合法的移动集合为空（也就是说此时无法进行移动），则这名选手负。根据这个定义，很多日常的游戏并非ICG。例如象棋就不满足条件3，因为红方只能移动红子，黑方只能移动黑子，合法的移动集合取决于轮到哪名选手操作。
+
+经典Nim游戏通常的Nim游戏的定义是这样的：有若干堆石子，每堆石子的数量都是有限的，合法的移动是“选择一堆石子并拿走若干颗（不能不拿）”，如果轮到某个人时所有的石子堆都已经被拿空了，则判负（因为他此刻没有任何合法的移动）。 我们定义Position: P：表示当前局面
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1468,7 +1557,17 @@ using namespace std;
 int main()
 {
     string str;int cnt=0;
-    cin&gt
+    cin&gt;&gt;str;
+    for(auto a:str){
+        if(a==&apos;a&apos;||a==&apos;i&apos;||a==&apos;o&apos;||a==&apos;e&apos;||a==&apos;u&apos;||a==&apos;1&apos;||a==&apos;3&apos;||a==&apos;5&apos;||a==&apos;7&apos;||a==&apos;9&apos;)
+            cnt++;
+    }
+    cout&lt;&lt;cnt&lt;&lt;endl;
+
+    return 0;
+}
+B. 暴力枚举24种映射的情况即可….题目很简单，但是不是很好写
+#include&lt;cstdio&g
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1646,7 +1745,23 @@ int main()
     int n,i,j,k;
     cin&gt;&gt;n;
     for(i=1;i&lt;=n;i++){
+        scanf(&quot;%d&quot;,&amp;j);
+        if(j&amp;1)cout&lt;&lt;j&lt;&lt;&apos; &apos;;
+        else cout&lt;&lt;j-1&lt;&lt;&apos; &apos;;
+    }
 
+    return 0;
+}
+B. 从大到小排序，前k大就是所求
+#include&lt;cstdio&gt;
+#include&lt;iostream&gt;
+#include&lt;algorithm&gt;
+#include&lt;map&gt;
+#include&lt;set&gt;
+using namespace std;
+bool cmp(int x,int y)
+{
+    re
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1821,7 +1936,21 @@ int main()
 #include&lt;algorithm&gt;
 #include&lt;vector&gt;
 #include&lt;deque&gt;
-using namespace std
+using namespace std;
+int main()
+{
+    deque&lt;int&gt;a;
+    int n,m,i,j,k;
+    cin&gt;&gt;n&gt;&gt;m;
+    int c[1005];
+    for(i=1;i&lt;=n;i++)cin&gt;&gt;c[i];
+    for(i=1;i&lt;=m;i++){
+        scanf(&quot;%d&quot;,&amp;j);a.push_back(j);
+    }
+    int cnt=0;
+    for(i=1;i&lt;=n;i++){
+        if(!a.empty()&amp;&amp;a.front()&gt;=c[i]){
+            a.pop_front();cnt+
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1979,7 +2108,7 @@ using namespace std
       
         
           
-          过去的一年前几天考完了这学期的最后一科，那么，大一也就算是结束了吧，回想过去的一年，总想写点什么，却又不知道如何入手，那现在就纯当流水账随便写写吧。 去年，2017，是相当奇幻的，一场高考将一年横劈为二。刚考完那天下午拿出了尘封已久的iPad，打了一会wotb，但是似乎应了那句话——游戏还是考试前的
+          过去的一年前几天考完了这学期的最后一科，那么，大一也就算是结束了吧，回想过去的一年，总想写点什么，却又不知道如何入手，那现在就纯当流水账随便写写吧。 去年，2017，是相当奇幻的，一场高考将一年横劈为二。刚考完那天下午拿出了尘封已久的iPad，打了一会wotb，但是似乎应了那句话——游戏还是考试前的好玩，考完之后变得有些索然无味起来。4天之后剁了个游戏本，然后开启了暑假的沉迷游戏之旅。不过后来开学后很快就后悔买了个如此厚重的游戏本，当然这是后话了。 暑假先是跟同学一起去了趟贵州，现在想想这趟旅程其实是有些令人失望的。贵州本身并不太好玩，花在路上的时间奇长无比。更重要的是高中的一群同学，似乎总有些说不清的隔阂感吧，也许是一群清北聚聚实在跟我这种裸考弱渣差别过大吧。而且感觉起来，高中同学总体还是比较奇特的，整个班级总是缺少些凝聚力，或许是大家都太有个性了，也可能是大家高中都忙，总而言之，并没有非常好的体验。 回来之后填了个志愿。我也不知道为什么我就想报计算机，也许是被某乎洗脑了吧，自己也看起来是有点兴趣。 记得当时还跟父母吵了一架，因为不知道选哪个学校。当时也不知道为何就选定了小破邮，不过
           ...
           <!--noindex-->
           <div class="post-button text-center">

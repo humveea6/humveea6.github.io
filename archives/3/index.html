@@ -226,6 +226,16 @@
           </a>
         </li>
       
+        
+        <li class="menu-item menu-item-my-team">
+          <a href="/My-team" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-users"></i> <br>
+            
+            我的队伍
+          </a>
+        </li>
+      
 
       
         <li class="menu-item menu-item-search">
@@ -437,7 +447,18 @@
 int dfn[105],low[105],scccnt=0,sccindex=0,belong[105];
 bool instack[105];
 stack&lt;int&gt;sta;
-
+vector&lt;int&gt;G[105];
+void tarjan(int v)
+{
+    dfn[v]=low[v]=++sccindex;
+    sta.push(v);instack[v]=true;int j;
+    for(auto i=G[v].begin();i!=G[v].end();i++){
+        int j=*i;//理论上用c++11的特性会比G[v].size()快一些;
+        if(!dfn[j]){
+            tarjan(j);
+            low[v]=min(low[v],low[j]);
+        }
+        else if(instack[j]&amp;&amp;dfn[j]&lt
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -628,7 +649,7 @@ stack&lt;int&gt;sta;
       
         
           
-          对于一个给定的有向无环图（DAG），求其最小路径覆盖。题目可参见洛谷P2764。 【问题分析】 有向无环图最小路径覆盖，可以转化成二分图最大匹配问题，从而用最大流解决。 【建模方法】 构造二分图，把原图每个顶点i拆分成二分图X，Y集合中的两个顶点Xi和Yi。对于原图中存在的每条边(i,j)，在二分图
+          对于一个给定的有向无环图（DAG），求其最小路径覆盖。题目可参见洛谷P2764。 【问题分析】 有向无环图最小路径覆盖，可以转化成二分图最大匹配问题，从而用最大流解决。 【建模方法】 构造二分图，把原图每个顶点i拆分成二分图X，Y集合中的两个顶点Xi和Yi。对于原图中存在的每条边(i,j)，在二分图中连接边(Xi,Yj)。然后把二分图最大匹配模型转化为网络流模型，求网络最大流。 最小路径覆盖的条数，就是原图顶点数，减去二分图最大匹配数。沿着匹配边查找，就是一个路径上的点，输出所有路径即可。 【建模分析】 对于一个路径覆盖，有如下性质： 1、每个顶点属于且只属于一个路径。 2、路径上除终点外，从每个顶点出发只有一条边指向路径上的另一顶点。所以我们可以把每个顶点理解成两个顶点，一个是出发，一个是目标，建立二分图模型。该二分图的任何一个匹配方案，都对应了一个路径覆盖方案。如果匹配数为0，那么显然路径数=顶点数。每增加一条匹配边，那么路径覆盖数就减少一个，所以路径数=顶点数 - 匹配数。要想使路径数最少，则应最大化匹配数，所以要求二分图的最大匹配。注意，此建模方法求最小路径覆盖仅适用于有向无环
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -825,7 +846,26 @@ stack&lt;int&gt;sta;
 #include&lt;iostream&gt;
 #include&lt;algorithm&gt;
 #include&lt;cstring&gt;
-u
+using namespace std;
+const int N=1e6,M=1e6;
+int par[N];
+struct edge{
+    int from,to,len;
+    bool operator&lt;(const edge&amp;v)const{
+        return len&lt;v.len;
+    }
+}G[M];
+int find(int x)
+{
+    return x==par[x]?x:par[x]=find(par[x]);
+}
+bool unite(int x,int y)
+{
+    x=find(x);y=find(y);
+    if(x==y)return false;
+    par[x]=y;return true;
+}
+int 
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1011,7 +1051,23 @@ u
 #include&lt;algorithm&gt;
 #include&lt;queue&gt;
 #include&lt;cstring&gt;
-using n
+using namespace std;
+const int maxn=1e5+5;
+struct edge{
+    int to,cost;
+};
+vector&lt;edge&gt;G[maxn];
+bool inque[maxn];
+int main()
+{
+    int n,m,s,i,j,k;
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;
+    int dis[maxn];
+    for(i=1;i&lt;=n;i++)dis[i]=(1&lt;&lt;31)-1;
+    dis[s]=0;
+    for(i=1;i&lt;=m;i++){
+        int a,b,c;
+        scanf(&quot;%d %d %d&quot;,&amp;
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1197,7 +1253,26 @@ using n
 #include&lt;algorithm&gt;
 #include&lt;cstring&gt;
 #include&lt;queue&gt;
-u
+using namespace std;
+const int maxn=1e5+5;
+struct edge{
+    int to,cost;
+};
+vector&lt;edge&gt;G[maxn];
+struct d{//记录各种被松弛后的点
+    int num,dis;
+};
+bool operator &lt;(d a,d b)
+{
+    return a.dis&gt;b.dis;
+}
+int main()
+{
+    int n,m,s,i,j,k;
+    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;
+    for(i=1;i&lt;=m;i++){
+        int a,b,c;
+        scanf(&quot;%d %d %d&quo
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1380,8 +1455,15 @@ u
           需要注意的就是因为每次是拿一个点出来考虑能否把别的路变短，所以k一定是最外层循环。以及要记得初始化为无穷大或无穷小。 可以通过检查是否有dis[i][i]&lt;0来判定是否有负环存在
 int dis[105][105];
     memset(dis,0x7f,sizeof(dis));
-    
-          ...
+    for(i=1;i&lt;=n;i++)
+        for(j=1;j&lt;=n;j++)
+            cin&gt;&gt;dis[i][j];
+    for(k=1;k&lt;=n;k++)
+        for(i=1;i&lt;=n;i++)
+            for(j=1;j&lt;=n;j++)
+                dis[i][j]=min(dis[i][j],dis[i][k]+dis[k][j]);
+
+          
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89floyd-e7-ae-97-e6-b3-95-ef-bc-88-e5-a4-9a-e6-ba-90-e6-9c-80-e7-9f-ad-e8-b7-af-ef-bc-89/#more" rel="contents">
@@ -1566,7 +1648,27 @@ int find(int x)
 {
     return par[x]==x?x:par[x]=find(par[x]);//后面这一块不要漏了par[x],否则就是不带路径压缩!
 }
-bool uni
+bool unite(int x,int y)
+{
+    x=find(x),y=find(y);
+    if(x==y)return false;
+    par[x]=y;
+    return true;
+}
+按秩合并：
+int find(int x)
+{
+    if (x == par[x])
+        return x;
+    else
+        return par[x] = find(par[x]);//后面这一块不要漏了par[x]!!!否则就是不带路径压缩(有时候有用）
+}
+void unite(int x, int y)
+{
+    x = find(x); y = find(y);
+    if (x == y)
+        return;
+    if (ra
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1747,7 +1849,9 @@ bool uni
         
           
           说是小结，其实我并没有怎么弄懂QAQ，简单写写概念跟板子吧…
-Sprague-Grundy函数给定一个有向无环图和一个起始顶点上的一枚棋子，两名选手交替的将这枚棋子沿有向边进行移动，无法移动者判负。事实上，这个游戏可以认为是所有Impartial Combinatorial Games的抽象模型。也
+Sprague-Grundy函数给定一个有向无环图和一个起始顶点上的一枚棋子，两名选手交替的将这枚棋子沿有向边进行移动，无法移动者判负。事实上，这个游戏可以认为是所有Impartial Combinatorial Games的抽象模型。也就是说，任何一个ICG都可以通过把每个局面看成一个顶点，对每个局面和它的子局面连一条有向边来抽象成这个“有向图游戏”。
+基本概念下面我们就在有向无环图的顶点上定义Sprague-Garundy函数。 首先定义$mex$(minimal excludant)运算，这是施加于一个集合的运算，表示最小的不属于这个集合的非负整数。例如$mex[0,1,2,4]=3,mex[2,3,5]=0,mex[]=0$。 对于一个给定的有向无环图，定义关于图的每个顶点的Sprague-Garundy函数$g$如下：$g(x)=mex[ g(y) | y是x的后继 ]$。
+SG函数的性质首先，所有的terminal position所对应的顶点，也就是没有出边的顶点，其SG值为0，因为它的后继集合是空集。 对于一
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -1935,7 +2039,18 @@ int main()
     int n,i,j,k,x,y,cnt[2]={0};
     cin&gt;&gt;n;
     for(i=1;i&lt;=n;i++){
-    
+        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
+        if(x&lt;0)cnt[0]++;
+        else cnt[1]++;
+    }
+    if(cnt[0]&lt;=1||cnt[1]&lt;=1){
+        puts(&quot;Yes&quot;);
+    }
+    else puts(&quot;No&quot;);
+
+    return 0;
+}
+B.首先要知道一个结论：对于$a/b$,他的小数部分的循环节长度不会超过$b$，所以我们只要检查小数点后的最多$b$位就可以知道$c$是否有出现过了。然后关键就是如何求小数点后的位数了。这个可以用长除法来做，具体思想其实就是不断把被除数乘10然后除以除数获得
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -2121,7 +2236,23 @@ using namespace std;
 typedef long long ll;
 struct mark{
     int id,sum;
-    bool operator&lt;(const mark&amp;v)cons
+    bool operator&lt;(const mark&amp;v)const{
+        if(sum==v.sum)
+            return id&lt;v.id;
+        return sum&gt;v.sum;
+    }
+}G[1005];
+int main()
+{
+    int n,i,j,k,a,b,c,d;
+    cin&gt;&gt;n;
+    for(i=1;i&lt;=n;i++){
+        cin&gt;&gt;a&gt;&gt;b&gt;&gt;c&gt;&gt;d;G[i].sum+=a+b+c+d;G[i].id=i;
+    }
+    sort(G+1,G+1+n);
+    for(i=1;i&lt;=n;i++){
+        if(G[i].id==1){
+            
           ...
           <!--noindex-->
           <div class="post-button text-center">
