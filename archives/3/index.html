@@ -433,44 +433,19 @@
       
         
           
-            <p>要注意的就是那些单独的点每个点都会被当做自身一个强联通分量，也就是有不少的强连通分量里面可能只有一个元素……</p>
-<pre><code>int dfn[105],low[105],scccnt=0,sccindex=0,belong[105];
+          要注意的就是那些单独的点每个点都会被当做自身一个强联通分量，也就是有不少的强连通分量里面可能只有一个元素……
+int dfn[105],low[105],scccnt=0,sccindex=0,belong[105];
 bool instack[105];
 stack&lt;int&gt;sta;
-vector&lt;int&gt;G[105];
-void tarjan(int v)
-{
-    dfn[v]=low[v]=++sccindex;
-    sta.push(v);instack[v]=true;int j;
-    for(auto i=G[v].begin();i!=G[v].end();i++){
-        int j=*i;//理论上用c++11的特性会比G[v].size()快一些;
-        if(!dfn[j]){
-            tarjan(j);
-            low[v]=min(low[v],low[j]);
-        }
-        else if(instack[j]&amp;&amp;dfn[j]&lt;low[v])
-            low[v]=dfn[j];
-    }
-    if(low[v]==dfn[v]){
-        scccnt++;
-        do{
-            j=sta.top();instack[j]=false;
-            sta.pop();belong[j]=scccnt;
-        }while(j!=v);//一定要注意这里并不是要把整个栈清空,只是要把属于当前联通分量的元素全部清空
-    }
-}
-</code></pre><p>主函数中调用：</p>
-<pre><code>int n,i,j;
-    cin&gt;&gt;n;
-    for(i=1;i&lt;=n;i++){
-        while(cin&gt;&gt;j&amp;&amp;j)
-            G[i].push_back(j);
-    }
-    for(i=1;i&lt;=n;i++)
-        if(!dfn[i])
-            tarjan(i);
-</code></pre>
-          
+
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/模板/图论/Tarjan/e6-a8-a1-e6-9d-bf-ef-bc-89tarjan/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -653,115 +628,15 @@ void tarjan(int v)
       
         
           
-            <h4 id="对于一个给定的有向无环图（DAG），求其最小路径覆盖。"><a href="#对于一个给定的有向无环图（DAG），求其最小路径覆盖。" class="headerlink" title="对于一个给定的有向无环图（DAG），求其最小路径覆盖。"></a>对于一个给定的有向无环图（DAG），求其最小路径覆盖。</h4><p>题目可参见洛谷P2764。 <strong>【问题分析】</strong> 有向无环图最小路径覆盖，可以转化成二分图最大匹配问题，从而用最大流解决。 <strong>【建模方法】</strong> 构造二分图，把原图每个顶点i拆分成二分图X，Y集合中的两个顶点Xi和Yi。对于原图中存在的每条边(i,j)，在二分图中连接边(Xi,Yj)。然后把二分图最大匹配模型转化为网络流模型，求网络最大流。 最小路径覆盖的条数，就是原图顶点数，减去二分图最大匹配数。沿着匹配边查找，就是一个路径上的点，输出所有路径即可。 <strong>【建模分析】</strong> 对于一个路径覆盖，有如下性质： 1、每个顶点属于且只属于一个路径。 2、路径上除终点外，从每个顶点出发只有一条边指向路径上的另一顶点。所以我们可以把每个顶点理解成两个顶点，一个是出发，一个是目标，建立二分图模型。该二分图的任何一个匹配方案，都对应了一个路径覆盖方案。如果匹配数为0，那么显然路径数=顶点数。每增加一条匹配边，那么路径覆盖数就减少一个，所以路径数=顶点数 - 匹配数。要想使路径数最少，则应最大化匹配数，所以要求二分图的最大匹配。注意，此建模方法求最小路径覆盖仅适用于有向无环图，如果有环或是无向图，那么有可能求出的一些环覆盖，而不是路径覆盖。 洛谷题目参考代码：</p>
-<pre><code>// luogu-judger-enable-o2
-#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;vector&gt;
-#include&lt;queue&gt;
-#include&lt;cstring&gt;
-using namespace std;
-struct edge {
-    int to, cap, rev;
-};
-vector&lt;edge&gt;G[500];
-int level[500], iter[500];
-int n, m;
-void addedge(int from, int to, int cap)
-{
-    edge e;
-    e.to = to; e.cap = cap; e.rev = G[to].size();
-    G[from].push_back(e);
-    e.to = from; e.cap = 0; e.rev = G[from].size() - 1;//一定要小心反向边的cap为0！！！
-    G[to].push_back(e);
-}
-void bfs(int s)
-{
-    memset(level, -1, sizeof(level));//每次bfs的时候构图都不同，要memset
-    queue&lt;int&gt;que;
-    level[s] = 0;
-    que.push(s);
-    while (!que.empty()) {
-        int t = que.front(); que.pop();
-        for (int i = 0; i &lt; G[t].size(); i++) {
-            edge e = G[t][i];
-            if (e.cap&amp;&amp;level[e.to] &lt; 0) {
-                level[e.to] = level[t] + 1;
-                que.push(e.to);
-            }
-        }
-    }
-}
-int dfs(int v, int t, int f)
-{
-    if (v == t)
-        return f;
-    for (int &amp;i = iter[v]; i &lt; G[v].size(); i++) {//因为每次dfs的时候如果找到解就return了，所以有必要记录上次这个点搜到哪了
-        edge &amp;e = G[v][i];
-        if (e.cap&amp;&amp;level[e.to] &gt; level[v]) {
-            int d = dfs(e.to, t, min(f, e.cap));
-            if (d) {
-                e.cap -= d;
-                G[e.to][e.rev].cap += d;
-                return d;
-            }
-        }
-    }
-    return 0;
-}
-int maxflow(int s, int t)
-{
-    int flow = 0;
-    for (;;) {
-        bfs(s);
-        if (level[t] &lt; 0)//说明此时已经不存在没有搜过的路了
-            return flow;
-        memset(iter, 0, sizeof(iter));
-        int f;
-        while (f = dfs(s, t, 1 &lt;&lt; 30))//要搜完当期状况下的所有可能
-            flow += f;
-    }
-}
-int main()
-{
-    int i, j;
-    cin &gt;&gt; n &gt;&gt; m ;
-    for (i = 1; i &lt;= m; i++) {
-        int a, b;
-        scanf(&quot;%d %d&quot;, &amp;a, &amp;b);
-        addedge(a, b+150, 1);
-    }
-    for (i = 1; i &lt;= n; i++) {
-        addedge(0, i, 1);
-        addedge(i+150, 400, 1);
-    }
-    int ans = n - maxflow(0, 400);
-    bool vis[500]; memset(vis, 0, sizeof(vis));
-    for (i = 1; i &lt;= n; i++) {
-        if (!vis[i]) {
-            cout &lt;&lt; i;
-            int k = i; 
-            for (;;) {
-                bool find = false;
-                for (j = 0; j &lt; G[k].size(); j++) {
-                    if (G[k][j].cap == 0&amp;&amp;G[k][j].to&gt;150) {
-                        cout &lt;&lt; &quot; &quot; &lt;&lt; G[k][j].to-150;
-                        k = G[k][j].to - 150; vis[k] = true; find = true;
-                        break;
-                    }
-                }
-                if (!find)break;
-            }
-            cout &lt;&lt; endl;
-        }
-    }
-    cout &lt;&lt; ans &lt;&lt; endl;
-
-    return 0;
-}
-</code></pre>
-          
+          对于一个给定的有向无环图（DAG），求其最小路径覆盖。题目可参见洛谷P2764。 【问题分析】 有向无环图最小路径覆盖，可以转化成二分图最大匹配问题，从而用最大流解决。 【建模方法】 构造二分图，把原图每个顶点i拆分成二分图X，Y集合中的两个顶点Xi和Yi。对于原图中存在的每条边(i,j)，在二分图
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/网络流/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e8-b7-af-e5-be-84-e8-a6-86-e7-9b-96/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -944,103 +819,21 @@ int main()
       
         
           
-            <h3 id="Kruskal"><a href="#Kruskal" class="headerlink" title="Kruskal"></a>Kruskal</h3><p>最重要的还是记得并查集要初始化！！</p>
-<pre><code>// luogu-judger-enable-o2
+          Kruskal最重要的还是记得并查集要初始化！！
+// luogu-judger-enable-o2
 #include&lt;cstdio&gt;
 #include&lt;iostream&gt;
 #include&lt;algorithm&gt;
 #include&lt;cstring&gt;
-using namespace std;
-const int N=1e6,M=1e6;
-int par[N];
-struct edge{
-    int from,to,len;
-    bool operator&lt;(const edge&amp;v)const{
-        return len&lt;v.len;
-    }
-}G[M];
-int find(int x)
-{
-    return x==par[x]?x:par[x]=find(par[x]);
-}
-bool unite(int x,int y)
-{
-    x=find(x);y=find(y);
-    if(x==y)return false;
-    par[x]=y;return true;
-}
-int main()
-{
-    int n,m,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m;
-    for(i=1;i&lt;=n;i++)par[i]=i;
-    for(i=1;i&lt;=m;i++){
-        cin&gt;&gt;G[i].from&gt;&gt;G[i].to&gt;&gt;G[i].len;
-    }
-    sort(G+1,G+1+m);
-    int cnt=0,ans=0;
-    for(i=1;i&lt;=m;i++){
-        if(unite(G[i].from,G[i].to))
-            cnt++,ans+=G[i].len;
-        if(cnt==n-1)break;
-    }
-    if(cnt&lt;n-1)cout&lt;&lt;&quot;orz&quot;&lt;&lt;endl;
-    else cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><h3 id="Prim"><a href="#Prim" class="headerlink" title="Prim"></a>Prim</h3><p>算法跟Dijkstra很像 ，但是要特别注意两点： 1.最好使用一个额外的数组来保证每个点只被访问一次，否则的话应该保证在35行处使用e.dis&gt;=dis[e.num]而不仅是&gt;，否则会造成一些相等的额外相加。  2.40行的地方要注意与Dijkstra的区别！！不是加而是直接换！！！</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;vector&gt;
-#include&lt;cstring&gt;
-#include&lt;queue&gt;
-using namespace std;
-const int maxn=1e5+5;
-struct edge{
-    int to,cost;
-};
-vector&lt;edge&gt;G[maxn];
-struct d{
-    int num,dis;
-};
-bool operator &lt;(d a,d b)
-{
-    return a.dis&gt;b.dis;
-}
-bool vis[maxn];
-int main()
-{
-    int n,m,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m;
-    for(i=1;i&lt;=m;i++){
-        int a,b,c;
-        scanf(&quot;%d %d %d&quot;,&amp;a,&amp;b,&amp;c);
-        G[a].push_back(edge{b,c});
-        G[b].push_back(edge{a,c});
-    }
-    int dis[maxn];memset(dis,0x7f,sizeof(dis));dis[1]=0;
-    priority_queue&lt;d&gt;que;que.push(d{1,0});
-    int ans=0;
-    while(!que.empty()){
-        d t=que.top();que.pop();
-        if(vis[t.num])continue;//如果不用额外数组这里要注意
-        ans+=t.dis;vis[t.num]=true;
-        for(i=0;i&lt;G[t.num].size();i++){
-            edge e=G[t.num][i];
-            if(dis[e.to]&gt;e.cost){
-                dis[e.to]=e.cost;//注意这里与Dijkstra的区别
-                que.push(d{e.to,dis[e.to]});
-            }
-        }
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre>
-          
+u
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/模板/最小生成树/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-9c-80-e5-b0-8f-e7-94-9f-e6-88-90-e6-a0-91/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1212,49 +1005,21 @@ int main()
       
         
           
-            <pre><code>#include&lt;cstdio&gt;
+          #include&lt;cstdio&gt;
 #include&lt;iostream&gt;
 #include&lt;vector&gt;
 #include&lt;algorithm&gt;
 #include&lt;queue&gt;
 #include&lt;cstring&gt;
-using namespace std;
-const int maxn=1e5+5;
-struct edge{
-    int to,cost;
-};
-vector&lt;edge&gt;G[maxn];
-bool inque[maxn];
-int main()
-{
-    int n,m,s,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;
-    int dis[maxn];
-    for(i=1;i&lt;=n;i++)dis[i]=(1&lt;&lt;31)-1;
-    dis[s]=0;
-    for(i=1;i&lt;=m;i++){
-        int a,b,c;
-        scanf(&quot;%d %d %d&quot;,&amp;a,&amp;b,&amp;c);
-        G[a].push_back(edge{b,c});
-    }
-    queue&lt;int&gt;que;que.push(s);//inque[s]=true;
-    while(!que.empty()){
-        int t=que.front();que.pop();inque[t]=false;
-        for(i=0;i&lt;G[t].size();i++){
-            edge e=G[t][i];
-            if(dis[e.to]&gt;dis[t]+e.cost){
-                dis[e.to]=dis[t]+e.cost;
-                if(!inque[e.to]){
-                    que.push(e.to);inque[e.to]=true;
-                }
-            }
-        }
-    }
-
-    return 0;
-}
-</code></pre>
-          
+using n
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/模板/图论/e6-a8-a1-e6-9d-bf-ef-bc-89spfa/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1426,98 +1191,21 @@ int main()
       
         
           
-            <h3 id="自定义结构体"><a href="#自定义结构体" class="headerlink" title="自定义结构体"></a>自定义结构体</h3><pre><code>#include&lt;cstdio&gt;
+          自定义结构体#include&lt;cstdio&gt;
 #include&lt;iostream&gt;
 #include&lt;vector&gt;
 #include&lt;algorithm&gt;
 #include&lt;cstring&gt;
 #include&lt;queue&gt;
-using namespace std;
-const int maxn=1e5+5;
-struct edge{
-    int to,cost;
-};
-vector&lt;edge&gt;G[maxn];
-struct d{//记录各种被松弛后的点
-    int num,dis;
-};
-bool operator &lt;(d a,d b)
-{
-    return a.dis&gt;b.dis;
-}
-int main()
-{
-    int n,m,s,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;s;
-    for(i=1;i&lt;=m;i++){
-        int a,b,c;
-        scanf(&quot;%d %d %d&quot;,&amp;a,&amp;b,&amp;c);
-        G[a].push_back(edge{b,c});
-    }
-    int dis[maxn];memset(dis,0x7f,sizeof(dis));dis[s]=0;
-    priority_queue&lt;d&gt;que;
-    que.push(d{s,0});
-    while(!que.empty()){
-        d e=que.top();que.pop();
-        if(e.dis&gt;dis[e.num])continue;//这里也可以利用一个额外的数组来保证每个点只被访
-        //问一次，或者说最短距离已经确定的点不再被更改
-        for(int i=0;i&lt;G[e.num].size();i++){
-            edge eg=G[e.num][i];
-            if(dis[eg.to]&gt;dis[e.num]+eg.cost){
-                dis[eg.to]=dis[e.num]+eg.cost;
-                que.push(d{eg.to,dis[eg.to]});
-            }
-        }
-    }
-
-    return 0;
-}
-</code></pre><h3 id="using-pair"><a href="#using-pair" class="headerlink" title="using pair"></a>using pair</h3><pre><code>#include&lt;cstdio&gt;
-#include&lt;vector&gt;
-#include&lt;queue&gt;
-#include&lt;algorithm&gt;
-#include&lt;functional&gt;
-using namespace std;
-const int maxn=1e5+5;
-typedef struct {
-    int to, cost;
-}Edge;
-vector&lt;Edge&gt;edge[maxn];
-typedef pair&lt;int, int&gt;P;
-priority_queue&lt;P, vector&lt;P&gt;, greater&lt;P&gt; &gt;q;//从小到大的优先队列
-int book[maxn], dis[maxn];
-int main(void)
-{
-    int n, m, s, i, j;
-
-    scanf(&quot;%d %d %d&quot;, &amp;n, &amp;m, &amp;s);
-    fill(dis, dis + n+1, 2147483647); dis[s] = 0;
-    for (i = 1; i &lt;= m; i++) {
-        int a, b, c;
-        scanf(&quot;%d %d %d&quot;, &amp;a, &amp;b, &amp;c);
-        Edge temp;
-        temp.to = b; temp.cost = c;
-        edge[a].push_back(temp);
-    }
-    P p; p.first = 0; p.second = s; q.push(p);
-    while (!q.empty()) {
-        P p = q.top(); q.pop();
-        if (book[p.second] == 1) continue;
-        book[p.second] = 1;
-        for (i = 0; i &lt; edge[p.second].size(); i++) {
-            Edge temp = edge[p.second][i];
-            if (dis[temp.to] &gt; dis[p.second] + temp.cost) {
-                dis[temp.to] = dis[p.second] + temp.cost;
-                P p1; p1.first = dis[temp.to]; p1.second = temp.to;
-                q.push(p1);
-            }
-        }
-    }
-
-    return 0;
-}
-</code></pre>
-          
+u
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/模板/图论/e6-a8-a1-e6-9d-bf-ef-bc-89dijkstra/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1689,18 +1377,18 @@ int main(void)
       
         
           
-            <p>需要注意的就是因为每次是拿一个点出来考虑能否把别的路变短，所以k一定是最外层循环。以及要记得初始化为无穷大或无穷小。 可以通过检查是否有dis[i][i]&lt;0来判定是否有负环存在</p>
-<pre><code>int dis[105][105];
+          需要注意的就是因为每次是拿一个点出来考虑能否把别的路变短，所以k一定是最外层循环。以及要记得初始化为无穷大或无穷小。 可以通过检查是否有dis[i][i]&lt;0来判定是否有负环存在
+int dis[105][105];
     memset(dis,0x7f,sizeof(dis));
-    for(i=1;i&lt;=n;i++)
-        for(j=1;j&lt;=n;j++)
-            cin&gt;&gt;dis[i][j];
-    for(k=1;k&lt;=n;k++)
-        for(i=1;i&lt;=n;i++)
-            for(j=1;j&lt;=n;j++)
-                dis[i][j]=min(dis[i][j],dis[i][k]+dis[k][j]);
-</code></pre>
-          
+    
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/模板/图论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89floyd-e7-ae-97-e6-b3-95-ef-bc-88-e5-a4-9a-e6-ba-90-e6-9c-80-e7-9f-ad-e8-b7-af-ef-bc-89/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1872,47 +1560,21 @@ int main(void)
       
         
           
-            <p>两件事：记得初始化par，以及，路径压缩别写错了…</p>
-<pre><code>int par[1005];//记得初始化！
+          两件事：记得初始化par，以及，路径压缩别写错了…
+int par[1005];//记得初始化！
 int find(int x)
 {
     return par[x]==x?x:par[x]=find(par[x]);//后面这一块不要漏了par[x],否则就是不带路径压缩!
 }
-bool unite(int x,int y)
-{
-    x=find(x),y=find(y);
-    if(x==y)return false;
-    par[x]=y;
-    return true;
-}
-</code></pre><p>按秩合并：</p>
-<pre><code>int find(int x)
-{
-    if (x == par[x])
-        return x;
-    else
-        return par[x] = find(par[x]);//后面这一块不要漏了par[x]!!!否则就是不带路径压缩(有时候有用）
-}
-void unite(int x, int y)
-{
-    x = find(x); y = find(y);
-    if (x == y)
-        return;
-    if (rank[x] &lt; rank[y]) {
-        par[x] = y;
-    }
-    else {
-        par[y] = x;
-        if (rank[x] == rank[y])
-            rank[x]++;
-    }
-}
-一定要加上：
-for(i=1;i&lt;=n;i++){
-   par[i]=i;
-   }!!!!!!
-</code></pre>
-          
+bool uni
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/模板/并查集/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e5-b9-b6-e6-9f-a5-e9-9b-86/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2084,114 +1746,16 @@ for(i=1;i&lt;=n;i++){
       
         
           
-            <p>说是小结，其实我并没有怎么弄懂QAQ，简单写写概念跟板子吧…</p>
-<h3 id="Sprague-Grundy函数"><a href="#Sprague-Grundy函数" class="headerlink" title="Sprague-Grundy函数"></a>Sprague-Grundy函数</h3><p>给定一个有向无环图和一个起始顶点上的一枚棋子，两名选手交替的将这枚棋子沿有向边进行移动，无法移动者判负。事实上，这个游戏可以认为是所有Impartial Combinatorial Games的抽象模型。也就是说，任何一个ICG都可以通过把每个局面看成一个顶点，对每个局面和它的子局面连一条有向边来抽象成这个“有向图游戏”。</p>
-<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>下面我们就在有向无环图的顶点上定义Sprague-Garundy函数。 首先定义$mex$(minimal excludant)运算，这是施加于一个集合的运算，表示最小的不属于这个集合的非负整数。例如$mex[0,1,2,4]=3,mex[2,3,5]=0,mex[]=0$。 对于一个给定的有向无环图，定义关于图的每个顶点的Sprague-Garundy函数$g$如下：$g(x)=mex[ g(y) | y是x的后继 ]$。</p>
-<h4 id="SG函数的性质"><a href="#SG函数的性质" class="headerlink" title="SG函数的性质"></a>SG函数的性质</h4><p>首先，所有的terminal position所对应的顶点，也就是没有出边的顶点，其SG值为0，因为它的后继集合是空集。 对于一个g(x)=0的顶点x，它的所有后继y都满足g(y)!=0。 对于一个g(x)!=0的顶点，必定存在一个后继y满足g(y)=0。 P 以上这三句话表明，顶点x所代表的postion是P-position当且仅当g(x)=0（跟P-positioin/N-position的定义的那三句话是完全对应的）。我们通过计算有向无环图的每个顶点的SG值，就可以对每种局面找到必胜策略了。 我们可以定义有向图游戏的和(Sum of Graph Games)：设G1、G2、……、Gn是n个有向图游戏，定义游戏G是G1、G2、……、Gn的和(Sum)，游戏G的移动规则是：任选一个子游戏Gi并移动上面的棋子。Sprague-Grundy Theorem就是：g(G)=g(G1)^g(G2)^…^g(Gn)。也就是说，游戏的和的SG函数值是它的所有子游戏的SG函数值的异或。 再考虑一个性质：任何一个ICG都可以抽象成一个有向图游戏。所以“SG函数”和“游戏的和”的概念就不是局限于有向图游戏。我们给每个ICG的每个position定义SG值，也可以定义n个ICG的和。所以说当我们面对由n个游戏组合成的一个游戏时，只需对于每个游戏找出求它的每个局面的SG值的方法，就可以把这些SG值全部看成Nim的石子堆，然后依照找Nim的必胜策略的方法来找这个游戏的必胜策略了！（Nim其实就是n个从一堆中拿石子的游戏求SG的变型，总SG=n个sg的异或）。</p>
-<h3 id="模板"><a href="#模板" class="headerlink" title="模板"></a>模板</h3><h4 id="1-把原游戏分解成多个独立的子游戏，则原游戏的SG函数值是它的所有子游戏的SG函数值的异或。"><a href="#1-把原游戏分解成多个独立的子游戏，则原游戏的SG函数值是它的所有子游戏的SG函数值的异或。" class="headerlink" title="1.把原游戏分解成多个独立的子游戏，则原游戏的SG函数值是它的所有子游戏的SG函数值的异或。"></a><strong>1.把原游戏分解成多个独立的子游戏，则原游戏的SG函数值是它的所有子游戏的SG函数值的异或。</strong></h4><p>即$sg(G)=sg(G1)\oplus sg(G2)\oplus …\oplus sg(Gn)$。</p>
-<h4 id="2-分别考虑没一个子游戏，计算其SG值。"><a href="#2-分别考虑没一个子游戏，计算其SG值。" class="headerlink" title="2.分别考虑没一个子游戏，计算其SG值。"></a><strong>2.分别考虑没一个子游戏，计算其SG值。</strong></h4><p><strong>1.可选步数为1~m的连续整数，直接取模即可，$SG(x) = x \ mod\ (m+1)$; 2.可选步数为任意步，$SG(x) = x$; 3.可选步数为一系列不连续的数，用模板计算。</strong> <strong>模板1：打表</strong></p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-//f[]：可以取走的石子个数
-//sg[]:0~n的SG函数值
-//Mex[]:mex{}
-int f[N],sg[N],Mex[N];
-void getSG(int n) 
-{
-    int i, j;
-    memset(sg, 0, sizeof(sg));
-    for (i = 1; i &lt;= n; i++) {
-        memset(Mex, 0, sizeof(Mex));
-        for (j = 1; f[j] &lt;= i; j++)
-            Mex[sg[i - f[j]]] = 1;
-        for (j = 0; j &lt;= n; j++)    //求mes{}中未出现的最小的非负整数
-        {
-            if (Mex[j] == 0) {
-                sg[i] = j;
-                break;
-            }
-        }
-    }
-}
-</code></pre><p><strong>模板2：dfs</strong></p>
-<pre><code>//注意 S数组要按从小到大排序 SG函数要初始化为-1 对于每个集合只需初始化1遍
-//n是集合s的大小 S[i]是定义的特殊取法规则的数组
-int s[110],sg[10010],n;
-int SG_dfs(int x)
-{
-    int i;
-    if(sg[x]!=-1)
-        return sg[x];
-    bool vis[110];//bool数组一定要放在里面
-    memset(vis,0,sizeof(vis));
-    for(i=0;i&lt;n;i++)
-    {
-        if(x&gt;=s[i])
-        {
-            SG_dfs(x-s[i]);
-            vis[sg[x-s[i]]]=1;
-        }
-    }
-    int e;
-    for(i=0;;i++)
-        if(!vis[i])
-        {
-            e=i;
-            break;
-        }
-    return sg[x]=e;
-}
-</code></pre><p>一般DFS只在打表解决不了的情况下用，首选打表预处理。 还有一种dfs，题目给出的不是移动次数，而是可以移动的操作，类似于给定一幅有向图，知道下一步有哪些操作是可选的（参见HDU1524）</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;vector&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-using namespace std;
-vector&lt;int&gt;G[1005];
-int sg[1005];
-int dfs(int x)
-{
-    if(sg[x]!=-1)
-        return sg[x];
-    bool vis[1005]={false};
-    for(int i=0;i&lt;G[x].size();i++){
-        vis[dfs(G[x][i])]=true;
-    }
-    for(int i=0;;i++)
-        if(!vis[i])
-            return sg[x]=i;
-}
-int main()
-{
-    int n,i,j,k,x,m;
-    while(cin&gt;&gt;n){
-        for(i=0;i&lt;=1000;i++)G[i].clear();
-        memset(sg,-1,sizeof(sg));
-        for(i=0;i&lt;n;i++){
-            scanf(&quot;%d&quot;,&amp;x);
-            while(x--){
-                scanf(&quot;%d&quot;,&amp;j);
-                G[i].push_back(j);//加边,下一步可以做的操作
-            }
-        }
-        while(scanf(&quot;%d&quot;,&amp;m)&amp;&amp;m){
-            int ans=0;
-            for(i=0;i&lt;m;i++){
-                scanf(&quot;%d&quot;,&amp;j);
-                if(sg[j]!=-1)
-                    ans^=sg[j];
-                else ans^=dfs(j);
-            }
-            if(ans)puts(&quot;WIN&quot;);
-            else puts(&quot;LOSE&quot;);
-        }
-    }
-
-    return 0;
-}
-</code></pre><h4 id="3-计算-sg-G-sg-G1-oplus-sg-G2-oplus-…-oplus-sg-Gn-，若-sg-G-0-即P-Position-即先手比败。"><a href="#3-计算-sg-G-sg-G1-oplus-sg-G2-oplus-…-oplus-sg-Gn-，若-sg-G-0-即P-Position-即先手比败。" class="headerlink" title="3.计算$sg(G)=sg(G1)\oplus sg(G2)\oplus …\oplus sg(Gn)$，若$sg(G)=0$,即P-Position,即先手比败。"></a>3.计算$sg(G)=sg(G1)\oplus sg(G2)\oplus …\oplus sg(Gn)$，若$sg(G)=0$,即P-Position,即先手比败。</h4>
-          
+          说是小结，其实我并没有怎么弄懂QAQ，简单写写概念跟板子吧…
+Sprague-Grundy函数给定一个有向无环图和一个起始顶点上的一枚棋子，两名选手交替的将这枚棋子沿有向边进行移动，无法移动者判负。事实上，这个游戏可以认为是所有Impartial Combinatorial Games的抽象模型。也
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/模板/博弈论/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89sg-e5-87-bd-e6-95-b0-e5-b0-8f-e7-bb-93/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2363,119 +1927,23 @@ int main()
       
         
           
-            <h3 id="A"><a href="#A" class="headerlink" title="A."></a>A.</h3><p>弱智题</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
+          A.弱智题
+#include&lt;bits/stdc++.h&gt;
 using namespace std;
 int main()
 {
     int n,i,j,k,x,y,cnt[2]={0};
     cin&gt;&gt;n;
     for(i=1;i&lt;=n;i++){
-        scanf(&quot;%d%d&quot;,&amp;x,&amp;y);
-        if(x&lt;0)cnt[0]++;
-        else cnt[1]++;
-    }
-    if(cnt[0]&lt;=1||cnt[1]&lt;=1){
-        puts(&quot;Yes&quot;);
-    }
-    else puts(&quot;No&quot;);
-
-    return 0;
-}
-</code></pre><h3 id="B"><a href="#B" class="headerlink" title="B."></a>B.</h3><p>首先要知道一个结论：对于$a/b$,他的小数部分的循环节长度不会超过$b$，所以我们只要检查小数点后的最多$b$位就可以知道$c$是否有出现过了。然后关键就是如何求小数点后的位数了。这个可以用长除法来做，具体思想其实就是不断把被除数乘10然后除以除数获得下一位小数位（相当于不断地将小数点右移一位），写写就明白了。</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-    int a,b,c,i,j,k;
-    cin&gt;&gt;a&gt;&gt;b&gt;&gt;c;
-    for(i=1;i&lt;=b;i++){
-        if(a*10/b==c){
-            cout&lt;&lt;i&lt;&lt;endl;return 0;
-        }
-        a=a*10%b;
-    }
-    cout&lt;&lt;-1&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><h3 id="C"><a href="#C" class="headerlink" title="C."></a>C.</h3><p>其实很容易想到一个贪心的想法，就是从前往后扫一遍，对于每个数，如果前面恰好有一个数大于等于当前数，那么那个数的“删除值”就应该+1，然后找出”删除值“最大的数即可。但是还有一个问题就是每个数同时可能本身也是一个”record”，所以对于每个数，如果他是”record”，那么他的删除值就是1，然后每次找到一个后面的数要删除这个数，那么他的删除值就-1，最后找出删除值最小的数即可（初始删除值都为0）</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-typedef pair&lt;int,int&gt;P;
-int main()
-{
-    int n,i,j,k,maxn=0,ans=0,premaxn=0;
-    cin&gt;&gt;n;
-    int num[100005],pos[100005]={0};
-    for(i=1;i&lt;=n;i++){
-        scanf(&quot;%d&quot;,&amp;num[i]);
-        if(num[i]&gt;maxn){
-            pos[i]=1;
-            premaxn=maxn;maxn=num[i];k=i;
-        }
-        else if(num[i]&gt;premaxn){
-            pos[k]--;premaxn=num[i];
-        }
-    }
-    int minn=2;
-    for(i=1;i&lt;=n;i++){
-        if(pos[i]&lt;minn){
-            ans=num[i];minn=pos[i];
-        }
-        else if(pos[i]==minn){
-            ans=min(ans,num[i]);
-        }
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>首先，如果x不能整除y，那么就可以直接滚蛋了。 令$f(t)$表示若干个数和为$t$，$gcd$为1。那么答案就是$f(\frac{y}{x})$. 令$g(t)$表示若干个数和为$t$,那么显然有$g(t)=2^{t-1}$:想象一下，把t分成t个1，那么相邻的1之间分开与否都是不同的（本题的序列是有序的）。 注意到有$g(t)=\sum_{i=1}^{t_i}f(\frac{t}{t_i})$($t_i$是$t$的约数)， 所以有$f(t)=g(t)-\sum_{i=2}^{sz}f(\frac{t}{t_i})$. 于是先把y除以x，然后求出y的所有约数，从小到大排序后，从大到小枚举每个约数，对于每个约数，我们可以先算出他的$g(i)$,然后枚举所有比他大的约数，如果某个约数能整除他，那么那个约数对应的$f(i)$就应该被减去。最后输出$f(1)$即可。以及，注意取模的问题，要用快速幂&amp;小心负数。</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-const int mod=1e9+7;
-typedef long long ll;
-ll mod_pow(ll x,ll y)
-{
-    ll res=1;
-    while(y){
-        if(y&amp;1){
-            res=res*x%mod;
-        }
-        y&gt;&gt;=1;x=x*x%mod;
-    }
-    return res;
-}
-ll f[100000];
-int main()
-{
-    int x,y,i,j,k;
-    cin&gt;&gt;x&gt;&gt;y;
-    if(y%x){
-        puts(&quot;0&quot;);return 0;
-    }
-    y/=x;vector&lt;int&gt;ys;
-    for(i=1;i*i&lt;=y;i++){
-        if(y%i==0){
-            ys.push_back(i);
-            if(i*i!=y)
-                ys.push_back(y/i);
-        }
-    }
-    sort(ys.begin(),ys.end());
-    for(i=ys.size()-1;~i;i--){
-        f[i]=mod_pow(2,y/ys[i]-1);
-        for(j=ys.size()-1;j&gt;i;j--)
-            if(ys[j]%ys[i]==0)
-                f[i]=(f[i]-f[j]+mod)%mod;
-    }
-    cout&lt;&lt;(f[0]+mod)%mod&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre>
-          
+    
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/比赛杂集/Codeforces/codeforces-round-450-div-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2647,175 +2115,21 @@ int main()
       
         
           
-            <h3 id="A"><a href="#A" class="headerlink" title="A."></a>A.</h3><p>签到</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
+          A.签到
+#include&lt;bits/stdc++.h&gt;
 using namespace std;
 typedef long long ll;
 struct mark{
     int id,sum;
-    bool operator&lt;(const mark&amp;v)const{
-        if(sum==v.sum)
-            return id&lt;v.id;
-        return sum&gt;v.sum;
-    }
-}G[1005];
-int main()
-{
-    int n,i,j,k,a,b,c,d;
-    cin&gt;&gt;n;
-    for(i=1;i&lt;=n;i++){
-        cin&gt;&gt;a&gt;&gt;b&gt;&gt;c&gt;&gt;d;G[i].sum+=a+b+c+d;G[i].id=i;
-    }
-    sort(G+1,G+1+n);
-    for(i=1;i&lt;=n;i++){
-        if(G[i].id==1){
-            cout&lt;&lt;i&lt;&lt;endl;return 0;
-        }
-    }
-}
-</code></pre><h3 id="B"><a href="#B" class="headerlink" title="B."></a>B.</h3><p>首先，可以发现一个事实：第二个串的某个位置如果是1，那么第一个串是什么是不重要的，因为换完还是1.否则，第一个串如果是0，我们就研究有多少个1可以换。但是这样就会带来一个重复的问题，对此，我们可以做一个预处理，对于每个1，相当于要换0，而相应前面的0的位置必然要换1，那么我们就可以统计一下这个重复的问题。</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-    string str1,str2;int n,i,j,k,cnt[2]={0},cnt1[2]={0};
-    cin&gt;&gt;n&gt;&gt;str1&gt;&gt;str2;
-    for(auto a:str1)cnt[a-&apos;0&apos;]++;
-    long long ans=0;
-    for(i=0;i&lt;n;i++){
-        if(str2[i]==&apos;0&apos;){
-            if(str1[i]==&apos;1&apos;){
-                ans+=cnt[0];ans-=cnt1[1];cnt1[0]++;
-            }
-            else{
-                ans+=cnt[1];ans-=cnt1[0];cnt1[1]++;
-            }
-        }
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><h3 id="C"><a href="#C" class="headerlink" title="C."></a>C.</h3><p>不太会证明…利用了一点类似分块的思想，反正平方分割肯定是对的…</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-{
-    int n,i,j,k,pos;
-    cin&gt;&gt;n;pos=n;
-    int len=sqrt(n);
-    while(pos&gt;=len){
-        for(i=pos-len+1;i&lt;=pos;i++)
-            cout&lt;&lt;i&lt;&lt;&apos; &apos;;
-        pos-=len;
-    }
-    for(i=1;i&lt;=pos;i++)
-        cout&lt;&lt;i&lt;&lt;&apos; &apos;;
-
-    return 0;
-}
-</code></pre><h3 id="D"><a href="#D" class="headerlink" title="D."></a>D.</h3><p>比赛的时候总觉得是建树，然后就t得怀疑人生了…</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-#include&lt;string&gt;
-using namespace std;
-struct node{
-    int son[2];
-    int cnt=0;
-    bool tag;
-}ch[1&lt;&lt;14];//数组大小由所要插入字符的总长度决定
-void insert(char*str,int n)
-{
-    int now=0; ch[now].tag=true;
-    for(int i=0;i&lt;n;i++){
-        int c=str[i]-&apos;0&apos;;
-        now=ch[now].son[c];
-        ch[now].tag=true;
-    }
-    ch[now].cnt++; ch[now].tag=true;
-}
-int w[15],k;int cnt,n;
-void query(string str,int id,int quan,int ceng)
-{
-    if(!ch[id].tag)return;
-    if(ceng) {
-        if ((id &amp; 1) != str[ceng - 1] - &apos;0&apos;)
-            quan += w[ceng];
-        if (quan &gt; k)return;
-        if (ceng == n) {
-            cnt += ch[id].cnt;
-            return;
-        }
-    }
-        query(str,id&lt;&lt;1|1,quan,ceng+1);
-        query(str,(id&lt;&lt;1)+2,quan,ceng+1);
-
-}
-int main()
-{
-    int i,j;
-    for(i=0;i&lt;(1&lt;&lt;12);i++){
-        //ch[i].cnt++;
-        ch[i].son[0]=i&lt;&lt;1|1;ch[i].son[1]=(i&lt;&lt;1)+2;
-    }
-    int m,q;
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;q;
-    for(i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;w[i]);
-    for(i=1;i&lt;=m;i++){
-        char str[15];scanf(&quot;%s&quot;,str);
-        insert(str,n);
-    }
-    while(q--){
-        string str;cin&gt;&gt;str&gt;&gt;k;
-        cnt=0;
-        query(str,0,0,0);
-        printf(&quot;%d\n&quot;,cnt);
-    }
-
-    return 0;
-}
-</code></pre><p>正解是利用类似bitset的思想，因为两串相与只可能是0~2^12，所以我们可以预处理所有的情况，把他们转10进制表示，然后查询的时候就是$O(1)$的了. 有一点要注意的就是因为两个串都是0或者都是1 的时候权值都是有效的，为了方便统计，我们可以把set里面的串全部取反，然后查询的时候两个串异或一下，是1的位置就是权值有效的位置了。ans[i][j]代表模式串为i的时候两串相与为j的情况数。 以及，string会tle</p>
-<pre><code>#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int w[5000],s[5000],ans[5000][105],f[5000];//s是将字符串转化为数字串,ans存答案,f预处理
-int main() {
-    int n,m,q;
-    scanf(&quot;%d%d%d&quot;, &amp;n, &amp;m, &amp;q);
-    for (int i = 1; i &lt;= n; i++)scanf(&quot;%d&quot;, &amp;w[n - i]);//注意这里层级要倒着来,不然没法从前往后匹配
-    for (int i = 0; i &lt; (1 &lt;&lt; n); i++)
-        for (int j = 0; j &lt; n; j++)
-            if (i &amp; (1 &lt;&lt; j))//f[i]代表两个数相与等于i时的权值
-                f[i] += w[j];
-    for (int i = 1; i &lt;= m; i++) {
-        char ss[15];scanf(&quot;%s&quot;,ss);
-        int a = 0;
-        for (int j = 0; j &lt; n; j++)
-            a = a * 2 + 1 - (ss[j] - &apos;0&apos;);//注意这里是与原数取反的!!!
-            //a=a*2+(ss[j]-&apos;0&apos;);
-        s[a]++;//统计串个数
-    }
-    for (int i = 0; i &lt; (1 &lt;&lt; n); i++)
-        for (int j = 0; j &lt; (1 &lt;&lt; n); j++)
-            if (f[i ^ j] &lt;= 100)//题意:k&lt;=100才有效
-                ans[i][f[i ^ j]] += s[j];//ans[i][j]统计模式串为i时相与答案为j的个数
-                //ans[i][f[i&amp;j]]+=s[j];
-    for (int i = 0; i &lt; (1 &lt;&lt; n); i++)
-        for (int j = 1; j &lt;= 100; j++)
-            ans[i][j] += ans[i][j - 1];//因为&lt;=j都可以,所以,要加成前缀和
-    for (int i = 1; i &lt;= q; i++) {
-        char ss[15];scanf(&quot;%s&quot;,ss);int k;scanf(&quot;%d&quot;,&amp;k);
-        int a = 0;
-        for (int j = 0; j &lt; n; j++)
-            a = a * 2 + (ss[j] - &apos;0&apos;);
-        printf(&quot;%d\n&quot;, ans[a][k]);
-    }
-
-    return 0;
-}
-</code></pre>
-          
+    bool operator&lt;(const mark&amp;v)cons
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/比赛杂集/Codeforces/codeforces-round-502-ef-bc-88div-1-div-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2910,7 +2224,7 @@ int main() {
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>

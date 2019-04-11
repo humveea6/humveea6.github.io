@@ -411,150 +411,22 @@
       
         
           
-            <p>A. 暴力枚举即可</p>
-<pre><code>#include&lt;cstdio&gt;
+          A. 暴力枚举即可
+#include&lt;cstdio&gt;
 #include&lt;iostream&gt;
 #include&lt;algorithm&gt;
 #include&lt;string&gt;
 #include&lt;set&gt;
 using namespace std;
-int main()
-{
-    set&lt;string&gt;s;
-    string str1,str2;
-    cin&gt;&gt;str1&gt;&gt;str2;
-    int i,j;
-    for(i=0;i&lt;str1.size();i++){
-        string str11=str1.substr(0,i+1);
-        for(j=0;j&lt;str2.size();j++){
-            string str22=str2.substr(0,j+1);
-            s.insert(str11+str22);
-        }
-    }
-    cout&lt;&lt;*s.begin()&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>B. 结论题。首先想象对于一个区间[i,i+1],所有覆盖这个区间的线段都必然属于不同的层，否则任意两个线段都会相交，显然不行。那么我们有一个大胆的想法：枚举所有的i，找出(i+1)* (n-i)中最大的即是答案。事实上确实如此。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-int main()
-{
-    int n,i,j,ans=0;
-    cin&gt;&gt;n;
-    for(i=0;i&lt;n;i++){
-        ans=max(ans,(i+1)*(n-i));
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>C.</p>
-<blockquote>
-<p>题意：f代表for语句，它后面的语句至少有一句是它内部的，其他语句要么在内部要么在外部，s语句是普通语句。给一个没有缩进的f, s代码，求一共有多少种满足上述的缩进方案，结果模1e9+7。</p>
-</blockquote>
-<p>令f[i][j]代表第i行有j个缩进的可能数。那么对于每一行的语句，如果他是f的话，那么显然，这一行的缩进只能++；但如果这一行是s的话，那么其实这一个语句可以是上面任意一个f的缩进。因此对于j=1…cnt,有f[i][j]+=f[i-1]<a href="k=1...j">k</a>，因此我们可以趁机压缩一维（前缀和dp），对于j=1..cnt，有f[j]+=f[j-1]即可，当然要取模； 最后一行如果不是紧接着f的，那么f[cnt]就是前缀和dp，否则就是f在有cnt个缩进下的情况，因此输出f[cnt]即可。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-using namespace std;
-long long f[5005];
-const int mod=1e9+7;
-int main()
-{
-    int n,i,j,cnt=0;char c;
-    cin&gt;&gt;n;
-    f[0]=1;
-    for(i=1;i&lt;=n;i++){
-        cin&gt;&gt;c;
-        if(c==&apos;f&apos;)
-            cnt++;
-        else{
-            for(j=1;j&lt;=cnt;j++)
-                f[j]=(f[j]+f[j-1])%mod;
-        }
-    }
-    cout&lt;&lt;f[cnt]&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>D. 我们可以设想，如果我们把这些点按照相邻的相同颜色为标准分为连续的一组组的话，那么每次操作后被删去的点肯定都是每一组左右两端的两个点，因为这两个点与不同颜色的段接壤（当然第一段与最后一段除外，他们每次只减1）。那么我们可以重复此操作，直到至少有一段被删光，这时，他的左右两个区间可能因为颜色相同变成一个区间，这时候就必要重新安排了。写法还是挺精妙的 。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-using namespace std;
-typedef pair&lt;char,int&gt;P;
-const int maxn=1e6+5;
-char s[maxn];
-int main()
-{
-    int cnt,i,j,ans=0,tot=0;
-    scanf(&quot;%s&quot;,s+1);
-    P pa[maxn];
-    int n=strlen(s+1);
-    for(i=1;i&lt;=n;i++) {
-        if (s[i] != s[i - 1])
-            pa[++tot] = P(s[i], 1);//预处理段
-        else pa[tot].second++;
-    }
-    for(;tot&gt;1;tot=cnt,ans++){
-        pa[1].second--;pa[tot].second--;//处理头尾
-        for(i=2;i&lt;tot;i++)//中间各段-=2
-            pa[i].second-=2;
-        for(cnt=0,i=1;i&lt;=tot;i++){
-            if(pa[i].second&gt;0) {//如果这一段还没有被删完
-                if (pa[i].first != pa[cnt].first)//如果他跟前面接壤的区间颜色不相同,记为新的区间
-                    pa[++cnt]=pa[i];
-                else pa[cnt].second += pa[i].second;//否则重新计量该区间
-            }
-        }
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>E. 可以想象，是什么情况下分给副核的任务需要分成几次？显然是因为副核依赖一个主核的任务，而这个主核的任务又依赖于一个副核的任务。除此之外，其余任务都是可以一次丢进核中完成的。因此，我们采用两个队列，每次把所有可以一次完成的任务分别丢进主副核的队列中（类似拓扑排序的思想），直到队列为空。</p>
-<pre><code>#include &lt;cstdio&gt;
-#include &lt;queue&gt;
-#include &lt;vector&gt;
-using namespace std;
-const int N=100050;
-vector&lt;int&gt; E[N];
-queue&lt;int&gt; q[2];
-int c=0,in[N],col[N],sol=0;
-int main()
-{
-    int n,m,u,v,i;
-    scanf(&quot;%i %i&quot;,&amp;n,&amp;m);
-    for(i=0;i&lt;n;i++)
-        scanf(&quot;%d&quot;,&amp;col[i]);
-    while(m--) {
-        scanf(&quot;%d%d&quot;,&amp;u,&amp;v);
-        E[v].push_back(u);
-        in[u]++;//入度
-    }
-    for(i=0;i&lt;n;i++) if(!in[i]) q[col[i]].push(i);
-    while(!q[0].empty() || !q[1].empty()) {
-        if(q[c].empty()) {//此队列空了而另一个队列未空,说明需要换队列执行任务了
-            if (!c) sol++;//副核清空而主核未清空,显然副核需要次数++
-            c ^= 1;//换核
-        }
-        u=q[c].front();
-        q[c].pop();
-        for(i=0;i&lt;E[u].size();i++) {
-            v=E[u][i];
-            in[v]--;
-            if(!in[v]) q[col[v]].push(v);
-        }
-    }
-    printf(&quot;%d\n&quot;,sol);
-
-    return 0;
-}
-</code></pre>
-          
+in
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/Codeforces/codeforces-round-455-div-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -715,87 +587,16 @@ int main()
       
         
           
-            <p><strong>Lucas定理是用来解决大组合数取模的，即求$C_n ^m \ mod\ p$,其中$p$为质数。</strong> <strong>公式：</strong>$C_n ^m\ mod\ p=C_{n/p}^{m/p}\times C_{n\ mod\ p}^{m\ mod\ p}\ mod\ p$</p>
-<h4 id="当模数p在变化时运用暴力方法计算组合数："><a href="#当模数p在变化时运用暴力方法计算组合数：" class="headerlink" title="当模数p在变化时运用暴力方法计算组合数："></a>当模数p在变化时运用暴力方法计算组合数：</h4><pre><code>#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-typedef long long ll;
-ll Power_mod(ll a, ll b, ll p)//快速幂
-{
-    ll res = 1;
-    while(b!=0) {
-        if(b&amp;1) res = (res*a)%p;
-        a = (a*a)%p;
-        b &gt;&gt;= 1;
-    }
-    return res;
-}
-ll Comb(ll a,ll b, ll p)//暴力计算组合数
-{
-    if(a &lt; b) return 0;
-    if(a == b) return 1;
-    if(b &gt; a-b) b = a-b;//组合数的性质,C(m,n)=C(m,m-n);
-    ll ans = 1, ca = 1, cb = 1;
-    for(ll i=0; i&lt;b; ++i) {//暴力计算阶乘
-        ca = (ca*(a-i))%p;
-        cb = (cb*(b-i))%p;
-    }
-    ans = (ca*Power_mod(cb, p-2, p))%p;
-    return ans;
-}
-ll Lucas(int n, int m, int p)//Lucas
-{
-    ll ans = 1;
-    while(n &amp;&amp; m &amp;&amp; ans) {
-        ans = (ans * Comb(n%p, m%p, p))%p;
-        n /= p;
-        m /= p;
-    }
-    return ans;
-}
-int main()
-{
-    int n,m,p;
-    while(scanf(&quot;%d%d%d&quot;,&amp;n,&amp;m,&amp;p) !=EOF) {
-        printf(&quot;%lld\n&quot;, Lucas(n, m, p));
-    }
-
-    return 0;
-}
-</code></pre><h4 id="当模数p固定时则对组合数进行预处理，递推求逆元；"><a href="#当模数p固定时则对组合数进行预处理，递推求逆元；" class="headerlink" title="当模数p固定时则对组合数进行预处理，递推求逆元；"></a>当模数p固定时则对组合数进行预处理，递推求逆元；</h4><pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-const int maxn=1e5+5;
-typedef long long ll;
-ll inv[maxn],fac[maxn];ll p;
-void init()
-{
-    fac[0]=1;
-    for(int i=1;i&lt;maxn;i++)
-        fac[i]=fac[i-1]*i%p;//求阶乘
-    inv[0] = inv[1] = 1;
-    for (int i = 2; i &lt; maxn; i++)
-        inv[i] = (p - p / i) * inv[p % i] % p;//递推求逆元
-}
-ll C(ll n,ll m)
-{
-    if (n&lt;m) return 0;
-    return fac[n]*inv[fac[m]]*inv[fac[n-m]]%p;//利用逆元求组合数
-}
-ll lucas(ll n,ll m)
-{
-    if (!m) return 1ll;
-    return C(n%p,m%p)*lucas(n/p,m/p)%p;//Lucas
-}
-int main()
-{
-    return 0;
-}
-</code></pre>
-          
+          Lucas定理是用来解决大组合数取模的，即求$C_n ^m \ mod\ p$,其中$p$为质数。 公式：$C_n ^m\ mod\ p=C_{n/p}^{m/p}\times C_{n\ mod\ p}^{m\ mod\ p}\ mod\ p$
+当模数p在变化时运用暴力方法计算组合数：#inclu
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/模板/lucas-e5-ae-9a-e7-90-86/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -956,31 +757,17 @@ int main()
       
         
           
-            <p>组合数公式： $C_{m}^{n}=\frac{m!}{n!(m-n)!}$ 方法一：利用公式 $C_m^n=C_{m-1}^{n-1}+C_{m-1}^{n}$</p>
-<blockquote>
-<p>从m个元素里挑n个元素，针对第一个元素要么是n个里的要么不是，如果是的,那么就从剩下的m-1个里挑n-1个 就是c(m-1,n-1);如果第一个元素不是n里的，就从剩下的m-1个元素里挑n个，就是c(m-1,n)。</p>
-</blockquote>
-<p>递归求法：</p>
-<pre><code>#include&lt;iostream&gt;
-#include&lt;cstdio&gt;
-using namespace std;
-long long comb(int m,int n)
-{
-    if(n==0) return 1;
-    if(n==1) return m;
-    if(n&gt;m/2) return comb(m,m-n);
-    if(n&gt;1) return (comb(m-1,n-1)+comb(m-1,n));
-}
-int main()
-{
-    int m,n;
-    while(cin&gt;&gt;m&gt;&gt;n)
-    cout&lt;&lt;comb(m,n)&lt;&lt;endl;
-    return 0;
-}
-</code></pre><p>方法二： 1、求取1到n的阶乘对 mod 取模的结果存入数组 JC 中； 2、求取 C(n,r) 时， 先利用“拓展欧几里得算法”或者“费马小定理+快速幂”求 JC[r]的逆元存入临时变量 x1 ; 3、然后计算 <strong>JC[n] ∗ x1 % mod</strong> 存入临时变量 x2;（x2 即为<strong>n!/r! %mod</strong> 的值） 4、求取JC[n - r] 的逆元存入临时变量 x3; 5、则可以得到 <strong>C(n,r)=x2∗x3%mod</strong></p>
+          组合数公式： $C_{m}^{n}=\frac{m!}{n!(m-n)!}$ 方法一：利用公式 $C_m^n=C_{m-1}^{n-1}+C_{m-1}^{n}$
 
-          
+从m个元素里挑n个元素，针对第一个元素要么是n个里的要么不是，如果是的,那么就从剩下的m-1个里挑n-1个 就是c(m-1,n-1);
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/模板/e7-bb-84-e5-90-88-e6-95-b0/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1141,8 +928,8 @@ int main()
       
         
           
-            <p>A. 暴力扫即可。</p>
-<pre><code>#include&lt;cstdio&gt;
+          A. 暴力扫即可。
+#include&lt;cstdio&gt;
 #include&lt;iostream&gt;
 using namespace std;
 int a[100005];
@@ -1150,165 +937,15 @@ int main()
 {
     int n,i,j,k;
     cin&gt;&gt;n;
-    int minn=1e9;
-    for(i=1;i&lt;=n;i++){
-        scanf(&quot;%d&quot;,&amp;a[i]);minn=min(minn,a[i]);
-    }
-    int pre=0,ans=1e6;
-    for(i=1;i&lt;=n;i++){
-        if(a[i]==minn){
-            if(pre){
-                ans=min(ans,i-pre);
-            }
-            pre=i;
-        }
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>B. 最大化最小值，一看就可以二分。注意每个蛋糕都要有去处…所以要注意如果有一种蛋糕非常少的话也是要单独占一盘的…玄学二分居然没死循环，开心</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-using namespace std;
-int a[100005];
-int main()
-{
-    int n,i,j,k;
-    cin&gt;&gt;n;
-    int minn=1e9;
-    for(i=1;i&lt;=n;i++){
-        scanf(&quot;%d&quot;,&amp;a[i]);minn=min(minn,a[i]);
-    }
-    int pre=0,ans=1e6;
-    for(i=1;i&lt;=n;i++){
-        if(a[i]==minn){
-            if(pre){
-                ans=min(ans,i-pre);
-            }
-            pre=i;
-        }
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>C. 说白了就是枚举找规律，会发现有1的时候，或者有俩2，或者3个都是3，又或者一个2配俩4是可以的，其他都是不行的</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-using namespace std;
-int main()
-{
-    int k,cnt[1505]={0},i;
-    for(i=1;i&lt;=3;i++){
-        cin&gt;&gt;k;cnt[k]++;
-    }
-    if(cnt[1]||cnt[2]&gt;=2||cnt[3]==3||(cnt[2]==1&amp;&amp;cnt[4]==2)){
-        puts(&quot;YES&quot;);
-    }
-    else puts(&quot;NO&quot;);
-
-    return 0;
-}
-</code></pre><p>D.</p>
-<blockquote>
-<p>给出一个含有 n 个数的序列，让你求每次反转区间 [ l , r ] 后整个序列的逆序数是奇是偶。</p>
-</blockquote>
-<p>首先有一个朴素的想法就是暴力枚举，当然就算用归并排序去计算逆序对也是会tle的…</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-using namespace std;
-int cnt;
-void mergearray(int*a, int first, int mid, int last, int*temp)
-{
-    int i = first, j = mid+1, k = last,m=0;
-    while (i &lt;= mid&amp;&amp;j &lt;= last) {
-        if (a[i] &lt; a[j])
-            temp[++m] = a[i++];
-        else
-            temp[++m] = a[j++],cnt+=mid-i+1;
-    }
-    while (i &lt;= mid)
-        temp[++m] = a[i++];
-    while (j &lt;= last)
-        temp[++m] = a[j++];
-    for (i = 1; i &lt;= m; i++)
-        a[first+i-1] = temp[i];
-}
-void mergesort(int*a, int first, int last, int*temp)
-{
-    if (first &lt; last) {
-        int mid = (first + last) / 2;
-        mergesort(a, first, mid, temp);
-        mergesort(a, mid + 1, last, temp);
-        mergearray(a, first, mid, last, temp);
-    }
-}
-int main()
-{
-    int n,i,j,a[1600],a1[1600],t[1600],m,l,r;
-    cin&gt;&gt;n;
-    for(i=1;i&lt;=n;i++)scanf(&quot;%d&quot;,&amp;a[i]);
-    cin&gt;&gt;m;
-    for(i=1;i&lt;=m;i++){
-        scanf(&quot;%d%d&quot;,&amp;l,&amp;r);cnt=0;
-        reverse(a+l,a+r+1);
-        memcpy(a1,a,sizeof(a));
-        mergesort(a1,1,n,t);
-        //cout&lt;&lt;cnt&lt;&lt;endl;
-        if(cnt&amp;1)
-            puts(&quot;odd&quot;);
-        else puts(&quot;even&quot;);
-    }
-
-    return 0;
-}
-</code></pre><p>当将区间$ [ l , r ]$ 反转后，只有该区间内的逆序数产生了变化，其他的不变。具体变化是该区间之前是<strong>正序的变成了逆序，之前是逆序的变成了正序。</strong>如果我们知道反转前逆序数是奇是偶，再加上知道反转后逆序对相差是奇是偶就可以知道结果了。 设该区间长度为 len，则该区间共有 $len <em> (len-1)/2$ 个数对，设反转后逆序的有 num 个，则正序的有 $len(len-1)/2 - num$ 个，反转前后逆序对相差 $num-( len(len-1)/2 - num )$ 个，化简得 $num </em> 2 - len(len-1)/2$ 个，$num <em> 2$ 一定为偶数，不影响奇偶性，所以只看 $len</em>(len-1)/2 $的奇偶性就可以了。 判断奇偶可以用异或来做</p>
-<pre><code>#include&lt;cstdio&gt;
-int main()
-{
-    int n,i,j,a[1505],m,l,r,x=0;
-    scanf(&quot;%d&quot;,&amp;n);
-    for(i=1;i&lt;=n;++i)scanf(&quot;%d&quot;,&amp;a[i]);
-    for(i=1;i&lt;n;++i)
-        for(j=i+1;j&lt;=n;++j)
-            x^=a[i]&gt;a[j];
-    scanf(&quot;%d&quot;,&amp;m);
-    while(m--){
-        scanf(&quot;%d%d&quot;,&amp;l,&amp;r);i=r-l+1;
-        x^=(i*(i-1)&gt;&gt;1)&amp;1;
-        puts(x?&quot;odd&quot;:&quot;even&quot;);
-    }
-
-    return 0;
-}
-</code></pre><p>E. 对于给定的前k个，其实没什么好说的，就是模拟，看里面有对少个数能够直接放到b里面，扫完这k个之后，如果栈里还有那么肯定是那些缺乏小的数以致于无法放进b的，这时候我们为了能够把这些数顺利放进b，肯定是要逐步补齐栈顶项到b中已有项之间缺失的项的，这同时肯定也是字典序最大值。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;stack&gt;
-using namespace std;
-const int N=2e5+1;
-int n,k,a[N],t=1;
-stack&lt;int&gt;s;
-int main()
-{
-    cin&gt;&gt;n&gt;&gt;k;
-    s.push(n+1);//先置入一个n+1以防栈空re
-    for(int i=0;i&lt;n;i++){
-        if(i&lt;k)cin&gt;&gt;a[i];
-        else a[i]=s.top()-1;//剩下的都是缺小项无法出栈的
-        s.push(a[i]);
-        while(s.size()&amp;&amp;s.top()==t)s.pop(),t++;
-    }
-    if(s.size())puts(&quot;-1&quot;);//如果还有剩余说明原来的顺序有问题
-    else for(int i=0;i&lt;n;i++)cout&lt;&lt;a[i]&lt;&lt;&apos; &apos;;
-
-    return 0;
-}
-</code></pre>
-          
+    int 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/Codeforces/educational-codeforces-round-35-rated-for-div-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1469,61 +1106,19 @@ int main()
       
         
           
-            <p>复习一波，发现都快忘光了QAQ… 利用二分的思想，不断分割排序区间。</p>
-<pre><code>void mergearray(int*a, int first, int mid, int last, int*temp)
-{
-    int i = first, j = mid+1, k = last,m=0;
-    while (i &lt;= mid&amp;&amp;j &lt;= last) {
-        if (a[i] &lt; a[j])
-            temp[++m] = a[i++];
-        else
-            temp[++m] = a[j++];
-    }
-    while (i &lt;= mid)
-        temp[++m] = a[i++];
-    while (j &lt;= last)
-        temp[++m] = a[j++];
-    for (i = 1; i &lt;= m; i++)
-        a[first+i-1] = temp[i];//这里要注意前面数组的下标
-}
-void mergesort(int*a, int first, int last, int*temp)
-{
-    if (first &lt; last) {
-        int mid = (first + last) / 2;
-        mergesort(a, first, mid, temp);
-        mergesort(a, mid + 1, last, temp);
-        mergearray(a, first, mid, last, temp);
-    }
-}
-</code></pre><p>归并排序课用于计算逆序对，因为如果是非逆序的数，那么在mergearray的时候前面的肯定比后面的小，如果出现一个比后面大的，那么这个数后面的所有前面的数都一定比后面的数大。</p>
-<pre><code>int cnt=0;
+          复习一波，发现都快忘光了QAQ… 利用二分的思想，不断分割排序区间。
 void mergearray(int*a, int first, int mid, int last, int*temp)
 {
     int i = first, j = mid+1, k = last,m=0;
-    while (i &lt;= mid&amp;&amp;j &lt;= last) {
-        if (a[i] &lt; a[j])
-            temp[++m] = a[i++];
-        else
-            temp[++m] = a[j++],cnt+=mid-i+1;//其实只有这里不同
-    }
-    while (i &lt;= mid)
-        temp[++m] = a[i++];
-    while (j &lt;= last)
-        temp[++m] = a[j++];
-    for (i = 1; i &lt;= m; i++)
-        a[first+i-1] = temp[i];
-}
-void mergesort(int*a, int first, int last, int*temp)
-{
-    if (first &lt; last) {
-        int mid = (first + last) / 2;
-        mergesort(a, first, mid, temp);
-        mergesort(a, mid + 1, last, temp);
-        mergearray(a, first, mid, last, temp);
-    }
-}
-</code></pre>
-          
+    wh
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/模板/e5-bd-92-e5-b9-b6-e6-8e-92-e5-ba-8f/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1695,114 +1290,16 @@ void mergesort(int*a, int first, int last, int*temp)
       
         
           
-            <blockquote>
-<p>Nim游戏是组合游戏(Combinatorial Games)的一种，准确来说，属于“Impartial Combinatorial Games”（以下简称ICG）。满足以下条件的游戏是ICG（可能不太严谨）：1、有两名选手；2、两名选手交替对游戏进行移动(move)，每次一步，选手可以在（一般而言）有限的合法移动集合中任选一种进行移动；3、对于游戏的任何一种可能的局面，合法的移动集合只取决于这个局面本身，不取决于轮到哪名选手操作、以前的任何操作、骰子的点数或者其它什么因素； 4、如果轮到某名选手移动，且这个局面的合法的移动集合为空（也就是说此时无法进行移动），则这名选手负。根据这个定义，很多日常的游戏并非ICG。例如象棋就不满足条件3，因为红方只能移动红子，黑方只能移动黑子，合法的移动集合取决于轮到哪名选手操作。</p>
-</blockquote>
-<h3 id="经典Nim游戏"><a href="#经典Nim游戏" class="headerlink" title="经典Nim游戏"></a>经典Nim游戏</h3><p><strong>通常的Nim游戏的定义是这样的：有若干堆石子，每堆石子的数量都是有限的，合法的移动是“选择一堆石子并拿走若干颗（不能不拿）”，如果轮到某个人时所有的石子堆都已经被拿空了，则判负（因为他此刻没有任何合法的移动）。</strong> 我们定义Position: P：表示当前局面下先手必败 N：表示当前局面下先手必胜 结论：<strong>(Bouton’s Theorem)： 对于一个Nim游戏的局面(a1,a2,…,an)，它是P-position（后手必胜）当且仅当 </strong>a1^a2^…^an=0<strong>，其中^表示异或(xor)运算。</strong> 可以利用二进制来证明，详细证明过程：<a href="https://blog.csdn.net/Summer\_\_show\_/article/details/70185470" target="_blank" rel="noopener">https://blog.csdn.net/Summer\_\_show\_/article/details/70185470</a> 如果Nim游戏中的规则稍微变动一下,每次最多只能取K个,怎么处理? Ans：将每堆石子数mod (k+1).</p>
-<h3 id="Nim的各种变形"><a href="#Nim的各种变形" class="headerlink" title="Nim的各种变形"></a>Nim的各种变形</h3><h4 id="Moore’s-Nimk"><a href="#Moore’s-Nimk" class="headerlink" title="Moore’s Nimk"></a>Moore’s Nimk</h4><blockquote>
-<p>n堆石子，每次从不超过k堆中取任意多个石子，最后不能取的人失败。</p>
-</blockquote>
-<p>这是一个nim游戏的变形，也是有结论的。 <strong>结论为：把n堆石子的石子数用二进制表示，统计每个二进制位上1的个数，若每一位上1的个数mod(k+1)全部为0，则必败，否则必胜。</strong></p>
-<h4 id="anti-nim-反Nim游戏"><a href="#anti-nim-反Nim游戏" class="headerlink" title="anti-nim(反Nim游戏)"></a>anti-nim(反Nim游戏)</h4><blockquote>
-<p>正常的nim游戏是取走最后一颗的人获胜，而反nim游戏是取走最后一颗的人输。</p>
-</blockquote>
-<p><strong>一个状态为必胜态，当且仅当： 1）所有堆的石子个数为1，且NIM_sum=0 2）至少有一堆的石子个数大于1，且 NIM_sum≠0</strong> 例子：Bzoj1022 : <a href="https://www.lydsy.com/JudgeOnline/problem.php?id=1022" target="_blank" rel="noopener">https://www.lydsy.com/JudgeOnline/problem.php?id=1022</a></p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-using namespace std;
-int main()
-{
-    int t,i,j,k,n;
-    cin&gt;&gt;t;
-    while(t--){
-        cin&gt;&gt;n;
-        bool onlyone=true;
-        int sum=0;
-        while(n--){
-            scanf(&quot;%d&quot;,&amp;j);
-            if(j!=1)onlyone=false;
-            sum^=j;
-        }
-        if((onlyone&amp;&amp;!sum)||(!onlyone&amp;&amp;sum)){
-            puts(&quot;John&quot;);
-        }
-        else puts(&quot;Brother&quot;);
-    }
-
-    return 0;
-}
-</code></pre><h4 id="威佐夫博弈"><a href="#威佐夫博弈" class="headerlink" title="威佐夫博弈"></a>威佐夫博弈</h4><blockquote>
-<p>两堆石子，每次可以从一堆或两堆中取任意数目的石子，从两堆中取得时候,从不同堆取的石子个数必须相同，先取完的获胜。</p>
-</blockquote>
-<p>这种情况下是颇为复杂的。我们用（ak，bk）（ak ≤ bk ,k=0，1，2，…,n)表示两堆物品的数量并称其为局势，如果甲面对（0，0），那么甲已经输了，这种局势我们 称为<strong>奇异局势</strong>。前几个奇异局势是：（0，0）、（1，2）、（3，5）、（4，7）、（6，10）、（8，13）、（9，15）、（11，18）、（12，20）。 <strong>奇异局势的3条性质： 1.任何自然数都包含在一个且仅有一个奇异局势中。 2.任意操作都可将奇异局势变为非奇异局势。 3.采用适当的方法，可以将非奇异局势变为奇异局势。</strong> 假设面对的局势是（a,b）： 1.若 b = a，则同时从两堆中取走 a 个物体，就变为了奇异局势（0，0）； 2.如果a = ak ，b &gt; bk，那么，取走b – bk个物体，即变为奇异局势； 3.如果 a = ak ， b &lt; bk ,则同时从两堆中拿走 ak – ab – ak个物体,变为奇异局 势（ ab – ak , ab – ak+ b – ak）； 4.如果a &gt; ak ，b= ak + k,则从第一堆中拿走多余的数量a – ak 即可； 5.如果a &lt; ak ，b= ak + k,分两种情况，第一种，a=aj （j &lt; k）,从第二堆里面拿走 b – bj 即可；第二种，a=bj （j &lt; k）,从第二堆里面拿走 b – aj 即可。 从如上性质可知，两个人如果都采用正确操作，那么面对非奇异局势，先拿者必胜 ；反之，（面对奇异局势）则后拿者取胜。 <strong>任给一个局势（a，b），判断它是不是奇异局势（先手负）： $a_k =[k\times \frac{（1+√5）}{2}]， b_k= a_k + k $ </strong>（k=0，1，2，…,n ，方括号表示向下取整函数)<strong> 其中k由bk-ak求得，如果两个数不符合这样的形式，则不是奇异局势</strong> <strong>注意一定要满足a&lt;=b，不满足时对调a，b</strong> 例子：<a href="http://poj.org/problem?id=1067" target="_blank" rel="noopener">http://poj.org/problem?id=1067</a></p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;cmath&gt;
-using namespace std;
-int main()
-{
-    double t=(1+sqrt(5.0))/2;//系数
-    int a,b,k;
-    while(cin&gt;&gt;a&gt;&gt;b){
-        if(a&gt;b)swap(a,b);
-        k=b-a;
-        if(a==(int)(k*t)){//计算a是否符合该形式
-            cout&lt;&lt;0&lt;&lt;endl;
-        }
-        else cout&lt;&lt;1&lt;&lt;endl;
-    }
-
-    return 0;
-}
-</code></pre><h4 id="巴什博奕"><a href="#巴什博奕" class="headerlink" title="巴什博奕"></a>巴什博奕</h4><blockquote>
-<p>只有一堆石子共n个。每次从最少取1个，最多取m个，最后取光的人取胜。</p>
-</blockquote>
-<p>如果$n=(m+1)* k+s (s!=0)$ 那么先手一定必胜，因为第一次取走s个，接下来无论对手怎么取，我们都能保证取到所有(m+1)倍数的点，那么循环下去一定能取到最后一个。(也就是说只要n不是m+1的倍数先手必胜)</p>
-<h4 id="staircase-nim"><a href="#staircase-nim" class="headerlink" title="staircase nim"></a>staircase nim</h4><blockquote>
-<p>顾名思义就是在阶梯上进行，每层有若干个石子，每次可以选择任意层的任意个石子&gt;将其移动到该层的下一层。最后不能操作的人输。</p>
-</blockquote>
-<p>（这个博弈的解释不是特别明白QAQ） 阶梯博弈经过转换可以变为Nim，把所有奇数阶梯看成N堆石子做nim。把石子从奇数堆移动到偶数堆可以理解为拿走石子，就相当于几个奇数堆的石子在做Nim。 <strong>结论：所有奇数阶梯（奇数堆）的石子的Nim sum如果不为0，先手胜，否则后手胜</strong> （以下仅供参考，没太看懂）</p>
-<blockquote>
-<p>假设我们是先手，所给的阶梯石子状态的奇数堆做Nim先手能必胜.我就按照能赢的步骤将奇数堆的石子移动到偶数堆.如果对手也是移动奇数堆，我们继续移动奇数堆.如果对手将偶数堆的石子移动到了奇数堆..那么我们紧接着将对手所移动的这么多石子从那个奇数堆移动到下面的偶数堆.两次操作后.相当于偶数堆的石子向下移动了几个。而奇数堆依然是原来的样子，即为必胜的状态。就算后手一直在移动偶数堆的石子到奇数堆，我们就一直跟着他将石子继续往下移，保持奇数堆不变。我可以跟着后手把偶数堆的石子最终移动到0，然后对手就不能移动这些石子了.所以整个过程.将偶数堆移动到奇数堆不会影响奇数堆做Nim博弈的过程..整个过程可以抽象为奇数堆的Nim博弈. 为什么是只对奇数堆做Nim就可以而不是偶数堆呢？因为如果是对偶数堆做Nim，对手移动奇数堆的石子到偶数堆，我们跟着移动这些石子到下一个奇数堆。那么最后是对手把这些石子移动到了0，我们不能继续跟着移动，就只能去破坏原有的Nim而导致胜负关系的不确定。所以只要对奇数堆做Nim判断即可知道胜负情况。</p>
-</blockquote>
-<p>例子：<a href="http://poj.org/problem?id=1704" target="_blank" rel="noopener">http://poj.org/problem?id=1704</a> （ POJ1704） （可参考挑战程序设计竞赛P312） 本题的做法与上面描述的又不完全一致。我们把棋子按位置升序排列后（没有保证一定按升序给出），从后往前把他们两两绑定成一对。如果总个数是奇数，就把最前面一个和边界（位置为0）绑定。 在同一对棋子中，如果对手移动前一个，你总能对后一个移动相同的步数，所以一对棋子的前一个和前一对棋子的后一个之间有多少个空位置对最终的结果是没有影响的。于是我们只需要考虑同一对的两个棋子之间有多少空位。 这样一来就成了N堆取石子游戏了.</p>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-int n,k;
-int s[1010];
-
-int main()
-{
-    int T;
-    scanf(&quot;%d&quot;,&amp;T);
-    while(T--)
-    {
-        scanf(&quot;%d&quot;,&amp;n);
-        for(int i=1; i&lt;=n; i++)
-            scanf(&quot;%d&quot;,&amp;s[i]);
-        sort(s+1, s+n+1);
-        int ans;
-        if(n%2 == 0)
-        {
-            ans = s[2]-s[1]-1;
-            for(int i=4; i&lt;=n; i+=2) ans ^= (s[i]-s[i-1]-1);
-            if(ans == 0) cout&lt;&lt;&quot;Bob will win&quot;&lt;&lt;endl;
-            else cout&lt;&lt;&quot;Georgia will win&quot;&lt;&lt;endl;
-        }
-        else
-        {
-            ans = s[1]-1;
-            for(int i=3; i&lt;=n; i+=2) ans ^= (s[i]-s[i-1]-1);
-            if(ans == 0) cout&lt;&lt;&quot;Bob will win&quot;&lt;&lt;endl;
-            else cout&lt;&lt;&quot;Georgia will win&quot;&lt;&lt;endl;
-        }
-    }
-    return 0;
-}
-</code></pre>
           
+Nim游戏是组合游戏(Combinatorial Games)的一种，准确来说，属于“Impartial Combinatorial Games”（以下简称ICG）。满足以下条件的游戏是ICG（可能不太严谨）：1、有两名选手；2、两名选手交替对游戏进行移动(move)，每次一步，选手可以在（一般而
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/模板/博弈论/nim-e6-b8-b8-e6-88-8f/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1963,127 +1460,23 @@ int main()
       
         
           
-            <p>A. 模拟即可。</p>
-<pre><code>#include&lt;cstdio&gt;
+          A. 模拟即可。
+#include&lt;cstdio&gt;
 #include&lt;iostream&gt;
 #include&lt;string&gt;
 using namespace std;
 int main()
 {
     string str;int cnt=0;
-    cin&gt;&gt;str;
-    for(auto a:str){
-        if(a==&apos;a&apos;||a==&apos;i&apos;||a==&apos;o&apos;||a==&apos;e&apos;||a==&apos;u&apos;||a==&apos;1&apos;||a==&apos;3&apos;||a==&apos;5&apos;||a==&apos;7&apos;||a==&apos;9&apos;)
-            cnt++;
-    }
-    cout&lt;&lt;cnt&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>B. 暴力枚举24种映射的情况即可….题目很简单，但是不是很好写</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;string&gt;
-#include&lt;algorithm&gt;
-#include&lt;cstring&gt;
-#include&lt;vector&gt;
-using namespace std;
-typedef pair&lt;int,int&gt;P;
-vector&lt;int&gt;per;
-void rotate(P*a,P*b)
-{
-    for(int i=0;i&lt;4;i++)
-        a[i]=b[per[i]];
-}
-int main()
-{
-    P mps[4]={ {0,1},{-1,0},{0,-1},{1,0}},mp[4];
-    int n,m,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m;
-    string str;
-    for(i=0;i&lt;4;i++)per.push_back(i);
-    char mp1[55][55];
-    int x,y;
-    for(i=1;i&lt;=n;i++){
-        cin&gt;&gt;mp1[i]+1;
-        for(j=1;j&lt;=m;j++){
-            if(mp1[i][j]==&apos;S&apos;){
-                x=j,y=i;break;
-            }
-        }
-    }
-    cin&gt;&gt;str;int ans=0;
-    for(int r=1;r&lt;=24;r++){
-        if(r&gt;1)next_permutation(per.begin(),per.end());
-        rotate(mp,mps);
-        int x1=x,y1=y;
-        for(auto a:str){
-            int p=a-&apos;0&apos;;
-            x1+=mp[p].first;y1+=mp[p].second;
-            if(x1&lt;1||x1&gt;m||y1&lt;1||y1&gt;n||mp1[y1][x1]==&apos;#&apos;)break;
-            if(mp1[y1][x1]==&apos;E&apos;){
-                ans++;break;
-            }
-        }
-    }
-
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>C. 本来想着对于每个新加入的圆找出所有可能跟他冲突的圆进行计算的，但是边界不太好把握…后来发现这个数据范围…直接暴力枚举之前加入的所有圆与这圆冲突的可能即可…</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;cmath&gt;
-using namespace std;
-int main()
-{
-    int n,r,x[1005]={0},t,i,j;double y[1005]={0};
-    scanf(&quot;%d%d&quot;,&amp;n,&amp;r);
-    for(i=1;i&lt;=n;i++){
-        scanf(&quot;%d&quot;,&amp;x[i]);y[i]=r;
-        for(j=1;j&lt;i;j++) {
-            t = x[i] - x[j], y[i] = max(y[i], y[j] + sqrt(4 * r * r - t * t));
-        }
-        printf(&quot;%.10f &quot;,y[i]);
-    }
-
-    return 0;
-}
-</code></pre><p>F. 我们可以用绿色的点把整个线段分开，那么对于每一个区间（两端是绿色的点），有两种选择：1.两个绿色的点不连接，那么就需要把里面所有的红色点蓝色点都连接起来，长度是2<em> 区间长度 2.连接绿色点，那么长度就是区间长度</em> 3-长度最长的连接红点的边-长度最长的连接蓝点的边</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-int n,x,pr,pb,pg,mr,mb,ans=0;
-char s[10];
-int main(){
-    scanf(&quot;%d&quot;,&amp;n);
-    for(int i=1;i&lt;=n;i++){
-        scanf(&quot;%d%s&quot;,&amp;x,s);
-        if(s[0]==&apos;R&apos;||s[0]==&apos;G&apos;){
-            if(pr){
-                ans+=x-pr;
-                mr=max(mr,x-pr);
-            }
-            pr=x;
-        }
-        if(s[0]==&apos;B&apos;||s[0]==&apos;G&apos;){
-            if(pb){
-                ans+=x-pb;
-                mb=max(mb,x-pb);
-            }
-            pb=x;
-        }
-        if(s[0]==&apos;G&apos;){
-            if(pg)ans+=min(0,x-pg-mr-mb);
-            pg=x;mr=0;mb=0;
-        }
-    }
-    printf(&quot;%d&quot;,ans);
-    return 0;
-}
-</code></pre>
-          
+    cin&gt
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/Codeforces/codeforces-good-bye-2017/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2244,8 +1637,8 @@ int main(){
       
         
           
-            <p>A. 弱智题</p>
-<pre><code>#include&lt;cstdio&gt;
+          A. 弱智题
+#include&lt;cstdio&gt;
 #include&lt;iostream&gt;
 using namespace std;
 int main()
@@ -2253,231 +1646,15 @@ int main()
     int n,i,j,k;
     cin&gt;&gt;n;
     for(i=1;i&lt;=n;i++){
-        scanf(&quot;%d&quot;,&amp;j);
-        if(j&amp;1)cout&lt;&lt;j&lt;&lt;&apos; &apos;;
-        else cout&lt;&lt;j-1&lt;&lt;&apos; &apos;;
-    }
 
-    return 0;
-}
-</code></pre><p>B. 从大到小排序，前k大就是所求</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;map&gt;
-#include&lt;set&gt;
-using namespace std;
-bool cmp(int x,int y)
-{
-    return x&gt;y;
-}
-int main()
-{
-    int n,k,i,j;
-    int num[2005],num1[2005];
-    cin&gt;&gt;n&gt;&gt;k;
-    for(i=1;i&lt;=n;i++){
-        scanf(&quot;%d&quot;,&amp;num[i]);num1[i]=num[i];
-    }
-    sort(num1+1,num1+1+n,cmp);
-    map&lt;int,int&gt;mp1;
-    int sum=0;
-    for(i=1;i&lt;=k;i++)mp1[num1[i]]++,sum+=num1[i];
-    int pre=1;
-    cout&lt;&lt;sum&lt;&lt;endl;
-    for(i=1;i&lt;=n;i++){
-        if(mp1.count(num[i])){
-            k--;
-            if(k)cout&lt;&lt;i-pre+1&lt;&lt;&apos; &apos;;
-            else cout&lt;&lt;n-pre+1&lt;&lt;endl;
-            pre=i+1;mp1[num[i]]--;
-            if(mp1[num[i]]==0)mp1.erase(num[i]);
-        }
-    }
-
-    return 0;
-}
-</code></pre><p>C. 前后求前缀和即可</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;map&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-typedef long long ll;
-ll sum[200005];
-int main()
-{
-    int n,i,j,k,d[200005];
-    cin&gt;&gt;n;
-    map&lt;ll,int&gt;mp1;
-    for(i=1;i&lt;=n;i++){
-        scanf(&quot;%d&quot;,&amp;d[i]);
-        sum[i]+=sum[i-1]+d[i];
-        mp1[sum[i]]=i;
-    }
-    ll ans=0,sum1=0;
-    for(i=n;i;i--){
-        sum1+=d[i];
-        if(mp1.count(sum1)){
-            if(mp1[sum1]&gt;=i)
-                break;
-            else{
-                ans=sum1;
-            }
-        }
-    }
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>D. 注意只能换a中的字母！！ 分析一下可以发现a[i],a[n-i+1],b[i],b[n-i+1]这几个字母之间的位置是可以随便换的，因此只要枚举所有这样的字母组即可。 当4个字母全都不同的时候，a里面两个字母肯定要换； 当有两个相同时，另两个不同（也就是有3种字母），如果两个相同的在a，那么就要两个都换，否则的话都是换1个就够了。 当有3个相同时，换一个即可。 如果4个都相同或者两两相同，不用换。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;set&gt;
-#include&lt;algorithm&gt;
-#include&lt;map&gt;
-using namespace std;
-int main()
-{
-    char a[100005],b[100005];
-    int i,j,k,n;
-    cin&gt;&gt;n&gt;&gt;a+1&gt;&gt;b+1;
-    int sum=0;
-    for(i=1;i&lt;=n/2;i++){
-        map&lt;char,int&gt;mp1;
-       mp1[a[i]]++;mp1[a[n-i+1]]++;mp1[b[i]]++;mp1[b[n-i+1]]++;
-       if(mp1.size()==4){
-           sum+=2;
-       }
-       else if(mp1.size()==2){
-           if(mp1.begin()-&gt;second==2);
-           else{
-               sum+=1;
-           }
-       }
-       else if(mp1.size()==1);
-       else{
-           if(a[i]==a[n-i+1])sum+=2;
-           else sum+=1;
-       }
-    }
-    if(n&amp;1){
-        if(a[n/2+1]!=b[n/2+1])sum++;
-    }
-    cout&lt;&lt;sum&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>E. 题目很长，但其实就是一个很简单的dfs。因为他的dfs顺序是固定的，所以我们会发现其实只要从根开始dfs一遍，并把结果保存起来即可，以后每次询问查询一下即可。完全模拟会tle，每个节点保存自己的子树则会mle，所以只能在根那里保存结果。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;vector&gt;
-using namespace std;
-const int N=2e5+5;
-vector&lt;int&gt;G[N];
-vector&lt;int&gt;ans;
-int child[N];
-int pos[N];
-int dfs(int x)
-{
-    ans.push_back(x);
-    pos[x]=ans.size()-1;
-    child[x]++;
-    for(auto a:G[x]){
-        child[x]+=dfs(a);
-    }
-    return child[x];
-}
-
-int main()
-{
-    int n,q,i,j,k,u;
-    cin&gt;&gt;n&gt;&gt;q;
-    for(i=1;i&lt;n;i++){
-        scanf(&quot;%d&quot;,&amp;j);
-        G[j].push_back(i+1);
-    }
-    dfs(1);
-    for(i=1;i&lt;=q;i++){
-        scanf(&quot;%d%d&quot;,&amp;u,&amp;k);
-        if(child[u]&lt;k){
-            printf(&quot;-1\n&quot;);
-        }
-        else{
-            printf(&quot;%d\n&quot;,ans[pos[u]+k-1]);
-        }
-    }
-
-    return 0;
-}
-</code></pre><p>F. 有一个非常simple的dp做法，但是会mle，即使换成滚动数组也会tle…</p>
-<pre><code>#include &lt;bits/stdc++.h&gt;
-using namespace std;
-long long n,m,k;
-map&lt;long long,long long&gt; a[25][25];
-long long b[25][25];
-int main(){
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;
-    for (int i=1;i&lt;=n;i++)
-        for (int j=1;j&lt;=m;j++)
-            cin&gt;&gt;b[i][j];
-    a[1][1][b[1][1]]++;
-    for (int i=1;i&lt;=n;i++)
-        for (int j=1;j&lt;=m;j++) {
-            for (auto k:a[i-1][j]) {
-                a[i][j][k.first^b[i][j]]+=k.second;
-            }
-            for (auto k:a[i][j-1]) {
-                a[i][j][k.first^b[i][j]]+=k.second;
-            }
-        }
-    cout&lt;&lt;a[n][m][k];
-}
-</code></pre><p>正解的话，是人为的划了一条线，即i+j==n+1，这是一条斜对角线，我们分别从（1，1）和（n，m）处开始搜索，如果能够到达中线，就做一个记录，然后统计答案。</p>
-<pre><code>#include &lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;map&gt;
-#include&lt;algorithm&gt;
-using namespace std;
-typedef long long ll;
-ll num[25][25];
-map&lt;ll,ll&gt;mp[25];
-ll n,m,k;
-void dfs1(int i,int j,ll v)
-{
-    v^=num[i][j];
-    if(i+j==n+1){
-        mp[i][v]++;return;//如果到达中线就不用再搜下去了
-    }
-    if(i&lt;n)dfs1(i+1,j,v);
-    if(j&lt;m)dfs1(i,j+1,v);
-}
-ll ans=0;
-void dfs2(int i,int j,ll v)
-{
-    if(i+j==n+1) {
-        ans += mp[i][v ^ k];return;//到达中线,我们希望遇到的中线处的值是v^k,
-        // 因为在中线下半部分的xor和为v,v^k^v=k,满足题意
-    }
-    v^=num[i][j];
-    if(i&gt;1)dfs2(i-1,j,v);
-    if(j&gt;1)dfs2(i,j-1,v);
-}
-int main()
-{
-    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;
-    int i,j;
-    for(i=1;i&lt;=n;i++)
-        for(j=1;j&lt;=m;j++)
-            scanf(&quot;%lld&quot;,&amp;num[i][j]);
-    dfs1(1,1,0);dfs2(n,m,0);
-    cout&lt;&lt;ans&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre>
-          
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/Codeforces/codeforces-round-498-div-3/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2638,158 +1815,21 @@ int main()
       
         
           
-            <p>A. 按照题意模拟即可</p>
-<pre><code>#include&lt;cstdio&gt;
+          A. 按照题意模拟即可
+#include&lt;cstdio&gt;
 #include&lt;iostream&gt;
 #include&lt;algorithm&gt;
 #include&lt;vector&gt;
 #include&lt;deque&gt;
-using namespace std;
-int main()
-{
-    deque&lt;int&gt;a;
-    int n,m,i,j,k;
-    cin&gt;&gt;n&gt;&gt;m;
-    int c[1005];
-    for(i=1;i&lt;=n;i++)cin&gt;&gt;c[i];
-    for(i=1;i&lt;=m;i++){
-        scanf(&quot;%d&quot;,&amp;j);a.push_back(j);
-    }
-    int cnt=0;
-    for(i=1;i&lt;=n;i++){
-        if(!a.empty()&amp;&amp;a.front()&gt;=c[i]){
-            a.pop_front();cnt++;
-        }
-    }
-    cout&lt;&lt;cnt&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre><p>B. 首先我们注意到1是可以任意移动的，也就是说1可以移动到任何一个位置，而2是比较麻烦的，因此我们从前往后扫描，每扫描到一个2就记录一下当前扫描到的这段0 的数目，然后丢进vector里记录下来。注意：要记得特判没有2 的情形！</p>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-#include &lt;string.h&gt;
-#include &lt;string&gt;
-#include &lt;vector&gt;
-using namespace std;
-
-string s;
-int num0(0), num1(0);
-vector &lt;int&gt; v;
-bool pd(false);
-int main() {
-    cin &gt;&gt; s;
-    for (auto i : s) {
-        if (i == &apos;0&apos;)num0++;//统计0
-        else if (i == &apos;1&apos;)num1++;//统计1
-        else {//遇到2
-            v.push_back(num0);
-            num0 = 0;
-        }
-    }
-    for (auto i : v) {//2把连续的0分成了很多段
-        for (int j = 1; j &lt;= i; j++)cout &lt;&lt; 0;
-        if (!pd) for (int j = 1; j &lt;= num1; j++)cout &lt;&lt; 1;//1可以全部移到第一个之前
-        cout &lt;&lt; 2;
-        pd = true;
-    }
-    for (int j = 1; j &lt;= num0; j++)cout &lt;&lt; 0;
-    if(!pd){//一定要特判没有2的情形
-        for(int i=1;i&lt;=num1;i++)cout&lt;&lt;1;
-    }
-
-
-    return 0;
-}
-</code></pre><p>C. 其实这题看懂之后似乎是挺简单的…?显然d如果是正的，我们 就希望dist之和最大，可以发现是放数列的两端最佳，否则的话就选在数列的中间可以使得dist之和最小。记得开longlong即可。</p>
-<pre><code>#include &lt;iostream&gt;
-#include &lt;algorithm&gt;
-using namespace std;
-typedef long long ll;
-
-int main() {
-    ll n, m;
-    ll ans=0, x, d;
-    cin &gt;&gt; n &gt;&gt; m;
-    for (int i = 1; i &lt;= m; i++) {
-        cin &gt;&gt; x &gt;&gt; d;
-        ans += x * n;
-        if (d &gt; 0) {
-            ans += d * n * (n - 1) / 2;
-        }
-        else {
-            ans += ((n % 2 == 0) ? (n / 2 * n / 2 * d) : ((n + 1) / 2 * (n - 1) / 2 * d));
-        }
-    }
-    printf(&quot;%.20lf&quot;,(double)ans / n);
-
-    return 0;
-}
-</code></pre><p>D. 要注意一点，就是构造的图必须是联通的。虽然题目范围看似很大，理论是暴力枚举复杂度1e10,但是m小哇，暴力从小到大枚举成对的互质的数，其实很快就够了，如果impossible的话只可能是n比较小m比较大的情况。然后注意m如果小于n-1的话那么这幅图怎么看都不可能的联通的（要求是每个点都必须在这个图里面，所以一个行之有效的办法就是每个电脑都跟1连接起来）；</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;vector&gt;
-using namespace std;
-int gcd(int x,int y)
-{
-    return y?gcd(y,x%y):x;
-}
-typedef pair&lt;int,int&gt;P;
-int main()
-{
-    int n,m,i,j,k,cnt=0;
-    cin&gt;&gt;n&gt;&gt;m;
-    vector&lt;P&gt;ans;
-    if(m&lt;n-1){
-        cout&lt;&lt;&quot;Impossible&quot;&lt;&lt;endl;return 0;
-    }
-    for(i=1;i&lt;n;i++)
-        for(j=i+1;j&lt;=n;j++){
-        if(gcd(i,j)==1){
-            m--;ans.push_back(P(i,j));
-            if(!m)goto step;
-        }
-    }
-    if(m){
-        cout&lt;&lt;&quot;Impossible&quot;&lt;&lt;endl;return 0;
-    }
-    step:cout&lt;&lt;&quot;Possible&quot;&lt;&lt;endl;
-    for(auto a:ans)
-        printf(&quot;%d %d\n&quot;,a.first,a.second);
-
-    return 0;
-}
-</code></pre><p>E.</p>
-<blockquote>
-<p>某人从x=0旅行至x=n，在上次休息过后走当前公里的疲劳值为ai，休息点的位置不确定，求疲劳值之和的数学期望。</p>
-</blockquote>
-<p>对于某个位置x=i，疲劳值为ai的可能休息点情况数为2^(n-i)种，疲劳值为aj(j&lt;i)的可能休息点情况数为2^(n-i-1)种。处理过后发现对于某个疲劳值ai，其总的出现情况数为2^(n-i)+2^(n-i-1)* (n-i)。之后直接套公式即可。</p>
-<pre><code>#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-using namespace std;
-const int mod=998244353;
-long long a[1000005],b[1000005];
-int main()
-{
-    int n,i,j,k;
-    cin&gt;&gt;n;
-    b[0]=1;
-    for(i=1;i&lt;=n;i++){
-        scanf(&quot;%lld&quot;,&amp;a[i]);
-        b[i]=(b[i-1]&lt;&lt;1)%mod;
-    }
-    long long ans=0;
-    for(i=1;i&lt;=n;i++){
-        ans+=a[i]*b[n-i]%mod;
-        ans+=a[i]*b[n-i-1]%mod*(n-i)%mod;//注意多mod防止爆int
-    }
-    cout&lt;&lt;ans%mod&lt;&lt;endl;
-
-    return 0;
-}
-</code></pre>
-          
+using namespace std
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/Codeforces/educational-codeforces-round-47-rated-for-div-2/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2939,9 +1979,15 @@ int main()
       
         
           
-            <h1 id="过去的一年"><a href="#过去的一年" class="headerlink" title="过去的一年"></a>过去的一年</h1><p>前几天考完了这学期的最后一科，那么，大一也就算是结束了吧，回想过去的一年，总想写点什么，却又不知道如何入手，那现在就纯当流水账随便写写吧。 去年，2017，是相当奇幻的，一场高考将一年横劈为二。刚考完那天下午拿出了尘封已久的iPad，打了一会wotb，但是似乎应了那句话——游戏还是考试前的好玩，考完之后变得有些索然无味起来。4天之后剁了个游戏本，然后开启了暑假的沉迷游戏之旅。不过后来开学后很快就后悔买了个如此厚重的游戏本，当然这是后话了。 暑假先是跟同学一起去了趟贵州，现在想想这趟旅程其实是有些令人失望的。贵州本身并不太好玩，花在路上的时间奇长无比。更重要的是高中的一群同学，似乎总有些说不清的隔阂感吧，也许是一群清北聚聚实在跟我这种裸考弱渣差别过大吧。而且感觉起来，高中同学总体还是比较奇特的，整个班级总是缺少些凝聚力，或许是大家都太有个性了，也可能是大家高中都忙，总而言之，并没有非常好的体验。 回来之后填了个志愿。我也不知道为什么我就想报计算机，也许是被某乎洗脑了吧，自己也看起来是有点兴趣。 记得当时还跟父母吵了一架，因为不知道选哪个学校。当时也不知道为何就选定了小破邮，不过现在想想哈深的计算机我还不够分来着，当时如果填了现在可能就在学机械了（摔）。现在想想似乎倒也不算什么错误的决定——小破邮虽破，但是偏远的沙河倒也能让人专心下来学习，而且说实话吧，基本上该有的设施也都算有了，更重要的是，小破邮的同学总体上感觉还是挺好的~总体而言学风良好，而且也有非常多在我看起来非常厉害的同学，让我感觉自己非常的蒟蒻QAQ。 后来的假期基本上就是打游戏，学架子鼓，踢足球，健身几样之间轮换。不得不说我还是挺难去坚持一些爱好的…现在除了偶尔去去健身房，其他几项基本都荒废了，虽说这一年来确实忙碌，但是难以持之以恒似乎也成为了我一贯以来的坏毛病吧。8月去了趟新疆，总体而言，景色是优美的，但是暑假浩浩荡荡的人流实在是令人难以提起任何游玩的兴致。而后又去西安搞了趟疯狂之旅，现在想想是有些后悔的，浪费钱，浪费时间。 打游戏的假期还是过得挺快的，一转眼就开学了。两周的军训令人印象深刻，大概是这辈子迄今为止过得最难受的两周了，生活质量奇差，而且毫无意义。用一句政治不正确的话来说，就是两周的参军劝退课，除了没拔草，部队里可以干的无聊事似乎都体验的差不多了。反正，个人是非常反感这种毫无意义的官僚性课程的。 回来以后就开学，不过国庆前基本上啥都没看，每天就是玩一玩，看一看，倒也悠哉悠哉。加了学生会的一个部门，现在想想这个还是挺有意义的…因为没进这部门的话，|没认识某菊苣的话，我可能已经被编程劝退了，更不会混进实验班了…也就没有很多故事了233…中间也没啥事，直到9.27——那一天，我突然开始研究了一波C Primer Plus，写了第一个C程序，啥内容不记得了，总之，感觉挺好玩的，也让我对这玩意儿突然感兴趣起来。现在想想，除了一开始的兴趣以外，大概也跟程序的反馈性有关吧——即时的输出，虽然只是控制台那个黑框框。以及后来的各种OJ，AC，WA，TLE，其实都令人刺激，不像那艹蛋的高数，至今都提不起什么兴趣。 后面大概就是上课，上课，其实印象都不是很深，因为第一个学期其实只有一件事令我感兴趣，那就是编程。当时花了大概一个月大致看了看C的基本语法，然后就开始对算法有了些兴趣——大概跟头几次机考的时候激动人心的排行榜也有点关系吧。总之期中之后，除了研究新算法写OJ，当时啥都不想干，连游戏都没碰过，导致我寒假把游戏本给卖了（笑）。不过平心而论，研究一个算法，试着用它去套一些简单模板题，获得一个个AC，真的是挺有意思的，让我大半个学期乐此不疲。第一学期怎么说呢，其实自我感觉还是挺认真的，可惜就是对课内的事情不太上心，最后成绩也不怎么好看，高数学得乱七八糟某种意义上也影响了第二学期的高数。当时想着第二学期一定要好好做人，不能忽视课内的东西，然而一连串的意外还是让这个设想落空了…事实上，这学期总体而言依然的挺糟糕的。 寒假过的其实不是很妙。回家前去了趟天津，其实并不好玩，不过一起去的小伙伴还是挺有意思的。回家之后实在是有点颓，本来想好好研究一波算法的，但是现在想想好像当时也没干什么，后来日子也就过去了。年后去了趟埃及，当时的日程安排的不是特别好，当然这个国家不一样的风情还是挺有意思的。总而言之，寒假延续了我一贯以来放假颓废的作风。 开学就是新生赛，最后结果还是ok的，毕竟一群OI菊苣们压阵，一个小白也就这样了吧。然后就是校赛的网络赛，第一次组队搞了一波，也算是认识了第一波队友吧。再后面就是实验班的选拔，不得不说这事还是挺糟心的，不知道是谁加的报名限制——智育前40%。反正就记得那周挺难受的，平心而论学院这么定其实也无可厚非，但我还是非常的郁闷。毕竟一个机考选拔，如果连参加的机会都没有的话，还是令人挺难以接受的。幸好后来好像并没有人记得有这么一回事，机考也顺利的参加了。不过那段时间大概状态不太好吧，加上内心忧郁，所以机考的的时候纯粹是靠罚时少把排名拉了上来。然后就是面试，忐忑地邓结果。当时面试的时候被老师问了一堆课内成绩的情况，感觉自己快凉了，幸好最后还是过了。校赛的话我们队感觉都不在状态，罚时爆炸混了个铜，不过当时想想，也算是混进实验班了，也不能太希望一切都很顺利吧。 不过，开学那会忙于准备各种赛，之后又是糟心的选拔，然后转班又是一片混乱，某种意义上也很大的影响了这学期后续的课程。特别是模电，转过去之后发现他们已经上完了，于是到最后我也没怎么学这玩意儿，期末也是不明不白混过去了。期末的半个月其实也努力了一下希望拯救一下课内，但其实最后也就那样了，积重难返。 应该说，这个班牛人还是很多的，比起来我其实啥都不行——代码不如OI党，课内成绩一塌糊涂，我也不知道说什么好了QAQ，希望可以在众多菊苣的刺激下以后做的更好吧…然后这半个学期也有幸遇到了几位挺好的同学，几位菊苣愿意搭理我这个蒟蒻，其实还是挺开心的，也算有些感谢吧…之前还有点担心会不会混成孤家寡人的感觉…. 流水账写了写，发现时间还是过得很快的。总体上来说，这一年还是挺忙的，每天都过得很快，也算是挺充实了。当然后来还是有点颓了，而且绩点应该算是挺糟糕了……一年换了两个班，认识了一大波新同学，还是蛮开心的。希望暑假的训练，以及后面的大二，可以吸取经验，过得更顺利一些吧，也争取混个更好的成绩。加油！</p>
-
-          
+          过去的一年前几天考完了这学期的最后一科，那么，大一也就算是结束了吧，回想过去的一年，总想写点什么，却又不知道如何入手，那现在就纯当流水账随便写写吧。 去年，2017，是相当奇幻的，一场高考将一年横劈为二。刚考完那天下午拿出了尘封已久的iPad，打了一会wotb，但是似乎应了那句话——游戏还是考试前的
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/生活/20172018/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -3036,7 +2082,7 @@ int main()
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">66</span>
+                  <span class="site-state-item-count">64</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
