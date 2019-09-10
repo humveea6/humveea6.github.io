@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="HumveeA6">
 <meta property="og:description" content="类的基本概念首先是一段自定义类的代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-21T11:59:02.999Z">
+<meta property="og:updated_time" content="2019-04-15T11:28:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Cpp阅读笔记-类">
 <meta name="twitter:description" content="类的基本概念首先是一段自定义类的代码：1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495">
@@ -457,7 +457,7 @@
 <p>和非成员函数一样，成员函数也可以被重载，只要函数之间在参数数量或者类型上有所区别即可。</p>
 <h5 id="类数据成员的初始值"><a href="#类数据成员的初始值" class="headerlink" title="类数据成员的初始值"></a>类数据成员的初始值</h5><p>可以给类的数据成员添加一个默认的初始值<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">window_mgr</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="keyword">using</span> Screenindex=<span class="built_in">vector</span>&lt;Screen&gt;::size_type;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">(Screenindex)</span></span>;</span><br><span class="line">    <span class="function">Screenindex <span class="title">addscreen</span><span class="params">(<span class="keyword">const</span> Screen&amp;)</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;Screen&gt;screens&#123;Screen(<span class="number">10</span>,<span class="number">20</span>,<span class="string">' '</span>)&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h3 id="返回-this的成员函数"><a href="#返回-this的成员函数" class="headerlink" title="返回*this的成员函数"></a>返回*this的成员函数</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Screen &amp;Screen::<span class="built_in">set</span>(pos r,pos col,<span class="keyword">char</span> ch)</span><br><span class="line">&#123;</span><br><span class="line">    contents[r*width+col]=ch;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>返回引用的函数是<strong>左值</strong>的，意味着这些函数返回的是对象本身而不是对象的副本；如果这个函数是不是左值的，那么返回的数据只是函数中调用对象的一个copy；<br>举个例子，如果有这么一系列操作：<code>myscreen.move(4,0).set(&#39;#&#39;);</code><br>这些操作会在同一个对象上执行，因为<code>move()</code> 和<code>set()</code>函数都是左值的；<br>也就是说，这个函数等价于<code>myscreen.move(4,0);myscreen.set(&#39;#&#39;);</code></p>
+<p>返回引用的函数是<strong>左值</strong>的，（通过函数名前面的<code>&amp;</code>符号来体现）意味着这些函数返回的是对象本身而不是对象的副本；如果这个函数不是左值的，那么返回的数据只是函数中调用对象的一个copy；<br>举个例子，如果有这么一系列操作：<code>myscreen.move(4,0).set(&#39;#&#39;);</code><br>这些操作会在同一个对象上执行，因为<code>move()</code> 和<code>set()</code>函数都是左值的；<br>也就是说，这个函数等价于<code>myscreen.move(4,0);myscreen.set(&#39;#&#39;);</code></p>
 <p>如果<code>move()</code> 和<code>set()</code>函数不是左值的，那么上述语句将会变成：<br><code>Screen temp=myscreen.move(4,0);</code><br><code>temp,set(&#39;#&#39;);</code><br>也就是说，第2步并不会改变原来myscreen中的contents（内容）；</p>
 <p><strong>注意：一个const成员函数如果以引用的形式返回*this，那么它的返回类型将是常量引用，也就是一个常量</strong></p>
 <h5 id="基于const的重载"><a href="#基于const的重载" class="headerlink" title="基于const的重载"></a>基于const的重载</h5><p>通过区分成员函数是否是const的，我们也可以对其进行重载<br>例如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Screen &amp;<span class="title">display</span><span class="params">(ostream &amp;os)</span></span>&#123;</span><br><span class="line">        do_display(os);<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">const</span> Screen &amp;<span class="title">display</span><span class="params">(ostream &amp;os)</span><span class="keyword">const</span></span>&#123;</span><br><span class="line">        do_display(os);<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
@@ -614,7 +614,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -625,7 +625,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -636,7 +636,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

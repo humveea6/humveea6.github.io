@@ -307,6 +307,185 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e9-ab-98-e7-b2-be-e5-ba-a6-e7-ae-97-e6-b3-95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/模板/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e9-ab-98-e7-b2-be-e5-ba-a6-e7-ae-97-e6-b3-95/" itemprop="url">（模板）高精度算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-28T21:03:28+08:00">
+                2018-07-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/模板/" itemprop="url" rel="index">
+                    <span itemprop="name">模板</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/算法/模板/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e9-ab-98-e7-b2-be-e5-ba-a6-e7-ae-97-e6-b3-95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/模板/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e9-ab-98-e7-b2-be-e5-ba-a6-e7-ae-97-e6-b3-95/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          __int128最简单粗暴的做法。 这种类型只有部分GCC编译器支持。经测试，正常运算与普通int无异，但是输入输出时无论是cin，cout还是printf都会报错，所以必须自己写输入输出函数。 定义时与别的数据类型并没有什么区别 eg: __int128 a,b,c; 输入暂时采用字符串读入方式。 方法一：重载输出
+std::ostream&amp; operator&lt;&lt;(std::ostream&amp; os, __int128 T) {
+    if (T&lt;0) os&lt;&lt;&quot;-&quot;;if (T&gt;=10 ) os&lt;&lt;T/10;if (T&lt;=-10) os&lt;&lt;(-(T/10));
+    return os&lt;&lt;( (int) (T%10) &gt;0 ? (int) (T%10) : -(int) (T%10) ) ;
+}
+方法二：变为字符串式输入输出 输入：
+void scan(__int128 &amp;x)//输入
+{
+    x = 0;
+    int f = 1;
+    ch
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/模板/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e9-ab-98-e7-b2-be-e5-ba-a6-e7-ae-97-e6-b3-95/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/基础数学/ef-bc-88-e6-a8-a1-e6-9d-bf-ef-bc-89-e6-ac-a7-e6-8b-89-e5-87-bd-e6-95-b0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2051,215 +2230,6 @@ vector&lt;int&gt;G[maxn];
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/树链剖分/数据结构/e6-b4-9b-e8-b0-b7p2590-e6-a0-91-e9-93-be-e5-89-96-e5-88-86-ef-bc-88-e5-8d-95-e7-82-b9-e4-bf-ae-e6-94-b9-ef-bc-8c-e5-8c-ba-e9-97-b4-e6-b1-82-e5-92-8cand-e5-8d-95-e7-82-b9-e6-9f-a5-e8-af-a2-ef-bc-89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/模板/树链剖分/数据结构/e6-b4-9b-e8-b0-b7p2590-e6-a0-91-e9-93-be-e5-89-96-e5-88-86-ef-bc-88-e5-8d-95-e7-82-b9-e4-bf-ae-e6-94-b9-ef-bc-8c-e5-8c-ba-e9-97-b4-e6-b1-82-e5-92-8cand-e5-8d-95-e7-82-b9-e6-9f-a5-e8-af-a2-ef-bc-89/" itemprop="url">洛谷P2590 树链剖分（单点修改，区间求和and单点查询）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-26T09:41:27+08:00">
-                2018-07-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/" itemprop="url" rel="index">
-                    <span itemprop="name">模板</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/树链剖分/" itemprop="url" rel="index">
-                    <span itemprop="name">树链剖分</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/模板/树链剖分/数据结构/" itemprop="url" rel="index">
-                    <span itemprop="name">数据结构</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/算法/模板/树链剖分/数据结构/e6-b4-9b-e8-b0-b7p2590-e6-a0-91-e9-93-be-e5-89-96-e5-88-86-ef-bc-88-e5-8d-95-e7-82-b9-e4-bf-ae-e6-94-b9-ef-bc-8c-e5-8c-ba-e9-97-b4-e6-b1-82-e5-92-8cand-e5-8d-95-e7-82-b9-e6-9f-a5-e8-af-a2-ef-bc-89/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/模板/树链剖分/数据结构/e6-b4-9b-e8-b0-b7p2590-e6-a0-91-e9-93-be-e5-89-96-e5-88-86-ef-bc-88-e5-8d-95-e7-82-b9-e4-bf-ae-e6-94-b9-ef-bc-8c-e5-8c-ba-e9-97-b4-e6-b1-82-e5-92-8cand-e5-8d-95-e7-82-b9-e6-9f-a5-e8-af-a2-ef-bc-89/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          
-一棵树上有n个节点，编号分别为1到n，每个节点都有一个权值w。 我们将以下面的形式来要求你对这棵树完成一些操作： I. CHANGE u t : 把结点u的权值改为t II. QMAX u v: 询问从点u到点v的路径上的节点的最大权值 III. QSUM u v: 询问从点u到点v的路径上的节点的权值和 注意：从点u到点v的路径上的节点包括u和v本身
-
-在板子的基础上类似线段树那样修改即可，注意n的位置！！定义在了所有函数前面
-#include&lt;algorithm&gt;
-#include&lt;iostream&gt;
-#include&lt;cstdlib&gt;
-#include&lt;cstring&gt;
-#include&lt;cstdio&gt;
-#include&lt;vector&gt;
-#include&lt;string&gt;
-using namespace std;
-typedef long long ll ;
-
-const int maxn=200000+10;
-vector&lt;int&gt;G[maxn];
-int n,m,r;
-//见题意
-
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/算法/模板/树链剖分/数据结构/e6-b4-9b-e8-b0-b7p2590-e6-a0-91-e9-93-be-e5-89-96-e5-88-86-ef-bc-88-e5-8d-95-e7-82-b9-e4-bf-ae-e6-94-b9-ef-bc-8c-e5-8c-ba-e9-97-b4-e6-b1-82-e5-92-8cand-e5-8d-95-e7-82-b9-e6-9f-a5-e8-af-a2-ef-bc-89/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2310,7 +2280,7 @@ int n,m,r;
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">79</span>
+                  <span class="site-state-item-count">80</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2321,7 +2291,7 @@ int n,m,r;
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -2332,7 +2302,7 @@ int n,m,r;
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
