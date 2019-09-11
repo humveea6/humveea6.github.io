@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="最近突然开始研究了一下Linux，随手记录一下一些用过的看起来比较有意思的命令吧QAQ 文件浏览&amp;amp;常用乱七八糟编译命令：  g++ a+b.cpp -o a+b+c -std=c++11  a+b.cpp是cpp文件名，a+b+c则是可执行文件名，后面则可以选择编译标准。  ls  浏览当前文件夹下的所有文件（不包含隐藏文件  ls -a  显示所有文件（包括隐藏文件）  man ls">
+<meta name="description" content="最近突然开始研究了一下Linux，随手记录一下一些用过的看起来比较有意思的命令吧QAQ Shell的几个快捷键Ctrl+a 光标移动到行头 Ctrl+e光标移动到行末 Ctrl+k删除从光标位置到行末   文件浏览&amp;amp;常用乱七八糟编译命令：  g++ a+b.cpp -o a+b+c -std=c++11  a+b.cpp是cpp文件名，a+b+c则是可执行文件名，后面则可以选择编译标准。">
 <meta name="keywords" content="乱搞,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="蒟蒻的Linux随笔">
 <meta property="og:url" content="http://www.huweihuang.com/乱搞/Linux/e8-92-9f-e8-92-bb-e7-9a-84linux-e9-9a-8f-e7-ac-94/index.html">
 <meta property="og:site_name" content="HumveeA6">
-<meta property="og:description" content="最近突然开始研究了一下Linux，随手记录一下一些用过的看起来比较有意思的命令吧QAQ 文件浏览&amp;amp;常用乱七八糟编译命令：  g++ a+b.cpp -o a+b+c -std=c++11  a+b.cpp是cpp文件名，a+b+c则是可执行文件名，后面则可以选择编译标准。  ls  浏览当前文件夹下的所有文件（不包含隐藏文件  ls -a  显示所有文件（包括隐藏文件）  man ls">
+<meta property="og:description" content="最近突然开始研究了一下Linux，随手记录一下一些用过的看起来比较有意思的命令吧QAQ Shell的几个快捷键Ctrl+a 光标移动到行头 Ctrl+e光标移动到行末 Ctrl+k删除从光标位置到行末   文件浏览&amp;amp;常用乱七八糟编译命令：  g++ a+b.cpp -o a+b+c -std=c++11  a+b.cpp是cpp文件名，a+b+c则是可执行文件名，后面则可以选择编译标准。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-17T00:53:09.000Z">
+<meta property="og:updated_time" content="2019-09-10T13:09:35.219Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="蒟蒻的Linux随笔">
-<meta name="twitter:description" content="最近突然开始研究了一下Linux，随手记录一下一些用过的看起来比较有意思的命令吧QAQ 文件浏览&amp;amp;常用乱七八糟编译命令：  g++ a+b.cpp -o a+b+c -std=c++11  a+b.cpp是cpp文件名，a+b+c则是可执行文件名，后面则可以选择编译标准。  ls  浏览当前文件夹下的所有文件（不包含隐藏文件  ls -a  显示所有文件（包括隐藏文件）  man ls">
+<meta name="twitter:description" content="最近突然开始研究了一下Linux，随手记录一下一些用过的看起来比较有意思的命令吧QAQ Shell的几个快捷键Ctrl+a 光标移动到行头 Ctrl+e光标移动到行末 Ctrl+k删除从光标位置到行末   文件浏览&amp;amp;常用乱七八糟编译命令：  g++ a+b.cpp -o a+b+c -std=c++11  a+b.cpp是cpp文件名，a+b+c则是可执行文件名，后面则可以选择编译标准。">
 
 
 
@@ -422,6 +422,9 @@
 
       
         <p>最近突然开始研究了一下Linux，随手记录一下一些用过的看起来比较有意思的命令吧QAQ</p>
+<h3 id="Shell的几个快捷键"><a href="#Shell的几个快捷键" class="headerlink" title="Shell的几个快捷键"></a>Shell的几个快捷键</h3><p><code>Ctrl+a</code> 光标移动到行头</p>
+<p><code>Ctrl+e</code>光标移动到行末</p>
+<p><code>Ctrl+k</code>删除从光标位置到行末  </p>
 <h3 id="文件浏览-amp-常用乱七八糟"><a href="#文件浏览-amp-常用乱七八糟" class="headerlink" title="文件浏览&amp;常用乱七八糟"></a>文件浏览&amp;常用乱七八糟</h3><p>编译命令：</p>
 <blockquote>
 <p>g++ a+b.cpp -o a+b+c -std=c++11</p>
@@ -517,6 +520,14 @@
 <p>mv a+b a+c ~/test/</p>
 </blockquote>
 <p>同时移动多个文件；注意此时最后一个一定是目录！！！</p>
+<h3 id="文件建立"><a href="#文件建立" class="headerlink" title="文件建立"></a>文件建立</h3><blockquote>
+<p>touch file_name</p>
+</blockquote>
+<p>建立文件</p>
+<blockquote>
+<p>touch file_name{1..number}_txt</p>
+</blockquote>
+<p>括号中写好数字，就会批量建立相应文件</p>
 
       
     </div>
@@ -759,7 +770,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件浏览-amp-常用乱七八糟"><span class="nav-number">1.</span> <span class="nav-text">文件浏览&amp;常用乱七八糟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件打开-amp-新建-amp-删除"><span class="nav-number">2.</span> <span class="nav-text">文件打开&amp;新建&amp;删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件复制，移动，删除"><span class="nav-number">3.</span> <span class="nav-text">文件复制，移动，删除</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件复制"><span class="nav-number">3.1.</span> <span class="nav-text">文件复制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件删除"><span class="nav-number">3.2.</span> <span class="nav-text">文件删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件移动"><span class="nav-number">3.3.</span> <span class="nav-text">文件移动</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Shell的几个快捷键"><span class="nav-number">1.</span> <span class="nav-text">Shell的几个快捷键</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件浏览-amp-常用乱七八糟"><span class="nav-number">2.</span> <span class="nav-text">文件浏览&amp;常用乱七八糟</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件打开-amp-新建-amp-删除"><span class="nav-number">3.</span> <span class="nav-text">文件打开&amp;新建&amp;删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件复制，移动，删除"><span class="nav-number">4.</span> <span class="nav-text">文件复制，移动，删除</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文件复制"><span class="nav-number">4.1.</span> <span class="nav-text">文件复制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件删除"><span class="nav-number">4.2.</span> <span class="nav-text">文件删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件移动"><span class="nav-number">4.3.</span> <span class="nav-text">文件移动</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件建立"><span class="nav-number">5.</span> <span class="nav-text">文件建立</span></a></li></ol></div>
             
 
           </div>

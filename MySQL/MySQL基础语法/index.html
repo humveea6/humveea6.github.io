@@ -87,10 +87,15 @@
 <meta property="og:site_name" content="HumveeA6">
 <meta property="og:description" content="使用MySQLOS X配置问题目前似乎每次关闭terminal之后都要重新配置一下？暂时没找到啥方法解决233 12export PATH=$&amp;#123;PATH&amp;#125;:/usr/local/mysql/bin/source ~/.zshrc 为了连接到MySQL，需要以下信息:主机名(计算机名)——如果连接到本地MySQL服务器，为localhost; 端口(如果使用默认端口3306之外的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-10T03:13:13.931Z">
+<meta property="og:image" content="http://www.huweihuang.com/Users/humveea6/Blog/source/images/屏幕快照%202019-09-11%2014.52.08.png">
+<meta property="og:image" content="http://www.huweihuang.com/Users/humveea6/Blog/source/images/屏幕快照%202019-09-11%2014.53.13.png">
+<meta property="og:image" content="http://www.huweihuang.com/Users/humveea6/Blog/source/images/屏幕快照%202019-09-11%2014.57.12.png">
+<meta property="og:image" content="http://www.huweihuang.com/Users/humveea6/Blog/source/images/屏幕快照%202019-09-11%2014.58.35.png">
+<meta property="og:updated_time" content="2019-09-11T06:59:01.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MySQL基础语法">
 <meta name="twitter:description" content="使用MySQLOS X配置问题目前似乎每次关闭terminal之后都要重新配置一下？暂时没找到啥方法解决233 12export PATH=$&amp;#123;PATH&amp;#125;:/usr/local/mysql/bin/source ~/.zshrc 为了连接到MySQL，需要以下信息:主机名(计算机名)——如果连接到本地MySQL服务器，为localhost; 端口(如果使用默认端口3306之外的">
+<meta name="twitter:image" content="http://www.huweihuang.com/Users/humveea6/Blog/source/images/屏幕快照%202019-09-11%2014.52.08.png">
 
 
 
@@ -454,6 +459,31 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select prod_name from products limit 5,5;</span><br></pre></td></tr></table></figure>
 <p>LIMIT 5, 5指示MySQL返回从行5开始的5行。第一个数为开始 位置，第二个数为要检索的行数。(行号从0开始)</p>
 <p>MySQL 支持LIMIT的另一种替代语法。<code>LIMIT 4 OFFSET 3</code>意为从行3开始取4行，就像<code>LIMIT 3, 4</code>一样。</p>
+<h2 id="排序检索的数据"><a href="#排序检索的数据" class="headerlink" title="排序检索的数据"></a>排序检索的数据</h2><p>可使用 <code>order by</code>语句取一个或多个列的名字对输出进行排序，例如：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select prod_name from products order by prod_name;</span><br></pre></td></tr></table></figure>
+<p>这条语句除了指示MySQL对prod_name列以字母顺序排序数据 的ORDER BY子句外，与前面的语句相同</p>
+<p>选择按照多个列排序的时候只要用逗号隔开即可，如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select prod_name from products order by prod_name,prod_price;</span><br></pre></td></tr></table></figure>
+<p><strong>使用多个列进行排序时，前面的列优先级比后面的高，在上面也就是，先按prod_name进行排序再按prod_price进行排序</strong></p>
+<h3 id="指定排序方向"><a href="#指定排序方向" class="headerlink" title="指定排序方向"></a>指定排序方向</h3><p>默认情况下是按照字典序升序进行排序的，也可以按照字典序进行降序排序，使用关键字<code>DESC</code>即可。</p>
+<p>注意此关键字只对一个列有效，并不对所有列有效（需要对每个列单独指定是否是降序）。</p>
+<p>例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select prod_name from products order by prod_name,prod_price desc;</span><br></pre></td></tr></table></figure>
+<p>note：区分大小写和排序顺序 在对文本性的数据进行排序时，A与a相同吗?a位于B之前还是位于Z之后?这些问题不是理论问 题，其答案取决于数据库如何设置。</p>
+<p>在字典(dictionary)排序顺序中，A被视为与a相同，这是MySQL(和大多数数据库管理系统)的默认行为。但是，许多数据库 管理员能够在需要时改变这种行为(如果你的数据库包含大量外语字符，可能必须这样做)。</p>
+<h4 id="关键字顺序问题"><a href="#关键字顺序问题" class="headerlink" title="关键字顺序问题"></a>关键字顺序问题</h4><p><strong>order by语句必须在from子句后面，如果使用limit，则limit应该在order by语句后面</strong></p>
+<h2 id="过滤数据"><a href="#过滤数据" class="headerlink" title="过滤数据"></a>过滤数据</h2><p>使用where子句对数据进行过滤，where子句放在from语句后面，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select prod_name,prod_price from products where prod_price = 2.50;</span><br></pre></td></tr></table></figure>
+<p><img src="/Users/humveea6/Blog/source/images/屏幕快照 2019-09-11 14.52.08.png" alt></p>
+<h3 id="where子句的操作符"><a href="#where子句的操作符" class="headerlink" title="where子句的操作符"></a>where子句的操作符</h3><p><img src="/Users/humveea6/Blog/source/images/屏幕快照 2019-09-11 14.53.13.png" alt="屏幕快照 2019-09-11 14.53.13"></p>
+<p><strong>注意：where子句在执行匹配时默认不区分大小写！</strong></p>
+<h4 id="范围值检查"><a href="#范围值检查" class="headerlink" title="范围值检查"></a>范围值检查</h4><p>使用between进行范围值检查，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select prod_name,prod_price from products where prod_price between 5 and 10;</span><br></pre></td></tr></table></figure>
+<p><strong>注意使用between时，前小后大并且包含这两个端点值</strong></p>
+<h3 id="空值检查"><a href="#空值检查" class="headerlink" title="空值检查"></a>空值检查</h3><p><img src="/Users/humveea6/Blog/source/images/屏幕快照 2019-09-11 14.57.12.png" alt="屏幕快照 2019-09-11 14.57.12"></p>
+<p>使用is null进行空值检查，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select prod_name from products where prod_price is null;</span><br></pre></td></tr></table></figure>
+<p><img src="/Users/humveea6/Blog/source/images/屏幕快照 2019-09-11 14.58.35.png" alt="屏幕快照 2019-09-11 14.58.35"></p>
 
       
     </div>
@@ -690,7 +720,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用MySQL"><span class="nav-number">1.</span> <span class="nav-text">使用MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OS-X配置问题"><span class="nav-number">1.1.</span> <span class="nav-text">OS X配置问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检索数据"><span class="nav-number">2.</span> <span class="nav-text">检索数据</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用MySQL"><span class="nav-number">1.</span> <span class="nav-text">使用MySQL</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#OS-X配置问题"><span class="nav-number">1.1.</span> <span class="nav-text">OS X配置问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#检索数据"><span class="nav-number">2.</span> <span class="nav-text">检索数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序检索的数据"><span class="nav-number">3.</span> <span class="nav-text">排序检索的数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指定排序方向"><span class="nav-number">3.1.</span> <span class="nav-text">指定排序方向</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关键字顺序问题"><span class="nav-number">3.1.1.</span> <span class="nav-text">关键字顺序问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤数据"><span class="nav-number">4.</span> <span class="nav-text">过滤数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#where子句的操作符"><span class="nav-number">4.1.</span> <span class="nav-text">where子句的操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#范围值检查"><span class="nav-number">4.1.1.</span> <span class="nav-text">范围值检查</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空值检查"><span class="nav-number">4.2.</span> <span class="nav-text">空值检查</span></a></li></ol></li></ol></div>
             
 
           </div>
