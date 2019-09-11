@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[MySQL基础语法]]></title>
     <url>%2FMySQL%2FMySQL%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[使用MySQLOS X配置问题目前似乎每次关闭terminal之后都要重新配置一下？暂时没找到啥方法解决233 12export PATH=$&#123;PATH&#125;:/usr/local/mysql/bin/source ~/.zshrc 为了连接到MySQL，需要以下信息:主机名(计算机名)——如果连接到本地MySQL服务器，为localhost; 端口(如果使用默认端口3306之外的端口); 例：连接本地服务器 1mysql -u root -p 显示所有数据库 1show databases; 选择数据库 1use database_name; 注意，必须先选择一个数据库才能进行更多的操作 查看一个数据库内的表的列表 1show tables; 显示表列（一个表的详细信息） 1show columns from table_name; 也可以使用 1describe table_name; 检索数据select 语句 上述语句利用SELECT语句从products表中检索一个名为prod_name的列。所需的列名在SELECT关键字之后给出，FROM关键字指出从其中检索数据的表名。 例如： 1select prod_name from products; 注意prod_name是列名，products是表名 检索多个列 用逗号分隔即可 1select prod_id,prod_name from products; 检索所有列 使用通配符*即可 1select * from products 检索不同的行 SELECT检索列时返回所有匹配的行。但是，如果你不想要每个值每次都出现，怎么办? 解决办法是使用DISTINCT关键字，顾名思义，此关键字指示MySQL只返回不同的值。这时，如果有多行值相同时只会返回一行。 例如： 1select distinct vend_id from products; 不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出 SELECT DISTINCT vend_id, prod_price，除非指定的两个列都相同，否则所有行都将被检索出来。 存疑 限制返回结果 SELECT语句返回所有匹配的行，它们可能是指定表中的每个行。为了返回第一行或前几行，可使用LIMIT子句。 如： 1select prod_name from products limit 5; 此语句使用SELECT语句检索单个列。LIMIT 5指示MySQL返回 不多于5行。 也可以从指定位置开始，如： 1select prod_name from products limit 5,5; LIMIT 5, 5指示MySQL返回从行5开始的5行。第一个数为开始 位置，第二个数为要检索的行数。(行号从0开始) MySQL 支持LIMIT的另一种替代语法。LIMIT 4 OFFSET 3意为从行3开始取4行，就像LIMIT 3, 4一样。 排序检索的数据可使用 order by语句取一个或多个列的名字对输出进行排序，例如： 1select prod_name from products order by prod_name; 这条语句除了指示MySQL对prod_name列以字母顺序排序数据 的ORDER BY子句外，与前面的语句相同 选择按照多个列排序的时候只要用逗号隔开即可，如： 1select prod_name from products order by prod_name,prod_price; 使用多个列进行排序时，前面的列优先级比后面的高，在上面也就是，先按prod_name进行排序再按prod_price进行排序 指定排序方向默认情况下是按照字典序升序进行排序的，也可以按照字典序进行降序排序，使用关键字DESC即可。 注意此关键字只对一个列有效，并不对所有列有效（需要对每个列单独指定是否是降序）。 例如： 1select prod_name from products order by prod_name,prod_price desc; note：区分大小写和排序顺序 在对文本性的数据进行排序时，A与a相同吗?a位于B之前还是位于Z之后?这些问题不是理论问 题，其答案取决于数据库如何设置。 在字典(dictionary)排序顺序中，A被视为与a相同，这是MySQL(和大多数数据库管理系统)的默认行为。但是，许多数据库 管理员能够在需要时改变这种行为(如果你的数据库包含大量外语字符，可能必须这样做)。 关键字顺序问题order by语句必须在from子句后面，如果使用limit，则limit应该在order by语句后面 过滤数据使用where子句对数据进行过滤，where子句放在from语句后面，例如： 1select prod_name,prod_price from products where prod_price = 2.50; where子句的操作符 注意：where子句在执行匹配时默认不区分大小写！ 范围值检查使用between进行范围值检查，例如： 1select prod_name,prod_price from products where prod_price between 5 and 10; 注意使用between时，前小后大并且包含这两个端点值 空值检查 使用is null进行空值检查，例如： 1select prod_name from products where prod_price is null;]]></content>
+    <content type="text"><![CDATA[使用MySQLOS X配置问题目前似乎每次关闭terminal之后都要重新配置一下？暂时没找到啥方法解决233 12export PATH=$&#123;PATH&#125;:/usr/local/mysql/bin/source ~/.zshrc 为了连接到MySQL，需要以下信息:主机名(计算机名)——如果连接到本地MySQL服务器，为localhost; 端口(如果使用默认端口3306之外的端口); 例：连接本地服务器 1mysql -u root -p 显示所有数据库 1show databases; 选择数据库 1use database_name; 注意，必须先选择一个数据库才能进行更多的操作 查看一个数据库内的表的列表 1show tables; 显示表列（一个表的详细信息） 1show columns from table_name; 也可以使用 1describe table_name; 检索数据select 语句 上述语句利用SELECT语句从products表中检索一个名为prod_name的列。所需的列名在SELECT关键字之后给出，FROM关键字指出从其中检索数据的表名。 例如： 1select prod_name from products; 注意prod_name是列名，products是表名 检索多个列 用逗号分隔即可 1select prod_id,prod_name from products; 检索所有列 使用通配符*即可 1select * from products 检索不同的行 SELECT检索列时返回所有匹配的行。但是，如果你不想要每个值每次都出现，怎么办? 解决办法是使用DISTINCT关键字，顾名思义，此关键字指示MySQL只返回不同的值。这时，如果有多行值相同时只会返回一行。 例如： 1select distinct vend_id from products; 不能部分使用DISTINCT DISTINCT关键字应用于所有列而不仅是前置它的列。如果给出 SELECT DISTINCT vend_id, prod_price，除非指定的两个列都相同，否则所有行都将被检索出来。 存疑 限制返回结果 SELECT语句返回所有匹配的行，它们可能是指定表中的每个行。为了返回第一行或前几行，可使用LIMIT子句。 如： 1select prod_name from products limit 5; 此语句使用SELECT语句检索单个列。LIMIT 5指示MySQL返回 不多于5行。 也可以从指定位置开始，如： 1select prod_name from products limit 5,5; LIMIT 5, 5指示MySQL返回从行5开始的5行。第一个数为开始 位置，第二个数为要检索的行数。(行号从0开始) MySQL 支持LIMIT的另一种替代语法。LIMIT 4 OFFSET 3意为从行3开始取4行，就像LIMIT 3, 4一样。 排序检索的数据可使用 order by语句取一个或多个列的名字对输出进行排序，例如： 1select prod_name from products order by prod_name; 这条语句除了指示MySQL对prod_name列以字母顺序排序数据 的ORDER BY子句外，与前面的语句相同 选择按照多个列排序的时候只要用逗号隔开即可，如： 1select prod_name from products order by prod_name,prod_price; 使用多个列进行排序时，前面的列优先级比后面的高，在上面也就是，先按prod_name进行排序再按prod_price进行排序 指定排序方向默认情况下是按照字典序升序进行排序的，也可以按照字典序进行降序排序，使用关键字DESC即可。 注意此关键字只对一个列有效，并不对所有列有效（需要对每个列单独指定是否是降序）。 例如： 1select prod_name from products order by prod_name,prod_price desc; note：区分大小写和排序顺序 在对文本性的数据进行排序时，A与a相同吗?a位于B之前还是位于Z之后?这些问题不是理论问 题，其答案取决于数据库如何设置。 在字典(dictionary)排序顺序中，A被视为与a相同，这是MySQL(和大多数数据库管理系统)的默认行为。但是，许多数据库 管理员能够在需要时改变这种行为(如果你的数据库包含大量外语字符，可能必须这样做)。 关键字顺序问题order by语句必须在from子句后面，如果使用limit，则limit应该在order by语句后面 过滤数据使用where子句对数据进行过滤，where子句放在from语句后面，例如： 1select prod_name,prod_price from products where prod_price = 2.50; where子句的操作符 注意：where子句在执行匹配时默认不区分大小写！ 范围值检查使用between进行范围值检查，例如： 1select prod_name,prod_price from products where prod_price between 5 and 10; 注意使用between时，前小后大并且包含这两个端点值 空值检查 使用is null进行空值检查，例如： 1select prod_name from products where prod_price is null; 数据过滤（逻辑运算符）and操作符and运算符可以组合多个where子句，代表需要同时满足多个条件，如： 1select prod_id from products where vend_id=1003 and prod_price&lt;=10; or操作符or操作符指示MySQL检索匹配任何一个条件的行，用法与and一致 优先级问题同时使用and与or操作符时，and操作符的优先级比or要高，因此尽量使用括号来保证优先级不会发生错误，例如： 1select * from products where (vend_id=1002 or vend_id=1003) and prod_price &gt;= 10; in操作符in操作符用于指定条件范围，范围中的每个条件都可以进行匹配，并且只有括号中的范围可以进行匹配（相当于一个简写的or）。例如： 1select prod_name from products where vend_id in (1002,1003,1004) order by prod_name desc; not操作符where子句中的not有且只有一个功能：否定它之后所跟的任何条件。 例如： 1select * from products where vend_id not in (1002,1003) order by prod_name;]]></content>
       <categories>
         <category>MySQL</category>
       </categories>
@@ -317,8 +317,8 @@
         <category>图论</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>网络流</tag>
+        <tag>算法</tag>
         <tag>图论</tag>
         <tag>模板</tag>
       </tags>
@@ -457,10 +457,10 @@
         <category>图论</category>
       </categories>
       <tags>
+        <tag>网络流</tag>
         <tag>算法</tag>
         <tag>比赛杂集</tag>
         <tag>暑假训练</tag>
-        <tag>网络流</tag>
         <tag>图论</tag>
       </tags>
   </entry>
@@ -475,8 +475,8 @@
         <category>图论</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>网络流</tag>
+        <tag>算法</tag>
         <tag>图论</tag>
         <tag>模板</tag>
       </tags>
@@ -554,8 +554,8 @@
         <category>图论</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>网络流</tag>
+        <tag>算法</tag>
         <tag>图论</tag>
         <tag>模板</tag>
       </tags>
@@ -571,8 +571,8 @@
         <category>图论</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>网络流</tag>
+        <tag>算法</tag>
         <tag>图论</tag>
         <tag>模板</tag>
       </tags>
@@ -588,8 +588,8 @@
         <category>图论</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>网络流</tag>
+        <tag>算法</tag>
         <tag>图论</tag>
         <tag>模板</tag>
       </tags>
@@ -605,8 +605,8 @@
         <category>图论</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>网络流</tag>
+        <tag>算法</tag>
         <tag>图论</tag>
         <tag>模板</tag>
       </tags>
