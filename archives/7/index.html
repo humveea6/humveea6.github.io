@@ -307,6 +307,198 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/树链剖分/数据结构/p2486-e6-a0-91-e9-93-be-e5-89-96-e5-88-86-ef-bc-88-e5-8c-ba-e9-97-b4-e6-9b-b4-e6-94-b9-ef-bc-8c-e5-8c-ba-e9-97-b4-e6-9f-a5-e9-87-8d-ef-bc-89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HumveeA6">
+      <meta itemprop="description" content="false">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="HumveeA6">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/算法/树链剖分/数据结构/p2486-e6-a0-91-e9-93-be-e5-89-96-e5-88-86-ef-bc-88-e5-8c-ba-e9-97-b4-e6-9b-b4-e6-94-b9-ef-bc-8c-e5-8c-ba-e9-97-b4-e6-9f-a5-e9-87-8d-ef-bc-89/" itemprop="url">P2486 树链剖分（区间更改，区间查重）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-26T19:26:32+08:00">
+                2018-07-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/树链剖分/" itemprop="url" rel="index">
+                    <span itemprop="name">树链剖分</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/树链剖分/数据结构/" itemprop="url" rel="index">
+                    <span itemprop="name">数据结构</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/算法/树链剖分/数据结构/p2486-e6-a0-91-e9-93-be-e5-89-96-e5-88-86-ef-bc-88-e5-8c-ba-e9-97-b4-e6-9b-b4-e6-94-b9-ef-bc-8c-e5-8c-ba-e9-97-b4-e6-9f-a5-e9-87-8d-ef-bc-89/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/树链剖分/数据结构/p2486-e6-a0-91-e9-93-be-e5-89-96-e5-88-86-ef-bc-88-e5-8c-ba-e9-97-b4-e6-9b-b4-e6-94-b9-ef-bc-8c-e5-8c-ba-e9-97-b4-e6-9f-a5-e9-87-8d-ef-bc-89/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            树剖，用线段树维护： 数组a[N]表示此时的颜色段数。 数组left1[N]表示此时最左边的节点的颜色。 数组right1[N]表示此时最右边的节点的颜色。 则： 首先我们要明确，线段树的叶子节点一定只有一种颜色，也就是一条颜色段。 a[父亲]=a[左儿子]+a[右儿子]； if (left1[右儿子]==right1[左儿子]) {a[父亲]–;} 即如果右儿子的最左边颜色和左儿子的最右边颜色相同，那么肯定有中间部分属于同一颜色段。 以及往上跳的时候重链连接处颜色是否相同的问题，相同的话也要减。
+#include&lt;algorithm&gt;
+#include&lt;iostream&gt;
+#include&lt;cstdlib&gt;
+#include&lt;cstring&gt;
+#include&lt;cstdio&gt;
+#include&lt;vector&gt;
+using namespace std;
+typedef long long ll ;
+
+const int maxn=100000+10;
+vector&lt;int&gt;G[maxn];
+//in
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/算法/树链剖分/数据结构/p2486-e6-a0-91-e9-93-be-e5-89-96-e5-88-86-ef-bc-88-e5-8c-ba-e9-97-b4-e6-9b-b4-e6-94-b9-ef-bc-8c-e5-8c-ba-e9-97-b4-e6-9f-a5-e9-87-8d-ef-bc-89/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/模板/树链剖分/数据结构/e6-b4-9b-e8-b0-b7p2590-e6-a0-91-e9-93-be-e5-89-96-e5-88-86-ef-bc-88-e5-8d-95-e7-82-b9-e4-bf-ae-e6-94-b9-ef-bc-8c-e5-8c-ba-e9-97-b4-e6-b1-82-e5-92-8cand-e5-8d-95-e7-82-b9-e6-9f-a5-e8-af-a2-ef-bc-89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2012,205 +2204,11 @@ B. 暴力枚举24种映射的情况即可….题目很简单，但是不是很�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://www.huweihuang.com/算法/Codeforces/codeforces-round-498-div-3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="HumveeA6">
-      <meta itemprop="description" content="false">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="HumveeA6">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/算法/Codeforces/codeforces-round-498-div-3/" itemprop="url">Codeforces Round #498 (Div. 3)</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-17T10:58:31+08:00">
-                2018-07-17
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/Codeforces/" itemprop="url" rel="index">
-                    <span itemprop="name">Codeforces</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/算法/Codeforces/codeforces-round-498-div-3/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="算法/Codeforces/codeforces-round-498-div-3/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          A. 弱智题
-#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-using namespace std;
-int main()
-{
-    int n,i,j,k;
-    cin&gt;&gt;n;
-    for(i=1;i&lt;=n;i++){
-        scanf(&quot;%d&quot;,&amp;j);
-        if(j&amp;1)cout&lt;&lt;j&lt;&lt;&apos; &apos;;
-        else cout&lt;&lt;j-1&lt;&lt;&apos; &apos;;
-    }
-
-    return 0;
-}
-B. 从大到小排序，前k大就是所求
-#include&lt;cstdio&gt;
-#include&lt;iostream&gt;
-#include&lt;algorithm&gt;
-#include&lt;map&gt;
-#include&lt;set&gt;
-using namespace std;
-bool cmp(int x,int y)
-{
-    re
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/算法/Codeforces/codeforces-round-498-div-3/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/archives/8/">8</a><a class="extend next" rel="next" href="/archives/8/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/archives/6/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/archives/8/">8</a><a class="page-number" href="/archives/9/">9</a><a class="extend next" rel="next" href="/archives/8/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -2256,7 +2254,7 @@ bool cmp(int x,int y)
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">80</span>
+                  <span class="site-state-item-count">81</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
