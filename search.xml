@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Something about vim]]></title>
     <url>%2F%E4%B9%B1%E6%90%9E%2FSomething-about-vim%2F</url>
-    <content type="text"><![CDATA[基础操作 删除操作 修改操作]]></content>
+    <content type="text"><![CDATA[基础操作 删除操作 修改操作 定位与查找 外部命令与文件输入输出 复制、查找与其他命令]]></content>
       <categories>
         <category>乱搞</category>
       </categories>
